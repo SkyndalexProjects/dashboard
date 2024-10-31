@@ -1,7 +1,6 @@
-"use client";
 import { SignIn } from "./components/signIn";
-import { signOut } from "next-auth/react";
-import { useSession, SessionProvider } from "next-auth/react";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/app/auth";
 export default function Page() {
   return (
     <SessionProvider>
@@ -9,18 +8,21 @@ export default function Page() {
     </SessionProvider>
   );
 }
+export async function PageContent() {
+  const session = await auth()
+  console.log("session", session);
+//  const session = await getServerSession();
+  // if (data) {
+  //   console.log("session", session);
 
-function PageContent() {
-  const { data: session } = useSession()
+  //   return (
+  //     <div>
+  //       {/* Signed in as {session.user?.name} <br />
+  //       <button onClick={() => signOut()}>Sign out</button> */}
+  //     </div>
+  // );
+  // }
 
-  if (session) {
-    return (
-      <div>
-        Signed in as {session.user?.name} <br />
-        <button onClick={() => signOut()}>Sign out</button>
-      </div>
-    )
-  }
   return (
     <div>
       <SignIn />
