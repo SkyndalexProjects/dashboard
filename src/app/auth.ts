@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import Discord from "next-auth/providers/discord";
 import type { User } from "next-auth";
+import 'next-auth/jwt'
 
 declare module "next-auth" {
   interface Session {
@@ -31,9 +32,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         try {
           const response = await fetch("https://discord.com/api/oauth2/token", {
             method: "POST",
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
             body: new URLSearchParams({
               client_id: process.env.AUTH_DISCORD_ID as string,
               client_secret: process.env.AUTH_DISCORD_SECRET as string,
@@ -78,5 +76,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       console.log("Session created:", session); 
       return session;
     },
+    
   },
 })
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    access_token: string
+    expires_at: number
+    refresh_token?: string
+    error?: "RefreshTokenError"
+  }
+}

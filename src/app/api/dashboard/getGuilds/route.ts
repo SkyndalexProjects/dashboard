@@ -1,10 +1,11 @@
 import { auth } from "@/app/auth";
+import { Session } from "next-auth";
 export const dynamic = "force-static";
 export async function GET() {
   try {
-    const session = await auth();
-
+    const session = await auth()
     console.log("session", session);
+    
     const response = await fetch("https://discord.com/api/users/@me/guilds", {
       headers: {
         'Content-Type': 'application/json',
