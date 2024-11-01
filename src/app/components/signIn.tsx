@@ -1,6 +1,14 @@
-"use client"
-import { signIn } from "next-auth/react"
- 
+"use client";
+import { permanentRedirect } from "next/navigation";
+
 export function SignIn() {
-  return <button onClick={() => signIn()}>Sign In</button>
+	return (
+		<button
+			onClick={() =>
+				permanentRedirect(process.env.NEXT_PUBLIC_DISCORD_AUTH_URL as string)
+			}
+		>
+			Sign In
+		</button>
+	);
 }
