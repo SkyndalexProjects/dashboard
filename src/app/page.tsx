@@ -14,25 +14,39 @@ export default function Page() {
 
 export function PageContent() {
 	const { data: session } = useSession();
-	const [guilds, setGuilds] = useState([]);
+	interface Guild {
+		id: string;
+		name: string;
+		permissions: number;
+	}
+	const [guilds, setGuilds] = useState<Guild[]>([]);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			if (session) {
 				const fetchGuilds = await fetch("/api/dashboard/getGuilds");
 				const guildsData = await fetchGuilds.json();
-				setGuilds(guildsData);
+
+				const filteredGuilds: Guild[] = guildsData.filter(
+					(guild: Guild) => guild.permissions === 2147483647,
+				);
+				setGuilds(filteredGuilds);
 			}
 		};
 		fetchData();
 	}, [session]);
 
-	console.log("guilds", guilds);
 	if (session) {
 		return (
 			<div>
 				Signed in as {session.user?.name} (${session.accessToken})<br />
 				<button onClick={() => signOut()}>Sign out</button>
+				<h2>Your Guilds:</h2>
+				<ul>
+					{guilds.map((guild) => (
+						<li key={guild.id}>{guild.name}</li>
+					))}
+				</ul>
 			</div>
 		);
 	}
