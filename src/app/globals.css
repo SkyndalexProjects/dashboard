@@ -1,21 +1,15 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-	--background: #ffffff;
-	--foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-	:root {
-		--background: #0a0a0a;
-		--foreground: #ededed;
-	}
-}
-
 body {
-	color: var(--foreground);
-	background: var(--background);
+    background: linear-gradient(to top, #1E2230, #0F1117);
+	min-height: 100vh;
 	font-family: Arial, Helvetica, sans-serif;
+	color: white;
+}
+button {
+	background-color: #4CAF50;
+	color: #ffffff;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 20%;
 }

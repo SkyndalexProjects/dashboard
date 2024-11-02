@@ -18,6 +18,7 @@ export function PageContent() {
 		id: string;
 		name: string;
 		permissions: number;
+		icon: string;
 	}
 	const [guilds, setGuilds] = useState<Guild[]>([]);
 
@@ -39,16 +40,19 @@ export function PageContent() {
 	if (session) {
 		return (
 			<div>
-				Signed in as {session.user?.name} (${session.accessToken})<br />
+				Signed in as {session.user?.name} <br />
 				<button onClick={() => signOut()}>Sign out</button>
 				<h2>Your Guilds:</h2>
-				<ul>
+				<div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))", gap: "10px" }}>
 					{guilds.map((guild) => (
-						<li key={guild.id}>{guild.name}</li>
+						<div key={guild.id} style={{ padding: "5px", textAlign: "center", borderColor: "#ffffff", borderStyle: "solid", borderWidth: "1px" }}>
+							<img src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`} alt={`<no icon>`} style={{ width: "50px", height: "50px" }} />
+							<p>{guild.name}</p>
+						</div>
 					))}
-				</ul>
-			</div>
-		);
+				</div>
+				</div>
+		)
 	}
 
 	return (
