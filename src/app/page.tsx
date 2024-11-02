@@ -1,30 +1,45 @@
-import { SignIn } from "@/app/components/signIn";
-import { cookies } from "next/headers";
-export default async function PageContent() {
-	const cookieStore = await cookies();
-	const access_token = cookieStore.get("access_token");
+"use client";
+import { SignIn } from "./components/signIn";
+import { SessionProvider } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
+import { useEffect, useState } from "react";
+export default function Page() {
+	return (
+		<SessionProvider>
+			<PageContent />
+		</SessionProvider>
+	);
+}
 
-	console.log("main access_token", access_token);
+export function PageContent() {
+	const { data: session } = useSession();
+	const [guilds, setGuilds] = useState([]);
 
-	const res = await fetch("http://localhost:3000/api/dashboard/getUser");
-	const user = await res.json();
-	console.log("user", user);
+	useEffect(() => {
+		const fetchData = async () => {
+			if (session) {
+				const fetchGuilds = await fetch("/api/dashboard/getGuilds");
+				const guildsData = await fetchGuilds.json();
+				setGuilds(guildsData);
+			}
+		};
+		fetchData();
+	}, [session]);
 
-	const res2 = await fetch("http://localhost:3000/api/dashboard/getGuilds");
-	const guilds = await res2.json();
 	console.log("guilds", guilds);
-
-	if (user.username) {
+	if (session) {
 		return (
 			<div>
-				<h1>Logged in as {user.username} </h1>
-			</div>
-		);
-	} else {
-		return (
-			<div>
-				<SignIn />
+				Signed in as {session.user?.name} (${session.accessToken})<br />
+				<button onClick={() => signOut()}>Sign out</button>
 			</div>
 		);
 	}
+
+	return (
+		<div>
+			<SignIn />
+		</div>
+	);
 }
