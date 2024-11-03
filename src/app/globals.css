@@ -1,11 +1,11 @@
 body {
-    background: linear-gradient(to top, #1E2230, #0F1117);
+	background: linear-gradient(to top, #1e2230, #0f1117);
 	min-height: 100vh;
 	font-family: Arial, Helvetica, sans-serif;
 	color: white;
 }
 button {
-	background-color: #4CAF50;
+	background-color: #4caf50;
 	color: #ffffff;
 	padding: 14px 20px;
 	margin: 8px 0;
@@ -19,7 +19,7 @@ button {
 	grid-gap: 20px;
 }
 .guild {
-	background-color: #2C2F3E;
+	background-color: #2c2f3e;
 	border-radius: 10px;
 	padding: 20px;
 }

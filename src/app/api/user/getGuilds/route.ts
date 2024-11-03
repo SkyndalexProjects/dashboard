@@ -1,13 +1,14 @@
 import { auth } from "@/app/auth";
 export async function GET() {
 	const session = await auth();
-	const response = await fetch("https://discord.com/api/users/@me/guilds", {
-		headers: {
-			"Content-Type": "application/json",
-			Authorization: `Bearer ${session?.accessToken}`,
-		},
-	});
-	const data = await response.json();
-	console.log("Guilds:", data);
-	return Response.json(data);
+	if (session) {
+		const response = await fetch("https://discord.com/api/users/@me/guilds", {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${session?.accessToken}`,
+			},
+		});
+		const data = await response.json();
+		return Response.json(data);
+	}
 }
