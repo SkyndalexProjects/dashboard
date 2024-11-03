@@ -1,11 +1,10 @@
 "use client";
-import { SignIn } from "./components/ui/signIn";
-import { SessionProvider } from "next-auth/react";
+import type { Guild } from "@/app/globals";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Guild } from "@/app/globals";
+import { SignIn } from "./components/ui/signIn";
 
 export default function PageContent() {
 	const { data: session } = useSession();
@@ -39,7 +38,9 @@ export default function PageContent() {
 						<div
 							key={guild.id}
 							className="guild"
-							onClick={() => redirect(`/dashboard/servers/${guild.id}`)}
+							onClick={() =>
+								redirect(`/dashboard/servers/${guild.id}`)
+							}
 						>
 							<img
 								src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`}

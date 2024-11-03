@@ -1,6 +1,6 @@
 import "./globals.css";
-import ClientProviders from "./ClientProviders";
 import { SessionProvider } from "next-auth/react";
+import ClientProviders from "./ClientProviders";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
 	return (

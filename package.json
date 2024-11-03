@@ -8,7 +8,7 @@
     "format": "npx @biomejs/biome format --write ./src",
     "lint:fix": "npx @biomejs/biome check --apply ./src",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "npx @biomejs/biome lint ./src"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.2",

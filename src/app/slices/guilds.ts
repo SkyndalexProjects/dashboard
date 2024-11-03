@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { fetchGuilds } from "../thunks/guilds";
 
 export type InitialState = {
@@ -28,11 +28,14 @@ export const guildsSlice = createSlice({
 					state.haveGuildsFetched = true;
 				},
 			)
-			.addCase(fetchGuilds.rejected, (state, action: PayloadAction<any>) => {
-				state.error = action.payload;
-				console.log(action.payload);
-				console.log("rejected");
-			})
+			.addCase(
+				fetchGuilds.rejected,
+				(state, action: PayloadAction<any>) => {
+					state.error = action.payload;
+					console.log(action.payload);
+					console.log("rejected");
+				},
+			)
 			.addCase(fetchGuilds.pending, () => {
 				console.log("it is pending");
 			});

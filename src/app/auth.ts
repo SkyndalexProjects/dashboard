@@ -20,15 +20,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 				if (!token.refresh_token)
 					throw new TypeError("No refresh token available");
 				try {
-					const response = await fetch("https://discord.com/api/oauth2/token", {
-						method: "POST",
-						body: new URLSearchParams({
-							client_id: process.env.AUTH_DISCORD_ID as string,
-							client_secret: process.env.AUTH_DISCORD_SECRET as string,
-							grant_type: "refresh_token" as string,
-							refresh_token: token.refresh_token as string,
-						}),
-					});
+					const response = await fetch(
+						"https://discord.com/api/oauth2/token",
+						{
+							method: "POST",
+							body: new URLSearchParams({
+								client_id: process.env
+									.AUTH_DISCORD_ID as string,
+								client_secret: process.env
+									.AUTH_DISCORD_SECRET as string,
+								grant_type: "refresh_token" as string,
+								refresh_token: token.refresh_token as string,
+							}),
+						},
+					);
 
 					const tokenOrErorr = await response.json();
 					if (!response.ok) throw tokenOrErorr;
