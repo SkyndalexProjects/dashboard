@@ -14,7 +14,9 @@ export async function GET() {
 			},
 		);
 		const data = await response.json();
-		const filteredGuilds = data.filter((guild: Guild) => guild.permissions === 2147483647);
+		const filteredGuilds = data.filter(
+			(guild: Guild) => guild.permissions === 2147483647,
+		);
 		return Response.json(filteredGuilds);
 	}
 	return Response.json({ error: "Unauthorized" }, { status: 401 });

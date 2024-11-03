@@ -87,7 +87,7 @@ hr {
 	border: 1px solid #464545;
 }
 .sidebar {
-	width: 200px;
+	width: 230px;
 	border-right: 1px solid #464545;
 	margin-right: 0;
 	border-radius: 15px;
@@ -101,9 +101,47 @@ hr {
 	color: #a3a3a3;
 	font-weight: 500;
 	font-size: 24px;
+	text-align: left;
+	display: flex;
+	align-items: left;
+	justify-content: left;
+	padding: 10px 15px; /* Added padding to increase the clickable area */
+	margin-left: 5px;
+}
+.sidebar-item.active {
+	background: linear-gradient(to right, #007bff, transparent);
+	position: relative;
+	width: calc(100% + 30px);
+	margin-left: -10px;
+	padding-left: 15px;
+}
+
+.sidebar-item.active::after {
+	content: ">";
+	position: absolute;
+	left: -20px;
+	color: #007bff;
+	font-weight: bold;
+}
+.sidebar-item:hover {
+	background: #007bff;
+	transition-duration: 0.5s;
+}
+.sidebar-item img {
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
+	vertical-align: middle;
+	color: white;
 }
 .guild-panel {
 	margin-left: 250px;
+	display: flex;
+	align-items: center;
+}
+.guild-panel img {
+	margin-left: 20px;
+	vertical-align: middle;
 }
 .dropdown {
 	position: relative;
@@ -111,6 +149,8 @@ hr {
 }
 
 .dropdown-toggle {
+	display: flex;
+	align-items: center;
 	font-family: "Noto Sans", sans-serif;
 	font-weight: 500;
 	font-size: 24px;
@@ -121,6 +161,9 @@ hr {
 	border-radius: 5px;
 	background-color: #312c64;
 	cursor: pointer;
+}
+.dropdown-toggle img {
+	margin-right: 5px;
 }
 
 .dropdown-menu {

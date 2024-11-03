@@ -1,5 +1,6 @@
 import Image from "next/image";
-import Dropdown from "../dropdown";
+import GuildsDropdown from "../dropdowns/guilds";
+import InstancesDropdown from "../dropdowns/instances";
 const navbar = () => {
 	return (
 		<>
@@ -13,7 +14,8 @@ const navbar = () => {
 					className="nav-logo"
 				/>
 				<p className="nav-title"> DASHBOARD </p>
-				<Dropdown />
+				<GuildsDropdown />
+				<InstancesDropdown />
 				<div className="nav-right">
 					<p className="nav-item"> 0.0.0 </p>
 				</div>
