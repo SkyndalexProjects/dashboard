@@ -2,8 +2,8 @@
 import type { Guild } from "@/app/globals";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
-import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { SignIn } from "./components/ui/signIn";
 
 export default function PageContent() {
@@ -22,34 +22,39 @@ export default function PageContent() {
 				setGuilds(filteredGuilds);
 			}
 		};
-		fetchData();
+		if (session) {
+			fetchData();
+		}
 	}, [session]);
 
-	console.log("guilds", guilds);
-
 	if (session) {
+		console.log("guilds", guilds);
+
 		return (
 			<div>
-				Signed in as {session.user?.name} <br />
-				<button onClick={() => signOut()}>Sign out</button>
-				<h2>Choose guild:</h2>
-				<div className="guilds-grid">
-					{guilds.map((guild) => (
-						<div
-							key={guild.id}
-							className="guild"
-							onClick={() =>
-								redirect(`/dashboard/servers/${guild.id}`)
-							}
-						>
-							<img
-								src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`}
-								alt={`<no icon>`}
-							/>
-							<p>{guild.name}</p>
-						</div>
-					))}
+				<h1 className="title"> Welcome, {session.user?.name} </h1>
+				<h2 className="title"> Please, choose guild:</h2>
+				<div className="guilds-container">
+					<div className="guilds-grid">
+						{guilds.map((guild) => (
+							<Link
+								href={`/dashboard/servers/${guild.id}`}
+								className="guild"
+							>
+								<div>
+									<img
+										src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`}
+										alt={`<no icon>`}
+									/>
+									<p>{guild.name}</p>
+								</div>
+							</Link>
+						))}
+					</div>
 				</div>
+				<button onClick={() => signOut()} className="sign-out">
+					Sign out
+				</button>
 			</div>
 		);
 	}

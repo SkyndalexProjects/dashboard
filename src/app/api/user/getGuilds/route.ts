@@ -2,7 +2,7 @@ import { auth } from "@/app/auth";
 
 export async function GET() {
 	const session = await auth();
-	if (session) {
+	if (session?.user) {
 		const response = await fetch(
 			"https://discord.com/api/users/@me/guilds",
 			{
