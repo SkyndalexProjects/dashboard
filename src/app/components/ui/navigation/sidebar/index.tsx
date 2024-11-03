@@ -6,7 +6,7 @@ const Sidebar = () => {
 	const isActive = (path: string) => pathname.startsWith(path);
 
 	return (
-		<div className="sidebar">
+		<div className="sidebar" style={{ userSelect: "none" }}>
 			<p className={`sidebar-item ${isActive("/") ? "active" : ""}`}>
 				<Image src="/home.svg" alt="home" width={30} height={30} /> Home
 			</p>

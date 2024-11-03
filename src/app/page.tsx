@@ -5,7 +5,7 @@ import { signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { SignIn } from "./components/ui/signIn";
-
+import Image from "next/image";
 export default function PageContent() {
 	const { data: session } = useSession();
 	const [guilds, setGuilds] = useState<Guild[]>([]);
@@ -29,8 +29,13 @@ export default function PageContent() {
 
 		return (
 			<div>
-				<h1 className="title"> Welcome, {session.user?.name} </h1>
-				<h2 className="title"> Please, choose guild:</h2>
+				<div className="titles">
+				<h1> Welcome, {session.user?.name} </h1>
+				<h2> Please, choose guild:</h2>
+				<hr className="title-divider" />
+
+				</div>
+
 				<div className="guilds-container">
 					<div className="guilds-grid">
 						{guilds.map((guild) => (
@@ -39,12 +44,15 @@ export default function PageContent() {
 								href={`/dashboard/servers/${guild.id}`}
 								className="guild"
 							>
-								<div>
-									<img
-										src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`}
-										alt={`<no icon>`}
+								<div className="guild-item">
+									<Image
+										src={guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png` : "/default-icon.png"}
+										alt={guild.name}
+										width={80}
+										height={80}
 									/>
-									<p>{guild.name}</p>
+									
+									<div className="guild-name">{guild.name}</div>
 								</div>
 							</Link>
 						))}
@@ -58,7 +66,7 @@ export default function PageContent() {
 	}
 
 	return (
-		<div>
+		<div className="sign-in-container">
 			<SignIn />
 		</div>
 	);
