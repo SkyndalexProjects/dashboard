@@ -16,10 +16,7 @@ export default function PageContent() {
 				const fetchGuilds = await fetch("/api/user/getGuilds");
 				const guildsData = await fetchGuilds.json();
 
-				const filteredGuilds: Guild[] = guildsData.filter(
-					(guild: Guild) => guild.permissions === 2147483647,
-				);
-				setGuilds(filteredGuilds);
+				setGuilds(guildsData);
 			}
 		};
 		if (session) {

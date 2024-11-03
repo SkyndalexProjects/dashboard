@@ -4,7 +4,7 @@ import type { AppDispatch, RootState } from "@/app/store";
 import { fetchGuilds } from "@/app/thunks/guilds";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import Link from "next/link";
 const Dropdown = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const haveGuildsFetched = useSelector(
@@ -19,7 +19,12 @@ const Dropdown = () => {
 
 	const guilds = useSelector((state: RootState) =>
 		Array.isArray(state.guilds.data) ? state.guilds.data : undefined,
-	);
+	)?.slice().sort((a, b) => {
+		if (a.icon && !b.icon) return -1;
+		if (!a.icon && b.icon) return 1;
+		return 0;
+	});
+
 	return (
 		<ul>
 			<li className="dropdown">
@@ -30,14 +35,14 @@ const Dropdown = () => {
 					{guilds &&
 						guilds.map((guild) => (
 							<li key={guild.id}>
-								<a href="#">
+								<Link href={`/dashboard/servers/${guild.id}`}>
 									<img
 										src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`}
 										alt={guild.name}
 										className="guild-icon"
 									/>
 									{guild.name}
-								</a>
+								</Link>
 							</li>
 						))}
 				</ul>

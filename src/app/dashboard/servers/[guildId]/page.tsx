@@ -28,6 +28,7 @@ export default function PageContent() {
 			? state.guilds.data.find((x) => x.id === guildId)
 			: undefined,
 	);
+	if (!guild) return <div> No guild </div>
 	console.log("guild", guild);
 
 	return (

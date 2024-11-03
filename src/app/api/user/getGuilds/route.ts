@@ -1,4 +1,5 @@
 import { auth } from "@/app/auth";
+import type { Guild } from "@/app/globals";
 
 export async function GET() {
 	const session = await auth();
@@ -13,7 +14,8 @@ export async function GET() {
 			},
 		);
 		const data = await response.json();
-		return Response.json(data);
+		const filteredGuilds = data.filter((guild: Guild) => guild.permissions === 2147483647);
+		return Response.json(filteredGuilds);
 	}
 	return Response.json({ error: "Unauthorized" }, { status: 401 });
 }
