@@ -44,8 +44,8 @@ body {
 	justify-items: center;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	transition: box-shadow 0.3s ease-in-out;
-    text-decoration: none;
-    text-align: center;
+	text-decoration: none;
+	text-align: center;
 }
 .guild:hover {
 	background-color: #2744d3;

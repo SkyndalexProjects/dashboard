@@ -24,7 +24,9 @@ export const guildsSlice = createSlice({
 				(state, action: PayloadAction<InitialState>) => {
 					console.log("guilds/fetch is fulfilled");
 					// @ts-ignore
-					state.data = action.payload;
+					state.data = Array.isArray(action.payload)
+						? action.payload
+						: [];
 					state.haveGuildsFetched = true;
 				},
 			)

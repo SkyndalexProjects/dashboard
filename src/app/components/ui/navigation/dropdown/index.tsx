@@ -7,15 +7,19 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Dropdown = () => {
 	const dispatch = useDispatch<AppDispatch>();
+	const haveGuildsFetched = useSelector(
+		(state: RootState) => state.guilds.haveGuildsFetched,
+	);
+
+	useEffect(() => {
+		if (!haveGuildsFetched) {
+			dispatch(fetchGuilds());
+		}
+	}, [dispatch, haveGuildsFetched]);
 
 	const guilds = useSelector((state: RootState) =>
 		Array.isArray(state.guilds.data) ? state.guilds.data : undefined,
 	);
-
-	useEffect(() => {
-		dispatch(fetchGuilds());
-	}, [dispatch]);
-
 	return (
 		<ul>
 			<li className="dropdown">

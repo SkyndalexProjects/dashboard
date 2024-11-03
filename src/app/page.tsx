@@ -38,6 +38,7 @@ export default function PageContent() {
 					<div className="guilds-grid">
 						{guilds.map((guild) => (
 							<Link
+								key={guild.id}
 								href={`/dashboard/servers/${guild.id}`}
 								className="guild"
 							>
