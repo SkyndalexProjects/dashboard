@@ -5,7 +5,7 @@ interface Guild {
 	name: string;
 	permissions: number;
 	icon: string;
-	message: string
+	message: string;
 }
 
 declare module "next-auth" {

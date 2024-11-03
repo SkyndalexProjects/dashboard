@@ -3,14 +3,7 @@ import Discord from "next-auth/providers/discord";
 import "next-auth/jwt";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-	providers: [
-		Discord({
-			clientId: process.env.AUTH_DISCORD_ID as string,
-			clientSecret: process.env.AUTH_DISCORD_SECRET as string,
-			authorization:
-				"https://discord.com/oauth2/authorize?scope=identify+guilds",
-		}),
-	],
+	providers: [Discord],
 	session: { strategy: "jwt" },
 	callbacks: {
 		async jwt({ token, account, profile }) {
@@ -20,7 +13,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 				token.refresh_token = account.refresh_token;
 			} else if (
 				token.expires_at &&
-				Math.floor(( new Date(token.expires_at).getTime() - Date.now()) / 1000)
+				Date.now() / 1000 > token.expires_at - 60
 			) {
 				return token;
 			} else {

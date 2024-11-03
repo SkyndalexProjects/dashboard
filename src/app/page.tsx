@@ -13,7 +13,7 @@ export default function PageContent() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			if (session && guilds.length === 0) {
+			if (session?.user && guilds.length === 0) {
 				const fetchGuilds = await fetch("/api/user/getGuilds");
 				const guildsData = await fetchGuilds.json();
 

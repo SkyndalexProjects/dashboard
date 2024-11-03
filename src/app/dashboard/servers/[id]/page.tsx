@@ -1,28 +1,17 @@
-"use client"
+"use client";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/app/store";
+import router from "next/navigation"
 import { useParams } from "next/navigation";
-import { Guild } from "@/app/globals";
-import { useEffect, useState } from "react";
 
 export default function PageContent() {
-
-	const [guild, setGuild] = useState<Guild | null>(null);
-
 	const params = useParams<{ id: string }>();
+	const guild = useSelector((state: RootState) => state.guilds.data.find(x => x.id === params.id)) 
 
-	useEffect(() => {
-		const getGuild = async () => {
-			const guildId = params.id;
-			const response = await fetch(`/api/panel/getGuild?id=${guildId}`);
-			const data = (await response.json()) as Guild;
-			setGuild(data);
-		};
-
-		getGuild();
-	}, [params]);
-
+	console.log("guild", guild);
 	return (
 		<div>
-			<h1> Im working. Choosen guild: {guild ? guild.name || guild.message : "Loading..."} </h1>
+			<h1> Im working </h1>
 		</div>
 	);
 }

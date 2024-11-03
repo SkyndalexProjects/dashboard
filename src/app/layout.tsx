@@ -1,37 +1,20 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
+import ClientProviders from "./ClientProviders";
 import { SessionProvider } from "next-auth/react";
-const geistSans = localFont({
-	src: "./fonts/GeistVF.woff",
-	variable: "--font-geist-sans",
-	weight: "100 900",
-});
-const geistMono = localFont({
-	src: "./fonts/GeistMonoVF.woff",
-	variable: "--font-geist-mono",
-	weight: "100 900",
-});
 
-export const metadata: Metadata = {
-	title: "Dashboard",
-	description: "Skyndalex Dashboard",
-};
-
-export default function RootLayout({
-	children,
-}: Readonly<{
-	children: React.ReactNode;
-}>) {
+const Layout = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<html lang="en">
-			<SessionProvider>
-				<body
-					className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-				>
-					{children}
-				</body>
-			</SessionProvider>
+			<body>
+				<SessionProvider>
+					<ClientProviders>
+						{}
+						{children}
+					</ClientProviders>
+				</SessionProvider>
+			</body>
 		</html>
 	);
-}
+};
+
+export default Layout;
