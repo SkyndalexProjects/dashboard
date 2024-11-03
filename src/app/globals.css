@@ -13,3 +13,17 @@ button {
 	cursor: pointer;
 	width: 20%;
 }
+.guilds-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	grid-gap: 20px;
+}
+.guild {
+	background-color: #2C2F3E;
+	border-radius: 10px;
+	padding: 20px;
+}
+.guild:hover {
+	background-color: #2744d3;
+	transition: background-color 0.5s;
+}

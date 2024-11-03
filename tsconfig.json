@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/api/dashboard/getUser", "src/app/api/dashboard/getGuilds"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/api/user/getUser", "src/app/api/user/getGuilds", "src/app/dashboard/servers"],
   "exclude": ["node_modules"]
 }
