@@ -34,12 +34,14 @@ const InstancesDropdown = () => {
 				<p className="dropdown-toggle" data-toggle="dropdown">
 					<Image src="/logo.ico" alt="logo" width={38} height={37} />{" "}
 					Main instance
-					<Image src="/dropdown.svg" alt="dropdown" width={38} height={37} className="dropdown-icon" />{" "}
-
-					<b className="caret"> 
-
-						
-					</b>
+					<Image
+						src="/dropdown.svg"
+						alt="dropdown"
+						width={38}
+						height={37}
+						className="dropdown-icon"
+					/>{" "}
+					<b className="caret"></b>
 				</p>
 				<ul className="dropdown-menu">
 					{custombots && custombots.length > 0 ? (

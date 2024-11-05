@@ -12,7 +12,7 @@ export default function PageContent() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			if (session?.user && guilds.length === 0) {
+			if (session?.user?.name && guilds.length === 0) {
 				const fetchGuilds = await fetch("/api/user/getGuilds");
 				const guildsData = await fetchGuilds.json();
 
@@ -25,15 +25,12 @@ export default function PageContent() {
 	}, [session]);
 
 	if (session) {
-		console.log("guilds", guilds);
-
 		return (
 			<div>
 				<div className="titles">
-				<h1> Welcome, {session.user?.name} </h1>
-				<h2> Please, choose guild:</h2>
-				<hr className="title-divider" />
-
+					<h1> Welcome, {session.user?.name} </h1>
+					<h2> Please, choose guild:</h2>
+					<hr className="title-divider" />
 				</div>
 
 				<div className="guilds-container">
@@ -41,18 +38,24 @@ export default function PageContent() {
 						{guilds.map((guild) => (
 							<Link
 								key={guild.id}
-								href={`/dashboard/servers/${guild.id}`}
+								href={`/dashboard/servers/${guild.id}/home`}
 								className="guild"
 							>
 								<div className="guild-item">
 									<Image
-										src={guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png` : "/default-icon.png"}
+										src={
+											guild.icon
+												? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`
+												: "/default-icon.png"
+										}
 										alt={guild.name}
 										width={80}
 										height={80}
 									/>
-									
-									<div className="guild-name">{guild.name}</div>
+
+									<div className="guild-name">
+										{guild.name}
+									</div>
 								</div>
 							</Link>
 						))}

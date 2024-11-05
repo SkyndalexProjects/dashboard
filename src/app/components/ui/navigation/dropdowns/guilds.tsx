@@ -30,24 +30,36 @@ const GuildsDropdown = () => {
 			return 0;
 		});
 
-		const currentGuild = useParams().guildId
-		const currentGuildData = guilds?.find(guild => guild.id === currentGuild)
-
+	const currentGuild = useParams().guildId;
+	const currentGuildData = guilds?.find((guild) => guild.id === currentGuild);
+	if (!currentGuildData) return <div> No guild </div>
 	return (
 		<ul>
 			<li className="dropdown">
 				<p className="dropdown-toggle" data-toggle="dropdown">
-					<Image src={`https://cdn.discordapp.com/icons/${currentGuildData.id}/${currentGuildData.icon}.png`} alt="menu" width={38} height={37} />{" "}
-					{currentGuildData.name} 
-					<Image src="/dropdown.svg" alt="dropdown" width={38} height={37} className="dropdown-icon" />{" "}
-
+					<Image
+						src={`https://cdn.discordapp.com/icons/${currentGuildData.id}/${currentGuildData.icon}.png`}
+						alt="menu"
+						width={38}
+						height={37}
+					/>{" "}
+					{currentGuildData.name}
+					<Image
+						src="/dropdown.svg"
+						alt="dropdown"
+						width={38}
+						height={37}
+						className="dropdown-icon"
+					/>{" "}
 					<b className="caret"></b>
 				</p>
 				<ul className="dropdown-menu">
 					{guilds &&
 						guilds.map((guild) => (
 							<li key={guild.id}>
-								<Link href={`/dashboard/servers/${guild.id}`}>
+								<Link
+									href={`/dashboard/servers/${guild.id}/home`}
+								>
 									<img
 										src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`}
 										alt={guild.name}
