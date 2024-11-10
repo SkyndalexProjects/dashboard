@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, Routes, Route } from "react-router-dom";
-import Home from "./guild/servers/[id]/home/page";
-// Ensure this path is correct
+import Home from "./dashboard/servers/[id]/home/page";
 interface Guild {
 	id: string;
 	name: string;
