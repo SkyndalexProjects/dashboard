@@ -131,7 +131,7 @@ hr {
 }
 .title-divider {
 	width: 120px;
-	margin: 20px auto
+	margin: 20px auto;
 }
 .sidebar-item {
 	font-family: "Noto Sans", sans-serif;
@@ -151,32 +151,32 @@ hr {
 	border: none;
 }
 .sidebar-item.active {
-    background: linear-gradient(to right, #007bff, transparent) !important;
-    position: relative;
-    width: calc(100% + 30px);
-    margin-left: -10px;
-    padding-left: 15px;
+	background: linear-gradient(to right, #007bff, transparent) !important;
+	position: relative;
+	width: calc(100% + 30px);
+	margin-left: -10px;
+	padding-left: 15px;
 }
 
 .sidebar-item.active::after {
-    content: ">";
-    position: absolute;
-    left: -20px;
-    color: #007bff;
-    font-weight: bold;
+	content: ">";
+	position: absolute;
+	left: -20px;
+	color: #007bff;
+	font-weight: bold;
 }
 
 .sidebar-item:hover {
-    background: #007bff;
-    transition-duration: 0.5s;
+	background: #007bff;
+	transition-duration: 0.5s;
 }
 
 .sidebar-item img {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
-    vertical-align: middle;
-    color: white;
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
+	vertical-align: middle;
+	color: white;
 }
 .guild-panel {
 	margin-left: 250px;
@@ -188,55 +188,55 @@ hr {
 	vertical-align: middle;
 }
 .dropdown {
-    position: relative;
-    display: inline-block;
+	position: relative;
+	display: inline-block;
 }
 
 .dropdown-toggle {
-    display: flex;
-    align-items: center;
-    font-family: "Noto Sans", sans-serif;
-    font-weight: 500;
-    font-size: 24px;
-    color: #a3a3a3;
-    text-decoration: none;
-    padding: 10px 20px;
-    border: 1px solid #464545;
-    border-radius: 5px;
-    background-color: #312c64;
-    cursor: pointer;
+	display: flex;
+	align-items: center;
+	font-family: "Noto Sans", sans-serif;
+	font-weight: 500;
+	font-size: 24px;
+	color: #a3a3a3;
+	text-decoration: none;
+	padding: 10px 20px;
+	border: 1px solid #464545;
+	border-radius: 5px;
+	background-color: #312c64;
+	cursor: pointer;
 }
 .dropdown-toggle img {
-    margin-right: 5px;
+	margin-right: 5px;
 }
 .dropdown-menu {
-    display: none;
-    position: absolute;
-    background-color: #1e2230;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    border-radius: 5px;
-    border: 1px solid #464545;
+	display: none;
+	position: absolute;
+	background-color: #1e2230;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	border-radius: 5px;
+	border: 1px solid #464545;
 }
 .dropdown-menu li {
-    padding: 12px 16px;
-    list-style: none;
+	padding: 12px 16px;
+	list-style: none;
 }
 
 .dropdown-menu li a {
-    color: #a3a3a3;
-    text-decoration: none;
-    display: block;
+	color: #a3a3a3;
+	text-decoration: none;
+	display: block;
 }
 
 .dropdown:hover .dropdown-menu {
-    display: block;
+	display: block;
 }
 
 .dropdown-menu li a:hover {
-    background-color: #6e7caf;
-    transition-duration: 0.5s;
+	background-color: #6e7caf;
+	transition-duration: 0.5s;
 }
 .guild-icon {
 	width: 20px;
@@ -250,18 +250,18 @@ hr {
 	justify-content: center;
 }
 .settings-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    justify-items: center; /* Center items horizontally */
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 16px;
+	justify-items: center; /* Center items horizontally */
 }
 
 .setting-container {
-    display: flex;
-    flex-direction: column;
-    border-color: white;
-    margin-left: 50%;
-    margin-bottom: 20px; 
+	display: flex;
+	flex-direction: column;
+	border-color: white;
+	margin-left: 50%;
+	margin-bottom: 20px;
 }
 .setting-container select {
 	font-family: "Noto Sans", sans-serif;
@@ -279,15 +279,15 @@ hr {
 }
 
 .setting-label-title {
-    font-family: "Noto Sans", sans-serif;
-    font-weight: 500;
-    font-size: 27px;
-    color: #a3a3a3;
-    text-decoration: none;
-    padding: 5px 1px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+	font-family: "Noto Sans", sans-serif;
+	font-weight: 500;
+	font-size: 27px;
+	color: #a3a3a3;
+	text-decoration: none;
+	padding: 5px 1px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
 }
 
 .setting-label-title {
