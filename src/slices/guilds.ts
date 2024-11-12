@@ -2,46 +2,45 @@ import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { fetchGuilds } from "../thunks/guilds.ts";
 
 export type InitialState = {
-	data: any[];
-	haveGuildsFetched: boolean;
-	error: string | null;
+    data: any[];
+    haveGuildsFetched: boolean;
+    error: string | null;
 };
 
 export const initialState: InitialState = {
-	data: [],
-	haveGuildsFetched: false,
-	error: null,
+    data: [],
+    haveGuildsFetched: false,
+    error: null,
 };
 
 export const guildsSlice = createSlice({
-	name: "guilds",
-	initialState,
-	reducers: {},
-	extraReducers: (builder) => {
-		builder
-			.addCase(
-				fetchGuilds.fulfilled,
-				(state, action: PayloadAction<InitialState>) => {
-					console.log("guilds/fetch is fulfilled");
-					// @ts-ignore
-					state.data = Array.isArray(action.payload)
-						? action.payload
-						: [];
-					state.haveGuildsFetched = true;
-				},
-			)
-			.addCase(
-				fetchGuilds.rejected,
-				(state, action: PayloadAction<any>) => {
-					state.error = action.payload;
-					console.log(action.payload);
-					console.log("rejected");
-				},
-			)
-			.addCase(fetchGuilds.pending, () => {
-				console.log("it is pending");
-			});
-	},
+    name: "guilds",
+    initialState,
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(
+                fetchGuilds.fulfilled,
+                (state, action: PayloadAction<any[]>) => {
+                    console.log("guilds/fetch is fulfilled");
+                    state.data = Array.isArray(action.payload)
+                        ? action.payload
+                        : [];
+                    state.haveGuildsFetched = true;
+                },
+            )
+            .addCase(
+                fetchGuilds.rejected,
+                (state, action: PayloadAction<any>) => {
+                    state.error = action.payload;
+                    console.log(action.payload);
+                    console.log("rejected");
+                },
+            )
+            .addCase(fetchGuilds.pending, () => {
+                console.log("it is pending");
+            });
+    },
 });
 
 export default guildsSlice.reducer;

@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, Routes, Route } from "react-router-dom";
-import Home from "./dashboard/servers/[id]/home/page";
+import type { AppDispatch, RootState } from "./store.ts"
+import { fetchGuilds } from "./thunks/guilds.ts";
+import Home from "./dashboard/guild/[id]/home/page.tsx";
 interface Guild {
 	id: string;
 	name: string;
@@ -12,28 +15,35 @@ interface User {
 }
 
 export default function App() {
-	const [guilds, setGuilds] = useState<Guild[]>([]);
 	const [user, setUser] = useState<User | null>(null);
 
 	useEffect(() => {
-		async function fetchData() {
-		  const guildsResponse = await fetch(`http://localhost:3000/api/guilds`, {
-			credentials: 'include',
-		  });
-		  const guildsData = await guildsResponse.json();
-		  setGuilds(guildsData);
-	
-		  const userResponse = await fetch("http://localhost:3000/api/user", {
-			credentials: "include",
-		  });
-		  const userData = await userResponse.json();
-		  setUser(userData);
+		async function fetchUser() {
+			const userResponse = await fetch("http://localhost:3000/api/user", {
+				credentials: "include",
+			});
+			const userData = await userResponse.json();
+			setUser(userData);
 		}
-	
-		fetchData();
-	  }, []);
-	
 
+		fetchUser();
+	}, []);
+
+	const dispatch = useDispatch<AppDispatch>();
+
+	const haveGuildsFetched = useSelector((state: RootState) => {
+        console.log("state.guilds.data", state.guilds.data);
+        return state.guilds.haveGuildsFetched;
+    });
+
+	useEffect(() => {
+        if (!haveGuildsFetched) {
+            dispatch(fetchGuilds());
+        }
+    }, [dispatch, haveGuildsFetched]);
+	const guilds = useSelector((state: RootState) => state.guilds.data);
+	
+	console.log("guilds", guilds);
 	return (
 		<div>
 			<Routes>
