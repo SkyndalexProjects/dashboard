@@ -17,24 +17,22 @@ export default function App() {
 
 	useEffect(() => {
 		async function fetchData() {
-			const guildsResponse = await fetch(
-				`http://localhost:3000/api/guilds`,
-				{
-					credentials: "include",
-				},
-			);
-			const guildsData = await guildsResponse.json();
-			setGuilds(guildsData);
-
-			const userResponse = await fetch("http://localhost:3000/api/user", {
-				credentials: "include",
-			});
-			const userData = await userResponse.json();
-			setUser(userData);
+		  const guildsResponse = await fetch(`http://localhost:3000/api/guilds`, {
+			credentials: 'include',
+		  });
+		  const guildsData = await guildsResponse.json();
+		  setGuilds(guildsData);
+	
+		  const userResponse = await fetch("http://localhost:3000/api/user", {
+			credentials: "include",
+		  });
+		  const userData = await userResponse.json();
+		  setUser(userData);
 		}
-
+	
 		fetchData();
-	}, []);
+	  }, []);
+	
 
 	return (
 		<div>
@@ -53,40 +51,34 @@ export default function App() {
 function HomePage({ guilds, user }: { guilds: Guild[]; user: User | null }) {
 	return (
 		<div>
-			<div className="titles">
-				<h1> Welcome, {user?.username} </h1>
-				<h2> Please, choose guild:</h2>
-				<hr className="title-divider" />
-			</div>
-
+			<h1 className="title"> Welcome, {user?.username} </h1>
+			<h2 className="title"> Please, choose guild:</h2>
 			<div className="guilds-container">
 				<div className="guilds-grid">
 					{guilds.map((guild) => (
-						<div key={guild.id}>
-							<Link
-								to={`/dashboard/guild/${guild.id}/home`}
-								className="guild"
-							>
-								<div className="guild-item">
-									<img
-										src={
-											guild.icon
-												? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`
-												: "/default-icon.png"
-										}
-										alt={guild.name}
-										width={80}
-										height={80}
-									/>
-									<div className="guild-name">
-										{guild.name}
-									</div>
-								</div>
-							</Link>
-						</div>
+						<Link
+							key={guild.id}
+							to={`/dashboard/guild/${guild.id}/home`}
+							className="guild"
+						>
+							<div>
+								<img
+									src={
+										guild.icon
+											? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`
+											: "/default-icon.png"
+									}
+									alt={`<no icon>`}
+								/>
+								<p>{guild.name}</p>
+							</div>
+						</Link>
 					))}
 				</div>
 			</div>
+			<button onClick={() => console.log('Sign out')} className="sign-out">
+				Sign out
+			</button>
 		</div>
 	);
 }
