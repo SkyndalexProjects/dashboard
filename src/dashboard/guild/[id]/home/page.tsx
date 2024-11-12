@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGuilds } from "../../../../thunks/guilds.ts";
 import type { AppDispatch, RootState } from "../../../../store.ts"
@@ -27,27 +27,41 @@ export default function Page() {
     );
     if (!guild) return <div> No guild </div>;
 
+    const [channels, setChannels] = useState([]);
+    const [settings, setSettings] = useState(null);
+
     useEffect(() => {
-        async function fetchData() {
-            const response = await fetch(`http://localhost:3000/api/db/settings`, {
+        async function fetchChannels() {
+            const response = await fetch(`http://localhost:3000/api/cache/guilds/${guild.id}/channels`, {
                 method: 'POST',
                 credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    guildId: guildId,
-                })
             });
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            console.log(data);
+            setChannels(data);
         }
 
-        fetchData();
-    }, [guildId]);
+        async function fetchSettings() {
+            const response = await fetch(`http://localhost:3000/api/db/guilds/${guild.id}/settings`, {
+                method: 'POST',
+                credentials: 'include',
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            setSettings(data);
+        }
+
+        fetchChannels();
+        fetchSettings();
+    }, [guild.id]);
+
+    console.log("channels", channels);
+    console.log("settings", settings);
+
 	return (
 		<div>
 			<h1> tutaj będzie panel zarządzania dla serwera  {guild.name}</h1>
