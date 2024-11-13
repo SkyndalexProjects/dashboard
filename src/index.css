@@ -5,7 +5,7 @@ body {
 	min-height: 100vh;
 	font-family: Arial, Helvetica, sans-serif;
 	color: white;
-	overflow-x: hidden; /* Dodane aby ukryć dolny suwak */
+	overflow-x: hidden;
 }
 .sign-out {
 	background-color: #a82008;
@@ -90,31 +90,31 @@ body {
 	margin-top: 10px;
 }
 ::-webkit-scrollbar {
-    width: 12px;
+	width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #1e2230;
-    border-radius: 10px;
+	background: #1e2230;
+	border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #002a9ca6;
-    border-radius: 10px;
-    border: 3px solid #1e2230;
+	background-color: #002a9ca6;
+	border-radius: 10px;
+	border: 3px solid #1e2230;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #ff4500;
+	background-color: #ff4500;
 }
 
 .search-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
 	background-color: #2c2f3e;
-    border: 1px solid #000000;
+	border: 1px solid #000000;
 }
 .dropbtn {
 	background-color: #101111a6;
@@ -126,10 +126,10 @@ body {
 	width: auto;
 	height: 43px;
 	border-radius: 5px;
-	padding-left: 10px; 
+	padding-left: 10px;
 	text-align: left;
 	position: relative;
-	padding-right: 40px; 	
+	padding-right: 40px;
 }
 .dropbtn img {
 	position: absolute;
@@ -157,10 +157,10 @@ body {
 	overflow-wrap: break-word;
 }
 .dropdown-content div {
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    white-space: nowrap; /* Prevent text from wrapping */
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	white-space: nowrap;
 }
 .dropdown-content.show {
 	display: block;
