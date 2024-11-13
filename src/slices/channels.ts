@@ -1,46 +1,45 @@
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { fetchGuilds } from "../thunks/guilds.ts";
+import { fetchChannels } from "../thunks/channels.ts";
 
 export type InitialState = {
 	data: any[];
-	haveGuildsFetched: boolean;
+	areChannelsFetched: boolean;
 	error: string | null;
 };
 
 export const initialState: InitialState = {
 	data: [],
-	haveGuildsFetched: false,
+	areChannelsFetched: false,
 	error: null,
 };
 
-export const guildsSlice = createSlice({
-	name: "guilds",
+export const channelsSlice = createSlice({
+	name: "channels",
 	initialState,
 	reducers: {},
 	extraReducers: (builder) => {
 		builder
 			.addCase(
-				fetchGuilds.fulfilled,
+				fetchChannels.fulfilled,
 				(state, action: PayloadAction<any[]>) => {
-					console.log("guilds/fetch is fulfilled");
-					state.data = Array.isArray(action.payload)
-						? action.payload
-						: [];
-					state.haveGuildsFetched = true;
+					console.log("channels/fetch is fulfilled");
+
+					state.data = action.payload;
+					state.areChannelsFetched = true;
 				},
 			)
 			.addCase(
-				fetchGuilds.rejected,
+				fetchChannels.rejected,
 				(state, action: PayloadAction<any>) => {
 					state.error = action.payload;
 					console.log(action.payload);
 					console.log("rejected");
 				},
 			)
-			.addCase(fetchGuilds.pending, () => {
+			.addCase(fetchChannels.pending, () => {
 				console.log("it is pending");
 			});
 	},
 });
 
-export default guildsSlice.reducer;
+export default channelsSlice.reducer;

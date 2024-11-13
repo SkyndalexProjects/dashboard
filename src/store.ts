@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { channelsSlice } from "./slices/channels";
 import { guildsSlice } from "./slices/guilds";
 import { userSlice } from "./slices/user";
 
@@ -7,6 +8,7 @@ export const makeStore = () => {
 		reducer: {
 			guilds: guildsSlice.reducer,
 			user: userSlice.reducer,
+			channels: channelsSlice.reducer,
 		},
 		devTools: true,
 	});
