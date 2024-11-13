@@ -5,6 +5,7 @@ body {
 	min-height: 100vh;
 	font-family: Arial, Helvetica, sans-serif;
 	color: white;
+	overflow-x: hidden; /* Dodane aby ukryć dolny suwak */
 }
 .sign-out {
 	background-color: #a82008;
@@ -40,7 +41,7 @@ body {
 	color: white;
 	text-align: center;
 	position: relative;
-	top: 20px; /* Adjust this value as needed */
+	top: 20px;
 }
 .guilds-container {
 	display: flex;
@@ -88,216 +89,89 @@ body {
 .guild-name {
 	margin-top: 10px;
 }
-nav {
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
+::-webkit-scrollbar {
+    width: 12px;
 }
 
-.nav-title {
-	font-family: "Be Vietnam Pro", sans-serif;
+::-webkit-scrollbar-track {
+    background: #1e2230;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #002a9ca6;
+    border-radius: 10px;
+    border: 3px solid #1e2230;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ff4500;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+	background-color: #2c2f3e;
+    border: 1px solid #000000;
+}
+.dropbtn {
+	background-color: #101111a6;
+	border: 1px solid #0048ff;
 	color: white;
-	font-weight: 1000;
-	font-size: 25px;
-	padding: 17px;
-	overflow: hidden;
-	margin-left: 10px;
-}
-.nav-right {
-	display: flex;
-	align-items: center;
-	margin-left: auto;
-}
-.nav-item {
-	font-family: "Noto Sans", sans-serif;
-	font-weight: 1000;
-	color: #a3a3a3;
-	font-weight: 500;
-	font-size: 24px;
-	padding: 17px;
-}
-hr {
-	border: 1px solid #464545;
-}
-.sidebar {
-	width: 230px;
-	border-right: 1px solid #464545;
-	margin-right: 0;
-	border-radius: 15px;
-	position: fixed;
-	height: 100%;
-	overflow: auto;
-	cursor: pointer;
-}
-.title-divider {
-	width: 120px;
-	margin: 20px auto;
-}
-.sidebar-item {
-	font-family: "Noto Sans", sans-serif;
-	font-weight: 1000;
-	color: #a3a3a3;
-	font-weight: 500;
-	font-size: 24px;
-	text-align: left;
-	display: flex;
-	align-items: left;
-	justify-content: left;
-	padding: 10px 15px; /* Added padding to increase the clickable area */
-	margin-left: 5px;
-}
-.sidebar button {
-	background: none;
-	border: none;
-}
-.sidebar-item.active {
-	background: linear-gradient(to right, #007bff, transparent) !important;
-	position: relative;
-	width: calc(100% + 30px);
-	margin-left: -10px;
-	padding-left: 15px;
-}
-
-.sidebar-item.active::after {
-	content: ">";
-	position: absolute;
-	left: -20px;
-	color: #007bff;
+	font-size: 16px;
 	font-weight: bold;
+	cursor: pointer;
+	width: auto;
+	height: 43px;
+	border-radius: 5px;
+	padding-left: 10px; 
+	text-align: left;
+	position: relative;
+	padding-right: 40px; 	
 }
-
-.sidebar-item:hover {
-	background: #007bff;
-	transition-duration: 0.5s;
-}
-
-.sidebar-item img {
-	width: 30px;
-	height: 30px;
-	margin-right: 10px;
-	vertical-align: middle;
-	color: white;
-}
-.guild-panel {
-	margin-left: 250px;
-	display: flex;
-	align-items: center;
-}
-.guild-panel img {
-	margin-left: 20px;
-	vertical-align: middle;
+.dropbtn img {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	width: 20px;
+	height: 20px;
 }
 .dropdown {
 	position: relative;
 	display: inline-block;
 }
 
-.dropdown-toggle {
-	display: flex;
-	align-items: center;
-	font-family: "Noto Sans", sans-serif;
-	font-weight: 500;
-	font-size: 24px;
-	color: #a3a3a3;
-	text-decoration: none;
-	padding: 10px 20px;
-	border: 1px solid #464545;
-	border-radius: 5px;
-	background-color: #312c64;
-	cursor: pointer;
-}
-.dropdown-toggle img {
-	margin-right: 5px;
-}
-.dropdown-menu {
+.dropdown-content {
 	display: none;
 	position: absolute;
-	background-color: #1e2230;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	background-color: rgba(16, 17, 17, 0.85);
+	width: 185px;
+	border: 1px solid #0048ff;
+	border-radius: 10px;
+	margin-top: 10px;
 	z-index: 1;
-	border-radius: 5px;
-	border: 1px solid #464545;
+	max-height: 300px;
+	overflow-y: auto;
+	overflow-wrap: break-word;
 }
-.dropdown-menu li {
+.dropdown-content div {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+.dropdown-content.show {
+	display: block;
+}
+
+.dropdown-content a {
+	color: black;
 	padding: 12px 16px;
-	list-style: none;
-}
-
-.dropdown-menu li a {
-	color: #a3a3a3;
 	text-decoration: none;
 	display: block;
 }
-
-.dropdown:hover .dropdown-menu {
-	display: block;
-}
-
-.dropdown-menu li a:hover {
-	background-color: #6e7caf;
-	transition-duration: 0.5s;
-}
-.guild-icon {
-	width: 20px;
-	height: 20px;
-	margin-right: 10px;
-	vertical-align: middle;
-}
-.fast-settings-title {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-.settings-grid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 16px;
-	justify-items: center; /* Center items horizontally */
-}
-
-.setting-container {
-	display: flex;
-	flex-direction: column;
-	border-color: white;
-	margin-left: 50%;
-	margin-bottom: 20px;
-}
-.setting-container select {
-	font-family: "Noto Sans", sans-serif;
-	font-weight: 500;
-	margin-bottom: 20px;
-	font-size: 24px;
-	color: #a3a3a3;
-	width: 70%;
-	text-decoration: none;
-	padding: 10px 20px;
-	border: 1px solid #464545;
-	border-radius: 5px;
-	background-color: #312c64;
-	cursor: pointer;
-}
-
-.setting-label-title {
-	font-family: "Noto Sans", sans-serif;
-	font-weight: 500;
-	font-size: 27px;
-	color: #a3a3a3;
-	text-decoration: none;
-	padding: 5px 1px;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-}
-
-.setting-label-title {
-	font-family: "Noto Sans", sans-serif;
-	font-weight: 500;
-	font-size: 27px;
-	color: #a3a3a3;
-	text-decoration: none;
-	padding: 5px 1px;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
+.dropdown:hover .dropbtn {
+	background-color: rgba(16, 17, 17, 0.65);
 }
