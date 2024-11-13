@@ -7,7 +7,7 @@ export default function Page() {
 	const dispatch = useDispatch<AppDispatch>();
 
     let { id: guildId } = useParams();
-    console.log("guildId", guildId);
+
     const haveGuildsFetched = useSelector((state: RootState) => {
         console.log("state.guilds.data", state.guilds.data);
         return state.guilds.haveGuildsFetched;
@@ -32,7 +32,8 @@ export default function Page() {
 
     useEffect(() => {
         async function fetchChannels() {
-            const response = await fetch(`http://localhost:3000/api/cache/guilds/${guild.id}/channels`, {
+            const guildsEndpoint = import.meta.env.VITE_GUILDS_CACHE_ENDPOINT
+            const response = await fetch(`${guildsEndpoint}/${guild.id}/channels`, {
                 method: 'POST',
                 credentials: 'include',
             });
@@ -44,7 +45,8 @@ export default function Page() {
         }
 
         async function fetchSettings() {
-            const response = await fetch(`http://localhost:3000/api/db/guilds/${guild.id}/settings`, {
+            const guildsEndpointDB = import.meta.env.VITE_GUILDS_DB_ENDPOINT
+            const response = await fetch(`${guildsEndpointDB}/${guild.id}/settings`, {
                 method: 'POST',
                 credentials: 'include',
             });

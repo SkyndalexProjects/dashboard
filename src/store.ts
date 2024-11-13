@@ -1,9 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { guildsSlice } from "./slices/guilds";
+import { userSlice } from "./slices/user";
+
 export const makeStore = () => {
 	return configureStore({
 		reducer: {
 			guilds: guildsSlice.reducer,
+			user: userSlice.reducer,
 		},
 		devTools: true,
 	});
