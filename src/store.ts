@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { channelsSlice } from "./slices/channels";
 import { guildsSlice } from "./slices/guilds";
 import { userSlice } from "./slices/user";
+import { rolesSlice } from "./slices/roles";
 
 export const makeStore = () => {
 	return configureStore({
@@ -9,6 +10,7 @@ export const makeStore = () => {
 			guilds: guildsSlice.reducer,
 			user: userSlice.reducer,
 			channels: channelsSlice.reducer,
+			roles: rolesSlice.reducer
 		},
 		devTools: true,
 	});
