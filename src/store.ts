@@ -10,7 +10,7 @@ export const makeStore = () => {
 			guilds: guildsSlice.reducer,
 			user: userSlice.reducer,
 			channels: channelsSlice.reducer,
-			roles: rolesSlice.reducer
+			roles: rolesSlice.reducer,
 		},
 		devTools: true,
 	});
