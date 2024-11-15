@@ -4,21 +4,22 @@ const Sidebar = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
 
-    console.log("current path", location.pathname);
+	console.log("current path", location.pathname);
 	const isActive = (path: string) => location.pathname === path;
 
-
-    const handleNavigation = (path: string) => {
+	const handleNavigation = (path: string) => {
 		navigate(path);
 	};
 
-    const guildId = location.pathname.split("/")[3];
-    console.log("guildId", guildId);
+	const guildId = location.pathname.split("/")[3];
+	console.log("guildId", guildId);
 	return (
 		<div className="sidebar">
 			<button
 				className={`sidebar-item ${isActive(`/dashboard/guild/${guildId}/home`) ? "active" : ""}`}
-				onClick={() => handleNavigation(`/dashboard/guild/${guildId}/home`)}
+				onClick={() =>
+					handleNavigation(`/dashboard/guild/${guildId}/home`)
+				}
 			>
 				<img src="/home.svg" alt="home" width={30} height={30} /> Home
 			</button>

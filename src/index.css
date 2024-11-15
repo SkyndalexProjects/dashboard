@@ -253,7 +253,7 @@ hr {
 }
 .sidebar-item.active {
 	background: linear-gradient(to right, #000000 40%, transparent);
-	border-left: 8px solid #0E2580;
+	border-left: 8px solid #0e2580;
 	position: relative;
 	width: 100%;
 }

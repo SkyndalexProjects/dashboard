@@ -51,7 +51,10 @@ export default function App() {
 					element={<HomePage guilds={guilds} user={user} />}
 				/>
 				<Route path="/dashboard/guild/:id/home" element={<Home />} />
-				<Route path="/dashboard/guild/:id/custombots" element={<Custombots />} />
+				<Route
+					path="/dashboard/guild/:id/custombots"
+					element={<Custombots />}
+				/>
 				<Route path="*" element={<NoMatch />} />
 			</Routes>
 		</div>

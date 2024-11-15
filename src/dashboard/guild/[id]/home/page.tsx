@@ -40,10 +40,7 @@ export default function Page() {
 			<Sidebar />
 
 			<div className="quick-menu">
-				<h1>
-					{" "}
-					TEST (Guild): {guild?.name} | Page on WIP
-				</h1>
+				<h1> TEST (Guild): {guild?.name} | Page on WIP</h1>
 				<ChannelsSelect />
 				<RolesSelect />
 			</div>
