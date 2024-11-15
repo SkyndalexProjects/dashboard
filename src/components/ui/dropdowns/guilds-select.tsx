@@ -85,8 +85,8 @@ export default function GuildsSelect() {
 									src={getGuildIconUrl(guild)}
 									alt={guild.name}
 									style={{
-										width: 20,
-										height: 20,
+										width: 30,
+										height: 30,
 										marginRight: 10,
 									}}
 								/>
@@ -111,9 +111,10 @@ export default function GuildsSelect() {
 								src={getGuildIconUrl(guild)}
 								alt={guild.name}
 								style={{
-									width: 20,
-									height: 20,
+									width: 30,
+									height: 30,
 									marginRight: 10,
+									borderRadius: "50%",
 								}}
 							/>
 							{guild.name}
@@ -141,8 +142,8 @@ export default function GuildsSelect() {
 											src={getGuildIconUrl(selectedGuild)}
 											alt={selectedGuild.name}
 											style={{
-												width: 20,
-												height: 20,
+												width: 30,
+												height: 30,
 												marginRight: 10,
 											}}
 										/>
@@ -155,10 +156,10 @@ export default function GuildsSelect() {
 				styles={{
 					control: (provided) => ({
 						...provided,
-						backgroundColor: "#101111a6",
-						border: "1px solid #0048ff",
+						backgroundColor: "#1C1C1C",
+						border: "1px solid #8B8B8B",
 						color: "#ffffff",
-						fontSize: "16px",
+						fontSize: "24px",
 						fontWeight: "bold",
 						cursor: "pointer",
 						height: "43px",

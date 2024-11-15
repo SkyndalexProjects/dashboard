@@ -7,6 +7,7 @@ import { fetchUser } from "../../../../thunks/user";
 import ChannelsSelect from "../../../../components/ui/dropdowns/channels-select";
 import RolesSelect from "../../../../components/ui/dropdowns/roles-select";
 import Navbar from "../../../../components/ui/navigation/navbar";
+import Sidebar from "../../../../components/ui/navigation/sidebar";
 export default function Page() {
 	const { id: guildId } = useParams();
 	const dispatch = useDispatch<AppDispatch>();
@@ -36,10 +37,16 @@ export default function Page() {
 	return (
 		<div>
 			<Navbar />
-			<h1> tutaj będzie panel zarządzania dla serwera {guild?.name}</h1>
+			<Sidebar />
 
-			<ChannelsSelect />
-			<RolesSelect />
+			<div className="quick-menu">
+				<h1>
+					{" "}
+					TEST (Guild): {guild?.name} | Page on WIP
+				</h1>
+				<ChannelsSelect />
+				<RolesSelect />
+			</div>
 		</div>
 	);
 }

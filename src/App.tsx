@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Route, Routes } from "react-router-dom";
 import Home from "./dashboard/guild/[id]/home/page.tsx";
+import Custombots from "./dashboard/guild/[id]/custombots/page.tsx";
 import type { AppDispatch, RootState } from "./store.ts";
 import { fetchGuilds } from "./thunks/guilds.ts";
 import { fetchUser } from "./thunks/user.ts";
@@ -50,6 +51,7 @@ export default function App() {
 					element={<HomePage guilds={guilds} user={user} />}
 				/>
 				<Route path="/dashboard/guild/:id/home" element={<Home />} />
+				<Route path="/dashboard/guild/:id/custombots" element={<Custombots />} />
 				<Route path="*" element={<NoMatch />} />
 			</Routes>
 		</div>

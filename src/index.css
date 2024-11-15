@@ -206,3 +206,54 @@ nav {
 hr {
 	border: 1px solid #464545;
 }
+.sidebar {
+	width: 230px;
+	border-right: 1px solid #464545;
+	margin-right: 0;
+	border-radius: 15px;
+	position: fixed;
+	height: 100%;
+	overflow: auto;
+	cursor: pointer;
+}
+.sidebar-item {
+	font-family: "Noto Sans", sans-serif;
+	font-weight: 1000;
+	color: #a3a3a3;
+	font-weight: 500;
+	font-size: 24px;
+	text-align: left;
+	display: flex;
+	align-items: left;
+	justify-content: left;
+	padding: 10px 15px;
+	margin-left: 5px;
+}
+.sidebar button {
+	background: none;
+	border: none;
+}
+.quick-menu {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.sidebar-item img {
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
+	vertical-align: middle;
+	color: white;
+}
+
+.sidebar button {
+	background: none;
+	border: none;
+}
+.sidebar-item.active {
+	background: linear-gradient(to right, #000000 40%, transparent);
+	border-left: 8px solid #0E2580;
+	position: relative;
+	width: 100%;
+}
