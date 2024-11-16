@@ -6,6 +6,8 @@ export default function Page() {
 		<div>
 			<Navbar />
 			<Sidebar />
+
+			{/* @ts-expect-error */}
 			<h1 align="center"> Nothing yet here </h1>
 		</div>
 	);

@@ -257,3 +257,65 @@ hr {
 	position: relative;
 	width: 100%;
 }
+.view-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 20px;
+    margin-top: -30px;
+}
+
+.view-panel .section_1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 30%;
+}
+
+.view-panel .section_2 {
+    display: flex;
+    align-items: center;
+    margin-right: 30%;
+}
+
+.guild-icon {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.user-avatar {
+    float: left;
+    margin-right: 10px;
+    border-radius: 50%;
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+}
+
+.hi-message {
+    font-size: 24px;
+    font-family: "Poppins";
+    font-weight: bolder;
+}
+
+.view-panel-message-desc {
+	margin-left: 10%;
+    margin-top: -15px;
+	font-size: 20px;
+	font-family: "Poppins";
+	color: #a3a3a3;
+}
+
+.section_2-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.section_2-content p {
+    margin: 0;
+    padding: 0;
+}

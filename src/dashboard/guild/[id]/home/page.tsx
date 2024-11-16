@@ -8,6 +8,7 @@ import ChannelsSelect from "../../../../components/ui/dropdowns/channels-select"
 import RolesSelect from "../../../../components/ui/dropdowns/roles-select";
 import Navbar from "../../../../components/ui/navigation/navbar";
 import Sidebar from "../../../../components/ui/navigation/sidebar";
+import ViewPanel from "../../../../components/view-panel";
 export default function Page() {
 	const { id: guildId } = useParams();
 	const dispatch = useDispatch<AppDispatch>();
@@ -39,11 +40,13 @@ export default function Page() {
 			<Navbar />
 			<Sidebar />
 
-			<div className="quick-menu">
+			<ViewPanel />
+
+			{/* <div className="quick-menu">
 				<h1> TEST (Guild): {guild?.name} | Page on WIP</h1>
 				<ChannelsSelect />
 				<RolesSelect />
-			</div>
+			</div> */}
 		</div>
 	);
 }
