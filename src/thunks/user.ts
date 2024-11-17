@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchUser = createAsyncThunk("user/fetch", async (_, thunkAPI) => {
 	try {
-		const endpoint = import.meta.env.VITE_USER_DATA_ENDPOINT;
+		const endpoint = `${import.meta.env.VITE_API_URL}/user`;
 		if (!endpoint) {
 			throw new Error("USER_DATA_ENDPOINT is not defined");
 		}

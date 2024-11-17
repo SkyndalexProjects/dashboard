@@ -4,7 +4,7 @@ export const fetchGuilds = createAsyncThunk(
 	"guilds/fetch",
 	async (_, thunkAPI) => {
 		try {
-			const res = await fetch("http://localhost:3000/api/guilds", {
+			const res = await fetch(`${import.meta.env.VITE_API_URL}/guilds`, {
 				credentials: "include",
 			});
 			const json = await res.json();
