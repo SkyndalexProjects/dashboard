@@ -42,7 +42,7 @@ export default function GuildsSelect() {
 	} | null>(null);
 
 	const filteredGuilds = guilds.filter((guild) =>
-		guild.name.toLowerCase().includes(searchTerm.toLowerCase()),
+		guild?.name.toLowerCase().includes(searchTerm.toLowerCase()),
 	);
 
 	const navigate = useNavigate();
@@ -65,142 +65,27 @@ export default function GuildsSelect() {
 	);
 
 	const getGuildIconUrl = (guild: { id: string; icon: string }) =>
-		`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`;
+		guild.icon
+			? `https://cdn.discordapp.com/icons/${guild?.id}/${guild?.icon}.png`
+			: `/default_guild_icon.png`;
 
 	return (
-		<div className="dropdown">
-			<Select
-				className="select"
-				options={filteredGuilds.map(
-					(guild: { id: string; name: string; icon: string }) => ({
-						value: guild.id,
-						label: (
-							<div
-								style={{
-									display: "flex",
-									alignItems: "center",
-								}}
-							>
-								<img
-									src={getGuildIconUrl(guild)}
-									alt={guild.name}
-									style={{
-										width: 30,
-										height: 30,
-										marginRight: 10,
-									}}
-								/>
-								{guild.name}
-							</div>
-						),
-						icon: guild.icon,
-					}),
-				)}
-				onChange={(selectedOption) => {
-					const guild = guilds.find(
-						(ch: { id: string }) => ch.id === selectedOption?.value,
-					);
-					if (guild) {
-						handleGuildClick(guild);
-					}
-				}}
-				placeholder={
-					guild ? (
-						<div style={{ display: "flex", alignItems: "center" }}>
-							<img
-								src={getGuildIconUrl(guild)}
-								alt={guild.name}
-								style={{
-									width: 30,
-									height: 30,
-									marginRight: 10,
-									borderRadius: "50%",
-								}}
-							/>
-							{guild.name}
-						</div>
-					) : (
-						"Select a guild"
-					)
-				}
-				inputValue={searchTerm}
-				onInputChange={(newValue) => setSearchTerm(newValue)}
-				onMenuOpen={() => setDropdownVisible(true)}
-				onMenuClose={() => setDropdownVisible(false)}
-				value={
-					selectedGuild
-						? {
-								value: selectedGuild.id,
-								label: (
-									<div
-										style={{
-											display: "flex",
-											alignItems: "center",
-										}}
-									>
-										<img
-											src={getGuildIconUrl(selectedGuild)}
-											alt={selectedGuild.name}
-											style={{
-												width: 30,
-												height: 30,
-												marginRight: 10,
-											}}
-										/>
-										{selectedGuild.name}
-									</div>
-								),
-							}
-						: null
-				}
-				styles={{
-					control: (provided) => ({
-						...provided,
-						backgroundColor: "#1C1C1C",
-						border: "1px solid #8B8B8B",
-						color: "#ffffff",
-						fontSize: "24px",
-						fontWeight: "bold",
-						cursor: "pointer",
-						height: "43px",
-						borderRadius: "5px",
-						paddingLeft: "10px",
-						textAlign: "left",
-						position: "relative",
-						paddingRight: "40px",
-					}),
-					menu: (provided) => ({
-						...provided,
-						color: "#ffffff",
-						backgroundColor: "#101111d9",
-						width: "185px",
-						border: "1px solid #0048ff",
-						borderRadius: "10px",
-						marginTop: "10px",
-						zIndex: 1,
-						maxHeight: "300px",
-						overflowY: "auto",
-						overflowWrap: "break-word",
-					}),
-					option: (provided, state) => ({
-						...provided,
-						padding: "12px 16px",
-						whiteSpace: "nowrap",
-						backgroundColor: state.isSelected
-							? "#101111d9"
-							: state.isFocused
-								? "#101111a6"
-								: "#101111d9",
-						color: "#ffffff",
-					}),
-				}}
-				components={{
-					DropdownIndicator: () => (
-						<img src={"/dropdown_vector.svg"} alt="dropdown icon" />
-					),
-					IndicatorSeparator: () => null,
-				}}
-			/>
+		<div>
+			<div className="guilds-list">
+				{filteredGuilds.map((guild) => (
+					<div
+						key={guild?.id}
+						onClick={() => handleGuildClick(guild)}
+						title={guild?.name}
+					>
+						<img
+							src={getGuildIconUrl(guild)}
+							alt={guild?.name}
+							className="guild-icon"
+						/>
+					</div>
+				))}
+			</div>
 		</div>
 	);
 }

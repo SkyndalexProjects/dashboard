@@ -2,7 +2,7 @@ import Select, { StylesConfig } from "react-select";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState, AppDispatch } from "../../../store";
 import chroma from "chroma-js";
-import { useEffect } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { fetchRoles } from "../../../thunks/roles";
 import { useParams } from "react-router-dom";
 export type ColourOption = {
@@ -27,7 +27,11 @@ export default function RolesSelect() {
 	});
 
 	const roles = useSelector((state: RootState) => state.roles.data);
-
+    const [selectedOptions, setSelectedOptions] = useState([]);
+	const handleChange = (selected: any) => {
+		setSelectedOptions(selected);
+	};
+	
 	const colourStyles: StylesConfig<ColourOption, true> = {
 		control: (provided) => ({
 			...provided,
@@ -85,29 +89,30 @@ export default function RolesSelect() {
 		}),
 	};
 
-	return (
-		<div className="dropdown">
-			<Select
-				placeholder="Select roles..."
-				options={roles.map(
-					(role: { id: string; name: string; color: string }) => ({
-						value: role.id,
-						label: role.name,
-						color: role.color,
-					}),
-				)}
-				closeMenuOnSelect={false}
-				defaultValue={[roles[0], roles[1]]}
-				isMulti
-				styles={colourStyles}
-				components={{
-					DropdownIndicator: () => (
-						<img src={"/dropdown_vector.svg"} alt="dropdown icon" />
-					),
-					IndicatorSeparator: () => null,
-				}}
-				onChange={() => {}}
-			/>
-		</div>
-	);
+    return (
+        <div className="dropdown">
+            <Select
+                placeholder="Select roles..."
+                options={roles.map(
+                    (role: { id: string; name: string; color: string }) => ({
+                        value: role.id,
+                        label: role.name,
+                        color: role.color,
+                    }),
+                )}
+                closeMenuOnSelect={false}
+                defaultValue={[roles[0], roles[1]]}
+                isMulti
+                styles={colourStyles}
+                components={{
+                    DropdownIndicator: () => (
+                        <img src={"/dropdown_vector.svg"} alt="dropdown icon" />
+                    ),
+                    IndicatorSeparator: () => null,
+                }}
+                onChange={handleChange}
+                classNamePrefix="react-select"
+            />
+        </div>
+    );
 }

@@ -4,12 +4,12 @@ export const fetchChannels = createAsyncThunk(
 	"channels/fetch",
 	async (guildId: string, thunkAPI) => {
 		try {
-			const endpoint = `${import.meta.env.VITE_API_URL}/guilds/channels`;
+			const endpoint = `${import.meta.env.VITE_API_URL}/guilds/${guildId}/channels`;
 			if (!endpoint) {
 				throw new Error("CHANNELS_DATA_ENDPOINT is not defined");
 			}
 
-			const res = await fetch(`${endpoint}/${guildId}/channels`, {
+			const res = await fetch(endpoint, {
 				method: "POST",
 				credentials: "include",
 			});

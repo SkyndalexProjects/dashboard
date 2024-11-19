@@ -12,7 +12,7 @@ const Sidebar = () => {
 	};
 
 	const guildId = location.pathname.split("/")[3];
-	console.log("guildId", guildId);
+
 	return (
 		<div className="sidebar">
 			<button

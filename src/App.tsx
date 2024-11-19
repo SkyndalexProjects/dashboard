@@ -70,20 +70,20 @@ function HomePage({ guilds, user }: { guilds: Guild[]; user: User | null }) {
 				<div className="guilds-grid">
 					{guilds.map((guild) => (
 						<Link
-							key={guild.id}
-							to={`/dashboard/guild/${guild.id}/home`}
+							key={guild?.id}
+							to={`/dashboard/guild/${guild?.id}/home`}
 							className="guild"
 						>
 							<div>
 								<img
 									src={
-										guild.icon
-											? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`
+										guild?.icon
+											? `https://cdn.discordapp.com/icons/${guild?.id}/${guild?.icon}.png`
 											: "/default-icon.png"
 									}
 									alt={`<no icon>`}
 								/>
-								<p>{guild.name}</p>
+								<p>{guild?.name}</p>
 							</div>
 						</Link>
 					))}

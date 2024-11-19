@@ -43,6 +43,7 @@ export default function ChannelsSelect() {
 		name: string;
 	} | null>(null);
 
+	console.log("channels", channels);
 	const filteredChannels = channels.filter((channel) =>
 		channel.name.toLowerCase().includes(searchTerm.toLowerCase()),
 	);
@@ -51,10 +52,17 @@ export default function ChannelsSelect() {
 		setDropdownVisible(false);
 	};
 
+	const DropdownIndicator = ({ isDropdownOpen }: { isDropdownOpen: boolean }) => (
+		<img
+			src="/dropdown_vector.svg"
+			alt="dropdown icon"
+			className={`dropdown-icon ${isDropdownOpen ? "rotate" : ""}`}
+		/>
+	);
+
 	return (
 		<div className="dropdown">
 			<Select
-				className="select"
 				options={filteredChannels.map(
 					(channel: { id: any; name: any }) => ({
 						value: channel.id,
@@ -86,7 +94,7 @@ export default function ChannelsSelect() {
 					control: (provided) => ({
 						...provided,
 						backgroundColor: "#101111a6",
-						border: "1px solid #0048ff",
+						border: "1px solid #242424",
 						color: "#ffffff",
 						fontSize: "16px",
 						fontWeight: "bold",
@@ -101,9 +109,9 @@ export default function ChannelsSelect() {
 					menu: (provided) => ({
 						...provided,
 						color: "#ffffff",
-						backgroundColor: "#101111d9",
-						width: "185px",
-						border: "1px solid #0048ff",
+						backgroundColor: "#ffffff",
+						width: "100%",
+						border: "1px solid #ffffff",
 						borderRadius: "10px",
 						marginTop: "10px",
 						zIndex: 1,
@@ -118,16 +126,17 @@ export default function ChannelsSelect() {
 						backgroundColor: state.isSelected
 							? "#101111d9"
 							: state.isFocused
-								? "#101111a6"
-								: "#101111d9",
+								? "#242424"
+								: "#242424",
 						color: "#ffffff",
+						border: state.isFocused ? "1px solid #ffffff" : "1px solid #242424",
 					}),
 				}}
 				components={{
-					DropdownIndicator: () => (
-						<img src={"/dropdown_vector.svg"} alt="dropdown icon" />
-					),
+					DropdownIndicator: () => <DropdownIndicator isDropdownOpen={dropdownVisible} />,
+
 					IndicatorSeparator: () => null,
+					
 				}}
 			/>
 		</div>
