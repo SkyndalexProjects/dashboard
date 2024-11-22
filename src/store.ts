@@ -3,7 +3,7 @@ import { channelsSlice } from "./slices/channels";
 import { guildsSlice } from "./slices/guilds";
 import { userSlice } from "./slices/user";
 import { rolesSlice } from "./slices/roles";
-
+import { custombotsSlice } from "./slices/custombots";
 export const makeStore = () => {
 	return configureStore({
 		reducer: {
@@ -11,6 +11,7 @@ export const makeStore = () => {
 			user: userSlice.reducer,
 			channels: channelsSlice.reducer,
 			roles: rolesSlice.reducer,
+			custombots: custombotsSlice.reducer,
 		},
 		devTools: true,
 	});

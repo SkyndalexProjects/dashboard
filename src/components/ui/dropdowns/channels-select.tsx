@@ -1,8 +1,7 @@
 import Select from "react-select";
-import { useSelector, useDispatch } from "react-redux";
-import type { RootState, AppDispatch } from "../../../store";
-import { useEffect, useState } from "react";
-import { fetchChannels } from "../../../thunks/channels";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../../store";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 export type ColourOption = {
@@ -22,17 +21,6 @@ export default function ChannelsSelect() {
 	if (!guildId) {
 		throw new Error("Guild ID is missing");
 	}
-	const dispatch = useDispatch<AppDispatch>();
-
-	const areChannelsFetched = useSelector(
-		(state: RootState) => state.channels.areChannelsFetched,
-	);
-
-	useEffect(() => {
-		if (!areChannelsFetched) {
-			dispatch(fetchChannels(guildId as string));
-		}
-	});
 
 	const channels = useSelector((state: RootState) => state.channels.data);
 	const [searchTerm, setSearchTerm] = useState("");
@@ -52,7 +40,9 @@ export default function ChannelsSelect() {
 		setDropdownVisible(false);
 	};
 
-	const DropdownIndicator = ({ isDropdownOpen }: { isDropdownOpen: boolean }) => (
+	const DropdownIndicator = ({
+		isDropdownOpen,
+	}: { isDropdownOpen: boolean }) => (
 		<img
 			src="/dropdown_vector.svg"
 			alt="dropdown icon"
@@ -129,14 +119,17 @@ export default function ChannelsSelect() {
 								? "#242424"
 								: "#242424",
 						color: "#ffffff",
-						border: state.isFocused ? "1px solid #ffffff" : "1px solid #242424",
+						border: state.isFocused
+							? "1px solid #ffffff"
+							: "1px solid #242424",
 					}),
 				}}
 				components={{
-					DropdownIndicator: () => <DropdownIndicator isDropdownOpen={dropdownVisible} />,
+					DropdownIndicator: () => (
+						<DropdownIndicator isDropdownOpen={dropdownVisible} />
+					),
 
 					IndicatorSeparator: () => null,
-					
 				}}
 			/>
 		</div>

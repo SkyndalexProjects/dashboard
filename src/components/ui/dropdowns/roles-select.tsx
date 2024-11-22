@@ -1,10 +1,8 @@
 import Select, { StylesConfig } from "react-select";
-import { useSelector, useDispatch } from "react-redux";
-import type { RootState, AppDispatch } from "../../../store";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../../store";
 import chroma from "chroma-js";
-import { SetStateAction, useEffect, useState } from "react";
-import { fetchRoles } from "../../../thunks/roles";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
 export type ColourOption = {
 	value: string;
 	label: string;
@@ -13,25 +11,12 @@ export type ColourOption = {
 };
 
 export default function RolesSelect() {
-	const { id: guildId } = useParams();
-	const dispatch = useDispatch<AppDispatch>();
-
-	const areRolesFetched = useSelector(
-		(state: RootState) => state.roles.areRolesFetched,
-	);
-
-	useEffect(() => {
-		if (!areRolesFetched) {
-			dispatch(fetchRoles(guildId as string));
-		}
-	});
-
 	const roles = useSelector((state: RootState) => state.roles.data);
-    const [selectedOptions, setSelectedOptions] = useState([]);
+	const [selectedOptions, setSelectedOptions] = useState([]);
 	const handleChange = (selected: any) => {
 		setSelectedOptions(selected);
 	};
-	
+
 	const colourStyles: StylesConfig<ColourOption, true> = {
 		control: (provided) => ({
 			...provided,
@@ -89,30 +74,30 @@ export default function RolesSelect() {
 		}),
 	};
 
-    return (
-        <div className="dropdown">
-            <Select
-                placeholder="Select roles..."
-                options={roles.map(
-                    (role: { id: string; name: string; color: string }) => ({
-                        value: role.id,
-                        label: role.name,
-                        color: role.color,
-                    }),
-                )}
-                closeMenuOnSelect={false}
-                defaultValue={[roles[0], roles[1]]}
-                isMulti
-                styles={colourStyles}
-                components={{
-                    DropdownIndicator: () => (
-                        <img src={"/dropdown_vector.svg"} alt="dropdown icon" />
-                    ),
-                    IndicatorSeparator: () => null,
-                }}
-                onChange={handleChange}
-                classNamePrefix="react-select"
-            />
-        </div>
-    );
+	return (
+		<div className="dropdown">
+			<Select
+				placeholder="Select roles..."
+				options={roles.map(
+					(role: { id: string; name: string; color: string }) => ({
+						value: role.id,
+						label: role.name,
+						color: role.color,
+					}),
+				)}
+				closeMenuOnSelect={false}
+				defaultValue={[roles[0], roles[1]]}
+				isMulti
+				styles={colourStyles}
+				components={{
+					DropdownIndicator: () => (
+						<img src={"/dropdown_vector.svg"} alt="dropdown icon" />
+					),
+					IndicatorSeparator: () => null,
+				}}
+				onChange={handleChange}
+				classNamePrefix="react-select"
+			/>
+		</div>
+	);
 }

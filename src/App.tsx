@@ -1,11 +1,8 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, Route, Routes } from "react-router-dom";
 import Home from "./dashboard/guild/[id]/home/page.tsx";
 import Custombots from "./dashboard/guild/[id]/custombots/page.tsx";
-import type { AppDispatch, RootState } from "./store.ts";
-import { fetchGuilds } from "./thunks/guilds.ts";
-import { fetchUser } from "./thunks/user.ts";
+import type { RootState } from "./store.ts";
 
 interface Guild {
 	id: string;
@@ -18,26 +15,6 @@ interface User {
 }
 
 export default function App() {
-	// I'Ill fix that spaghetti maybe xd
-
-	const dispatch = useDispatch<AppDispatch>();
-
-	const haveGuildsFetched = useSelector((state: RootState) => {
-		return state.guilds.haveGuildsFetched;
-	});
-	const isUserFetched = useSelector((state: RootState) => {
-		return state.user.isUserFetched;
-	});
-
-	useEffect(() => {
-		if (!haveGuildsFetched) {
-			dispatch(fetchGuilds());
-		}
-		if (!isUserFetched) {
-			dispatch(fetchUser());
-		}
-	}, [dispatch, haveGuildsFetched, isUserFetched]);
-
 	const guilds = useSelector((state: RootState) => state.guilds.data);
 	const user = useSelector(
 		(state: RootState) => state.user.data as unknown as User,
