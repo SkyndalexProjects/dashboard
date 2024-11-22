@@ -33,7 +33,7 @@ const DispatchProvider = ({ children }: { children: ReactNode }) => {
 	const areRolesFetched = useSelector(
 		(state: RootState) => state.roles.areRolesFetched,
 	);
-	
+
 	useEffect(() => {
 		if (!haveGuildsFetched) {
 			dispatch(fetchGuilds());
