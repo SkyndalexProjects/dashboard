@@ -4,7 +4,7 @@ export const fetchCustombots = createAsyncThunk(
 	"custombots/fetch",
 	async (guildId: string, thunkAPI) => {
 		try {
-			const endpoint = `${import.meta.env.VITE_API_URL}/guilds/${guildId}/custombots`;
+			const endpoint = `${import.meta.env.VITE_API_URL}/guilds/${guildId}/custombots/get`;
 			if (!endpoint) {
 				throw new Error("ROLES_DATA_ENDPOINT is not defined");
 			}

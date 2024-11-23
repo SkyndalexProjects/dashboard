@@ -1,4 +1,4 @@
-import GuildsDropdown from "../../dropdowns/guilds-select";
+import GuildsDropdown from "./guilds";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store";
 const navbar = () => {
