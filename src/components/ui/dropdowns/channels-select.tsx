@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import type { RootState } from "../../../store";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-
+import classes from "./dropdowns.module.css";
 export type ColourOption = {
 	value: string;
 	label: string;
@@ -32,9 +32,11 @@ export default function ChannelsSelect() {
 	} | null>(null);
 
 	console.log("channels", channels);
-	const filteredChannels = channels.filter((channel) =>
-		channel.name.toLowerCase().includes(searchTerm.toLowerCase()),
-	);
+	const filteredChannels = channels
+		? channels.filter((channel) =>
+			channel.name.toLowerCase().includes(searchTerm.toLowerCase()),
+		)
+		: [];
 	const handleChannelClick = (channel: { id: string; name: string }) => {
 		setSelectedChannel(channel);
 		setDropdownVisible(false);
@@ -46,7 +48,7 @@ export default function ChannelsSelect() {
 		<img
 			src="/dropdown_vector.svg"
 			alt="dropdown icon"
-			className={`dropdown-icon ${isDropdownOpen ? "rotate" : ""}`}
+			className={`${classes.dropdownIcon} ${isDropdownOpen ? "rotate" : ""}`}
 		/>
 	);
 

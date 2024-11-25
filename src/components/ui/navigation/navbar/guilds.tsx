@@ -1,10 +1,9 @@
-import Select from "react-select";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState, AppDispatch } from "../../../../store";
 import { useEffect, useState } from "react";
 import { fetchGuilds } from "../../../../thunks/guilds";
 import { useNavigate, useParams } from "react-router-dom";
-
+import classes from "./navbar.module.css"
 export type ColourOption = {
 	value: string;
 	label: string;
@@ -71,7 +70,7 @@ export default function GuildsSelect() {
 
 	return (
 		<div>
-			<div className="guilds-list">
+			<div className={classes.guildsList}>
 				{filteredGuilds.map((guild) => (
 					<div
 						key={guild?.id}
@@ -81,7 +80,7 @@ export default function GuildsSelect() {
 						<img
 							src={getGuildIconUrl(guild)}
 							alt={guild?.name}
-							className="guild-icon"
+                            className={classes.guildIcon}
 						/>
 					</div>
 				))}

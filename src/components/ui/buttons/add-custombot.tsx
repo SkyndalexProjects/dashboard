@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import GuildsSelect from "../dropdowns/guilds-select";
+import classes from "./buttons.module.css"
+
 interface Bot {
 	username: string;
 	id: string;
@@ -11,7 +13,7 @@ interface Bot {
 
 /* react-toastify is only temporary lib, please do not take it serious xD */
 
-const InsertSetting = ({}: { bot: Bot }) => {
+const InsertSetting = () => {
 	const { id } = useParams<{ id: string }>();
 	const [token, setToken] = useState("");
 	const [activity, setActivity] = useState("");
@@ -94,102 +96,85 @@ const InsertSetting = ({}: { bot: Bot }) => {
 	};
 	return (
 		<div>
-				<form onSubmit={handleSubmit}>
-					<div className="add-custombot">
-						<label
-							htmlFor="bot-token"
-							style={{ marginBottom: "5px", color: "white" }}
-						>
-							Your bot token
-						</label>
-						<input
-							id="bot-token"
-							type="password"
-							value={token}
-							onChange={handleTokenChange}
-							placeholder="Add Setting"
-							style={{ color: "white" }}
-							autoComplete="off"
-						/>
-					</div>
-					<ToastContainer />
-				</form>
+			<form onSubmit={handleSubmit}>
+				<div className={classes.addCustombot}>
+					<label htmlFor="bot-token" className={classes.label}>
+						Your bot token
+					</label>
+					<input
+						id="bot-token"
+						type="password"
+						value={token}
+						onChange={handleTokenChange}
+						placeholder="Enter token"
+						autoComplete="off"
+					/>
+				</div>
+				<ToastContainer />
+			</form>
+			<GuildsSelect />
 
-				{isBotAdded && (
-					<>
-						<div className="logged-in-as">
-							<p className="logged-in-as-text">
-								Logged in as
-								<div className="custombot-data">
+	
+			<form onSubmit={handleSubmit}>
+				<div className={classes.addCustombot}>
+					<label htmlFor="activity" className={classes.label}>
+						Activity
+					</label>
+					<input
+						id="bot-activity"
+						type="text"
+						value={activity}
+						onChange={handleActivityChange}
+						placeholder="Enter activity"
+						autoComplete="off"
+					/>
+				</div>
+				<ToastContainer />
+			</form>
+			<form onSubmit={handleSubmit}>
+				<div className={classes.addCustombot}>
+					<label htmlFor="bot-token" className={classes.label}>
+						Status
+					</label>
+					<input
+						id="bot-status"
+						type="text"
+						value={status}
+						onChange={handleStatusChange}
+						placeholder="Enter status"
+						className={classes.input}
+						autoComplete="off"
+					/>
+				</div>
+				<ToastContainer />
+			</form>
+
+			{isBotAdded && (
+				<>
+					<div className={classes.loggedInAs}>
+						<p className={classes.loggedInAsText}>
+							Logged in as
+							<div className={classes.custombotData}>
+								<img
+									src={`https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}.png`}
+									alt="custombot-avatar"
+									className={classes.custombotAvatar}
+								/>
+								<p className="custombotUsername">
+									{user?.username}
+								</p>
+								<button className={classes.manageButton}>
 									<img
-										src={`https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}.png`}
-										alt="custombot-avatar"
-										className="custombot-avatar"
+										src="/icons8-manage 1.png"
+										alt="manageIcon"
+										className={classes.manageIcon}
 									/>
-									<p className="custombot-username">
-										{user?.username}
-									</p>
-									<button className="manage-button">
-										<img
-											src="/icons8-manage 1.png"
-											alt="manage-icon"
-											className="manage-icon"
-										/>
-									</button>
-								</div>
-							</p>
-						</div>
-
-						<form>
-						<GuildsSelect />
-
-							<div className="add-custombot">
-								<label
-									htmlFor="activity"
-									style={{
-										marginBottom: "5px",
-										color: "white",
-									}}
-								>
-									Activity
-								</label>
-								<input
-									id="activity"
-									type="text"
-									value={activity}
-									onChange={handleActivityChange}
-									placeholder="Enter Activity"
-									style={{ color: "white" }}
-									autoComplete="off"
-								/>
+								</button>
 							</div>
-						</form>
-
-						<form>
-							<div className="add-custombot">
-								<label
-									htmlFor="status"
-									style={{
-										marginBottom: "5px",
-										color: "white",
-									}}
-								>
-									Status
-								</label>
-								<input
-									id="status"
-									type="text"
-									value={status}
-									onChange={handleStatusChange}
-									placeholder="Enter Status"
-									style={{ color: "white" }}
-									autoComplete="off"
-								/>
-							</div>
-						</form>
-
-					</>
-				)}
+						</p>
+					</div>
+				</>
+			)}
 		</div>
 	);
 };

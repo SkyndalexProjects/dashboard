@@ -1,0 +1,86 @@
+.statsWrapper {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+.stats {
+	background-color: rgba(0, 0, 0, 0.2);
+	width: 421px;
+	height: 172px;
+	margin: 0px 20px 20px 20px;
+	border-bottom: 5px solid;
+	border-radius: 5px;
+}
+
+.stats:nth-child(1) {
+	border-bottom-color: #68c068;
+}
+
+.stats:nth-child(2) {
+	border-bottom-color: #6264e9;
+}
+
+.stats:nth-child(3) {
+	border-bottom-color: #bfd250;
+}
+
+.stat {
+	margin: 20px 20px 0px 20px;
+	font-weight: 400;
+	color: "#F2F2F2";
+	font-size: 20px;
+	color: white;
+	font-family: "Be Vietnam Pro", sans-serif;
+}
+.statCount {
+	font-weight: bolder;
+	font-size: 48px;
+	color: white;
+	font-family: "Be Vietnam Pro", sans-serif;
+	margin: 10px 35px;
+}
+.statsContainer {
+	width: 1600px;
+	height: 298px;
+	background-color: rgba(0, 0, 0, 0.2);
+	margin-left: 13%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.containerTitle {
+	font-weight: bolder;
+	font-size: 20px;
+	color: white;
+	font-family: "Be Vietnam Pro", sans-serif;
+	margin-bottom: 20px;
+}
+.container-title img {
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+.indicator {
+	color: #68c068;
+	margin-right: 12px;
+	width: 47px;
+	height: 29px;
+}
+.settingsContainer {
+	width: 1600px;
+	height: 566px;
+	background-color: rgba(0, 0, 0, 0.2);
+	margin-top: 20px;
+	margin-left: 13%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.settingsWrapper {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(2, auto);
+	gap: 20px;
+	width: 100%;
+}

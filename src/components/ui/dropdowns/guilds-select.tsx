@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import type { RootState } from "../../../store";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-
+import classes from "./dropdowns.module.css"
 export type ColourOption = {
 	value: string;
 	label: string;
@@ -46,12 +46,12 @@ export default function GuildsSelect() {
 		<img
 			src="/dropdown_vector.svg"
 			alt="dropdown icon"
-			className={`dropdown-icon ${isDropdownOpen ? "rotate" : ""}`}
+			className={`${classes.dropdownIcon} ${isDropdownOpen ? "rotate" : ""}`}
 		/>
 	);
 
 	return (
-		<div className="guilds-select-container">
+		<div className={classes.guildsSelectContainer}>
 			<Select
 				options={filteredChannels.map(
 					(channel: { id: any; name: any }) => ({
@@ -67,7 +67,7 @@ export default function GuildsSelect() {
 						handleGuildClick(guild);
 					}
 				}}
-				placeholder="Select guild"
+				placeholder="Assign guild"
 				inputValue={searchTerm}
 				onInputChange={(newValue) => setSearchTerm(newValue)}
 				onMenuOpen={() => setDropdownVisible(true)}
@@ -85,21 +85,21 @@ export default function GuildsSelect() {
 						...provided,
 						backgroundColor: "#101111a6",
 						border: "1px solid #0048ff",
-						color: "#ffffff",
 						fontSize: "16px",
 						fontWeight: "bold",
 						cursor: "pointer",
-						height: "43px",
+						height: "70px",
 						borderRadius: "5px",
 						paddingLeft: "10px",
 						textAlign: "left",
 						position: "relative",
 						paddingRight: "40px",
+						color: "#ffffff",
 					}),
 					menu: (provided) => ({
+						backgroundColor: "#101111a6",
 						...provided,
 						color: "#ffffff",
-						backgroundColor: "#ffffff",
 						width: "100%",
 						border: "1px solid #ffffff",
 						borderRadius: "10px",

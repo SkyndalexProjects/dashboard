@@ -2,48 +2,50 @@ import ChannelsSelect from "../../../../components/ui/dropdowns/channels-select"
 import RolesSelect from "../../../../components/ui/dropdowns/roles-select";
 import Navbar from "../../../../components/ui/navigation/navbar";
 import Sidebar from "../../../../components/ui/navigation/sidebar";
+import classes from "./home.module.css"
+document.getElementById("root")?.classList.add(classes.root)
 export default function Page() {
 	return (
 		<div>
 			<Navbar />
 			<Sidebar />
 
-			<div className="stats-container">
-				<p className="container-title">
+			<div className={classes.statsContainer}>
+				<p className={classes.containerTitle}>
 					<img src="/home.svg" alt="edit" width={35} height={35} />
 					Stats Overview
 				</p>
 
-				<div className="stats-wrapper">
-					<div className="stats">
-						<p className="stat"> MEMBERS </p>
-						<p className="stat-count">
+				<div className={classes.statsWrapper}>
+					<div className={classes.stats}>
+						<p className={classes.stat}> MEMBERS </p>
+						<p className={classes.statCount}>
 							<img
 								src="/indicator-up.svg"
 								alt="indicator"
-								className="indicator"
+								className={classes.indicator}
 							/>
 							2137
 						</p>
 					</div>
-					<div className="stats">
-						<p className="stat"> MESSAGES </p>
-						<p className="stat-count">
+					<div className={classes.stats}>
+						<p className={classes.stat}> MESSAGES </p>
+						<p className={classes.statCount}>
 							<img
 								src="/indicator-up.svg"
 								alt="indicator"
-								className="indicator"
+								className={classes.indicator}
 							/>
 							2137
 						</p>
 					</div>
-					<div className="stats">
-						<p className="stat"> VOICE ACTIVITY </p>
-						<p className="stat-count">
+					<div className={classes.stats}>
+						<p className={classes.stat}> VOICE ACTIVITY </p>
+						<p className={classes.statCount}>
 							<img
 								src="/indicator-down.svg"
 								alt="indicator"
-								className="indicator"
+								className={classes.indicator}
 							/>
 							2137
 						</p>
@@ -51,24 +53,24 @@ export default function Page() {
 				</div>
 			</div>
 
-			<div className="settings-container">
-				<p className="container-title">
+			<div className={classes.settingsContainer}>
+				<p className={classes.containerTitle}>
 					<img src="/gear.svg" alt="edit" width={35} height={35} />
 					Settings
 				</p>
 
-				<div className="settings-wrapper">
-					<div className="setting">
+				<div className={classes.settingsWrapper}>
+					<div className={classes.setting}>
 						<ChannelsSelect />
 					</div>
 				</div>
-				<div className="settings-wrapper">
-					<div className="setting">
+				<div className={classes.settingsWrapper}>
+					<div className={classes.setting}>
 						<RolesSelect />
 					</div>
 				</div>
-				<div className="settings-wrapper">
-					<div className="setting">
+				<div className={classes.settingsWrapper}>
+					<div className={classes.setting}>
 						<ChannelsSelect />
 					</div>
 				</div>

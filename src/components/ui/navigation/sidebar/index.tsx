@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-
+import classes from "./sidebar.module.css"
 const Sidebar = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
@@ -12,60 +12,64 @@ const Sidebar = () => {
 	};
 
 	const guildId = location.pathname.split("/")[3];
-
 	return (
-		<div className="sidebar">
-			<button
-				className={`sidebar-item ${isActive(`/dashboard/guild/${guildId}/home`) ? "active" : ""}`}
-				onClick={() =>
-					handleNavigation(`/dashboard/guild/${guildId}/home`)
-				}
-			>
-				<img src="/home.svg" alt="home" width={30} height={30} /> Home
-			</button>
-			<button
-				className={`sidebar-item ${isActive(`/dashboard/guild/${guildId}/custombots`) ? "active" : ""}`}
-				onClick={() =>
-					handleNavigation(`/dashboard/guild/${guildId}/custombots`)
-				}
-			>
-				<img src="/bot_icon.svg" alt="home" width={30} height={30} />{" "}
-				Custombots
-			</button>
-			<button
-				className={`sidebar-item ${isActive(`/dashboard/guild/${guildId}/economy`) ? "active" : ""}`}
-				onClick={() =>
-					handleNavigation(`/dashboard/guild/${guildId}/economy`)
-				}
-			>
-				<img src="/economy.svg" alt="home" width={30} height={30} />{" "}
-				Economy
-			</button>
-			<button
-				className={`sidebar-item ${isActive(`/dashboard/servers/${guildId}/levels`) ? "active" : ""}`}
-				onClick={() =>
-					handleNavigation(`/dashboard/servers/${guildId}/levels`)
-				}
-			>
-				<img src="/levels.svg" alt="home" width={30} height={30} />{" "}
-				Levels
-			</button>
-			<button
-				className={`sidebar-item ${isActive(`/dashboard/servers/${guildId}/radio`) ? "active" : ""}`}
-				onClick={() =>
-					handleNavigation(`/dashboard/servers/${guildId}/radio`)
-				}
-			>
-				<img src="/radio.svg" alt="home" width={30} height={30} /> Radio
-			</button>
-			<button
-				className={`sidebar-item ${isActive(`/dashboard/servers/${guildId}/ai`) ? "active" : ""}`}
-				onClick={() =>
-					handleNavigation(`/dashboard/servers/${guildId}/ai`)
-				}
-			>
-				<img src="/sparkles.svg" alt="home" width={30} height={30} /> AI
-			</button>
+		<div className={classes.sidebar}>
+			<div className={classes.sidebarBorder}>
+				<button
+					className={`${classes.sidebarItem} ${isActive(`/dashboard/guild/${guildId}/home`) ? classes.active : ""}`}
+					onClick={() =>
+						handleNavigation(`/dashboard/guild/${guildId}/home`)
+					}
+				>
+					<img src="/home.svg" alt="home" width={30} height={30} />
+					<span className={classes.sidebarItemText}>Home</span>
+				</button>
+				<button
+					className={`${classes.sidebarItem} ${isActive(`/dashboard/guild/${guildId}/custombots`) ? classes.active : ""}`}
+					onClick={() =>
+						handleNavigation(`/dashboard/guild/${guildId}/custombots`)
+					}
+				>
+					<img src="/bot_icon.svg" alt="home" width={30} height={30} />
+					<span className={classes.sidebarItemText}>Custombots</span>
+				</button>
+				<button
+					className={`${classes.sidebarItem} ${isActive(`/dashboard/guild/${guildId}/economy`) ? classes.active : ""}`}
+					onClick={() =>
+						handleNavigation(`/dashboard/guild/${guildId}/economy`)
+					}
+				>
+					<img src="/economy.svg" alt="home" width={30} height={30} />
+					<span className={classes.sidebarItemText}>Economy</span>
+				</button>
+				<button
+					className={`${classes.sidebarItem} ${isActive(`/dashboard/servers/${guildId}/levels`) ? classes.active : ""}`}
+					onClick={() =>
+						handleNavigation(`/dashboard/servers/${guildId}/levels`)
+					}
+				>
+					<img src="/levels.svg" alt="home" width={30} height={30} />
+					<span className={classes.sidebarItemText}>Levels</span>
+				</button>
+				<button
+					className={`${classes.sidebarItem} ${isActive(`/dashboard/servers/${guildId}/radio`) ? classes.active : ""}`}
+					onClick={() =>
+						handleNavigation(`/dashboard/servers/${guildId}/radio`)
+					}
+				>
+					<img src="/radio.svg" alt="home" width={30} height={30} />
+					<span className={classes.sidebarItemText}>Radio</span>
+				</button>
+				<button
+					className={`${classes.sidebarItem} ${isActive(`/dashboard/servers/${guildId}/ai`) ? classes.active : ""}`}
+					onClick={() =>
+						handleNavigation(`/dashboard/servers/${guildId}/ai`)
+					}
+				>
+					<img src="/sparkles.svg" alt="home" width={30} height={30} />
+					<span className={classes.sidebarItemText}>AI</span>
+				</button>
+			</div>
 		</div>
 	);
 };

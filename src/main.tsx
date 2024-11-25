@@ -16,7 +16,8 @@ const store = makeStore();
 import { ReactNode } from "react";
 
 const DispatchProvider = ({ children }: { children: ReactNode }) => {
-	const guildId = window.location.pathname.split("/")[3];
+	const guildId = window?.location?.pathname?.split("/")[3];
+
 	const dispatch = useDispatch<AppDispatch>();
 
 	const haveGuildsFetched = useSelector(
