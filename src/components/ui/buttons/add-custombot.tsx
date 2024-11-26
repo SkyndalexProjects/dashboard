@@ -112,7 +112,13 @@ const InsertSetting = () => {
 				</div>
 				<ToastContainer />
 			</form>
+			<div className={classes.addCustombot}>
+					<label htmlFor="guilds" className={classes.label}>
+						Assign guild
+					</label>
 			<GuildsSelect />
+
+				</div>
 
 	
 			<form onSubmit={handleSubmit}>

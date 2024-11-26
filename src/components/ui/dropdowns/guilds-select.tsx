@@ -67,7 +67,7 @@ export default function GuildsSelect() {
 						handleGuildClick(guild);
 					}
 				}}
-				placeholder="Assign guild"
+				placeholder="Select a guild"
 				inputValue={searchTerm}
 				onInputChange={(newValue) => setSearchTerm(newValue)}
 				onMenuOpen={() => setDropdownVisible(true)}
@@ -84,11 +84,8 @@ export default function GuildsSelect() {
 					control: (provided) => ({
 						...provided,
 						backgroundColor: "#101111a6",
-						border: "1px solid #0048ff",
-						fontSize: "16px",
-						fontWeight: "bold",
+						border: "1px solid rgba(0, 0, 0, 0.19)",
 						cursor: "pointer",
-						height: "70px",
 						borderRadius: "5px",
 						paddingLeft: "10px",
 						textAlign: "left",

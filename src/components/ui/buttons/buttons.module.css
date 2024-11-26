@@ -1,7 +1,7 @@
 
 .addCustombot {
 	margin-top: 50px;
-    border: 1px solid #4030d4;
+	border: 1px solid #4030D4;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -10,18 +10,20 @@
     margin-right: 30%;
     cursor: pointer;
     border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.2);
+	background: rgba(0, 0, 0, 0.33);
     font-size: 16px; 
     width: 601px;
     height: 191px;
+	flex-shrink: 0;
     box-sizing: border-box;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
 
 }
 
 input {
 	width: 454px; 
 	height: 56px;
-	background: rgba(36, 36, 36, 0.2);
+	background: rgba(0, 0, 0, 0.19);
 	border: 1px solid #242424;
 	color: white;
 	font-size: 24px;
