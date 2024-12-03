@@ -21,7 +21,7 @@ const Sidebar = () => {
 						handleNavigation(`/dashboard/guild/${guildId}/home`)
 					}
 				>
-					<img src="/home.svg" alt="home" width={30} height={30} />
+					<img src="/home.svg" alt="home" className={classes.sidebarIcon} />
 					<span className={classes.sidebarItemText}>Home</span>
 				</button>
 				<button
@@ -30,7 +30,7 @@ const Sidebar = () => {
 						handleNavigation(`/dashboard/guild/${guildId}/custombots`)
 					}
 				>
-					<img src="/bot_icon.svg" alt="home" width={30} height={30} />
+					<img src="/bot_icon.svg" alt="home" className={classes.sidebarIcon} />
 					<span className={classes.sidebarItemText}>Custombots</span>
 				</button>
 				<button
@@ -39,7 +39,7 @@ const Sidebar = () => {
 						handleNavigation(`/dashboard/guild/${guildId}/economy`)
 					}
 				>
-					<img src="/economy.svg" alt="home" width={30} height={30} />
+					<img src="/economy.svg" alt="home" className={classes.sidebarIcon} />
 					<span className={classes.sidebarItemText}>Economy</span>
 				</button>
 				<button
@@ -48,7 +48,7 @@ const Sidebar = () => {
 						handleNavigation(`/dashboard/servers/${guildId}/levels`)
 					}
 				>
-					<img src="/levels.svg" alt="home" width={30} height={30} />
+					<img src="/levels.svg" alt="home" className={classes.sidebarIcon} />
 					<span className={classes.sidebarItemText}>Levels</span>
 				</button>
 				<button
@@ -57,7 +57,7 @@ const Sidebar = () => {
 						handleNavigation(`/dashboard/servers/${guildId}/radio`)
 					}
 				>
-					<img src="/radio.svg" alt="home" width={30} height={30} />
+					<img src="/radio.svg" alt="home" className={classes.sidebarIcon} />
 					<span className={classes.sidebarItemText}>Radio</span>
 				</button>
 				<button
@@ -66,7 +66,7 @@ const Sidebar = () => {
 						handleNavigation(`/dashboard/servers/${guildId}/ai`)
 					}
 				>
-					<img src="/sparkles.svg" alt="home" width={30} height={30} />
+					<img src="/sparkles.svg" alt="home" className={classes.sidebarIcon} />
 					<span className={classes.sidebarItemText}>AI</span>
 				</button>
 			</div>

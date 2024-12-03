@@ -17,12 +17,8 @@ export type colourOptions = {
 };
 
 export default function ChannelsSelect() {
-	const { id: guildId } = useParams();
-	if (!guildId) {
-		throw new Error("Guild ID is missing");
-	}
-
 	const channels = useSelector((state: RootState) => state.channels.data);
+	
 	const [searchTerm, setSearchTerm] = useState("");
 
 	const [dropdownVisible, setDropdownVisible] = useState(false);

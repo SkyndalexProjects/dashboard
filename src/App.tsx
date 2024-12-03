@@ -14,31 +14,40 @@ interface User {
 	username: string;
 }
 
+// export default function App() {
+// 	const guilds = useSelector((state: RootState) => state.guilds.data);
+// 	const user = useSelector(
+// 		(state: RootState) => state.user.data as unknown as User,
+// 	);
+
+// 	return (
+// 		<div>
+// 			<Routes>
+// 				<Route
+// 					path="/"
+// 					element={<HomePage guilds={guilds} user={user} />}
+// 				/>
+// 				<Route path="/dashboard/guild/:id/home" element={<Home />} />
+// 				<Route
+// 					path="/dashboard/guild/:id/custombots/"
+// 					element={<Custombots />}
+// 				/>
+// 						<Route
+// 					path="/dashboard/guild/:id/custombots/list"
+// 					element={<Custombots />}
+// 				/>
+// 				<Route path="*" element={<NoMatch />} />
+// 			</Routes>
+// 		</div>
+// 	);
+// }
+
 export default function App() {
 	const guilds = useSelector((state: RootState) => state.guilds.data);
-	const user = useSelector(
-		(state: RootState) => state.user.data as unknown as User,
-	);
-
-	return (
-		<div>
-			<Routes>
-				<Route
-					path="/"
-					element={<HomePage guilds={guilds} user={user} />}
-				/>
-				<Route path="/dashboard/guild/:id/home" element={<Home />} />
-				<Route
-					path="/dashboard/guild/:id/custombots"
-					element={<Custombots />}
-				/>
-				<Route path="*" element={<NoMatch />} />
-			</Routes>
-		</div>
-	);
-}
-
-function HomePage({ guilds, user }: { guilds: Guild[]; user: User | null }) {
+	console.log("guilds state", guilds);
+    const user = useSelector(
+        (state: RootState) => state.user.data as unknown as User,
+    );
 	return (
 		<div>
 			<h1 className="title"> Welcome, {user?.username} </h1>
@@ -72,17 +81,6 @@ function HomePage({ guilds, user }: { guilds: Guild[]; user: User | null }) {
 			>
 				Sign out
 			</button>
-		</div>
-	);
-}
-
-function NoMatch() {
-	return (
-		<div>
-			<h2>Nothing to see here!</h2>
-			<p>
-				<Link to="/">Go to the home page</Link>
-			</p>
 		</div>
 	);
 }

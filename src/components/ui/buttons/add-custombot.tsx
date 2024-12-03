@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import GuildsSelect from "../dropdowns/guilds-select";
+import { useNavigate } from "react-router-dom";
 import classes from "./buttons.module.css"
+import { Link } from "react-router-dom";
 
 interface Bot {
 	username: string;
 	id: string;
 	avatar: string;
 }
-
-/* react-toastify is only temporary lib, please do not take it serious xD */
 
 const InsertSetting = () => {
 	const { id } = useParams<{ id: string }>();
@@ -22,7 +20,7 @@ const InsertSetting = () => {
 	const [isBotAdded, setIsBotAdded] = useState(false);
 
 	const [user, setUser] = useState<Bot | null>(null);
-
+	const guild = useParams<{ id: string }>();
 	const handleTokenChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setToken(e.target.value);
 	};
@@ -39,32 +37,27 @@ const InsertSetting = () => {
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
+		console.log("Token:", token);
 		const clientId = atob(token.split(".")[0]);
-		const userResponse = await fetch(
-			`https://discord.com/api/v9/users/@me`,
-			{
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bot ${token}`,
-				},
+		const endpoint = `${import.meta.env.VITE_API_URL}/bot`;
+
+		const userResponse = await fetch(endpoint, {
+			credentials: "include",
+			headers: {
+				"Content-Type": "application/json",
+				authorization: `Bot ${token}`,
 			},
-		);
+		});
 
 		if (!userResponse.ok) {
-			toast.error("Unauthorized: Invalid bot token", {
-				theme: "dark",
-			});
-			return;
+			return console.error("Failed to fetch user");
 		}
 
 		const user: Bot = await userResponse.json();
 		setUser(user); // Set the user state
 
 		if (clientId.length < 17) {
-			toast.error("Invalid token format", {
-				theme: "dark",
-			});
-			return;
+			return console.error("Invalid token");
 		}
 
 		try {
@@ -75,7 +68,13 @@ const InsertSetting = () => {
 					headers: {
 						"Content-Type": "application/json",
 					},
-					body: JSON.stringify({ token }),
+					body: JSON.stringify({
+						guildId: id,
+						clientId,
+						activity,
+						status,
+						token
+					})
 				},
 			);
 
@@ -86,14 +85,12 @@ const InsertSetting = () => {
 			const result = await response.json();
 			console.log("Success:", result);
 
-			toast.success(`Logged in as ${user.username}`, {
-				theme: "dark",
-			});
 			setIsBotAdded(true);
 		} catch (error) {
 			console.error("Error:", error);
 		}
 	};
+	const navigate = useNavigate();
 	return (
 		<div>
 			<form onSubmit={handleSubmit}>
@@ -110,17 +107,8 @@ const InsertSetting = () => {
 						autoComplete="off"
 					/>
 				</div>
-				<ToastContainer />
 			</form>
-			<div className={classes.addCustombot}>
-					<label htmlFor="guilds" className={classes.label}>
-						Assign guild
-					</label>
-			<GuildsSelect />
 
-				</div>
-
-	
 			<form onSubmit={handleSubmit}>
 				<div className={classes.addCustombot}>
 					<label htmlFor="activity" className={classes.label}>
@@ -135,7 +123,6 @@ const InsertSetting = () => {
 						autoComplete="off"
 					/>
 				</div>
-				<ToastContainer />
 			</form>
 			<form onSubmit={handleSubmit}>
 				<div className={classes.addCustombot}>
@@ -152,7 +139,6 @@ const InsertSetting = () => {
 						autoComplete="off"
 					/>
 				</div>
-				<ToastContainer />
 			</form>
 
 			{isBotAdded && (
@@ -166,16 +152,9 @@ const InsertSetting = () => {
 									alt="custombot-avatar"
 									className={classes.custombotAvatar}
 								/>
-								<p className="custombotUsername">
+								<Link to={`/dashboard/guild/${guild.id}/custombots/list`} className="custombotUsername" key={guild.id}>
 									{user?.username}
-								</p>
-								<button className={classes.manageButton}>
-									<img
-										src="/icons8-manage 1.png"
-										alt="manageIcon"
-										className={classes.manageIcon}
-									/>
-								</button>
+								</Link>
 							</div>
 						</p>
 					</div>
