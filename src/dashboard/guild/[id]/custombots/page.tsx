@@ -7,7 +7,7 @@ export default function Page() {
 		<div>
 			<Navbar />
 			<Sidebar />
-			
+
 			<center>
 				<InsertSetting />
 			</center>

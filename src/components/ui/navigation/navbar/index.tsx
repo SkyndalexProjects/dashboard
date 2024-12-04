@@ -1,7 +1,7 @@
 import GuildsDropdown from "./guilds";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store";
-import classes from "./navbar.module.css"
+import classes from "./navbar.module.css";
 const navbar = () => {
 	const guildId = location.pathname.split("/")[3];
 	const guild = useSelector((state: RootState) =>

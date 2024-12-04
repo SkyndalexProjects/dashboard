@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import type { RootState } from "../../../store";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import classes from "./dropdowns.module.css"
+import classes from "./dropdowns.module.css";
 export type ColourOption = {
 	value: string;
 	label: string;

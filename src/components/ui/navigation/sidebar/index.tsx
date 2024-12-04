@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import classes from "./sidebar.module.css"
+import classes from "./sidebar.module.css";
 const Sidebar = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
@@ -21,16 +21,26 @@ const Sidebar = () => {
 						handleNavigation(`/dashboard/guild/${guildId}/home`)
 					}
 				>
-					<img src="/home.svg" alt="home" className={classes.sidebarIcon} />
+					<img
+						src="/home.svg"
+						alt="home"
+						className={classes.sidebarIcon}
+					/>
 					<span className={classes.sidebarItemText}>Home</span>
 				</button>
 				<button
 					className={`${classes.sidebarItem} ${isActive(`/dashboard/guild/${guildId}/custombots`) ? classes.active : ""}`}
 					onClick={() =>
-						handleNavigation(`/dashboard/guild/${guildId}/custombots`)
+						handleNavigation(
+							`/dashboard/guild/${guildId}/custombots`,
+						)
 					}
 				>
-					<img src="/bot_icon.svg" alt="home" className={classes.sidebarIcon} />
+					<img
+						src="/bot_icon.svg"
+						alt="home"
+						className={classes.sidebarIcon}
+					/>
 					<span className={classes.sidebarItemText}>Custombots</span>
 				</button>
 				<button
@@ -39,7 +49,11 @@ const Sidebar = () => {
 						handleNavigation(`/dashboard/guild/${guildId}/economy`)
 					}
 				>
-					<img src="/economy.svg" alt="home" className={classes.sidebarIcon} />
+					<img
+						src="/economy.svg"
+						alt="home"
+						className={classes.sidebarIcon}
+					/>
 					<span className={classes.sidebarItemText}>Economy</span>
 				</button>
 				<button
@@ -48,7 +62,11 @@ const Sidebar = () => {
 						handleNavigation(`/dashboard/servers/${guildId}/levels`)
 					}
 				>
-					<img src="/levels.svg" alt="home" className={classes.sidebarIcon} />
+					<img
+						src="/levels.svg"
+						alt="home"
+						className={classes.sidebarIcon}
+					/>
 					<span className={classes.sidebarItemText}>Levels</span>
 				</button>
 				<button
@@ -57,7 +75,11 @@ const Sidebar = () => {
 						handleNavigation(`/dashboard/servers/${guildId}/radio`)
 					}
 				>
-					<img src="/radio.svg" alt="home" className={classes.sidebarIcon} />
+					<img
+						src="/radio.svg"
+						alt="home"
+						className={classes.sidebarIcon}
+					/>
 					<span className={classes.sidebarItemText}>Radio</span>
 				</button>
 				<button
@@ -66,7 +88,11 @@ const Sidebar = () => {
 						handleNavigation(`/dashboard/servers/${guildId}/ai`)
 					}
 				>
-					<img src="/sparkles.svg" alt="home" className={classes.sidebarIcon} />
+					<img
+						src="/sparkles.svg"
+						alt="home"
+						className={classes.sidebarIcon}
+					/>
 					<span className={classes.sidebarItemText}>AI</span>
 				</button>
 			</div>

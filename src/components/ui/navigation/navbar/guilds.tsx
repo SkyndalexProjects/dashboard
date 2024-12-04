@@ -3,7 +3,7 @@ import type { RootState, AppDispatch } from "../../../../store";
 import { useEffect, useState } from "react";
 import { fetchGuilds } from "../../../../thunks/guilds";
 import { useNavigate, useParams } from "react-router-dom";
-import classes from "./navbar.module.css"
+import classes from "./navbar.module.css";
 export type ColourOption = {
 	value: string;
 	label: string;
@@ -80,7 +80,7 @@ export default function GuildsSelect() {
 						<img
 							src={getGuildIconUrl(guild)}
 							alt={guild?.name}
-                            className={classes.guildIcon}
+							className={classes.guildIcon}
 						/>
 					</div>
 				))}

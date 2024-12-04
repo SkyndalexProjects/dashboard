@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import classes from "./buttons.module.css"
+import classes from "./buttons.module.css";
 import { Link } from "react-router-dom";
 
 interface Bot {
@@ -24,7 +24,6 @@ const InsertSetting = () => {
 	const handleTokenChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setToken(e.target.value);
 	};
-
 
 	const handleActivityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setActivity(e.target.value);
@@ -73,8 +72,8 @@ const InsertSetting = () => {
 						clientId,
 						activity,
 						status,
-						token
-					})
+						token,
+					}),
 				},
 			);
 
@@ -90,7 +89,6 @@ const InsertSetting = () => {
 			console.error("Error:", error);
 		}
 	};
-	const navigate = useNavigate();
 	return (
 		<div>
 			<form onSubmit={handleSubmit}>
@@ -152,7 +150,11 @@ const InsertSetting = () => {
 									alt="custombot-avatar"
 									className={classes.custombotAvatar}
 								/>
-								<Link to={`/dashboard/guild/${guild.id}/custombots/list`} className="custombotUsername" key={guild.id}>
+								<Link
+									to={`/dashboard/guild/${guild.id}/custombots/list`}
+									className="custombotUsername"
+									key={guild.id}
+								>
 									{user?.username}
 								</Link>
 							</div>

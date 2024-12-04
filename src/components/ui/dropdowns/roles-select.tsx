@@ -13,7 +13,7 @@ export type ColourOption = {
 export default function RolesSelect() {
 	const roles = useSelector((state: RootState) => state.roles.data);
 	console.log("roles", roles);
-	
+
 	const [selectedOptions, setSelectedOptions] = useState([]);
 	const handleChange = (selected: any) => {
 		setSelectedOptions(selected);

@@ -6,8 +6,8 @@ export default function CustombotList() {
 		<div>
 			<Navbar />
 			<Sidebar />
-			
-				<h1> Custom Bots </h1>
+
+			<h1> Custom Bots </h1>
 		</div>
 	);
 }

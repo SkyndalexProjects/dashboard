@@ -2,8 +2,8 @@ import ChannelsSelect from "../../../../components/ui/dropdowns/channels-select"
 import RolesSelect from "../../../../components/ui/dropdowns/roles-select";
 import Navbar from "../../../../components/ui/navigation/navbar";
 import Sidebar from "../../../../components/ui/navigation/sidebar";
-import classes from "./home.module.css"
-document.getElementById("root")?.classList.add(classes.root)
+import classes from "./home.module.css";
+document.getElementById("root")?.classList.add(classes.root);
 export default function Page() {
 	return (
 		<div>
