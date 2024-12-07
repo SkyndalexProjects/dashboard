@@ -1,0 +1,32 @@
+h1 {
+	text-align: center;
+}
+
+.customBotsTable {
+	width: auto;
+	max-width: calc(100% - 250px);
+	border-collapse: collapse;
+	margin: 20px auto;
+	font-size: 18px;
+	text-align: left;
+	table-layout: auto;
+}
+
+.customBotsTable th,
+.customBotsTable td {
+	padding: 12px 15px;
+	border: 1px solid #ddd;
+	word-wrap: break-word;
+}
+
+.customBotsTable th {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.customBotsTable tr:nth-child(even) {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.customBotsTable tr:hover {
+	background-color: rgba(0, 0, 0, 0.2);
+}

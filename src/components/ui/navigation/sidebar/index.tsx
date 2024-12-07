@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import classes from "./sidebar.module.css";
 const Sidebar = () => {
 	const location = useLocation();
@@ -11,7 +11,10 @@ const Sidebar = () => {
 		navigate(path);
 	};
 
-	const guildId = location.pathname.split("/")[3];
+	const guildId = useParams<{ id: string }>().id;
+
+	const currentPath = location.pathname;
+	console.log("is active", isActive(currentPath));
 	return (
 		<div className={classes.sidebar}>
 			<div className={classes.sidebarBorder}>
@@ -29,7 +32,7 @@ const Sidebar = () => {
 					<span className={classes.sidebarItemText}>Home</span>
 				</button>
 				<button
-					className={`${classes.sidebarItem} ${isActive(`/dashboard/guild/${guildId}/custombots`) ? classes.active : ""}`}
+					className={`${classes.sidebarItem} ${isActive(`/dashboard/guild/${guildId}/custombots`) || isActive(`/dashboard/guild/${guildId}/custombots/list`) ? classes.active : ""}`}
 					onClick={() =>
 						handleNavigation(
 							`/dashboard/guild/${guildId}/custombots`,

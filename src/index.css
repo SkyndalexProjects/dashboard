@@ -26,20 +26,20 @@ body {
 }
 
 .guild {
-    color: white;
-    background-color: rgba(217, 217, 217, 0.1);
-    border-radius: 10px;
-    padding: 20px;
-    justify-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.3s ease-in-out;
-    text-decoration: none;
-    text-align: center;
-    width: 220px;
-    height: auto; /* Zmieniono z 300px na auto */
-    display: flex;
-    flex-direction: column; /* Dodano */
-    align-items: center; /* Dodano */
+	color: white;
+	background-color: rgba(217, 217, 217, 0.1);
+	border-radius: 10px;
+	padding: 20px;
+	justify-items: center;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	transition: box-shadow 0.3s ease-in-out;
+	text-decoration: none;
+	text-align: center;
+	width: 220px;
+	height: auto; /* Zmieniono z 300px na auto */
+	display: flex;
+	flex-direction: column; /* Dodano */
+	align-items: center; /* Dodano */
 }
 .guild img {
 	width: 170px;
@@ -123,8 +123,8 @@ hr {
 }
 
 .guild-button {
-    width: 170px;
-    height: 40px;
-    flex-shrink: 0;
-    margin-top: auto; 
+	width: 170px;
+	height: 40px;
+	flex-shrink: 0;
+	margin-top: auto;
 }

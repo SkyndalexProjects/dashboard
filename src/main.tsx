@@ -41,12 +41,8 @@ const DispatchProvider = ({ children }: { children: React.ReactNode }) => {
 			dispatch(fetchUser());
 		}
 		if (guildId) {
-			if (!areChannelsFetched) {
-				dispatch(fetchChannels(guildId));
-			}
-			if (!areRolesFetched) {
-				dispatch(fetchRoles(guildId));
-			}
+			dispatch(fetchChannels(guildId));
+			dispatch(fetchRoles(guildId));
 		}
 	}, [
 		dispatch,

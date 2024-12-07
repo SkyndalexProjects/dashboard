@@ -33,21 +33,21 @@ export default function GuildsList() {
 								src={
 									guild?.icon
 										? `https://cdn.discordapp.com/icons/${guild?.id}/${guild?.icon}.png`
-										: "/discord-mark-blue.svg"
+										: "/default_guild_icon.png"
 								}
 								alt={`<no icon>`}
 								onError={(e) => {
 									e.currentTarget.src =
-										"/discord-mark-blue.svg";
+										"/default_guild_icon.png";
 								}}
 							/>
 							<p className="guild-name">{guild?.name}</p>
 							<button className="guild-button">
-                            <Link
-							key={guild?.id}
-							to={`/dashboard/guild/${guild?.id}/home`}
-							className="guild-button"
-						>
+								<Link
+									key={guild?.id}
+									to={`/dashboard/guild/${guild?.id}/home`}
+									className="guild-button"
+								>
 									<p className="button-text">
 										<img
 											src="/gear.svg"

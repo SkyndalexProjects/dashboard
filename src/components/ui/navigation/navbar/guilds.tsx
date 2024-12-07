@@ -81,6 +81,9 @@ export default function GuildsSelect() {
 							src={getGuildIconUrl(guild)}
 							alt={guild?.name}
 							className={classes.guildIcon}
+							onError={(e) => {
+								e.currentTarget.src = "/default_guild_icon.png";
+							}}
 						/>
 					</div>
 				))}

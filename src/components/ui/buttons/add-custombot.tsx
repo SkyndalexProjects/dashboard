@@ -1,26 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import classes from "./buttons.module.css";
-import { Link } from "react-router-dom";
-
-interface Bot {
-	username: string;
-	id: string;
-	avatar: string;
-}
 
 const InsertSetting = () => {
 	const { id } = useParams<{ id: string }>();
+	const navigate = useNavigate();
 	const [token, setToken] = useState("");
 	const [activity, setActivity] = useState("");
 	const [status, setStatus] = useState("");
+	const [error, setError] = useState("");
 
-	const [isBotAdded, setIsBotAdded] = useState(false);
-
-	const [user, setUser] = useState<Bot | null>(null);
 	const guild = useParams<{ id: string }>();
+
+	const redirectUser = async () => {
+		try {
+			const response = await fetch(
+				`${import.meta.env.VITE_API_URL}/guilds/${id}/custombots/get`,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ id }),
+				},
+			);
+
+			if (response.ok) {
+				const data = await response.json();
+				console.log("new data", data);
+
+				if (data) {
+					navigate(`/dashboard/guild/${id}/custombots/list`);
+				}
+			} else {
+				console.error("Failed to fetch custombots");
+				setError("Failed to fetch custombots");
+			}
+		} catch (error) {
+			console.error("Error fetching custombots:", error);
+			setError("Error fetching custombots");
+		}
+	};
+
+	useEffect(() => {
+		redirectUser();
+	}, [id]);
+
+	if (error) {
+		return <div>Something went wrong: {error}</div>;
+	}
+
 	const handleTokenChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setToken(e.target.value);
 	};
@@ -36,7 +67,6 @@ const InsertSetting = () => {
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
-		console.log("Token:", token);
 		const clientId = atob(token.split(".")[0]);
 		const endpoint = `${import.meta.env.VITE_API_URL}/bot`;
 
@@ -52,16 +82,13 @@ const InsertSetting = () => {
 			return console.error("Failed to fetch user");
 		}
 
-		const user: Bot = await userResponse.json();
-		setUser(user); // Set the user state
-
 		if (clientId.length < 17) {
 			return console.error("Invalid token");
 		}
 
 		try {
 			const response = await fetch(
-				`${import.meta.env.VITE_API_URL}/guilds/${id}/custombots/get`,
+				`${import.meta.env.VITE_API_URL}/guilds/${id}/custombots/add`,
 				{
 					method: "POST",
 					headers: {
@@ -81,10 +108,7 @@ const InsertSetting = () => {
 				throw new Error("Network response was not ok");
 			}
 
-			const result = await response.json();
-			console.log("Success:", result);
-
-			setIsBotAdded(true);
+			navigate(`/dashboard/guild/${guild.id}/custombots/list`);
 		} catch (error) {
 			console.error("Error:", error);
 		}
@@ -138,30 +162,6 @@ const InsertSetting = () => {
 					/>
 				</div>
 			</form>
-
-			{isBotAdded && (
-				<>
-					<div className={classes.loggedInAs}>
-						<p className={classes.loggedInAsText}>
-							Logged in as
-							<div className={classes.custombotData}>
-								<img
-									src={`https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}.png`}
-									alt="custombot-avatar"
-									className={classes.custombotAvatar}
-								/>
-								<Link
-									to={`/dashboard/guild/${guild.id}/custombots/list`}
-									className="custombotUsername"
-									key={guild.id}
-								>
-									{user?.username}
-								</Link>
-							</div>
-						</p>
-					</div>
-				</>
-			)}
 		</div>
 	);
 };

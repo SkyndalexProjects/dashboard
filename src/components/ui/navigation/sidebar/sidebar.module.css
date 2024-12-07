@@ -1,20 +1,23 @@
 .sidebar {
-	width: 230px;
-	margin-right: 0;
-	position: absolute;
-	z-index: 1000;
-	height: 100%;
-	overflow-x: hidden;
-	cursor: pointer;
-	margin-bottom: 20px;
+	width: 315px;
+	height: 67px;
 }
 
-.sidebarIitem img {
+.sidebarItem img {
 	width: 30px;
 	height: 30px;
 	margin-right: 10px;
 	vertical-align: middle;
 	color: white;
+}
+
+.sidebarItem.active img {
+	border-radius: 50%;
+	padding: 13px;
+	vertical-align: middle;
+	background: rgba(0, 0, 0, 0.24);
+	margin-top: -5px;
+	margin-left: 5px;
 }
 
 .sidebar button {
@@ -23,27 +26,28 @@
 }
 
 .sidebarItem.active {
-	background: linear-gradient(90deg, #141a8f 0%, rgba(15, 30, 80, 0.0) 100%);
-	border-left: 12px solid #041232;
+	background: rgba(0, 0, 0, 0.24);
+	border-radius: 15px;
 	position: relative;
-	width: 300px;
+	width: 315px;
 	height: 67px;
+	color: white;
 }
 
 .sidebarItem {
 	font-family: "Noto Sans", sans-serif;
-	font-weight: 1000;
-	color: #a3a3a3;
 	font-weight: 500;
+	color: #a3a3a3;
 	width: 320px;
 	height: 67px;
 	font-size: 24px;
 	text-align: left;
 	display: flex;
-	align-items: left;
-	justify-content: left;
+	justify-content: flex-start;
 	padding: 10px 15px;
 	margin-right: 10px;
+	border-radius: 15px;
+	transition: background-color 0.3s;
 }
 .sidebarItemText {
 	font-family: "Noto Sans", sans-serif;

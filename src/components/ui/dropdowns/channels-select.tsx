@@ -2,7 +2,6 @@ import Select from "react-select";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../store";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import classes from "./dropdowns.module.css";
 export type ColourOption = {
 	value: string;
@@ -18,24 +17,21 @@ export type colourOptions = {
 
 export default function ChannelsSelect() {
 	const channels = useSelector((state: RootState) => state.channels.data);
-
-	if (channels.length >= 0) {
-		return <div>Loading...</div>;
-	}
 	const [searchTerm, setSearchTerm] = useState("");
 
+	console.log("Current channels", channels);
 	const [dropdownVisible, setDropdownVisible] = useState(false);
 	const [selectedChannel, setSelectedChannel] = useState<{
 		id: string;
 		name: string;
 	} | null>(null);
 
-	console.log("channels", channels);
-	const filteredChannels = channels
-		? channels.filter((channel) =>
-				channel.name.toLowerCase().includes(searchTerm.toLowerCase()),
-			)
-		: [];
+	if (!Array.isArray(channels)) {
+		return <div>Loading...</div>;
+	}
+	const filteredChannels = channels.filter((channel) =>
+		channel.name.toLowerCase().includes(searchTerm.toLowerCase()),
+	);
 	const handleChannelClick = (channel: { id: string; name: string }) => {
 		setSelectedChannel(channel);
 		setDropdownVisible(false);
