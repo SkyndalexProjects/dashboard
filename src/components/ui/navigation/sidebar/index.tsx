@@ -60,9 +60,9 @@ const Sidebar = () => {
 					<span className={classes.sidebarItemText}>Economy</span>
 				</button>
 				<button
-					className={`${classes.sidebarItem} ${isActive(`/dashboard/servers/${guildId}/levels`) ? classes.active : ""}`}
+					className={`${classes.sidebarItem} ${isActive(`/dashboard/guild/${guildId}/levels`) ? classes.active : ""}`}
 					onClick={() =>
-						handleNavigation(`/dashboard/servers/${guildId}/levels`)
+						handleNavigation(`/dashboard/guild/${guildId}/levels`)
 					}
 				>
 					<img
@@ -73,9 +73,9 @@ const Sidebar = () => {
 					<span className={classes.sidebarItemText}>Levels</span>
 				</button>
 				<button
-					className={`${classes.sidebarItem} ${isActive(`/dashboard/servers/${guildId}/radio`) ? classes.active : ""}`}
+					className={`${classes.sidebarItem} ${isActive(`/dashboard/guild/${guildId}/radio`) ? classes.active : ""}`}
 					onClick={() =>
-						handleNavigation(`/dashboard/servers/${guildId}/radio`)
+						handleNavigation(`/dashboard/guild/${guildId}/radio`)
 					}
 				>
 					<img
@@ -86,9 +86,9 @@ const Sidebar = () => {
 					<span className={classes.sidebarItemText}>Radio</span>
 				</button>
 				<button
-					className={`${classes.sidebarItem} ${isActive(`/dashboard/servers/${guildId}/ai`) ? classes.active : ""}`}
+					className={`${classes.sidebarItem} ${isActive(`/dashboard/guild/${guildId}/ai`) ? classes.active : ""}`}
 					onClick={() =>
-						handleNavigation(`/dashboard/servers/${guildId}/ai`)
+						handleNavigation(`/dashboard/guild/${guildId}/ai`)
 					}
 				>
 					<img

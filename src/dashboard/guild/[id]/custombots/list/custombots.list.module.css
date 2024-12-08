@@ -1,32 +1,43 @@
-h1 {
-	text-align: center;
+.customBotsList {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	align-items: center;
 }
 
-.customBotsTable {
-	width: auto;
-	max-width: calc(100% - 250px);
-	border-collapse: collapse;
-	margin: 20px auto;
-	font-size: 18px;
-	text-align: left;
-	table-layout: auto;
-}
-
-.customBotsTable th,
-.customBotsTable td {
-	padding: 12px 15px;
-	border: 1px solid #ddd;
-	word-wrap: break-word;
-}
-
-.customBotsTable th {
+.customBotCard {
+	border-radius: 10px;
+	padding: 16px;
+	width: 1270px;
+	height: 120px;
+	margin-left: 10%;
+	display: flex;
+	align-items: center;
 	background-color: rgba(0, 0, 0, 0.2);
 }
-
-.customBotsTable tr:nth-child(even) {
-	background-color: rgba(0, 0, 0, 0.2);
+.customBotCard div {
+	margin-bottom: 25px;
+}
+.customBotIcon {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	margin-right: 16px;
 }
 
-.customBotsTable tr:hover {
-	background-color: rgba(0, 0, 0, 0.2);
+.customBotName {
+    font-size: 24px;
+    font-family: "Be Vietnam", sans-serif;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px; /* Dodaj ten margines */
+}
+
+.customBotStatus {
+    font-size: 16px;
+    font-family: "Be Vietnam", sans-serif;
+    display: flex;
+    align-items: center;
+    color: gray;
+    margin: 0; /* Usuń marginesy */
 }

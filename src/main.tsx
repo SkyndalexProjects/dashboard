@@ -10,6 +10,7 @@ import { fetchRoles } from "./thunks/roles";
 import Home from "./dashboard/guild/[id]/home/page";
 import Custombots from "./dashboard/guild/[id]/custombots/page";
 import CustombotList from "./dashboard/guild/[id]/custombots/list/page";
+import Page from "./dashboard/guild/[id]/radio/page";
 import NoMatch from "./NoMatch";
 import "./index.css";
 import GuildsList from "./guilds-list";
@@ -74,6 +75,10 @@ createRoot(document.getElementById("root")!).render(
 									<Route
 										path="custombots/list"
 										element={<CustombotList />}
+									/>
+									<Route
+										path="radio"
+										element={<Page />}
 									/>
 								</Routes>
 							</DispatchProvider>

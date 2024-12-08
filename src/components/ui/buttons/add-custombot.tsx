@@ -31,7 +31,7 @@ const InsertSetting = () => {
 				const data = await response.json();
 				console.log("new data", data);
 
-				if (data) {
+				if (data.length >= 1) {
 					navigate(`/dashboard/guild/${id}/custombots/list`);
 				}
 			} else {
