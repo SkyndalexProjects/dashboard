@@ -3,7 +3,7 @@ import Sidebar from "../../../../../components/ui/navigation/sidebar";
 import classes from "./custombots.list.module.css";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-
+import CustomBotModal from "../../../../../components/ui/modals/CreateCustomBot";
 interface CustomBot {
 	id: number;
 	guildId: string;
@@ -18,6 +18,9 @@ interface CustomBot {
 export default function CustombotList() {
 	const { id } = useParams<{ id: string }>();
 	const [custombots, setCustombots] = useState<CustomBot[]>([]);
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const openModal = () => setIsModalOpen(true);
+	const closeModal = () => setIsModalOpen(false);
 
 	const getCustombots = async () => {
 		const response = await fetch(
@@ -61,13 +64,19 @@ export default function CustombotList() {
 		getCustombots();
 	}, [id]);
 
-	console.log("detailedCustombots", custombots);
+	const toggleBot = async (botId: number) => {
+		const bot = custombots.find((bot) => bot.id === botId);
+		if (!bot) return;
+	};
+
 	return (
 		<div className={classes.container}>
 			<Navbar />
 			<Sidebar />
 
-			<div className={classes.customBotsList}>
+			<div
+				className={`${classes.customBotsList} ${isModalOpen ? classes.blurBackground : ""}`}
+			>
 				{custombots.map((bot: CustomBot) => (
 					<div key={bot.id} className={classes.customBotCard}>
 						<img
@@ -83,9 +92,37 @@ export default function CustombotList() {
 								{bot.status || "No status"}
 							</p>
 						</div>
+						<button
+							className={classes.powerButton}
+							onClick={() => toggleBot(bot.id)}
+						>
+							<img
+								src="/power-button.svg"
+								alt="Power"
+								className={classes.powerButton}
+							/>
+						</button>
 					</div>
 				))}
 			</div>
+
+			<div className={classes.addCustomBot}>
+				<button
+					className={classes.addCustomBotButton}
+					onClick={openModal}
+				>
+					<img
+						src="/plus.svg"
+						alt="plus.svg"
+						className={classes.addCustomBotIcon}
+					/>
+					<p className={classes.addCustomBotText}>
+						Add more custom bots
+					</p>
+				</button>
+			</div>
+
+			<CustomBotModal isOpen={isModalOpen} onClose={closeModal} />
 		</div>
 	);
 }

@@ -76,10 +76,7 @@ createRoot(document.getElementById("root")!).render(
 										path="custombots/list"
 										element={<CustombotList />}
 									/>
-									<Route
-										path="radio"
-										element={<Page />}
-									/>
+									<Route path="radio" element={<Page />} />
 								</Routes>
 							</DispatchProvider>
 						}

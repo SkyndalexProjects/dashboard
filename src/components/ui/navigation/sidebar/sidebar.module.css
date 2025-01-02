@@ -1,10 +1,15 @@
 .sidebar {
 	width: 315px;
-	height: 67px;
+	height: 800px;
+	border-right: 2px solid rgba(255, 255, 255, 0.1);
+	border-top: 2px solid rgba(255, 255, 255, 0.1);
+	border-radius: 15px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	padding: 10px;
+	position: absolute;
 }
-
 .sidebarItem img {
-	width: 30px;
+	width: 60px;
 	height: 30px;
 	margin-right: 10px;
 	vertical-align: middle;
@@ -12,12 +17,14 @@
 }
 
 .sidebarItem.active img {
-	border-radius: 50%;
+	border-radius: 20px;
 	padding: 13px;
 	vertical-align: middle;
 	background: rgba(0, 0, 0, 0.24);
 	margin-top: -5px;
 	margin-left: 5px;
+	width: 30px;
+	height: 30px;
 }
 
 .sidebar button {
@@ -38,7 +45,7 @@
 	font-family: "Noto Sans", sans-serif;
 	font-weight: 500;
 	color: #a3a3a3;
-	width: 320px;
+	width: 315px;
 	height: 67px;
 	font-size: 24px;
 	text-align: left;

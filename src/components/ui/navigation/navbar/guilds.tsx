@@ -21,7 +21,6 @@ export default function GuildsSelect() {
 	const guilds = useSelector((state: RootState) => state.guilds.data);
 	const [searchTerm] = useState("");
 
-
 	const filteredGuilds = guilds.filter((guild) =>
 		guild?.name.toLowerCase().includes(searchTerm.toLowerCase()),
 	);
@@ -41,15 +40,18 @@ export default function GuildsSelect() {
 			? `https://cdn.discordapp.com/icons/${guild?.id}/${guild?.icon}.png`
 			: `/default_guild_icon.png`;
 
-			if (guilds.length === 0) {
-				return (
-					<div className={`${classes.guildsList} ${classes.loading}`}>
-						{Array.from({ length: 15 }).map((_, index) => (
-							<div key={index} className={`${classes.guildIcon} ${classes.loading}`} />
-						))}
-					</div>
-				);
-			}
+	if (guilds.length === 0) {
+		return (
+			<div className={`${classes.guildsList} ${classes.loading}`}>
+				{Array.from({ length: 15 }).map((_, index) => (
+					<div
+						key={index}
+						className={`${classes.guildIcon} ${classes.loading}`}
+					/>
+				))}
+			</div>
+		);
+	}
 	return (
 		<div>
 			<div className={classes.guildsList}>
