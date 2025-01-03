@@ -6,26 +6,28 @@ export default function Page() {
         <div>
             <Navbar />
             <Sidebar />
-            <div className={classes.container}>
-                <div className={classes.featureRectangle}>
+            <div className={classes.gridContainer}>
+                <div className={classes.container}>
+                    <div className={classes.imgContainer}>
+                        <img src="/sparkles.svg" alt="feature1" />
+                    </div>
                     <div className={classes.textContainer}>
                         <p className={classes.featureText}> AI </p>
                         <p className={classes.featureSubtext}>
                             Set up AI features like chatbot channel, API keys and
                             more
                         </p>
-                        <button className={classes.featureButton}>Setup</button>
-
                     </div>
-                    <div className={classes.imgCircle}>
-                        <img src="/sparkles.svg" alt="feature1" />
-                    </div>
+                    <button className={classes.featureButton}>
+                        Setup
+                        <img src="/button-arrow.svg" alt="arrow" className={classes.buttonArrow} />
+                    </button>
                 </div>
-                <div className={classes.featureRectangle}></div>
-                <div className={classes.featureRectangle}></div>
-                <div className={classes.featureRectangle}></div>
-                <div className={classes.featureRectangle}></div>
-                <div className={classes.featureRectangle}></div>
+                <div className={classes.container}></div>
+                <div className={classes.container}></div>
+                <div className={classes.container}></div>
+                <div className={classes.container}></div>
+                <div className={classes.container}></div>
             </div>
         </div>
     );

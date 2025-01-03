@@ -1,27 +1,25 @@
-.container {
+.gridContainer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    justify-items: center;
     margin-left: 20%;
 }
 
-.featureRectangle {
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     position: relative;
     width: 440px;
     height: 325px;
     flex-shrink: 0;
     border-radius: 15px;
     background: rgba(0, 0, 0, 0.4);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.imgCircle {
+.imgContainer {
     border-radius: 115px;
     background: rgba(113, 113, 113, 0.33);
     width: 100px;
@@ -30,27 +28,20 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-	margin-bottom: 45%;
+    position: absolute;
+    top: 10%;
+    right: 25px;
 }
-.featureRectangle img {
+.buttonArrow {
+    position: absolute;
+    flex-shrink: 0;
+    left: 37%;
+    bottom: 6%;
+}
+.container img {
     width: 50px;
     height: 50px;
     vertical-align: middle;
-}
-.featureRectangle button {
-	width: 198px;
-	height: 39px;
-	flex-shrink: 0;
-	border-radius: 14px;
-	border: 2px solid #51683E;
-	background: rgba(0, 0, 0, 0.20);
-	margin-top: 50%;
-	margin-right: 30%;
-	color: white;
-	font-size: 16px;
-	font-style: normal;
-	font-weight: 700;
-	padding-right: 37%;
 }
 .featureText {
     color: #fff;
@@ -59,27 +50,43 @@
     font-style: normal;
     font-weight: 800;
     line-height: normal;
-    margin-right: 20px;
+    margin-bottom: 10px;
 }
-
-.textContainer {
-    display: flex;
-    flex-direction: column;
-	margin-bottom: 5%;
-}
-
 .featureSubtext {
     color: #fff;
     font-family: "Be Vietnam Pro";
     font-size: 20px;
     font-weight: 400;
-    overflow-wrap: anywhere;
     word-break: break-word;
-    margin-right: 20px;
-
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    max-width: 50%;
+    margin-top: 0; 
 }
-
-.featureRectangle:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+.featureButton {
+	width: 198px;
+	height: 39px;
+	flex-shrink: 0;
+	border-radius: 14px;
+	border: 2px solid #51683E;
+	background: rgba(0, 0, 0, 0.20);
+	color: white;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 700;
+	padding-right: 45%;
+    margin-bottom: 20px;
+    margin-right: 45%;
+}
+.featureButton img {
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+}
+.textContainer {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-left: 10px;
 }
