@@ -17,12 +17,9 @@
 }
 
 .sidebarItem.active img {
-	border-radius: 20px;
 	padding: 13px;
 	vertical-align: middle;
-	background: rgba(0, 0, 0, 0.24);
 	margin-top: -5px;
-	margin-left: 5px;
 	width: 30px;
 	height: 30px;
 }
@@ -55,6 +52,10 @@
 	margin-right: 10px;
 	border-radius: 15px;
 	transition: background-color 0.3s;
+}
+.sidebarItem:hover {
+	background: rgba(0, 0, 0, 0.24);
+	border-radius: 15px;
 }
 .sidebarItemText {
 	font-family: "Noto Sans", sans-serif;
