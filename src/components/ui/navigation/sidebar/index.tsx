@@ -13,7 +13,6 @@ const Sidebar = () => {
 
 	const guildId = useParams<{ id: string }>().id;
 
-	const currentPath = location.pathname;
 	return (
 		<div className={classes.sidebar}>
 			<div className={classes.sidebarBorder}>

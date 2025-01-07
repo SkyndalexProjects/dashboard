@@ -92,16 +92,28 @@ export default function CustombotList() {
 								{bot.status || "No status"}
 							</p>
 						</div>
-						<button
-							className={classes.powerButton}
-							onClick={() => toggleBot(bot.id)}
-						>
-							<img
-								src="/power-button.svg"
-								alt="Power"
-								className={classes.powerButton}
-							/>
-						</button>
+						<div className={classes.actionButtons}>
+							<button
+								className={classes.actionButton}
+								onClick={() => toggleBot(bot.id)}
+							>
+								<img
+									src="/edit-button.svg"
+									alt="Edit"
+									className={classes.actionButtonIcon}
+								/>
+							</button>
+							<button
+								className={classes.actionButton}
+								onClick={() => toggleBot(bot.id)}
+							>
+								<img
+									src="/trash.svg"
+									alt="Trash"
+									className={classes.actionButtonIcon}
+								/>
+							</button>
+						</div>
 					</div>
 				))}
 			</div>
