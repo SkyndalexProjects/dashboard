@@ -1,0 +1,55 @@
+.custombot {
+	display: flex;
+	width: 465.928px;
+	height: 104.282px;
+	flex-shrink: 0;
+	border-radius: 10px;
+	background: rgba(14, 14, 14, 0.17);
+	margin-left: 20%;
+}
+.botName {
+	color: #fff;
+	font: 700 32px "Be Vietnam Pro", normal;
+	line-height: normal;
+	margin: 10px 0 0 25%;
+	text-wrap: nowrap;
+}
+.botStatus {
+	color: #2dc660;
+	font: 700 24px "Be Vietnam Pro", normal;
+	line-height: normal;
+	margin-top: 5px;
+}
+.botDetails {
+	display: flex;
+	width: 465.928px;
+	height: 222.288px;
+	flex-shrink: 0;
+	border-radius: 10px;
+	background: rgba(14, 14, 14, 0.17);
+	margin-left: 47%;
+}
+.botDetails h1 {
+	color: #d7d7d7;
+	text-align: center;
+	font: 700 20px "Be Vietnam Pro", normal;
+	line-height: normal;
+	margin-left: 20px;
+	text-wrap: nowrap;
+}
+.botDetails p {
+	flex-shrink: 0;
+	color: #fff;
+	font: 400 20px "ABC Ginto Normal Unlicensed Trial", normal;
+	line-height: normal;
+	position: absolute;
+	margin: 70px 0 0 25px;
+}
+.botIcon {
+	width: 79px;
+	height: 79px;
+	flex-shrink: 0;
+	border-radius: 15px;
+	position: absolute;
+	margin: 13px 0 0 15px;
+}
