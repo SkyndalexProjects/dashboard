@@ -6,7 +6,6 @@
 		background-color: #c0c0c0;
 	}
 }
-
 .skeleton {
 	animation: skeleton-loading 1.5s infinite alternate;
 }

@@ -48,15 +48,11 @@ export default function GuildsList() {
 									to={`/dashboard/guild/${guild?.id}/home`}
 									className="guild-button"
 								>
-									<p className="button-text">
 										<img
 											src="/gear.svg"
 											alt="gear icon"
-											width={20}
-											height={20}
 										/>
 										SET
-									</p>
 								</Link>
 							</button>
 						</div>
