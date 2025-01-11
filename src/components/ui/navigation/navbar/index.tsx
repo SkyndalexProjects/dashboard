@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store";
 import classes from "./navbar.module.css";
+import { version } from '../../../../../package.json';
+
 const navbar = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
@@ -33,7 +35,7 @@ const navbar = () => {
 				<p className={classes.navTitle}> {guild?.name} </p>
 				<GuildsDropdown />
 				<div className={classes.navRight}>
-					<p className={classes.navItem}> 0.0.0 </p>
+					<p className={classes.navItem}> {version} </p>
 				</div>
 			</nav>
 		</>
