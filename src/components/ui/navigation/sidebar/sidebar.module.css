@@ -11,7 +11,6 @@
 .sidebarItem img {
 	width: 60px;
 	height: 30px;
-	margin-right: 10px;
 	vertical-align: middle;
 	color: white;
 }
@@ -30,9 +29,9 @@
 }
 
 .sidebarItem.active {
-	background: rgba(0, 0, 0, 0.24);
-	border-radius: 15px;
-	position: relative;
+	border-radius: 0px 20px 20px 0px;
+	border-left: 5px solid rgba(8, 0, 255, 0.31);
+	background: rgba(0, 0, 0, 0.35);
 	width: 315px;
 	height: 67px;
 	color: white;
@@ -48,14 +47,14 @@
 	text-align: left;
 	display: flex;
 	justify-content: flex-start;
-	padding: 10px 15px;
-	margin-right: 10px;
+	padding: 10px 0px;
 	border-radius: 15px;
 	transition: background-color 0.3s;
 }
 .sidebarItem:hover {
+	border-radius: 0px 20px 20px 0px;
+	border-left: 5px solid rgba(8, 0, 255, 0.31);
 	background: rgba(0, 0, 0, 0.24);
-	border-radius: 15px;
 }
 .sidebarItemText {
 	font-family: "Noto Sans", sans-serif;

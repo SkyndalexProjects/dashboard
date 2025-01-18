@@ -1,10 +1,9 @@
 import { useParams } from "react-router-dom";
 import Navbar from "../../../../../../components/ui/navigation/navbar";
 import Sidebar from "../../../../../../components/ui/navigation/sidebar";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../../../../store";
 import { fetchCustombots } from "../../../../../../thunks/custombots";
-import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../../../store";
 import { useEffect, useState } from "react";
 import classes from "./custombot-manage.module.css";
@@ -17,7 +16,7 @@ export default function ManageCustombot() {
 
 	const [detailedCustombot, setCustombot] = useState<CustomBot | null>(null);
 	const [custombotRPC, setCustombotRPC] = useState<CustomBotRPC | null>(null);
-	
+
 	useEffect(() => {
 		if (id) {
 			dispatch(fetchCustombots(id));
@@ -65,20 +64,39 @@ export default function ManageCustombot() {
 			<Sidebar />
 			<h2>
 				{detailedCustombot && (
-					<div className={classes.custombot}>
-						<img
-							src={iconURL}
-							alt={`${detailedCustombot.username} icon`}
-							className={classes.botIcon}
-						/>
-						<p className={classes.botName}>
-							{detailedCustombot.username}
-							<p className={classes.botStatus}> online </p>{" "}
-						</p>
-						<div className={classes.botDetails}>
-							<h1> ABOUT ME </h1>
-							<p>
-								{custombotRPC?.description || "No about me"}	
+					<div>
+						<div className={classes.custombot}>
+							<img
+								src={iconURL}
+								alt={`${detailedCustombot.username} icon`}
+								className={classes.botIcon}
+							/>
+							<p className={classes.botName}>
+								{detailedCustombot.username}
+								<p className={classes.botStatus}>
+									{" "}
+									online{" "}
+								</p>{" "}
+							</p>
+							<div className={classes.radioStatus}>
+								<img
+									src="/QuestionMark.svg"
+									alt={`Question mark`}
+									className={classes.radioNotFoundIcon}
+								/>
+								<p className={classes.radioNotFoundText}>
+									{" "}
+									No radio status found{" "}
+								</p>
+							</div>
+						</div>
+						<div className={classes.botAboutMe}>
+							<p className={classes.botAboutMeBoxTitle}>
+								{" "}
+								ABOUT ME{" "}
+							</p>
+							<p className={classes.botAboutMeText}>
+								{custombotRPC?.description}
 							</p>
 						</div>
 					</div>

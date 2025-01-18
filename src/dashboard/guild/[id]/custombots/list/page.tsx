@@ -24,7 +24,7 @@ export default function CustombotList() {
 						"Content-Type": "application/json",
 					},
 					body: JSON.stringify({ id }),
-				}
+				},
 			);
 			const bots = await response.json();
 			console.log("Fetched bots:", bots);
@@ -39,7 +39,7 @@ export default function CustombotList() {
 								"Content-Type": "application/json",
 								authorization: `Bot ${bot.token}`,
 							},
-						}
+						},
 					);
 					const botData = await botResponse.json();
 					return {
@@ -47,7 +47,7 @@ export default function CustombotList() {
 						username: botData.username,
 						icon: botData.avatar,
 					};
-				})
+				}),
 			);
 
 			setCustombots(detailedBots);
@@ -74,7 +74,9 @@ export default function CustombotList() {
 		<div className={classes.container}>
 			<Navbar />
 			<Sidebar />
-			<div className={`${classes.customBotsList} ${isModalOpen ? classes.blurBackground : ""}`}>
+			<div
+				className={`${classes.customBotsList} ${isModalOpen ? classes.blurBackground : ""}`}
+			>
 				{custombots.map((bot: CustomBot) => (
 					<div key={bot.id} className={classes.customBotCard}>
 						<img
@@ -83,30 +85,55 @@ export default function CustombotList() {
 							className={classes.customBotIcon}
 						/>
 						<div>
-							<p className={classes.customBotName}>{bot.username}</p>
-							<p className={classes.customBotStatus}>{bot.status || "No status"}</p>
+							<p className={classes.customBotName}>
+								{bot.username}
+							</p>
+							<p className={classes.customBotStatus}>
+								{bot.status || "No status"}
+							</p>
 						</div>
 						<div className={classes.actionButtons}>
 							<button
 								className={classes.actionButton}
-								onClick={() => handleNavigation(`/dashboard/guild/${id}/custombots/manage/${bot.id}`)}
+								onClick={() =>
+									handleNavigation(
+										`/dashboard/guild/${id}/custombots/manage/${bot.id}`,
+									)
+								}
 							>
-								<img src="/edit-button.svg" alt="Edit" className={classes.actionButtonIcon} />
+								<img
+									src="/edit-button.svg"
+									alt="Edit"
+									className={classes.actionButtonIcon}
+								/>
 							</button>
 							<button
 								className={classes.actionButton}
 								onClick={() => toggleBot(bot.id)}
 							>
-								<img src="/trash.svg" alt="Trash" className={classes.actionButtonIcon} />
+								<img
+									src="/trash.svg"
+									alt="Trash"
+									className={classes.actionButtonIcon}
+								/>
 							</button>
 						</div>
 					</div>
 				))}
 			</div>
 			<div className={classes.addCustomBot}>
-				<button className={classes.addCustomBotButton} onClick={openModal}>
-					<img src="/plus.svg" alt="plus.svg" className={classes.addCustomBotIcon} />
-					<p className={classes.addCustomBotText}>Add more custom bots</p>
+				<button
+					className={classes.addCustomBotButton}
+					onClick={openModal}
+				>
+					<img
+						src="/plus.svg"
+						alt="plus.svg"
+						className={classes.addCustomBotIcon}
+					/>
+					<p className={classes.addCustomBotText}>
+						Add more custom bots
+					</p>
 				</button>
 			</div>
 			<CustomBotModal isOpen={isModalOpen} onClose={closeModal} />

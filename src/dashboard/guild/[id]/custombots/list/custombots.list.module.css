@@ -31,7 +31,7 @@
 .customBotName {
 	color: #fff;
 	text-align: center;
-	font: 800 25px/normal Poppins;
+	font: 800 25px / normal Poppins;
 	display: flex;
 	margin-bottom: 4px;
 	white-space: nowrap;
@@ -40,7 +40,7 @@
 .customBotStatus {
 	color: #8d8d8d;
 	text-align: center;
-	font: 500 20px/normal "Be Vietnam Pro";
+	font: 500 20px / normal "Be Vietnam Pro";
 	display: flex;
 	align-items: center;
 	margin: 0;

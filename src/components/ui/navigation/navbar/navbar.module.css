@@ -63,6 +63,10 @@ nav {
 	border-radius: 50%;
 	margin: 0;
 }
+
+.guildIcon:hover {
+	cursor: pointer;
+}
 @keyframes loading {
 	0% {
 		transform: translateX(-100%);
