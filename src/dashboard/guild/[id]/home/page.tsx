@@ -1,5 +1,5 @@
-import Navbar from "../../../../components/ui/navigation/navbar";
-import Sidebar from "../../../../components/ui/navigation/sidebar";
+import Navbar from "@/components/ui/navigation/navbar";
+import Sidebar from "@/components/ui/navigation/sidebar";
 import classes from "./home.module.css";
 
 export default function Page() {

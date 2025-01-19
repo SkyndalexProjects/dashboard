@@ -1,9 +1,9 @@
 import GuildsDropdown from "./guilds";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../../store";
+import { RootState } from "@/store";
 import classes from "./navbar.module.css";
-import { version } from "../../../../../package.json";
+import { version } from "@/../package.json";
 
 const navbar = () => {
 	const location = useLocation();

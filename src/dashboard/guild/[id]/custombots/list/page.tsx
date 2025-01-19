@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Navbar from "../../../../../components/ui/navigation/navbar";
-import Sidebar from "../../../../../components/ui/navigation/sidebar";
-import CustomBotModal from "../../../../../components/ui/modals/CreateCustomBot";
+import Navbar from "@/components/ui/navigation/navbar";
+import Sidebar from "@/components/ui/navigation/sidebar";
+import CustomBotModal from "@/components/ui/modals/CreateCustomBot";
 import classes from "./custombots.list.module.css";
 
 export default function CustombotList() {

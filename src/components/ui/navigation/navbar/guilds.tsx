@@ -1,7 +1,6 @@
-import { useSelector, useDispatch } from "react-redux";
-import type { RootState, AppDispatch } from "../../../../store";
-import { useEffect, useState } from "react";
-import { fetchGuilds } from "../../../../thunks/guilds";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/store";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./navbar.module.css";
 export type ColourOption = {

@@ -1,5 +1,5 @@
-import Navbar from "../../../../components/ui/navigation/navbar";
-import Sidebar from "../../../../components/ui/navigation/sidebar";
+import Navbar from "@/components/ui/navigation/navbar";
+import Sidebar from "@/components/ui/navigation/sidebar";
 
 export default function Page() {
 	console.log("im running");
