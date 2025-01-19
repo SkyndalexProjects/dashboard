@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import classes from "./buttons.module.css";
+import classes from "./forms.module.css";
 
-const InsertSetting = () => {
+const AddingCustombot = () => {
 	const { id } = useParams<{ id: string }>();
 	const navigate = useNavigate();
 	const [token, setToken] = useState("");
@@ -166,4 +166,4 @@ const InsertSetting = () => {
 	);
 };
 
-export default InsertSetting;
+export default AddingCustombot;
