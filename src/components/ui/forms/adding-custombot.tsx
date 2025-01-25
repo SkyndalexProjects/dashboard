@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import classes from "@/components/ui/forms/adding-custombot.module.css";
+import classes from "./adding-custombot.module.css";
 
 const AddingCustombot = () => {
 	const { id } = useParams<{ id: string }>();

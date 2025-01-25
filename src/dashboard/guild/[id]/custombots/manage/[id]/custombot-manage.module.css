@@ -114,3 +114,47 @@
 	font-weight: 400;
 	line-height: normal;
 }
+.custombotRadioSettings {
+	width: 635.427px;
+	height: 298.597px;
+	transform: rotate(0.254deg);
+	flex-shrink: 0;
+	border-radius: 10px;
+	background: rgba(0, 0, 0, 0.2);
+	margin-left: 51%;
+	margin-top: -11.3%;
+}
+.custombotVoiceChannelSetting {
+	position: absolute;
+	margin-top: 1%;
+	margin-left: 5%;
+}
+.custombotVoiceChannelSettingTitle {
+	position: relative;
+	margin-right: 65%;
+	text-wrap: nowrap;
+	color: #fff;
+	text-align: center;
+	font-family: Poppins;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+.custombotStationChannelSetting {
+	position: absolute;
+	margin-top: 18%;
+	margin-left: 5%;
+}
+.custombotStationChannelSettingTitle {
+	position: relative;
+	margin-right: 65%;
+	text-wrap: nowrap;
+	color: #fff;
+	text-align: center;
+	font-family: Poppins;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}

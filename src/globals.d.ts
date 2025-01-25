@@ -40,3 +40,28 @@ interface CustomBotRPC {
 	flags: number;
 	max_participants: number | null;
 }
+interface RadioStation {
+	took: number;
+	_id: string;
+	_source: {
+		code: string;
+		page: {
+			country: {
+				id: string;
+				title: string;
+			};
+			place: {
+				id: string;
+				title: string;
+			};
+		};
+		preroll: boolean;
+		secure: boolean;
+		subtitle: string;
+		title: string;
+		type: string;
+		url: string;
+		website: string;
+		stream: string;
+	};
+}

@@ -7,6 +7,9 @@ import { fetchCustombots } from "@/thunks/custombots";
 import { AppDispatch } from "@/store";
 import { useEffect, useState } from "react";
 import classes from "./custombot-manage.module.css";
+import VoiceChannelsSelect from "@/components/ui/dropdowns/voice-channels-select";
+import RadioStationSelect from "@/components/ui/dropdowns/radio-station-select";
+
 export default function ManageCustombot() {
 	const dispatch = useDispatch<AppDispatch>();
 	const { id, botId } = useParams<{ id: string; botId: string }>();
@@ -98,6 +101,37 @@ export default function ManageCustombot() {
 							<p className={classes.botAboutMeText}>
 								{custombotRPC?.description}
 							</p>
+						</div>
+
+						<div className={classes.custombotRadioSettings}>
+							<div
+								className={classes.custombotVoiceChannelSetting}
+							>
+								<p
+									className={
+										classes.custombotVoiceChannelSettingTitle
+									}
+								>
+									{" "}
+									VOICE CHANNEL{" "}
+								</p>
+								<VoiceChannelsSelect />
+							</div>
+							<div
+								className={
+									classes.custombotStationChannelSetting
+								}
+							>
+								<p
+									className={
+										classes.custombotStationChannelSettingTitle
+									}
+								>
+									{" "}
+									STATION CHANNEL{" "}
+								</p>
+								<RadioStationSelect />
+							</div>
 						</div>
 					</div>
 				)}
