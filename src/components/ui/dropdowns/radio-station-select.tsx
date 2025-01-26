@@ -18,36 +18,26 @@ const RadioStationSelect = () => {
 		};
 
 		document.addEventListener("mousedown", handleClickOutside);
-		return () => {
-			document.removeEventListener("mousedown", handleClickOutside);
-		};
-	}, []);
 
-	useEffect(() => {
 		if (searchTerm) {
 			fetch(`/radio-api/api/search?q=${searchTerm}`)
 				.then((response) => response.json())
-				.then((data) => {
-					console.log("Fetched data:", data);
-					setStations(data.hits.hits);
-				})
-				.catch((error) => {
-					console.error("Error fetching radio stations:", error);
-				});
+				.then((data) => setStations(data.hits.hits))
+				.catch((error) =>
+					console.error("Error fetching radio stations:", error),
+				);
 		}
-	}, [searchTerm]);
 
-	if (!Array.isArray(stations)) {
-		return <div>Loading...</div>;
-	}
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [searchTerm]);
 
 	const handleStationClick = (station: RadioStation) => {
 		setSearchTerm(station._source.title);
 		setDropdownVisible(false);
 	};
 
-	console.log("Stations:", stations);
-	
 	return (
 		<div ref={selectRef}>
 			<div onClick={() => setDropdownVisible(!dropdownVisible)}>
@@ -70,9 +60,11 @@ const RadioStationSelect = () => {
 							{station._source.title}
 						</div>
 					))}
-
 					{stations.length === 0 && (
-						<div className={classes.option} style={{ cursor: "not-allowed" }}>
+						<div
+							className={classes.option}
+							style={{ cursor: "not-allowed" }}
+						>
 							No results found
 						</div>
 					)}
