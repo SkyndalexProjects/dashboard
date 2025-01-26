@@ -43,13 +43,13 @@ export default function VoiceChannelsSelect() {
 	};
 
 	return (
-		<div className={classes.select} ref={selectRef}>
+		<div ref={selectRef}>
 			<div onClick={() => setDropdownVisible(!dropdownVisible)}>
 				<input
 					type="text"
 					value={searchTerm}
 					onChange={(e) => setSearchTerm(e.target.value)}
-					className={classes.select}
+					className={classes.selectInput}
 				/>
 			</div>
 			{dropdownVisible && (

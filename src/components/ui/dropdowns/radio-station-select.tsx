@@ -47,27 +47,35 @@ const RadioStationSelect = () => {
 	};
 
 	console.log("Stations:", stations);
+	
 	return (
-		<div className={classes.select} ref={selectRef}>
+		<div ref={selectRef}>
 			<div onClick={() => setDropdownVisible(!dropdownVisible)}>
 				<input
 					type="text"
 					value={searchTerm}
 					onChange={(e) => setSearchTerm(e.target.value)}
-					className={classes.select}
+					className={classes.selectInput}
 				/>
 			</div>
 			{dropdownVisible && (
-				<div className={`${classes.options} ${classes.scrollable}`}>
+				<div className={classes.options}>
 					{stations.slice(0, 5).map((station) => (
 						<div
 							key={station._id}
 							onClick={() => handleStationClick(station)}
 							className={classes.option}
+							style={{ cursor: "pointer" }}
 						>
 							{station._source.title}
 						</div>
 					))}
+
+					{stations.length === 0 && (
+						<div className={classes.option} style={{ cursor: "not-allowed" }}>
+							No results found
+						</div>
+					)}
 				</div>
 			)}
 		</div>
