@@ -1,5 +1,6 @@
+
 .custombot {
-	margin-top: 120px;
+	margin-top: 10%;
 	display: flex;
 	width: 465.928px;
 	height: 104.282px;
@@ -124,6 +125,16 @@
 	margin-left: 51%;
 	margin-top: -11.3%;
 }
+.custombotChatbotSettings {
+	width: 1214.309px;
+	height: 542.889px;
+	transform: rotate(0.254deg);
+	flex-shrink: 0;
+	border-radius: 10px;
+	background: rgba(0, 0, 0, 0.2);
+	margin-top: 2%;
+	margin-left: 20%;
+}
 .custombotVoiceChannelSetting {
 	position: absolute;
 	margin-top: 1%;
@@ -148,7 +159,7 @@
 }
 .custombotStationChannelSettingTitle {
 	position: relative;
-	margin-right: 65%;
+	margin-right: 81%;
 	text-wrap: nowrap;
 	color: #fff;
 	text-align: center;

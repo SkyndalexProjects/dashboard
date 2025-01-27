@@ -128,10 +128,14 @@ export default function ManageCustombot() {
 									}
 								>
 									{" "}
-									STATION CHANNEL{" "}
+									STATION{" "}
 								</p>
 								<RadioStationSelect />
 							</div>
+						</div>
+
+						<div className={classes.custombotChatbotSettings}>
+
 						</div>
 					</div>
 				)}
