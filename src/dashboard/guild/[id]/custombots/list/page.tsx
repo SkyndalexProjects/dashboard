@@ -71,30 +71,30 @@ export default function CustombotList() {
 	};
 
 	return (
-		<div className={classes.container}>
+		<div>
 			<Navbar />
 			<Sidebar />
 			<div
-				className={`${classes.customBotsList} ${isModalOpen ? classes.blurBackground : ""}`}
+				className={`${classes.list} ${isModalOpen ? classes.blurBackground : ""}`}
 			>
 				{custombots.map((bot: CustomBot) => (
-					<div key={bot.id} className={classes.customBotCard}>
+					<div key={bot.id} className={classes.listItem}>
 						<img
 							src={`https://cdn.discordapp.com/avatars/${bot.clientId}/${bot.icon}.png`}
 							alt={bot.username}
-							className={classes.customBotIcon}
+							className={classes.listItemIcon}
 						/>
 						<div>
-							<p className={classes.customBotName}>
+							<p className={classes.listItemName}>
 								{bot.username}
 							</p>
-							<p className={classes.customBotStatus}>
+							<p className={classes.listItemFooter}>
 								{bot.status || "No status"}
 							</p>
 						</div>
-						<div className={classes.actionButtons}>
+						<div className={classes.listItemActionButtons}>
 							<button
-								className={classes.actionButton}
+								className={classes.listItemActionButton}
 								onClick={() =>
 									handleNavigation(
 										`/dashboard/guild/${id}/custombots/manage/${bot.id}`,
@@ -104,24 +104,22 @@ export default function CustombotList() {
 								<img
 									src="/edit-button.svg"
 									alt="Edit"
-									className={classes.actionButtonIcon}
 								/>
 							</button>
 							<button
-								className={classes.actionButton}
+								className={classes.listItemActionButton}
 								onClick={() => toggleBot(bot.id)}
 							>
 								<img
 									src="/trash.svg"
 									alt="Trash"
-									className={classes.actionButtonIcon}
 								/>
 							</button>
 						</div>
 					</div>
 				))}
 			</div>
-			<div className={classes.addCustomBot}>
+			<div className={classes.addMoreCustomBotsContainer}>
 				<button
 					className={classes.addCustomBotButton}
 					onClick={openModal}
@@ -131,7 +129,7 @@ export default function CustombotList() {
 						alt="plus.svg"
 						className={classes.addCustomBotIcon}
 					/>
-					<p className={classes.addCustomBotText}>
+					<p>
 						Add more custom bots
 					</p>
 				</button>

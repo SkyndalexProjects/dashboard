@@ -6,9 +6,7 @@ import { RootState } from "@/store";
 import { fetchCustombots } from "@/thunks/custombots";
 import { AppDispatch } from "@/store";
 import { useEffect, useState } from "react";
-import classes from "./custombot-manage.module.css";
-import VoiceChannelsSelect from "@/components/ui/dropdowns/voice-channels-select";
-import RadioStationSelect from "@/components/ui/dropdowns/radio-station-select";
+import classes from "./custombot-manage.module.css"
 
 export default function ManageCustombot() {
 	const dispatch = useDispatch<AppDispatch>();
@@ -73,69 +71,23 @@ export default function ManageCustombot() {
 								src={iconURL}
 								alt={`${detailedCustombot.username} icon`}
 								className={classes.botIcon}
-							/>
-							<p className={classes.botName}>
+								/>
+							<p className={classes.custombotStatusName}>
 								{detailedCustombot.username}
-								<p className={classes.botStatus}>
-									{" "}
+								<p className={classes.custombotStatusType}>
+								{" "}
 									online{" "}
 								</p>{" "}
 							</p>
-							<div className={classes.radioStatus}>
-								<img
-									src="/QuestionMark.svg"
-									alt={`Question mark`}
-									className={classes.radioNotFoundIcon}
-								/>
-								<p className={classes.radioNotFoundText}>
-									{" "}
-									No radio status found{" "}
-								</p>
-							</div>
 						</div>
-						<div className={classes.botAboutMe}>
-							<p className={classes.botAboutMeBoxTitle}>
+						<div className={classes.custombotAboutMeBox}>
+							<p className={classes.custombotAboutMeBoxTitle}>
 								{" "}
 								ABOUT ME{" "}
 							</p>
-							<p className={classes.botAboutMeText}>
+							<p className={classes.custombotAboutMeBoxRpcDescription}>
 								{custombotRPC?.description}
 							</p>
-						</div>
-
-						<div className={classes.custombotRadioSettings}>
-							<div
-								className={classes.custombotVoiceChannelSetting}
-							>
-								<p
-									className={
-										classes.custombotVoiceChannelSettingTitle
-									}
-								>
-									{" "}
-									VOICE CHANNEL{" "}
-								</p>
-								<VoiceChannelsSelect />
-							</div>
-							<div
-								className={
-									classes.custombotStationChannelSetting
-								}
-							>
-								<p
-									className={
-										classes.custombotStationChannelSettingTitle
-									}
-								>
-									{" "}
-									STATION{" "}
-								</p>
-								<RadioStationSelect />
-							</div>
-						</div>
-
-						<div className={classes.custombotChatbotSettings}>
-
 						</div>
 					</div>
 				)}

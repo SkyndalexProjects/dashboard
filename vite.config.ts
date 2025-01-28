@@ -46,5 +46,10 @@ export default defineConfig(({ mode }) => {
       },
       cors: false,
     },
-  }
+    css: {
+      modules: {
+        localsConvention: "camelCaseOnly"
+      }
+    }
+}
 })

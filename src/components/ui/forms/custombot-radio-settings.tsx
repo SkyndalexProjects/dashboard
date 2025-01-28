@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classes from "./custombot-radio-settings.module.css";
 import { useParams } from "react-router-dom";
-import VoiceChannelsSelect from "../dropdowns/voice-channels-select";
+import VoiceChannelsSelect from "../dropdowns/radio-voice-channel";
 
 const CustombotRadioSettings = () => {
 	const [settings, setSettings] = useState({
