@@ -7,6 +7,7 @@ import { fetchCustombots } from "@/thunks/custombots";
 import { AppDispatch } from "@/store";
 import { useEffect, useState } from "react";
 import classes from "./custombot-manage.module.css"
+import CustombotSettingsTabs from "@/components/ui/navigation/tabs/custombot-settings";
 
 export default function ManageCustombot() {
 	const dispatch = useDispatch<AppDispatch>();
@@ -89,6 +90,8 @@ export default function ManageCustombot() {
 								{custombotRPC?.description}
 							</p>
 						</div>
+
+						<CustombotSettingsTabs />
 					</div>
 				)}
 			</h2>
