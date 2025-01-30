@@ -16,7 +16,8 @@
 	margin: 10px 0 0 25%;
 	text-wrap: nowrap;
 }
-.custombot-status-type { /* online / dnd / idle */
+.custombot-status-type {
+	/* online / dnd / idle */
 	color: #2dc660;
 	font: 700 24px "Be Vietnam Pro", normal;
 	line-height: normal;
@@ -46,7 +47,10 @@
 	height: 97.255px;
 	flex-shrink: 0;
 	color: #fff;
-	font-family: "ABC Ginto Normal Unlicensed Trial"; font-size: 20px; font-style: normal; font-weight: 400;
+	font-family: "ABC Ginto Normal Unlicensed Trial";
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
 	line-height: normal;
 }
 .botDetails {

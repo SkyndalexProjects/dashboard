@@ -6,7 +6,7 @@ import { RootState } from "@/store";
 import { fetchCustombots } from "@/thunks/custombots";
 import { AppDispatch } from "@/store";
 import { useEffect, useState } from "react";
-import classes from "./custombot-manage.module.css"
+import classes from "./custombot-manage.module.css";
 import CustombotSettingsTabs from "@/components/ui/navigation/tabs/custombot-settings";
 
 export default function ManageCustombot() {
@@ -72,11 +72,11 @@ export default function ManageCustombot() {
 								src={iconURL}
 								alt={`${detailedCustombot.username} icon`}
 								className={classes.botIcon}
-								/>
+							/>
 							<p className={classes.custombotStatusName}>
 								{detailedCustombot.username}
 								<p className={classes.custombotStatusType}>
-								{" "}
+									{" "}
 									online{" "}
 								</p>{" "}
 							</p>
@@ -86,7 +86,11 @@ export default function ManageCustombot() {
 								{" "}
 								ABOUT ME{" "}
 							</p>
-							<p className={classes.custombotAboutMeBoxRpcDescription}>
+							<p
+								className={
+									classes.custombotAboutMeBoxRpcDescription
+								}
+							>
 								{custombotRPC?.description}
 							</p>
 						</div>

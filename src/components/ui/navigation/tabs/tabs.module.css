@@ -1,36 +1,36 @@
 .tabs-container {
-    width: 1368px;
-height: 64px;
-flex-shrink: 0;
-border-bottom: 1px solid #5E5E5E;
-background: rgba(0, 0, 0, 0.00);
-margin-left: 20%;
-display: flex;
-gap: 50px;
-margin-top: 15%;
-position: absolute;
+	width: 1368px;
+	height: 64px;
+	flex-shrink: 0;
+	border-bottom: 1px solid #5e5e5e;
+	background: rgba(0, 0, 0, 0.0);
+	margin-left: 20%;
+	display: flex;
+	gap: 50px;
+	margin-top: 15%;
+	position: absolute;
 }
 .active-tab {
-    color: #FFF;
-text-align: center;
-font-family: Poppins;
-font-size: 32px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-border-bottom: 4px solid #ffff;
+	color: #fff;
+	text-align: center;
+	font-family: Poppins;
+	font-size: 32px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	border-bottom: 4px solid #ffff;
 }
 .inactive-tab {
-    color: #FFF;
-text-align: center;
-font-family: Poppins;
-font-size: 32px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+	color: #fff;
+	text-align: center;
+	font-family: Poppins;
+	font-size: 32px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
 }
 .tabContent {
-    margin-top: 20%;
-    margin-left: 20%;
-    position: fixed;
+	margin-top: 20%;
+	margin-left: 20%;
+	position: fixed;
 }

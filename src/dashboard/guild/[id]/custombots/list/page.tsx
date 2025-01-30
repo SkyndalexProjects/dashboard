@@ -101,19 +101,13 @@ export default function CustombotList() {
 									)
 								}
 							>
-								<img
-									src="/edit-button.svg"
-									alt="Edit"
-								/>
+								<img src="/edit-button.svg" alt="Edit" />
 							</button>
 							<button
 								className={classes.listItemActionButton}
 								onClick={() => toggleBot(bot.id)}
 							>
-								<img
-									src="/trash.svg"
-									alt="Trash"
-								/>
+								<img src="/trash.svg" alt="Trash" />
 							</button>
 						</div>
 					</div>
@@ -129,9 +123,7 @@ export default function CustombotList() {
 						alt="plus.svg"
 						className={classes.addCustomBotIcon}
 					/>
-					<p>
-						Add more custom bots
-					</p>
+					<p>Add more custom bots</p>
 				</button>
 			</div>
 			<CustomBotModal isOpen={isModalOpen} onClose={closeModal} />
