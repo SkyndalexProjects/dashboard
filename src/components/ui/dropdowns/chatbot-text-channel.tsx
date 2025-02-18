@@ -42,13 +42,12 @@ export default function TextChannelsSelect() {
 	};
 
 	return (
-		<div ref={selectRef}>
-			<div onClick={() => setDropdownVisible(!dropdownVisible)}>
-				<img
-					src="/hashtag.svg"
-					alt="hashtag"
-					className={classes.textChannelIcon}
-				/>
+		<div ref={selectRef} className={classes.dropdownContainer}>
+			<div
+				className={classes.inputContainer}
+				onClick={() => setDropdownVisible(!dropdownVisible)}
+			>
+				<img src="/hashtag.svg" alt="hashtag" />
 				<input
 					type="text"
 					value={searchTerm}

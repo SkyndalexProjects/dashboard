@@ -23,14 +23,32 @@
 .inactive-tab {
 	color: #fff;
 	text-align: center;
-	font-family: Poppins;
-	font-size: 32px;
-	font-style: normal;
-	font-weight: 400;
+	font: normal 400 32px Poppins;
 	line-height: normal;
 }
 .tabContent {
 	margin-top: 20%;
 	margin-left: 20%;
-	position: fixed;
+	position: absolute;
+}
+.chatbot-tab-content {
+	position: absolute;
+	width: 1214.309px;
+	height: 542.889px;
+	flex-shrink: 0;
+	border-radius: 10px;
+	background: rgba(0, 0, 0, 0.2);
+}
+.chatbot-tab-content-channel-select-box {
+	caret-color: transparent;
+	width: 375.836px;
+	height: 118.629px;
+	flex-shrink: 0;
+	border-radius: 10px;
+	border: 2px solid #474747;
+	background: rgba(0, 0, 0, 0.1);
+}
+.chatbot-channel-select-input {
+	padding: 10px;
+	margin-top: 5%;
 }

@@ -1,26 +1,24 @@
 .selectInput {
-	position: relative;
 	border-radius: 10px;
 	background: rgba(32, 32, 32, 0.2);
-	width: 352.184px;
+	width: 303.96px;
 	height: 42.653px;
 	flex-shrink: 0;
 	color: white;
 	font-family: "Poppins", sans-serif;
 	font-size: 18px;
 	font-weight: 500;
-	padding-left: 10%;
+	padding-left: 3%;
 	appearance: none;
+	
 }
-
 .options {
-	position: relative;
+	position: absolute;
 	background-color: rgb(0, 0, 0);
 	padding: 10px;
-	width: auto;
-	height: auto;
+	width: 28%;
 	text-wrap: nowrap;
-	margin-top: -8%;
+	margin-top: -2%;
 	border-radius: 15px;
 	z-index: 1000;
 }
@@ -34,8 +32,13 @@
 	padding: 5px 0;
 	cursor: pointer;
 }
-.textChannelIcon {
-	position: fixed;
-	top: 28.9%;
-	z-index: 1000;
+.inputContainer {
+	position: relative;
+	width: 100%;
+}
+
+.inputContainer img {
+	position: absolute;
+	top: 35%;
+	transform: translateY(-50%);
 }
