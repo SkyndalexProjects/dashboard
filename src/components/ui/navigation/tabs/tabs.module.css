@@ -30,6 +30,7 @@
 	margin-top: 20%;
 	margin-left: 20%;
 	position: absolute;
+
 }
 .chatbot-tab-content {
 	position: absolute;
@@ -39,7 +40,17 @@
 	border-radius: 10px;
 	background: rgba(0, 0, 0, 0.2);
 }
-.chatbot-tab-content-channel-select-box {
+.chatbot-tab-content-title {
+	color: #bdbdbd;
+	text-align: center;
+	margin-right: 78%;
+	text-wrap: nowrap;
+	font: normal 700 20px "Be Vietnam Pro";
+	line-height: normal;
+}
+.chatbot-setting-box {
+	margin-top: 5%;
+	margin-left: 3%;
 	caret-color: transparent;
 	width: 375.836px;
 	height: 118.629px;
@@ -47,8 +58,17 @@
 	border-radius: 10px;
 	border: 2px solid #474747;
 	background: rgba(0, 0, 0, 0.1);
+
 }
-.chatbot-channel-select-input {
+.chatbot-setting-box-content {
 	padding: 10px;
-	margin-top: 5%;
+	margin-top: -5%;
+	margin-left: 1%;
+}
+.chatbot-setting-box-title {
+	margin-right: 70%;
+	color: #fff;
+	text-align: center;
+	font: normal 700 16px "Be Vietnam Pro";
+	line-height: normal;
 }

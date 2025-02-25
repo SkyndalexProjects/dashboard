@@ -26,6 +26,12 @@ export default defineConfig(({ mode }) => {
           secure: true,
           rewrite: (p) => p.replace(/^\/radio-api/, ""),
         },
+        "/huggingface": {
+          target: "https://huggingface.co",
+          changeOrigin: true,
+          secure: true,
+          rewrite: (p) => p.replace(/^\/huggingface/, ""),
+        }
       },
       cors: false,
     },
@@ -43,6 +49,12 @@ export default defineConfig(({ mode }) => {
           secure: false,
           rewrite: (p) => p.replace(/^\/radio-api/, ""),
         },
+        "/huggingface": {
+          target: "https://huggingface.co",
+          changeOrigin: true,
+          secure: false,
+          rewrite: (p) => p.replace(/^\/huggingface/, ""),
+        }
       },
       cors: false,
     },
