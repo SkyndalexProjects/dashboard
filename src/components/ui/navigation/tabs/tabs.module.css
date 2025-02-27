@@ -26,16 +26,14 @@
 	margin-top: 20%;
 	margin-left: 20%;
 	position: absolute;
-
 }
 .chatbot-tab-content {
-	
 	position: absolute;
 	width: 1214.309px;
 	height: 542.889px;
 	flex-shrink: 0;
 	border-radius: 10px;
-	background: rgba(0, 0, 0, 0.2); 
+	background: rgba(0, 0, 0, 0.2);
 }
 .chatbot-tab-content-title {
 	color: #bdbdbd;
