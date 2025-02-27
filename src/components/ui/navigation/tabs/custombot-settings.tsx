@@ -32,7 +32,7 @@ const CustombotSettingsTabs = () => {
 				if (!response.ok) {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
-				return setModelList(await response.json());
+				return setModelList(await response.json())
 			})
 			.catch((error) => {
 				console.error("Error fetching huggingface models:", error);
@@ -45,7 +45,9 @@ const CustombotSettingsTabs = () => {
 		}
 	}, [modelSearchTerm]);
 
-	console.log("modelList", modelList);
+	const filteredModels = modelList?.models
+	.slice(0, 5);
+
 	const handleModelSearchChange = (value: string) => {
 		setModelSearchTerm(value);
 	};
@@ -143,7 +145,7 @@ const CustombotSettingsTabs = () => {
 										searchTerm={modelSearchTerm}
 										setSearchTerm={setModelSearchTerm}
 									>
-										{modelList.models.map(
+										{filteredModels.map(
 											(model: {
 												id: string;
 												name: string;
