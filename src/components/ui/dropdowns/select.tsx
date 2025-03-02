@@ -44,7 +44,7 @@ export default function Select({
 		return () =>
 			document.removeEventListener("mousedown", handleClickOutside);
 	}, []);
-	
+
 	// END CLOSING DROPDOWN WHEN CLICKING OUTSIDE
 
 	const handleSelect = (value: string) => {

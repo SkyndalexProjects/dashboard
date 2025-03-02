@@ -1,0 +1,60 @@
+.beta-warning-overlay {
+	width: 959px;
+	height: 67px;
+	flex-shrink: 0;
+	border-radius: 15px;
+	border: 1px solid #b19b5f;
+	background: rgba(0, 0, 0, 0.2);
+	margin-left: 20%;
+	margin-top: 10%;
+}
+.beta-warning-overlay-icon {
+	width: 935px;
+	height: 40px;
+	flex-shrink: 0;
+	left: -2.5%;
+	margin-top: -10px;
+	position: absolute;
+}
+.beta-warning-overlay-text {
+	color: #fff;
+	text-align: center;
+	font-family: "Be Vietnam Pro";
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	margin-right: 50px;
+}
+.support-join-overlay {
+	border-radius: 15px;
+	border: 1px solid #587486;
+	width: 959px;
+	height: 95px;
+	flex-shrink: 0;
+	background: rgba(0, 0, 0, 0.2);
+	margin-left: 20%;
+	margin-top: 40px;
+}
+.support-join-warning-icon {
+	width: 935px;
+	height: 40px;
+	flex-shrink: 0;
+	left: -2.5%;
+	margin-top: 5px;
+	position: absolute;
+}
+.support-join-warning-text {
+	color: #fff;
+	font-family: "Be Vietnam Pro";
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	text-wrap: normal;
+	max-width: 95%;
+	overflow-wrap: break-word;
+	display: flex;
+	margin-top: 20px;
+	margin-left: 65px;
+}

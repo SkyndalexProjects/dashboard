@@ -1,5 +1,7 @@
 import Navbar from "@/components/ui/navigation/navbar";
 import Sidebar from "@/components/ui/navigation/sidebar";
+import BetaWarning from "@/components/ui/alerts/beta-warning";
+import JoinSupportAlert from "@/components/ui/alerts/support-join-warning";
 import classes from "./home.module.css";
 
 export default function Page() {
@@ -7,6 +9,10 @@ export default function Page() {
 		<div>
 			<Navbar />
 			<Sidebar />
+
+			<BetaWarning />
+			<JoinSupportAlert />
+
 			<div className={classes.gridContainer}>
 				<div className={classes.container}>
 					<div className={classes.imgContainer}>
