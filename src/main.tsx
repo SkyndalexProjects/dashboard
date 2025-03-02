@@ -8,6 +8,7 @@ import { fetchUser } from "./thunks/user";
 import { fetchChannels } from "./thunks/channels";
 import { fetchRoles } from "./thunks/roles";
 import Home from "./dashboard/guild/[id]/home/page";
+import UserHome from "./dashboard/user/[id]/home/page";
 import Custombots from "./dashboard/guild/[id]/custombots/page";
 import CustombotList from "./dashboard/guild/[id]/custombots/list/page";
 import ManageCustombot from "./dashboard/guild/[id]/custombots/manage/[id]/page";
@@ -82,6 +83,16 @@ createRoot(document.getElementById("root")!).render(
 										element={<ManageCustombot />}
 									/>
 									<Route path="radio" element={<Page />} />
+								</Routes>
+							</DispatchProvider>
+						}
+					/>
+					<Route
+						path="/dashboard/user/:id/*"
+						element={
+							<DispatchProvider>
+								<Routes>
+									<Route path="home" element={<UserHome />} />
 								</Routes>
 							</DispatchProvider>
 						}

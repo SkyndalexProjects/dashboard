@@ -4,7 +4,6 @@ const Sidebar = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
 
-	console.log("current path", location.pathname);
 	const isActive = (path: string) => location.pathname === path;
 
 	const handleNavigation = (path: string) => {
