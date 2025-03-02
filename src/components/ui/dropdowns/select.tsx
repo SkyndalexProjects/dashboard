@@ -2,27 +2,37 @@ import { useState, useRef, useEffect, ReactNode } from "react";
 import classes from "./dropdowns.module.css";
 
 interface SelectProps {
+	onChange?: (value: string) => void;
+	setSearchTerm: (value: string) => void;
 	children: ReactNode;
 	placeholder?: string;
-	onChange?: (value: string) => void;
 	value?: string;
 	searchTerm: string;
-	setSearchTerm: (value: string) => void;
+	className?: string;
+	inputClassName?: string;
+	placeholderLogo?: string;
+	disableSearch?: boolean;
 }
 
 interface SelectOptionProps {
-	value: string;
-	children: ReactNode;
 	onClick?: () => void;
 	onChange?: (value: string) => void;
+	value: string;
+	children: ReactNode;
+	className?: string;
+	inputClassName?: string;
 }
 
 export default function Select({
-	children,
-	placeholder = "Select",
 	onChange,
-	searchTerm,
 	setSearchTerm,
+	children,
+	placeholder,
+	searchTerm,
+	className,
+	inputClassName,
+	placeholderLogo,
+	disableSearch,
 }: SelectProps) {
 	const [isOpen, setIsOpen] = useState(false);
 	const [selected, setSelected] = useState<string | null>(null);
@@ -51,19 +61,38 @@ export default function Select({
 		setSelected(value);
 		setIsOpen(false);
 		if (onChange) onChange(value);
-		setSearchTerm(value);
+		if (!disableSearch) setSearchTerm(value);
 	};
 
 	return (
-		<div ref={selectRef} className={classes.dropdownContainer}>
-			<div className={classes.inputContainer} onClick={toggleDropdown}>
+		<div ref={selectRef} className={className}>
+			<div onClick={toggleDropdown} className={classes.inputContainer}>
+				{placeholderLogo && (
+					<img
+						src={placeholderLogo}
+						alt="logo"
+						className={classes.logo}
+					/>
+				)}
 				<input
 					type="text"
 					value={searchTerm}
 					placeholder={placeholder}
-					className={classes.selectInput}
-					onChange={(e) => setSearchTerm(e.target.value)}
+					className={`${inputClassName} ${placeholderLogo ? classes.withLogo : ""}`}
+					onChange={(e) => {
+						if (!disableSearch) setSearchTerm(e.target.value);
+					}}
+					disabled={disableSearch}
 				/>
+				<div
+					className={`${classes.indicator} ${isOpen ? classes.open : ""}`}
+				>
+					<img
+						src="/indicator.svg"
+						alt="indicator"
+						className={isOpen ? classes.rotate : ""}
+					/>
+				</div>
 			</div>
 			{isOpen && (
 				<div className={classes.options}>

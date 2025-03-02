@@ -20,6 +20,8 @@
 	margin-top: -2%;
 	border-radius: 15px;
 	z-index: 1000;
+	caret-color: transparent;
+	cursor: pointer;
 }
 
 .option {
@@ -30,14 +32,27 @@
 	font-weight: 500;
 	padding: 5px 0;
 	cursor: pointer;
+	caret-color: transparent;
 }
-.inputContainer {
-	position: relative;
-	width: 100%;
-}
-
-.inputContainer img {
+.logo {
 	position: absolute;
-	top: 35%;
-	transform: translateY(-50%);
+	top: 38%;
+	margin-left: 8px;
+	width: 32px;
+	height: 32px;
+	flex-shrink: 0;
+	border-radius: 50px;
+}
+.withLogo {
+	padding-left: 50px;
+}
+.indicator {
+	position: relative;
+	left: 78%;
+	display: flex;
+	top: 150%;
+	transform: translateY(-650%);
+}
+.rotate {
+	transform: rotate(180deg);
 }

@@ -45,7 +45,14 @@ nav {
 	font-size: 24px;
 	padding: 17px;
 }
-
+.navItemSelect {
+	font-family: "Noto Sans", sans-serif;
+	font-weight: 1000;
+	color: white;
+	font-weight: 500;
+	font-size: 24px;
+	padding: 17px;
+}
 .guildsList {
 	display: flex;
 	gap: 10px;
@@ -106,4 +113,19 @@ nav {
 	);
 
 	animation: loading 0.8s infinite;
+}
+.selectContainer {
+	border-radius: 7px;
+	background: rgba(0, 0, 0, 0.19);
+	width: 185px;
+	height: 56px;
+	flex-shrink: 0;
+	margin-right: 30px;
+}
+
+.selectInput {
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	caret-color: transparent;
 }
