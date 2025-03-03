@@ -34,6 +34,17 @@ export default function GuildsSelect() {
 		navigate(`/dashboard/guild/${guild.id}/home`);
 	};
 
+	// const getCurrentUser = useSelector(
+	// 	(state: RootState) =>
+	// 		state.user.data as unknown as {
+	// 			username: string;
+	// 			avatar: string;
+	// 			id: string;
+	// 		},
+	// );
+
+	// const userAvatarUrl = `https://cdn.discordapp.com/avatars/${getCurrentUser.id}/${getCurrentUser.avatar}.png`;
+
 	const getGuildIconUrl = (guild: { id: string; icon: string }) =>
 		guild.icon
 			? `https://cdn.discordapp.com/icons/${guild?.id}/${guild?.icon}.png`
@@ -51,6 +62,7 @@ export default function GuildsSelect() {
 			</div>
 		);
 	}
+	
 	return (
 		<div>
 			<div className={classes.guildsList}>
