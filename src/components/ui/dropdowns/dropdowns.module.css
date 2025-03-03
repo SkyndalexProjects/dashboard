@@ -17,7 +17,7 @@
     padding: 10px;
     width: auto;
     text-wrap: nowrap;
-    margin-top: -30px;
+    margin-top: 30px;
     border-radius: 15px;
     z-index: 1000;
     caret-color: transparent;
@@ -55,14 +55,14 @@
 	border-radius: 50px;
 }
 .withLogo {
-	padding-left: 50px;
+	padding-left: 53px;
 }
 .indicator {
 	position: relative;
 	left: 78%;
 	display: flex;
-	top: 150%;
-	transform: translateY(-650%);
+	align-items: center;
+	margin-top: -55px;
 }
 .rotate {
 	transform: rotate(180deg);
