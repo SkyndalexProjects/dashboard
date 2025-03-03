@@ -68,6 +68,7 @@ const Navbar = () => {
 				</p>
 				<GuildsDropdown />
 				<div className={classes.navRight}>
+					<div className={classes.loginButton}>
 					<Select
 						value={searchTerm}
 						onChange={handleOptionSelect}
@@ -85,6 +86,7 @@ const Navbar = () => {
 							</SelectOption>
 						))}
 					</Select>
+					</div>
 				</div>
 			</nav>
 		</>
