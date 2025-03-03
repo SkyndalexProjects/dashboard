@@ -62,7 +62,7 @@ export default function GuildsSelect() {
 			</div>
 		);
 	}
-	
+
 	return (
 		<div>
 			<div className={classes.guildsList}>
