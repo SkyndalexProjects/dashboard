@@ -61,68 +61,78 @@ export default function Select({
         setSelected(value);
         setIsOpen(false);
         if (onChange) onChange(value);
-        if (!disableSearch) setSearchTerm(value);
+        setSearchTerm(value);
     };
 
+    const filteredChildren = Array.isArray(children)
+        ? children.filter((child) =>
+              child.props.value.toLowerCase().includes(searchTerm.toLowerCase())
+          )
+        : children;
+
     return (
-		<div ref={selectRef} className={className}>
-			<div onClick={toggleDropdown} className={classes.inputContainer}>
-			{placeholderLogo && (
-				<img
-				src={placeholderLogo}
-				alt="logo"
-				className={classes.logo}
-				/>
-			)}
-           <input
-                type="text"
-                value={searchTerm}
-                placeholder={placeholder}
-                className={`${inputClassName} ${placeholderLogo ? classes.withLogo : ""} ${classes.placeholder}`}
-                onChange={(e) => {
-                    if (!disableSearch) setSearchTerm(e.target.value);
-                }}
-                onClick={toggleDropdown}
-                disabled={disableSearch}
-            />
-			<div
-				className={`${classes.indicator} ${isOpen ? classes.open : ""}`}
-			>
-				<img
-				src="/indicator.svg"
-				alt="indicator"
-				className={isOpen ? classes.rotate : ""}
-				/>
-			</div>
-            {isOpen && (
-                <div className={classes.options}>
-                    {children &&
-                        (Array.isArray(children) ? children : [children]).map(
-                            (child, index) =>
-                                child
-                                    ? child.type === SelectOption
-                                        ? child.props &&
-                                            ((
-                                                optionProps: SelectOptionProps,
-                                            ) => (
-                                                <div
-                                                    key={index}
-                                                    onClick={() =>
-                                                        handleSelect(
-                                                            optionProps.value,
-                                                        )
-                                                    }
-                                                    className={classes.option}
-                                                >
-                                                    {optionProps.children}
-                                                </div>
-                                            ))(child.props)
-                                        : null
-                                    : null,
-                        )}
+        <div ref={selectRef} className={className}>
+            <div onClick={toggleDropdown} className={classes.inputContainer}>
+                {placeholderLogo && (
+                    <img
+                        src={placeholderLogo}
+                        alt="logo"
+                        className={classes.logo}
+                    />
+                )}
+                <input
+                    type="text"
+                    value={searchTerm}
+                    placeholder={placeholder}
+                    className={`${inputClassName} ${placeholderLogo ? classes.withLogo : ""} ${classes.placeholder}`}
+                    onChange={(event) => {
+                        try {
+                            setSearchTerm(event.target.value);
+                        } catch (e) {
+                            console.error("Search error", e);
+                        }
+                    }}
+                    onClick={!searchTerm ? toggleDropdown : undefined}
+                    disabled={disableSearch}
+                />
+                <div
+                    className={`${classes.indicator} ${isOpen ? classes.open : ""}`}
+                >
+                    <img
+                        src="/indicator.svg"
+                        alt="indicator"
+                        className={isOpen ? classes.rotate : ""}
+                    />
                 </div>
-            )}
-			</div>
+                {isOpen && (
+                    <div className={classes.options}>
+                        {filteredChildren &&
+                            (Array.isArray(filteredChildren) ? filteredChildren : [filteredChildren]).map(
+                                (child, index) =>
+                                    child
+                                        ? child.type === SelectOption
+                                            ? child.props &&
+                                                ((
+                                                    optionProps: SelectOptionProps,
+                                                ) => (
+                                                    <div
+                                                        key={index}
+                                                        onClick={() =>
+                                                            handleSelect(
+                                                                optionProps.value,
+                                                            )
+                                                        }
+                                                        className={classes.option}
+                                                    >
+                                                        {optionProps.children}
+                                                    </div>
+                                                ))(child.props)
+                                            : null
+                                        : null,
+                            )}
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

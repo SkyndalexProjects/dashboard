@@ -103,6 +103,9 @@ const CustombotSettingsTabs = () => {
 										searchTerm={searchTerm}
 										setSearchTerm={setSearchTerm}
 										className={classes.selectContainer}
+										placeholder="Search for a channel"
+										inputClassName={classes.inputContainer}
+										disableSearch={false}
 									>
 										{filteredChannels.map((channel) => (
 											<SelectOption
@@ -144,7 +147,9 @@ const CustombotSettingsTabs = () => {
 										onChange={handleModelSearchChange}
 										searchTerm={modelSearchTerm}
 										setSearchTerm={setModelSearchTerm}
+										inputClassName={classes.inputContainer}
 										className={classes.selectContainer}
+										placeholder="Search for a model"
 									>
 										{filteredModels.map(
 											(model: {
