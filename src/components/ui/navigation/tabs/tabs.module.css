@@ -37,15 +37,14 @@
 }
 .chatbot-tab-content-title {
 	color: #bdbdbd;
-	text-align: center;
-	margin-right: 78%;
+	margin-left: 25px;
 	text-wrap: nowrap;
 	font: normal 700 20px "Be Vietnam Pro";
 	line-height: normal;
 }
 .chatbot-setting-box {
-	margin-top: 5%;
-	margin-left: 3%;
+	margin-left: 25px;
+	margin-top: 15px;
 	caret-color: transparent;
 	width: 375.836px;
 	height: 118.629px;

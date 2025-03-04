@@ -1,3 +1,19 @@
+.beta-warning-overlay-icon {
+	width: 935px;
+	height: 40px;
+	flex-shrink: 0;
+	margin-top: -10px;
+	margin-left: -23.9%;
+	position: absolute;
+}
+.support-join-warning-icon {
+	margin-left: -23.6%;
+	width: 935px;
+	height: 40px;
+	flex-shrink: 0;
+	margin-top: 5px;
+	position: absolute;
+}
 .beta-warning-overlay {
 	width: 959px;
 	height: 67px;
@@ -8,14 +24,7 @@
 	margin-left: 20%;
 	margin-top: 10%;
 }
-.beta-warning-overlay-icon {
-	width: 935px;
-	height: 40px;
-	flex-shrink: 0;
-	left: -2.5%;
-	margin-top: -10px;
-	position: absolute;
-}
+
 .beta-warning-overlay-text {
 	color: #fff;
 	text-align: center;
@@ -35,14 +44,6 @@
 	background: rgba(0, 0, 0, 0.2);
 	margin-left: 20%;
 	margin-top: 40px;
-}
-.support-join-warning-icon {
-	width: 935px;
-	height: 40px;
-	flex-shrink: 0;
-	left: -2.5%;
-	margin-top: 5px;
-	position: absolute;
 }
 .support-join-warning-text {
 	color: #fff;
