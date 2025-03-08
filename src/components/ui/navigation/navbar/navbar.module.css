@@ -70,8 +70,38 @@ nav {
 	height: 50px;
 	border-radius: 50%;
 	margin: 0;
+	transition: transform 0.3s ease;
 }
 
+.guildIcon:hover {
+	transform: scale(1.5);
+}
+.guildIconContainer {
+    position: relative;
+    display: inline-block;
+}
+
+.guildNameTooltip {
+    visibility: hidden;
+    width: 100px;
+    background-color: rgba(0, 0, 0, 0.20);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+	top: 70px;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.guildIconContainer:hover .guildNameTooltip {
+    visibility: visible;
+    opacity: 1;
+}
 .guildIcon:hover {
 	cursor: pointer;
 }
