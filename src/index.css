@@ -26,8 +26,8 @@ body {
 
 .guild {
 	color: white;
-	background-color: rgba(217, 217, 217, 0.1);
-	border-radius: 10px;
+	background-color: rgba(217, 217, 217, 0.10);
+	border-radius: 25px;
 	padding: 20px;
 	justify-items: center;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -43,6 +43,7 @@ body {
 .guild img {
 	width: 170px;
 	height: 170px;
+	border-radius: 25px;
 }
 
 .guild-name {
@@ -110,6 +111,7 @@ hr {
 	height: 20px;
 	flex-shrink: 0;
 	margin-right: 8px;
+	
 }
 
 .guild-button {
@@ -117,8 +119,30 @@ hr {
 	height: 40px;
 	flex-shrink: 0;
 	margin-top: auto;
+	border-radius: 10px;
 	background-color: #ebf2ff;
 	color: #1974e6;
 	text-align: center;
 	font: 700 20px "Be Vietnam Pro", sans-serif;
+	transition: background-color 0.3s ease, color 0.3s ease;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.guild-button:hover {
+	background-color: #1974e6;
+	color: #ebf2ff;
+}
+
+.guild-button img {
+	width: 20px;
+	height: 20px;
+	flex-shrink: 0;
+	margin-right: 8px;
+	transition: filter 0.3s ease;
+}
+
+.guild-button:hover img {
+	filter: invert(100%);
 }

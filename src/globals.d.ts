@@ -65,3 +65,27 @@ interface RadioStation {
 		stream: string;
 	};
 }
+
+interface User {
+    username: string;
+    accent_color: number | null;
+    avatar: string | null;
+    avatar_decoration_data: any | null;
+    banner: string | null;
+    banner_color: string | null;
+    clan: any | null;
+    collectibles: any | null;
+    discriminator: string;
+    email: string;
+    flags: number;
+    global_name: string;
+    id: string;
+    locale: string;
+    mfa_enabled: boolean;
+    premium_type: number;
+    primary_guild: any | null;
+    public_flags: number;
+    verified: boolean;
+}
+
+type UserData = User[];

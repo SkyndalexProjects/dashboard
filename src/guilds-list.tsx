@@ -4,11 +4,6 @@ import { Link } from "react-router-dom";
 import type { RootState, AppDispatch } from "./store";
 import { fetchGuilds } from "./thunks/guilds";
 import { fetchUser } from "./thunks/user";
-
-interface User {
-    username: string;
-}
-
 export default function GuildsList() {
     const dispatch = useDispatch<AppDispatch>();
     const guilds = useSelector((state: RootState) => state.guilds.data);
@@ -16,15 +11,20 @@ export default function GuildsList() {
         (state: RootState) => state.user.data as unknown as User,
     );
 
+    
     useEffect(() => {
-        dispatch(fetchGuilds());
-        dispatch(fetchUser());
-    }, [dispatch]);
+        if (Object.keys(user).length === 0) {
+            dispatch(fetchUser());
+        }
+        if (guilds.length === 0) {
+            dispatch(fetchGuilds());
+        }
+    }, [dispatch, user, guilds]);
 
     return (
         <div>
             <h1 className="title"> Welcome, {user?.username} </h1>
-            <h2 className="subtitle"> Please, choose guild:</h2>
+            <h2 className="subtitle"> Please, choose guild: </h2>
             <div className="guilds-container">
                 <div className="guilds-grid">
                     {guilds.map((guild) => (
