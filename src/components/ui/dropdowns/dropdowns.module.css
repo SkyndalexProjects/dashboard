@@ -12,27 +12,27 @@
 }
 
 .options {
-    position: absolute;
-    background-color: rgb(0, 0, 0);
-    padding: 10px;
-    width: auto;
-    text-wrap: nowrap;
-    margin-top: 30px;
-    border-radius: 15px;
-    z-index: 1000;
-    caret-color: transparent;
-    cursor: pointer;
-    opacity: 0;
-    transform: scaleY(0);
-    transform-origin: top;
-    animation: dropdownOpen 0.3s forwards;
+	position: absolute;
+	background-color: rgb(0, 0, 0);
+	padding: 10px;
+	width: auto;
+	text-wrap: nowrap;
+	margin-top: 30px;
+	border-radius: 15px;
+	z-index: 1000;
+	caret-color: transparent;
+	cursor: pointer;
+	opacity: 0;
+	transform: scaleY(0);
+	transform-origin: top;
+	animation: dropdownOpen 0.3s forwards;
 }
 
 @keyframes dropdownOpen {
-    to {
-        opacity: 1;
-        transform: scaleY(1);
-    }
+	to {
+		opacity: 1;
+		transform: scaleY(1);
+	}
 }
 
 .option {

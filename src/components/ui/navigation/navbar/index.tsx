@@ -18,8 +18,7 @@ const Navbar = () => {
 	);
 	const [searchTerm, setSearchTerm] = useState("");
 	const getCurrentUser = useSelector(
-		(state: RootState) =>
-			state.user.data as unknown as User
+		(state: RootState) => state.user.data as unknown as User,
 	);
 
 	const options = [

@@ -20,7 +20,6 @@ nav {
 	top: 0;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 	caret-color: none;
-
 }
 
 .navTitle {
@@ -56,18 +55,18 @@ nav {
 	font-size: 24px;
 }
 .guildsList {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    width: auto;
-    height: 93px;
-    margin-left: 30px;
-    padding: 15px; /* Dodano padding */
-    box-sizing: border-box; /* Dodano box-sizing */
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+	width: auto;
+	height: 93px;
+	margin-left: 30px;
+	padding: 15px; /* Dodano padding */
+	box-sizing: border-box; /* Dodano box-sizing */
 }
 
 .guildIcon {
@@ -83,30 +82,30 @@ nav {
 	transform: scale(1.5);
 }
 .guildIconContainer {
-    position: relative;
-    display: inline-block;
+	position: relative;
+	display: inline-block;
 }
 
 .guildNameTooltip {
-    visibility: hidden;
-    width: 100px;
-    background-color: rgba(0, 0, 0, 0.20);
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 10px;
-    position: absolute;
-    z-index: 1;
-    left: 50%;
+	visibility: hidden;
+	width: 100px;
+	background-color: rgba(0, 0, 0, 0.2);
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 10px;
+	position: absolute;
+	z-index: 1;
+	left: 50%;
 	top: 85px;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity 0.3s;
+	transform: translateX(-50%);
+	opacity: 0;
+	transition: opacity 0.3s;
 }
 
 .guildIconContainer:hover .guildNameTooltip {
-    visibility: visible;
-    opacity: 1;
+	visibility: visible;
+	opacity: 1;
 }
 .guildIcon:hover {
 	cursor: pointer;
