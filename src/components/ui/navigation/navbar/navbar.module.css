@@ -10,6 +10,7 @@
 	animation: skeleton-loading 1.5s infinite alternate;
 }
 nav {
+	caret-color: transparent;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
@@ -18,6 +19,8 @@ nav {
 	position: absolute;
 	top: 0;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	caret-color: none;
+
 }
 
 .navTitle {
@@ -51,25 +54,28 @@ nav {
 	color: white;
 	font-weight: 500;
 	font-size: 24px;
-	padding: 17px;
 }
 .guildsList {
-	display: flex;
-	gap: 10px;
-	justify-content: center;
-	align-items: center;
-	background-color: rgba(0, 0, 0, 0.2);
-	padding: 10px;
-	border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: auto;
+    height: 93px;
+    margin-left: 30px;
+    padding: 15px; /* Dodano padding */
+    box-sizing: border-box; /* Dodano box-sizing */
 }
 
 .guildIcon {
 	background-size: cover;
 	background-position: center;
-	width: 50px;
-	height: 50px;
+	width: 59px;
+	height: 59px;
 	border-radius: 50%;
-	margin: 0;
 	transition: transform 0.3s ease;
 }
 
@@ -92,7 +98,7 @@ nav {
     position: absolute;
     z-index: 1;
     left: 50%;
-	top: 70px;
+	top: 85px;
     transform: translateX(-50%);
     opacity: 0;
     transition: opacity 0.3s;
@@ -134,7 +140,6 @@ nav {
 		color-stop(rgba(146, 146, 146, 0.2)),
 		to(transparent)
 	);
-
 	background: linear-gradient(
 		90deg,
 		transparent,
