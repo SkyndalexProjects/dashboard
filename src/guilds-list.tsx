@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import "./index.css";
 import { Link } from "react-router-dom";
 import type { RootState, AppDispatch } from "./store";
 import { fetchGuilds } from "./thunks/guilds";
@@ -7,6 +8,7 @@ import { fetchUser } from "./thunks/user";
 export default function GuildsList() {
 	const dispatch = useDispatch<AppDispatch>();
 	const guilds = useSelector((state: RootState) => state.guilds.data);
+
 	const withBotAdded = guilds.filter(
 		(guild) =>
 			(BigInt(guild.permissions) & BigInt(0x20)) === BigInt(0x20) &&
@@ -31,6 +33,20 @@ export default function GuildsList() {
 		}
 	}, [dispatch, user, guilds]);
 
+	if (withBotAdded.length === 0 && withoutBotAdded.length === 0) {
+		return (
+			<div className="guild loading">
+				{Array.from({ length: 15 }).map((_, index) => (
+
+					<div key={index} className="guild-overlay loading">
+						<div className="guild-icon loading" />
+						<div className="guild-name loading" />
+						<div className="guild-button loading" />
+						</div>
+				))}
+			</div>
+		);
+	}
 	return (
 		<div>
 			<h1 className="title"> Welcome, {user?.username} </h1>
@@ -50,6 +66,7 @@ export default function GuildsList() {
 									e.currentTarget.src =
 										"/default_guild_icon.png";
 								}}
+								className="guild-icon"
 							/>
 							<p className="guild-name">{guild?.name}</p>
 							<button className="guild-button">
@@ -64,8 +81,6 @@ export default function GuildsList() {
 						</div>
 					))}
 
-                    {/* I know 2x same code, needed for cleaner UI view. */}
-
 					{withoutBotAdded.map((guild) => (
 						<div className="guild" key={guild?.id}>
 							<img
@@ -79,6 +94,7 @@ export default function GuildsList() {
 									e.currentTarget.src =
 										"/default_guild_icon.png";
 								}}
+								className="guild-icon"
 							/>
 							<p className="guild-name">{guild?.name}</p>
 							<button className="guild-button">

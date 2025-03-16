@@ -40,12 +40,11 @@ body {
 	flex-direction: column;
 	align-items: center;
 }
-.guild img {
+.guild-icon {
 	width: 170px;
 	height: 170px;
 	border-radius: 25px;
 }
-
 .guild-name {
 	margin-top: 10px;
 }
@@ -144,4 +143,75 @@ hr {
 
 .guild-button:hover img {
 	filter: invert(100%);
+}
+
+.guild.loading {
+	background: transparent;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-top: 10%;
+	border-radius: 25px;
+	padding: 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	width: 100%; 
+	height: auto; 
+	flex-wrap: wrap;
+	box-sizing: border-box;
+	gap: 25px;
+}
+
+.guild.loading::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-100%);
+    background: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        from(transparent),
+        color-stop(rgba(146, 146, 146, 0.2)),
+        to(transparent)
+    );
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(134, 134, 134, 0.2),
+        transparent
+    );
+    animation: loading 0.8s infinite;
+}
+.guild-overlay.loading {
+    width: 220px;
+    height: 300px;
+    border-radius: 25px;
+    background-color: rgba(217, 217, 217, 0.1);
+}
+.guild-name.loading {
+	width: 169px;
+	height: 40px;
+	margin-left: 25px;
+	background-color: rgba(217, 217, 217, 0.1);
+	border-radius: 5px;
+}
+.guild-button.loading {
+	width: 170px;
+	height: 40px;
+	margin-left: 25px;
+	background-color: rgba(217, 217, 217, 0.1);
+	border-radius: 10px;
+	margin-top: 20px;
+}
+@keyframes loading {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(100%);
+	}
 }
