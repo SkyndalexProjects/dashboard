@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { useNavigate } from "react-router-dom";
 import classes from "./navbar.module.css";
-import Select, { SelectOption } from "../../dropdowns/select";
+import Select, { SelectOption } from "../../inputs/search";
 import { useState } from "react";
 
 const Navbar = () => {

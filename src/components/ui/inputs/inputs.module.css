@@ -57,13 +57,6 @@
 .withLogo {
 	padding-left: 53px;
 }
-.indicator {
-	position: relative;
-	left: 78%;
-	display: flex;
-	align-items: center;
-	margin-top: -55px;
-}
 .rotate {
 	transform: rotate(180deg);
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import classes from "./tabs.module.css";
-import Select, { SelectOption } from "../../dropdowns/select";
+import Select, { SelectOption } from "../../inputs/search";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store";
 

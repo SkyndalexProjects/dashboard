@@ -1,16 +1,112 @@
 import Navbar from "@/components/ui/navigation/navbar";
 import Sidebar from "@/components/ui/navigation/sidebar";
-import AddingCustombot from "@/components/ui/forms/adding-custombot";
+import classes from "./custombots.module.css";
+import InputType from "@/components/ui/inputs/input";
+import SearchSelect from "@/components/ui/inputs/search";
+import { SelectOption } from "@/components/ui/inputs/search";
+import { useParams, useNavigate } from "react-router-dom";
+
+import { useState, useEffect } from "react";
 
 export default function Page() {
+	const [, setError] = useState("");
+	const [, setToken] = useState("");
+	const [, setActivity] = useState("");
+	const [searchTerm, setSearchTerm] = useState("");
+
+	const navigate = useNavigate();
+	const { id } = useParams<{ id: string }>();
+	const redirectUser = async () => {
+		try {
+			const response = await fetch(
+				`${import.meta.env.VITE_API_URL}/guilds/${id}/custombots/get`,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ id }),
+				},
+			);
+
+			if (response.ok) {
+				const data = await response.json();
+
+				if (data.length >= 1) {
+					navigate(`/dashboard/guild/${id}/custombots/list`);
+				}
+			} else {
+				console.error("Failed to fetch custombots");
+				setError("Failed to fetch custombots");
+			}
+		} catch (error) {
+			console.error("Error fetching custombots:", error);
+			setError("Error fetching custombots");
+		}
+	};
+
+	useEffect(() => {
+		redirectUser();
+	}, [id]);
+	const handleTokenChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setToken(e.target.value);
+	};
+
+	const handleActivityChange = (value: string) => {
+		setActivity(value);
+	};
 	return (
 		<div>
 			<Navbar />
 			<Sidebar />
 
-			<center>
-				<AddingCustombot />
-			</center>
+			<div className={classes.noCustombotsWarningContainer}></div>
+			<div className={classes.container}>
+				<p className={classes.title}>Custombot details</p>
+				<p className={classes.subtitle}> Bot token </p>
+
+				<InputType
+					onChange={handleTokenChange}
+					placeholder="Bot token"
+					placeholderLogo="/key.svg"
+					placeholderLogoClassName={classes.placeholderLogo}
+					className={classes.tokenInput}
+					type="password"
+				/>
+
+				<p className={classes.subtitle}> Activity type </p>
+
+				<SearchSelect
+					value={searchTerm}
+					onChange={handleActivityChange}
+					searchTerm={searchTerm}
+					setSearchTerm={setSearchTerm}
+					inputClassName={classes.activityInput}
+					indicatorClassName={classes.indicator}
+					className={classes.activityInput}
+				>
+					{[
+						{ id: "1", name: "Idle" },
+						{ id: "2", name: "Do not distribut" },
+						{ id: "3", name: "Online" },
+					].map((channel) => (
+						<SelectOption key={channel.id} value={channel.name}>
+							{channel.name}
+						</SelectOption>
+					))}
+				</SearchSelect>
+
+				<p className={classes.subtitle}> Status </p>
+
+				<InputType
+					onChange={handleTokenChange}
+					placeholder="Hey! I'm a custombot, have a nice day!"
+					placeholderLogo="/menu.svg"
+					placeholderLogoClassName={classes.placeholderLogo}
+					className={classes.tokenInput}
+					type="text"
+				/>
+			</div>
 		</div>
 	);
 }

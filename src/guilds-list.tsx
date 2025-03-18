@@ -37,12 +37,11 @@ export default function GuildsList() {
 		return (
 			<div className="guild loading">
 				{Array.from({ length: 15 }).map((_, index) => (
-
 					<div key={index} className="guild-overlay loading">
 						<div className="guild-icon loading" />
 						<div className="guild-name loading" />
 						<div className="guild-button loading" />
-						</div>
+					</div>
 				))}
 			</div>
 		);

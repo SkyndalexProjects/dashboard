@@ -1,29 +1,31 @@
-import { useState, useRef, useEffect, ReactNode } from "react";
-import classes from "./dropdowns.module.css";
+import React, { useState, useRef, useEffect, ReactNode } from "react";
+import classes from "./inputs.module.css";
 
 interface SelectProps {
 	onChange?: (value: string) => void;
 	setSearchTerm: (value: string) => void;
+	searchTerm: string;
 	children: ReactNode;
 	placeholder?: string;
 	value?: string;
-	searchTerm: string;
 	className?: string;
 	inputClassName?: string;
+	indicatorClassName?: string;
 	placeholderLogo?: string;
+	type?: string;
 	disableSearch?: boolean;
 }
 
 interface SelectOptionProps {
 	onClick?: () => void;
-	onChange?: (value: string) => void;
+	onChange?: (value: string | React.ChangeEvent<HTMLInputElement>) => void;
 	value: string;
 	children: ReactNode;
 	className?: string;
 	inputClassName?: string;
 }
 
-export default function Select({
+export default function SearchSelect({
 	onChange,
 	setSearchTerm,
 	children,
@@ -31,16 +33,20 @@ export default function Select({
 	searchTerm,
 	className,
 	inputClassName,
+	indicatorClassName,
 	placeholderLogo,
 	disableSearch,
 }: SelectProps) {
 	const [isOpen, setIsOpen] = useState(false);
-	const [selected, setSelected] = useState<string | null>(null);
+	const [, setSelected] = useState<string | null>(null);
 	const selectRef = useRef<HTMLDivElement>(null);
 
-	const toggleDropdown = () => setIsOpen(!isOpen);
+	const toggleDropdown = () => {
+		setIsOpen(!isOpen);
+	};
 
 	// CLOSING DROPDOWN WHEN CLICKING OUTSIDE
+
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (
@@ -61,14 +67,14 @@ export default function Select({
 		setSelected(value);
 		setIsOpen(false);
 		if (onChange) onChange(value);
-		setSearchTerm(value);
+		if (setSearchTerm) setSearchTerm(value);
 	};
 
 	const filteredChildren = Array.isArray(children)
 		? children.filter((child) =>
 				child.props.value
 					.toLowerCase()
-					.includes(searchTerm.toLowerCase()),
+					.includes((searchTerm || "").toLowerCase()),
 			)
 		: children;
 
@@ -83,7 +89,7 @@ export default function Select({
 					/>
 				)}
 				<input
-					type="text"
+					type={"text"}
 					value={searchTerm}
 					placeholder={placeholder}
 					className={`${inputClassName} ${placeholderLogo ? classes.withLogo : ""} ${classes.placeholder}`}
@@ -98,7 +104,7 @@ export default function Select({
 					disabled={disableSearch}
 				/>
 				<div
-					className={`${classes.indicator} ${isOpen ? classes.open : ""}`}
+					className={`${indicatorClassName || classes.indicator} ${isOpen ? classes.open : ""}`}
 				>
 					<img
 						src="/indicator.svg"
