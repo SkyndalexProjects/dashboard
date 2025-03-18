@@ -87,7 +87,7 @@ export default function Page() {
 				>
 					{[
 						{ id: "1", name: "Idle" },
-						{ id: "2", name: "Do not distribut" },
+						{ id: "2", name: "Do not Disturb" },
 						{ id: "3", name: "Online" },
 					].map((channel) => (
 						<SelectOption key={channel.id} value={channel.name}>

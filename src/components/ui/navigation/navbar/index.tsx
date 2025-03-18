@@ -70,6 +70,7 @@ const Navbar = () => {
 						setSearchTerm={setSearchTerm}
 						className={classes.selectContainer}
 						inputClassName={classes.selectInput}
+						indicatorClassName={classes.selectIndicator}
 						placeholder={getCurrentUser?.username}
 						placeholderLogo={`https://cdn.discordapp.com/avatars/${getCurrentUser?.id}/${getCurrentUser?.avatar}.png`}
 						disableSearch={true}
