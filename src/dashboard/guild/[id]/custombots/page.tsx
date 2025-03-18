@@ -73,6 +73,7 @@ export default function Page() {
 					className={classes.tokenInput}
 					type="password"
 				/>
+				<p className={classes.description}> Authorize your bot </p>
 
 				<p className={classes.subtitle}> Activity type </p>
 
@@ -95,6 +96,10 @@ export default function Page() {
 						</SelectOption>
 					))}
 				</SearchSelect>
+				<p className={classes.description}>
+					{" "}
+					Select DND/Idle/Online etc.{" "}
+				</p>
 
 				<p className={classes.subtitle}> Status </p>
 
@@ -106,6 +111,13 @@ export default function Page() {
 					className={classes.tokenInput}
 					type="text"
 				/>
+
+				<p className={classes.description}>
+					{" "}
+					Type status for activity{" "}
+				</p>
+
+				<button className={classes.button}> Save </button>
 			</div>
 		</div>
 	);
