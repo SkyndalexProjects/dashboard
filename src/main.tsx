@@ -1,6 +1,7 @@
 import { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider, useDispatch, useSelector } from "react-redux";
+import { i18n } from "./i18n";
 import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import { makeStore, RootState, AppDispatch } from "./store";
 import { fetchGuilds } from "./thunks/guilds";
@@ -16,6 +17,7 @@ import Page from "./dashboard/guild/[id]/radio/page";
 import NoMatch from "./NoMatch";
 import "./index.css";
 import GuildsList from "./guilds-list";
+i18n();
 
 const store = makeStore();
 

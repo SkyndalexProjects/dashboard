@@ -1,0 +1,6 @@
+{
+    "guild_list": {
+        "welcome_message": "Welcome, {{ username }}!",
+        "choosing_message": "Choose guild"
+    }
+}

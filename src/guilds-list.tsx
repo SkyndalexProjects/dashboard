@@ -5,10 +5,14 @@ import { Link } from "react-router-dom";
 import type { RootState, AppDispatch } from "./store";
 import { fetchGuilds } from "./thunks/guilds";
 import { fetchUser } from "./thunks/user";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 export default function GuildsList() {
 	const dispatch = useDispatch<AppDispatch>();
+	const lng = i18next.language;
+	console.log("Current language: ", lng);
 	const guilds = useSelector((state: RootState) => state.guilds.data);
-
+	const { t } = useTranslation();
 	const withBotAdded = guilds.filter(
 		(guild) =>
 			(BigInt(guild.permissions) & BigInt(0x20)) === BigInt(0x20) &&
@@ -48,8 +52,8 @@ export default function GuildsList() {
 	}
 	return (
 		<div>
-			<h1 className="title"> Welcome, {user?.username} </h1>
-			<h2 className="subtitle"> Please, choose guild: </h2>
+        <h1 className="title">{t("guild_list.welcome_message", { username: user?.username})} </h1>
+		<h2 className="subtitle"> {t("guild_list.choosing_message", { username: user?.username})}  </h2>
 			<div className="guilds-container">
 				<div className="guilds-grid">
 					{withBotAdded.map((guild) => (
@@ -74,7 +78,7 @@ export default function GuildsList() {
 									className="guild-button"
 								>
 									<img src="/gear.svg" alt="gear icon" />
-									SET
+									{t("guild_list.button_set", { username: user?.username})}
 								</Link>
 							</button>
 						</div>
@@ -102,7 +106,7 @@ export default function GuildsList() {
 									className="guild-button"
 								>
 									<img src="/invite.svg" alt="plus icon" />
-									INVITE
+									{t("guild_list.button_invite", { username: user?.username})}
 								</Link>
 							</button>
 						</div>

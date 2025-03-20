@@ -35,21 +35,22 @@ button {
 }
 
 .list-item-name {
-	color: #fff;
-	text-align: center;
-	font: 800 25px / normal Poppins;
-	display: flex;
-	margin-bottom: 4px;
-	white-space: nowrap;
+    color: #fff;
+    text-align: center;
+    font: 800 25px / normal Poppins;
+    display: flex;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
-
 .list-item-footer {
-	color: #8d8d8d;
-	text-align: center;
-	font: 500 20px / normal "Be Vietnam Pro";
-	display: flex;
-	align-items: center;
-	margin: 0;
+    color: #8d8d8d;
+    text-align: center;
+    font: 500 20px / normal "Be Vietnam Pro";
+    display: flex;
+    align-items: center;
+    margin: 0;
+    flex-shrink: 0;
 }
 
 .list-item-action-buttons {
@@ -58,6 +59,7 @@ button {
 	align-items: center;
 	margin: 20px 30px 0 63%;
 	gap: 20px;
+	flex-shrink: 0;
 }
 .list-item-action-button {
 	stroke-width: 1px;
@@ -68,12 +70,14 @@ button {
 	justify-content: center;
 	align-items: center;
 	border-radius: 6px;
+	flex-shrink: 0;
 }
 
 .list-item-action-button img {
 	width: 40px;
 	height: 40px;
 	object-fit: contain;
+	flex-shrink: 0;
 }
 
 .add-more-custom-bots-container {
@@ -89,6 +93,7 @@ button {
 	align-items: center;
 	margin-top: 10px;
 }
+
 .add-more-custom-bots-container img {
 	margin: 0 0 5px 10px;
 }
