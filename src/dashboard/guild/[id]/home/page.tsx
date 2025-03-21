@@ -25,7 +25,9 @@ export default function Page() {
 							and more
 						</p>
 					</div>
-					<button className={classes.featureButton}>
+					<button
+						className={`${classes.featureButton} ${classes.featureButtonAI}`}
+					>
 						Setup
 						<img
 							src="/button-arrow.svg"
@@ -44,7 +46,9 @@ export default function Page() {
 							Make your own economy system on guild
 						</p>
 					</div>
-					<button className={classes.featureButton}>
+					<button
+						className={`${classes.featureButton} ${classes.featureButtonEconomy}`}
+					>
 						Setup
 						<img
 							src="/button-arrow.svg"
@@ -64,7 +68,9 @@ export default function Page() {
 							entire radio.garden experience!
 						</p>
 					</div>
-					<button className={classes.featureButton}>
+					<button
+						className={`${classes.featureButton} ${classes.featureButtonRadio}`}
+					>
 						Setup
 						<img
 							src="/button-arrow.svg"
@@ -75,7 +81,7 @@ export default function Page() {
 				</div>
 				<div className={classes.container}>
 					<div className={classes.imgContainer}>
-						<img src="/radio.svg" alt="feature1" />
+						<img src="/levels.svg" alt="feature1" />
 					</div>
 					<div className={classes.textContainer}>
 						<p className={classes.featureText}> Levels </p>
@@ -84,7 +90,9 @@ export default function Page() {
 							the guild
 						</p>
 					</div>
-					<button className={classes.featureButton}>
+					<button
+						className={`${classes.featureButton} ${classes.featureButtonLevels}`}
+					>
 						Setup
 						<img
 							src="/button-arrow.svg"
@@ -95,7 +103,7 @@ export default function Page() {
 				</div>
 				<div className={classes.container}>
 					<div className={classes.imgContainer}>
-						<img src="/radio.svg" alt="feature1" />
+						<img src="/bot_icon.svg" alt="feature1" />
 					</div>
 					<div className={classes.textContainer}>
 						<p className={classes.featureText}> Custombots </p>
@@ -104,7 +112,9 @@ export default function Page() {
 							your own branding. Don't let limits scare you.
 						</p>
 					</div>
-					<button className={classes.featureButton}>
+					<button
+						className={`${classes.featureButton} ${classes.featureButtonCustombots}`}
+					>
 						Setup
 						<img
 							src="/button-arrow.svg"
@@ -115,7 +125,7 @@ export default function Page() {
 				</div>
 				<div className={classes.container}>
 					<div className={classes.imgContainer}>
-						<img src="/radio.svg" alt="feature1" />
+						<img src="/clock.svg" alt="feature1" />
 					</div>
 					<div className={classes.textContainer}>
 						<p className={classes.featureText}> SoonTM </p>
@@ -125,7 +135,9 @@ export default function Page() {
 							attention.
 						</p>
 					</div>
-					<button className={classes.featureButton}>
+					<button
+						className={`${classes.featureButton} ${classes.featureButtonSoon}`}
+					>
 						Be patient!
 						<img
 							src="/button-arrow.svg"

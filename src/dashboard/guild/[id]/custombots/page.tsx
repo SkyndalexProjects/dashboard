@@ -17,7 +17,7 @@ export default function Page() {
 
 	const navigate = useNavigate();
 	const { id } = useParams<{ id: string }>();
-	const redirectUser = async () => {		
+	const redirectUser = async () => {
 		try {
 			const response = await fetch(
 				`${import.meta.env.VITE_API_URL}/guilds/${id}/custombots/get`,
@@ -60,7 +60,9 @@ export default function Page() {
 		setStatus(e.target.value);
 	};
 
-			{/* TEST VERSION - WARNING: NO VALIDATION YET */ }
+	{
+		/* TEST VERSION - WARNING: NO VALIDATION YET */
+	}
 	const handleSaveButton = async () => {
 		try {
 			const response = await fetch(
@@ -70,7 +72,12 @@ export default function Page() {
 					headers: {
 						"Content-Type": "application/json",
 					},
-					body: JSON.stringify({ guildId: id, token, activity, status }),
+					body: JSON.stringify({
+						guildId: id,
+						token,
+						activity,
+						status,
+					}),
 				},
 			);
 
@@ -88,7 +95,7 @@ export default function Page() {
 			console.error("Error creating custombot:", error);
 			setError("Error creating custombot");
 		}
-	}
+	};
 	return (
 		<div>
 			<Navbar />
@@ -151,7 +158,9 @@ export default function Page() {
 					Type status for activity{" "}
 				</p>
 
-				<button className={classes.button} onClick={handleSaveButton}>Save</button>
+				<button className={classes.button} onClick={handleSaveButton}>
+					Save
+				</button>
 			</div>
 		</div>
 	);

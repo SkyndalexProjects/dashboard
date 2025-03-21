@@ -1,8 +1,8 @@
 {
-    "guild_list": {
-        "welcome_message": "Witaj, {{ username }}!",
-        "choosing_message": "Wybierz serwer, na którym chcesz korzystać z bota:",
-        "button_set": "USTAW",
-        "button_invite": "DODAJ"
-    }
+	"guild_list": {
+		"welcome_message": "Witaj, {{ username }}!",
+		"choosing_message": "Wybierz serwer, na którym chcesz korzystać z bota:",
+		"button_set": "USTAW",
+		"button_invite": "DODAJ"
+	}
 }

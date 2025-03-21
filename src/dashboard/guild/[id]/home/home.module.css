@@ -37,6 +37,8 @@
 	flex-shrink: 0;
 	left: 37%;
 	bottom: 6%;
+	width: 29px;
+	height: 21px;
 }
 .container img {
 	width: 50px;
@@ -89,4 +91,28 @@
 	flex-direction: column;
 	padding: 10px;
 	margin-left: 10px;
+}
+.featureButtonAI {
+	border: 2px solid #51683e;
+}
+
+.featureButtonEconomy {
+	border: 2px solid #ff5733;
+}
+
+.featureButtonRadio {
+	border: 2px solid #3498db;
+}
+
+.featureButtonLevels {
+	border: 2px solid #9b59b6;
+}
+
+.featureButtonCustombots {
+	border: 2px solid #e67e22;
+}
+
+.featureButtonSoon {
+	border: 2px solid #e74c3c;
+	text-wrap: nowrap;
 }

@@ -52,8 +52,17 @@ export default function GuildsList() {
 	}
 	return (
 		<div>
-        <h1 className="title">{t("guild_list.welcome_message", { username: user?.username})} </h1>
-		<h2 className="subtitle"> {t("guild_list.choosing_message", { username: user?.username})}  </h2>
+			<h1 className="title">
+				{t("guild_list.welcome_message", {
+					username: user?.username,
+				})}{" "}
+			</h1>
+			<h2 className="subtitle">
+				{" "}
+				{t("guild_list.choosing_message", {
+					username: user?.username,
+				})}{" "}
+			</h2>
 			<div className="guilds-container">
 				<div className="guilds-grid">
 					{withBotAdded.map((guild) => (
@@ -78,7 +87,9 @@ export default function GuildsList() {
 									className="guild-button"
 								>
 									<img src="/gear.svg" alt="gear icon" />
-									{t("guild_list.button_set", { username: user?.username})}
+									{t("guild_list.button_set", {
+										username: user?.username,
+									})}
 								</Link>
 							</button>
 						</div>
@@ -106,7 +117,9 @@ export default function GuildsList() {
 									className="guild-button"
 								>
 									<img src="/invite.svg" alt="plus icon" />
-									{t("guild_list.button_invite", { username: user?.username})}
+									{t("guild_list.button_invite", {
+										username: user?.username,
+									})}
 								</Link>
 							</button>
 						</div>

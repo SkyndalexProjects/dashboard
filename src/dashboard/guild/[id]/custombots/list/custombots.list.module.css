@@ -35,22 +35,22 @@ button {
 }
 
 .list-item-name {
-    color: #fff;
-    text-align: center;
-    font: 800 25px / normal Poppins;
-    display: flex;
-    margin-bottom: 4px;
-    white-space: nowrap;
-    flex-shrink: 0;
+	color: #fff;
+	text-align: center;
+	font: 800 25px / normal Poppins;
+	display: flex;
+	margin-bottom: 4px;
+	white-space: nowrap;
+	flex-shrink: 0;
 }
 .list-item-footer {
-    color: #8d8d8d;
-    text-align: center;
-    font: 500 20px / normal "Be Vietnam Pro";
-    display: flex;
-    align-items: center;
-    margin: 0;
-    flex-shrink: 0;
+	color: #8d8d8d;
+	text-align: center;
+	font: 500 20px / normal "Be Vietnam Pro";
+	display: flex;
+	align-items: center;
+	margin: 0;
+	flex-shrink: 0;
 }
 
 .list-item-action-buttons {
