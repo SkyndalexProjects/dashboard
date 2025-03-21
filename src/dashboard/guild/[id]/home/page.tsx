@@ -139,11 +139,6 @@ export default function Page() {
 						className={`${classes.featureButton} ${classes.featureButtonSoon}`}
 					>
 						Be patient!
-						<img
-							src="/button-arrow.svg"
-							alt="arrow"
-							className={classes.buttonArrow}
-						/>
 					</button>
 				</div>
 			</div>

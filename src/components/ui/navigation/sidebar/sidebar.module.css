@@ -31,7 +31,7 @@
 
 .sidebarItem.active {
 	border-radius: 0px 20px 20px 0px;
-	border-left: 10px solid rgba(8, 0, 255, 0.31);
+	border-left: 10px solid rgba(39, 94, 231, 1);
 	background: rgba(0, 0, 0, 0.35);
 	width: 315px;
 	height: 67px;
@@ -54,7 +54,7 @@
 }
 .sidebarItem:hover {
 	border-radius: 0px 20px 20px 0px;
-	border-left: 10px solid rgba(8, 0, 255, 0.31);
+	border-left: 10px solid rgba(39, 94, 231, 1);
 	background: rgba(0, 0, 0, 0.24);
 	transition: background-color 0.3s ease-in-out;
 }

@@ -115,4 +115,7 @@
 .featureButtonSoon {
 	border: 2px solid #e74c3c;
 	text-wrap: nowrap;
+	text-align: center;
+	justify-content: center;
+	padding: 0;
 }
