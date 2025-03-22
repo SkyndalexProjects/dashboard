@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import classes from "./tabs.module.css";
-import Select, { SelectOption } from "../../../../../../../components/ui/inputs/search";
+import Select, {
+	SelectOption,
+} from "../../../../../../../components/ui/inputs/search";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store";
 
@@ -105,6 +107,7 @@ const CustombotSettingsTabs = () => {
 										className={classes.selectContainer}
 										placeholder="Search for a channel"
 										inputClassName={classes.inputContainer}
+										indicatorClassName={classes.indicator}
 										disableSearch={false}
 									>
 										{filteredChannels.map((channel) => (
@@ -150,6 +153,7 @@ const CustombotSettingsTabs = () => {
 										inputClassName={classes.inputContainer}
 										className={classes.selectContainer}
 										placeholder="Search for a model"
+										indicatorClassName={classes.indicator}
 									>
 										{filteredModels.map(
 											(model: {

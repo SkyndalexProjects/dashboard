@@ -4,5 +4,10 @@
 		"choosing_message": "Wybierz serwer, na którym chcesz korzystać z bota:",
 		"button_set": "USTAW",
 		"button_invite": "DODAJ"
+	},
+	"system": {
+		"alerts": {
+			"beta_warning": "Dashboard jest aktualnie w wersji BETA. Stabilna wersja zostanie wydana po wersji v1.0.0"
+		}
 	}
 }

@@ -7,7 +7,7 @@ import { fetchCustombots } from "@/thunks/custombots";
 import { AppDispatch } from "@/store";
 import { useEffect, useState } from "react";
 import classes from "./custombot-manage.module.css";
-import CustombotSettingsTabs from "@/dashboard/guild/[id]/custombots/manage/[id]/tabs/custombot-settings";
+import CustombotSettingsTabs from "./tabs/custombot-settings";
 
 export default function ManageCustombot() {
 	const dispatch = useDispatch<AppDispatch>();

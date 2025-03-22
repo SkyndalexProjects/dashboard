@@ -6,11 +6,8 @@ import type { RootState, AppDispatch } from "./store";
 import { fetchGuilds } from "./thunks/guilds";
 import { fetchUser } from "./thunks/user";
 import { useTranslation } from "react-i18next";
-import i18next from "i18next";
 export default function GuildsList() {
 	const dispatch = useDispatch<AppDispatch>();
-	const lng = i18next.language;
-	console.log("Current language: ", lng);
 	const guilds = useSelector((state: RootState) => state.guilds.data);
 	const { t } = useTranslation();
 	const withBotAdded = guilds.filter(

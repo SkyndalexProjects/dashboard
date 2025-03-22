@@ -6,7 +6,7 @@
 	margin-left: 20%;
 	display: flex;
 	gap: 50px;
-	margin-top: 15%;
+	margin-top: 25%;
 	position: absolute;
 }
 .active-tab {
@@ -23,7 +23,7 @@
 	line-height: normal;
 }
 .tabContent {
-	margin-top: 20%;
+	margin-top: 30%;
 	margin-left: 20%;
 	position: absolute;
 }
@@ -72,4 +72,8 @@
 	border: 1px solid #8e8e8e;
 
 	background: rgba(32, 32, 32, 0.1);
+}
+.indicator {
+	margin-left: 270px;
+	margin-top: -70px;
 }

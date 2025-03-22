@@ -2,5 +2,10 @@
 	"guild_list": {
 		"welcome_message": "Welcome, {{ username }}!",
 		"choosing_message": "Choose guild"
+	},
+	"system": {
+		"alerts": {
+			"beta_warning": "Dashboard is still under BETA version. Stable release will be out after v1.0.0"
+		}
 	}
 }
