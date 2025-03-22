@@ -107,10 +107,10 @@ export default function Page() {
 					alt="warning"
 					className={classes.warningIcon}
 				/>
-					<p className={classes.warningText}>
-						You don't have any custombots yet. Create one now
-					</p>
-				</div>			
+				<p className={classes.warningText}>
+					You don't have any custombots yet. Create one now
+				</p>
+			</div>
 			<div className={classes.container}>
 				<p className={classes.title}>Custombot details</p>
 				<p className={classes.subtitle}> Bot token </p>

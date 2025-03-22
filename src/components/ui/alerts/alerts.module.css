@@ -1,30 +1,24 @@
 .beta-warning-overlay-icon {
-	width: 935px;
+	width: 988px;
 	height: 40px;
-	flex-shrink: 0;
-	position: fixed;
-	margin-left: -22.7%;
-	margin-top: 25px;
+	right: 45%;
+	top: 10px;
+	position: relative;
+	margin-top: 15px;
 	z-index: 1000;
 }
-.betaWarning {
-	width: 100dvw;
-	padding: 0;
-	margin: 0;
-}
-	.beta-warning-overlay {
+.beta-warning-overlay {
+	width: max-content;
 	height: 95px;
 	border-radius: 15px;
 	border: 1px solid #b19b5f;
-	background: rgba(0, 0, 0, 0.2);
+	background-color: rgba(0, 0, 0, 0.2);
 	margin-left: 376px;
 	margin-top: 10%;
-	display: inline-block;
 	position: relative;
 }
 .beta-warning-overlay-text {
 	word-break: break-word;
-	display: inline-block;
 	color: #fff;
 	font-family: "Be Vietnam Pro";
 	font-size: 20px;
@@ -35,7 +29,8 @@
 	margin-top: 30px;
 	position: relative;
 	flex-shrink: 0;
-	margin-left: 65px;
+	margin-top: -25px;
+	margin-left: 80px;
 	padding-right: 20px;
 }
 .support-join-warning-icon {

@@ -112,17 +112,17 @@
 	margin-left: 20px;
 	position: absolute;
 	width: 61px;
-height: 49px;
+	height: 49px;
 }
 .warningText {
-	color: #FFF;
+	color: #fff;
 	width: 915px;
 	height: 75px;
 	flex-shrink: 0;
 	margin-left: 100px;
-font-family: "Be Vietnam Pro";
-font-size: 24px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
+	font-family: "Be Vietnam Pro";
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
 }
