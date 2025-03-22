@@ -36,6 +36,7 @@ export default function Page() {
 						/>
 					</button>
 				</div>
+				
 				<div className={classes.container}>
 					<div className={classes.imgContainer}>
 						<img src="/economy.svg" alt="feature1" />

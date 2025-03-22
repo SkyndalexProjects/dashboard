@@ -107,3 +107,22 @@
 	background: rgb(36, 54, 32);
 	transition: background 0.3s ease;
 }
+.warningIcon {
+	margin-top: 15px;
+	margin-left: 20px;
+	position: absolute;
+	width: 61px;
+height: 49px;
+}
+.warningText {
+	color: #FFF;
+	width: 915px;
+	height: 75px;
+	flex-shrink: 0;
+	margin-left: 100px;
+font-family: "Be Vietnam Pro";
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}

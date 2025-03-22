@@ -101,7 +101,16 @@ export default function Page() {
 			<Navbar />
 			<Sidebar />
 
-			<div className={classes.noCustombotsWarningContainer}></div>
+			<div className={classes.noCustombotsWarningContainer}>
+				<img
+					src="/warning-icon.svg"
+					alt="warning"
+					className={classes.warningIcon}
+				/>
+					<p className={classes.warningText}>
+						You don't have any custombots yet. Create one now
+					</p>
+				</div>			
 			<div className={classes.container}>
 				<p className={classes.title}>Custombot details</p>
 				<p className={classes.subtitle}> Bot token </p>
