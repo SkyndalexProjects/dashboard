@@ -3,7 +3,7 @@
 	position: absolute;
 	display: flex;
 	flex-direction: column;
-	font: 700 36px/normal Poppins;
+	font: 700 36px / normal Poppins;
 	margin-left: 360px;
 }
 .title-vector {
@@ -12,7 +12,7 @@
 .containerSubtitle {
 	color: #fff;
 	position: absolute;
-	font: 400 36px/normal Poppins;
+	font: 400 36px / normal Poppins;
 	margin: 35px 0 0 42px;
 	caret-color: transparent;
 }
@@ -31,7 +31,7 @@
 	flex-direction: column;
 	color: #949ba4;
 	text-align: left;
-	font: 400 24px/normal Poppins;
+	font: 400 24px / normal Poppins;
 	margin: 20px 0;
 }
 .search-input {

@@ -5,7 +5,8 @@
 	},
 	"system": {
 		"alerts": {
-			"beta_warning": "Dashboard is still under BETA version. Stable release will be out after v1.0.0"
+			"beta_warning": "Dashboard is still under BETA version. Stable release will be out after v1.0.0",
+			"support_join_warning": "You did not join our discord support guild. It is highly recommended to keep up to date with the changes in the bot that are currently being carried out."
 		}
 	}
 }

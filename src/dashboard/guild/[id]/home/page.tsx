@@ -23,7 +23,7 @@ export default function Page() {
 		)
 		.slice(0, 5);
 
-		const fitleredRoles = roles
+	const fitleredRoles = roles
 		.filter((role) =>
 			role.name.toLowerCase().includes(searchTerm.toLowerCase()),
 		)
@@ -51,10 +51,10 @@ export default function Page() {
 	};
 	const handleGoodbyeChannelChange = (value: string) => {
 		setGoodbyeChannel(value);
-	}
+	};
 	const handleAutoRoleChange = (value: string) => {
 		setAutoRole(value);
-	}
+	};
 
 	return (
 		<div>

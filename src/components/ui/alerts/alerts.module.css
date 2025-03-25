@@ -2,6 +2,14 @@
 	width: 988px;
 	height: 40px;
 	right: 45%;
+	position: relative;
+	margin-top: 15px;
+	z-index: 1000;
+}
+.support-join-warning-icon {
+	width: 988px;
+	height: 40px;
+	right: 47%;
 	top: 10px;
 	position: relative;
 	margin-top: 15px;
@@ -9,7 +17,7 @@
 }
 .beta-warning-overlay {
 	width: max-content;
-	height: 95px;
+	height: 67px;
 	border-radius: 15px;
 	border: 1px solid #b19b5f;
 	background-color: rgba(0, 0, 0, 0.2);
@@ -17,6 +25,17 @@
 	margin-top: 10%;
 	position: relative;
 }
+.support-join-overlay {
+	width: 959px;
+	border-radius: 15px;
+	border: 1px solid #587486;
+	height: 95px;
+	background: rgba(0, 0, 0, 0.2);
+	margin-left: 376px;
+	margin-top: 40px;
+	position: relative;
+}
+
 .beta-warning-overlay-text {
 	word-break: break-word;
 	color: #fff;
@@ -26,42 +45,25 @@
 	font-weight: 700;
 	line-height: normal;
 	white-space: nowrap;
-	margin-top: 30px;
 	position: relative;
 	flex-shrink: 0;
-	margin-top: -25px;
+	margin-top: -40px;
 	margin-left: 80px;
 	padding-right: 20px;
 }
-.support-join-warning-icon {
-	margin-left: -26.3%;
-	width: 935px;
-	height: 40px;
-	flex-shrink: 0;
-	margin-top: 5px;
-	position: absolute;
-}
-.support-join-overlay {
-	border-radius: 15px;
-	border: 1px solid #587486;
-	width: 959px;
-	height: 95px;
-	flex-shrink: 0;
-	background: rgba(0, 0, 0, 0.2);
-	margin-left: 20%;
-	margin-top: 40px;
-}
 .support-join-warning-text {
-	color: #fff;
-	font-family: "Be Vietnam Pro";
-	font-size: 20px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: normal;
-	text-wrap: normal;
-	max-width: 95%;
-	overflow-wrap: break-word;
-	display: flex;
-	margin-top: 20px;
-	margin-left: 65px;
+    word-break: break-word;
+    color: #fff;
+    font-family: "Be Vietnam Pro";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.5; /* Zwiększenie odstępu między liniami */
+    white-space: normal; /* Pozwala na zawijanie tekstu */
+    position: relative;
+    flex-shrink: 0;
+    margin-top: -40px;
+    margin-left: 80px; /* Zmniejszenie marginesu dla lepszego dopasowania */
+    padding-right: 20px;
+    max-width: 90%; /* Ograniczenie szerokości tekstu */
 }
