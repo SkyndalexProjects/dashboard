@@ -4,7 +4,7 @@
 	right: 45%;
 	position: relative;
 	margin-top: 15px;
-	z-index: 1000;
+	z-index: 100;
 }
 .support-join-warning-icon {
 	width: 988px;
@@ -13,7 +13,7 @@
 	top: 10px;
 	position: relative;
 	margin-top: 15px;
-	z-index: 1000;
+	z-index: 100;
 }
 .beta-warning-overlay {
 	width: max-content;

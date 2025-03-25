@@ -16,11 +16,18 @@ nav {
 	align-items: center;
 	width: 100%;
 	padding: 10px;
-	position: absolute;
+	position: fixed;
+	position: -webkit-sticky;
 	top: 0;
+	left: 0;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 	caret-color: none;
+	overflow: hidden;
+	flex-wrap: wrap;
+	background: linear-gradient(to bottom, #1e2230, rgb(29, 33, 44) 100%);
+z-index: 1000;
 }
+/* background: linear-gradient(to bottom, #1e2230, rgb(29, 33, 44) 100%); */
 
 .navTitle {
 	font-family: "Be Vietnam Pro", sans-serif;
