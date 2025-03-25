@@ -3,8 +3,59 @@ import Sidebar from "@/components/ui/navigation/sidebar";
 import BetaWarning from "@/components/ui/alerts/beta-warning";
 import JoinSupportAlert from "@/components/ui/alerts/support-join-warning";
 import classes from "./home.module.css";
-
+import SearchSelect from "@/components/ui/inputs/search";
+import { SelectOption } from "@/components/ui/inputs/search";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/store";
+import { useState } from "react";
 export default function Page() {
+	const [searchTerm, setSearchTerm] = useState("");
+	const [, setStarboardChannel] = useState("");
+	const [, setStarboardType] = useState("");
+	const [, setWelcomeChannel] = useState("");
+	const [, setGoodbyeChannel] = useState("");
+	const [, setAutoRole] = useState("");
+	const channels = useSelector((state: RootState) => state.channels.data);
+	const roles = useSelector((state: RootState) => state.roles.data);
+	const filteredChannels = channels
+		.filter((channel) =>
+			channel.name.toLowerCase().includes(searchTerm.toLowerCase()),
+		)
+		.slice(0, 5);
+
+		const fitleredRoles = roles
+		.filter((role) =>
+			role.name.toLowerCase().includes(searchTerm.toLowerCase()),
+		)
+		.slice(0, 5);
+
+	const starboardTypeChoices = [
+		{
+			label: "Quote",
+			value: "quote",
+		},
+		{
+			label: "Normal message",
+			value: "normal",
+		},
+	];
+
+	const handleStarboardChannelChange = (value: string) => {
+		setStarboardChannel(value);
+	};
+	const handleStarboardTypeChange = (value: string) => {
+		setStarboardType(value);
+	};
+	const handleWelcomeChannelChange = (value: string) => {
+		setWelcomeChannel(value);
+	};
+	const handleGoodbyeChannelChange = (value: string) => {
+		setGoodbyeChannel(value);
+	}
+	const handleAutoRoleChange = (value: string) => {
+		setAutoRole(value);
+	}
+
 	return (
 		<div>
 			<Navbar />
@@ -12,136 +63,119 @@ export default function Page() {
 
 			<BetaWarning />
 			<JoinSupportAlert />
+			<div className={classes.container}>
+				<p className={classes.containerTitle}>
+					Main settings
+					<svg
+						width="185"
+						height="4"
+						viewBox="0 0 185 4"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						style={{
+							flexShrink: 0,
+							strokeWidth: 4,
+							stroke: "#275EE7",
+						}}
+						className={classes.titleVector}
+					>
+						<line x1="0" y1="2" x2="185" y2="2" />
+					</svg>
+				</p>
+			</div>
 
-			<div className={classes.gridContainer}>
-				<div className={classes.container}>
-					<div className={classes.imgContainer}>
-						<img src="/sparkles.svg" alt="feature1" />
-					</div>
-					<div className={classes.textContainer}>
-						<p className={classes.featureText}> AI </p>
-						<p className={classes.featureSubtext}>
-							Set up AI features like chatbot channel, API keys
-							and more
-						</p>
-					</div>
-					<button
-						className={`${classes.featureButton} ${classes.featureButtonAI}`}
+			<div className={classes.settingsContainer}>
+				<p className={classes.containerSubtitle}>
+					{" "}
+					Starboard
+					<p className={classes.optionTitle}> Starboard channel</p>
+					<SearchSelect
+						value={searchTerm}
+						onChange={handleStarboardChannelChange}
+						searchTerm={searchTerm}
+						setSearchTerm={setSearchTerm}
+						inputClassName={classes.searchInput}
+						indicatorClassName={classes.searchIndicator}
 					>
-						Setup
-						<img
-							src="/button-arrow.svg"
-							alt="arrow"
-							className={classes.buttonArrow}
-						/>
-					</button>
-				</div>
-
-				<div className={classes.container}>
-					<div className={classes.imgContainer}>
-						<img src="/economy.svg" alt="feature1" />
-					</div>
-					<div className={classes.textContainer}>
-						<p className={classes.featureText}> Economy </p>
-						<p className={classes.featureSubtext}>
-							Make your own economy system on guild
-						</p>
-					</div>
-					<button
-						className={`${classes.featureButton} ${classes.featureButtonEconomy}`}
+						{filteredChannels.map((channel) => (
+							<SelectOption key={channel.id} value={channel.name}>
+								{channel.name}
+							</SelectOption>
+						))}
+					</SearchSelect>
+					<p className={classes.optionTitle}> Starboard type </p>
+					<SearchSelect
+						value={searchTerm}
+						onChange={handleStarboardTypeChange}
+						searchTerm={searchTerm}
+						setSearchTerm={setSearchTerm}
+						inputClassName={classes.searchInput}
+						indicatorClassName={classes.searchIndicator}
 					>
-						Setup
-						<img
-							src="/button-arrow.svg"
-							alt="arrow"
-							className={classes.buttonArrow}
-						/>
-					</button>
-				</div>
-				<div className={classes.container}>
-					<div className={classes.imgContainer}>
-						<img src="/radio.svg" alt="feature1" />
-					</div>
-					<div className={classes.textContainer}>
-						<p className={classes.featureText}> Radio </p>
-						<p className={classes.featureSubtext}>
-							Listen to the radio from the entire world. Feel the
-							entire radio.garden experience!
-						</p>
-					</div>
-					<button
-						className={`${classes.featureButton} ${classes.featureButtonRadio}`}
+						{starboardTypeChoices.map((type) => (
+							<SelectOption key={type.value} value={type.value}>
+								{type.label}
+							</SelectOption>
+						))}
+					</SearchSelect>
+				</p>
+			</div>
+			<div className={classes.settingsContainer}>
+				<p className={classes.containerSubtitle}>
+					{" "}
+					Welcoming
+					<p className={classes.optionTitle}> Welcome channel</p>
+					<SearchSelect
+						value={searchTerm}
+						onChange={handleWelcomeChannelChange}
+						searchTerm={searchTerm}
+						setSearchTerm={setSearchTerm}
+						inputClassName={classes.searchInput}
+						indicatorClassName={classes.searchIndicator}
 					>
-						Setup
-						<img
-							src="/button-arrow.svg"
-							alt="arrow"
-							className={classes.buttonArrow}
-						/>
-					</button>
-				</div>
-				<div className={classes.container}>
-					<div className={classes.imgContainer}>
-						<img src="/levels.svg" alt="feature1" />
-					</div>
-					<div className={classes.textContainer}>
-						<p className={classes.featureText}> Levels </p>
-						<p className={classes.featureSubtext}>
-							Reward your users. Monitor and increase activity on
-							the guild
-						</p>
-					</div>
-					<button
-						className={`${classes.featureButton} ${classes.featureButtonLevels}`}
+						{filteredChannels.map((channel) => (
+							<SelectOption key={channel.id} value={channel.name}>
+								{channel.name}
+							</SelectOption>
+						))}
+					</SearchSelect>
+					<p className={classes.optionTitle}> Goodbye channel </p>
+					<SearchSelect
+						value={searchTerm}
+						onChange={handleGoodbyeChannelChange}
+						searchTerm={searchTerm}
+						setSearchTerm={setSearchTerm}
+						inputClassName={classes.searchInput}
+						indicatorClassName={classes.searchIndicator}
 					>
-						Setup
-						<img
-							src="/button-arrow.svg"
-							alt="arrow"
-							className={classes.buttonArrow}
-						/>
-					</button>
-				</div>
-				<div className={classes.container}>
-					<div className={classes.imgContainer}>
-						<img src="/bot_icon.svg" alt="feature1" />
-					</div>
-					<div className={classes.textContainer}>
-						<p className={classes.featureText}> Custombots </p>
-						<p className={classes.featureSubtext}>
-							Increase the number of settings on the server .Have
-							your own branding. Don't let limits scare you.
-						</p>
-					</div>
-					<button
-						className={`${classes.featureButton} ${classes.featureButtonCustombots}`}
+						{filteredChannels.map((channel) => (
+							<SelectOption key={channel.id} value={channel.name}>
+								{channel.name}
+							</SelectOption>
+						))}
+					</SearchSelect>
+				</p>
+			</div>
+			<div className={classes.settingsContainer}>
+				<p className={classes.containerSubtitle}>
+					{" "}
+					Additional
+					<p className={classes.optionTitle}> Auto role</p>
+					<SearchSelect
+						value={searchTerm}
+						onChange={handleAutoRoleChange}
+						searchTerm={searchTerm}
+						setSearchTerm={setSearchTerm}
+						inputClassName={classes.searchInput}
+						indicatorClassName={classes.searchIndicator}
 					>
-						Setup
-						<img
-							src="/button-arrow.svg"
-							alt="arrow"
-							className={classes.buttonArrow}
-						/>
-					</button>
-				</div>
-				<div className={classes.container}>
-					<div className={classes.imgContainer}>
-						<img src="/clock.svg" alt="feature1" />
-					</div>
-					<div className={classes.textContainer}>
-						<p className={classes.featureText}> SoonTM </p>
-						<p className={classes.featureSubtext}>
-							My bot is constantly supported and updated. Perhaps
-							soon there will be more modules worth your
-							attention.
-						</p>
-					</div>
-					<button
-						className={`${classes.featureButton} ${classes.featureButtonSoon}`}
-					>
-						Be patient!
-					</button>
-				</div>
+						{fitleredRoles.map((role) => (
+							<SelectOption key={role.id} value={role.name}>
+								{role.name}
+							</SelectOption>
+						))}
+					</SearchSelect>
+				</p>
 			</div>
 		</div>
 	);
