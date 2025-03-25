@@ -52,18 +52,18 @@
 	padding-right: 20px;
 }
 .support-join-warning-text {
-    word-break: break-word;
-    color: #fff;
-    font-family: "Be Vietnam Pro";
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 1.5; /* Zwiększenie odstępu między liniami */
-    white-space: normal; /* Pozwala na zawijanie tekstu */
-    position: relative;
-    flex-shrink: 0;
-    margin-top: -40px;
-    margin-left: 80px; /* Zmniejszenie marginesu dla lepszego dopasowania */
-    padding-right: 20px;
-    max-width: 90%; /* Ograniczenie szerokości tekstu */
+	word-break: break-word;
+	color: #fff;
+	font-family: "Be Vietnam Pro";
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 1.5; /* Zwiększenie odstępu między liniami */
+	white-space: normal; /* Pozwala na zawijanie tekstu */
+	position: relative;
+	flex-shrink: 0;
+	margin-top: -40px;
+	margin-left: 80px; /* Zmniejszenie marginesu dla lepszego dopasowania */
+	padding-right: 20px;
+	max-width: 90%; /* Ograniczenie szerokości tekstu */
 }

@@ -18,13 +18,14 @@
 }
 .settingsContainer {
 	display: flex;
+	flex-direction: column;
 	width: 957.506px;
 	height: 418.286px;
 	flex-shrink: 0;
 	border-radius: 10px;
 	background: rgba(0, 0, 0, 0.3);
-	z-index: 1000;
 	margin: 120px 0 0 350px;
+	position: relative;
 }
 .option-title {
 	display: flex;
@@ -40,7 +41,11 @@
 	flex-shrink: 0;
 	border-radius: 10px;
 	background: rgba(1, 1, 1, 0.4);
-	margin-top: 10px;
+	display: flex;
+	flex-direction: column;
+	padding-left: 60px;
+	font-family: "Be Vietnam Pro";
+	font-size: 24px;
 }
 .search-indicator {
 	margin: -100px 0 0 830px;
@@ -49,4 +54,15 @@
 	display: flex;
 	flex-direction: column;
 	margin-top: 20%;
+}
+.hashtag {
+	position: absolute;
+	width: 65px;
+height: 65px;
+}
+.star {
+	position: absolute;
+	width: 45px;
+	margin-top: 10px;
+	margin-left: 10px;
 }

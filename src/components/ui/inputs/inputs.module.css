@@ -9,6 +9,8 @@
 	font-size: 18px;
 	font-weight: 500;
 	appearance: none;
+	z-index: 1000;
+	position: relative;
 }
 
 .options {
@@ -26,6 +28,7 @@
 	transform: scaleY(0);
 	transform-origin: top;
 	animation: dropdownOpen 0.3s forwards;
+	z-index: 9999;
 }
 
 @keyframes dropdownOpen {
@@ -36,6 +39,7 @@
 }
 
 .option {
+	z-index: 1000;
 	position: relative;
 	background-color: rgba(0, 0, 0, 0.8);
 	font-family: "Poppins", sans-serif;

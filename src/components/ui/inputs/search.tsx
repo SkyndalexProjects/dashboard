@@ -12,6 +12,7 @@ interface SelectProps {
 	inputClassName?: string;
 	indicatorClassName?: string;
 	placeholderLogo?: string;
+	placeholderClassName?: string;
 	type?: string;
 	disableSearch?: boolean;
 }
@@ -35,6 +36,7 @@ export default function SearchSelect({
 	inputClassName,
 	indicatorClassName,
 	placeholderLogo,
+	placeholderClassName,
 	disableSearch,
 }: SelectProps) {
 	const [isOpen, setIsOpen] = useState(false);
@@ -92,7 +94,7 @@ export default function SearchSelect({
 					type={"text"}
 					value={searchTerm}
 					placeholder={placeholder}
-					className={`${inputClassName} ${placeholderLogo ? classes.withLogo : ""} ${classes.placeholder}`}
+					className={`${inputClassName} ${placeholderLogo ? classes.withLogo : ""} ${classes.placeholder} ${placeholderClassName}`}
 					onChange={(event) => {
 						try {
 							setSearchTerm(event.target.value);

@@ -73,6 +73,7 @@ const Navbar = () => {
 						indicatorClassName={classes.selectIndicator}
 						placeholder={getCurrentUser?.username}
 						placeholderLogo={`https://cdn.discordapp.com/avatars/${getCurrentUser?.id}/${getCurrentUser?.avatar}.png`}
+						placeholderClassName={classes.selectPlaceholder}
 						disableSearch={true}
 					>
 						{options.map((option) => (

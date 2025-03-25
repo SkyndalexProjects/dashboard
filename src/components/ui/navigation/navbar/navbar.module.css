@@ -22,12 +22,11 @@ nav {
 	left: 0;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 	caret-color: none;
-	overflow: hidden;
+	overflow: visible;
 	flex-wrap: wrap;
 	background: linear-gradient(to bottom, #1e2230, rgb(29, 33, 44) 100%);
-z-index: 1000;
+	z-index: 1000;
 }
-/* background: linear-gradient(to bottom, #1e2230, rgb(29, 33, 44) 100%); */
 
 .navTitle {
 	font-family: "Be Vietnam Pro", sans-serif;
@@ -94,9 +93,8 @@ z-index: 1000;
 }
 
 .guildNameTooltip {
-	visibility: hidden;
 	width: 100px;
-	background-color: rgba(0, 0, 0, 0.2);
+	background-color: #00000033;
 	color: #fff;
 	text-align: center;
 	border-radius: 6px;
