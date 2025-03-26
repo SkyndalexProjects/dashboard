@@ -55,7 +55,12 @@ const Sidebar = () => {
 				{links.map(({ path, icon, text, additionalPaths }) => (
 					<button
 						key={path}
-						className={`${classes.sidebarItem} ${isActive(path) || (additionalPaths && additionalPaths.some(isActive)) ? classes.active : ""}`}
+						className={`${classes.sidebarItem} ${
+							isActive(path) ||
+							(additionalPaths && additionalPaths.some(isActive))
+								? classes.active
+								: ""
+						}`}
 						onClick={() => handleNavigation(path)}
 					>
 						<img

@@ -4,7 +4,9 @@ export const fetchRoles = createAsyncThunk(
 	"roles/fetch",
 	async (guildId: string, thunkAPI) => {
 		try {
-			const endpoint = `${import.meta.env.VITE_API_URL}/guilds/${guildId}/roles`;
+			const endpoint = `${
+				import.meta.env.VITE_API_URL
+			}/guilds/${guildId}/roles`;
 			if (!endpoint) {
 				throw new Error("ROLES_DATA_ENDPOINT is not defined");
 			}

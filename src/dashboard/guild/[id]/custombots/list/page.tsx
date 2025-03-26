@@ -75,7 +75,9 @@ export default function CustombotList() {
 			<Navbar />
 			<Sidebar />
 			<div
-				className={`${classes.list} ${isModalOpen ? classes.blurBackground : ""}`}
+				className={`${classes.list} ${
+					isModalOpen ? classes.blurBackground : ""
+				}`}
 			>
 				{custombots.map((bot: CustomBot) => (
 					<div key={bot.id} className={classes.listItem}>

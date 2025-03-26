@@ -43,7 +43,9 @@ const UserSidebar = () => {
 				{links.map(({ path, icon, text }) => (
 					<button
 						key={path}
-						className={`${classes.sidebarItem} ${isActive(path) ? classes.active : ""}`}
+						className={`${classes.sidebarItem} ${
+							isActive(path) ? classes.active : ""
+						}`}
 						onClick={() => handleNavigation(path)}
 					>
 						<img

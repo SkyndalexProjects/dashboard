@@ -27,7 +27,9 @@ const CustombotSettingsTabs = () => {
 		.slice(0, 5);
 
 	const fetchModels = async (searchTerm: string) => {
-		const url = `/huggingface/models-json?sort=trending&search=${encodeURIComponent(searchTerm)}&withCount=true`;
+		const url = `/huggingface/models-json?sort=trending&search=${encodeURIComponent(
+			searchTerm,
+		)}&withCount=true`;
 
 		fetch(url)
 			.then(async (response) => {

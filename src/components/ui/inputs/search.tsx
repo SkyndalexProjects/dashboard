@@ -94,7 +94,9 @@ export default function SearchSelect({
 					type={"text"}
 					value={searchTerm}
 					placeholder={placeholder}
-					className={`${inputClassName} ${placeholderLogo ? classes.withLogo : ""} ${classes.placeholder} ${placeholderClassName}`}
+					className={`${inputClassName} ${
+						placeholderLogo ? classes.withLogo : ""
+					} ${classes.placeholder} ${placeholderClassName}`}
 					onChange={(event) => {
 						try {
 							setSearchTerm(event.target.value);
@@ -106,7 +108,9 @@ export default function SearchSelect({
 					disabled={disableSearch}
 				/>
 				<div
-					className={`${indicatorClassName || classes.indicator} ${isOpen ? classes.open : ""}`}
+					className={`${indicatorClassName || classes.indicator} ${
+						isOpen ? classes.open : ""
+					}`}
 				>
 					<img
 						src="/indicator.svg"
