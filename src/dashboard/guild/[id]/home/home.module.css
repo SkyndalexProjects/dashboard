@@ -51,7 +51,22 @@ line-height: normal;
 	margin-left: 531px;
 	margin-top: -65px;
 }
-.section-title {
+.main-settings-container {
+    display: flex;
+	flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+.dashboard-log-container {
+	display: flex;
+	flex-direction: row;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-top: -1225px;
+}
+.main-settings-section-title {
 	display: flex;
 flex-direction: column;
 caret-color: transparent;
@@ -60,82 +75,70 @@ caret-color: transparent;
 font: 700 24px/normal Poppins;
 margin-left: 372px;
 }
+.dashboard-log-section-title {
+	display: flex;
+flex-direction: column;
+caret-color: transparent;
+	position: absolute;
+	color: #FFF;
+font: 700 24px/normal Poppins;
+margin-left: 1035px;
+margin-top: -40px;
+}
 .section-title-vector {
 	position: relative;
 }
-/* .container-title {
-	color: #FFF;
-	text-align: center;
-	font-family: Poppins;
-	font-size: 24px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: normal;
-	position: absolute;
-	display: flex;
-	flex-direction: column;
-	margin-left: 360px;
+.log-table-container {
+	width: 851.684px;
+height: 352.223px;
+border-radius: 10px;
+background: rgba(0, 0, 0, 0.30);
+margin-left: 1030px;
+margin-top: 18px;
+display: flex;
 }
-.title-vector {
-	position: relative;
+.log-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #FFF;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
-.containerSubtitle {
-	color: #fff;
-	position: absolute;
-	font: 400 36px / normal Poppins;
-	margin: 35px 0 0 42px;
-	caret-color: transparent;
-}
-.settingsContainer {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	width: 957.506px;
-	gap: 20px; 
 
-	height: 418.286px;
-	flex-shrink: 0;
-	border-radius: 10px;
-	background: rgba(0, 0, 0, 0.3);
-	margin: 120px 0 0 350px;
-	position: relative;
+.log-table th {
+    text-align: left;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
-.option-title {
-	display: flex;
-	flex-direction: column;
-	color: #949ba4;
-	text-align: left;
-	font: 400 24px / normal Poppins;
-	margin: 20px 0;
+
+.log-table td {
+    padding: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
-.search-input {
-	width: 870.971px;
-	height: 68.107px;
-	flex-shrink: 0;
-	border-radius: 10px;
-	background: rgba(1, 1, 1, 0.4);
-	display: flex;
-	flex-direction: column;
-	padding-left: 60px;
-	font-family: "Be Vietnam Pro";
-	font-size: 24px;
+
+.log-table tr:hover {
+    background: rgba(255, 255, 255, 0.05);
 }
-.search-indicator {
-	margin: -100px 0 0 830px;
+
+.log-table th:last-child,
+.log-table td:last-child {
+    border-right: none; 
 }
-.settingContainer {
-	display: flex;
-	flex-direction: column;
-	margin-top: 20%;
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
 }
-.hashtag {
-	position: absolute;
-	width: 65px;
-height: 65px;
+
+.role {
+    font-size: 12px;
+    color: #949BA4;
+    margin-left: 5px;
 }
-.star {
-	position: absolute;
-	width: 45px;
-	margin-top: 10px;
-	margin-left: 10px;
-} */

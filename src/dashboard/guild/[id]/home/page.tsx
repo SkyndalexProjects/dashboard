@@ -113,8 +113,8 @@ export default function Page() {
 			<Sidebar />
 			<BetaWarning />
 			<JoinSupportAlert />
-
-			<p className={classes.sectionTitle}>
+			<div className={classes.mainSettingsContainer}>
+			<p className={classes.mainSettingsSectionTitle}>
 				{" "}
 				Main settings
 				<svg
@@ -177,6 +177,76 @@ export default function Page() {
 					onChange={handleAutoRoleChange}
 				/>
 			</SettingContainer>
+
+			</div>
+
+<div className={classes.dashboardLogContainer}>
+<p className={classes.dashboardLogSectionTitle}>
+				{" "}
+				Dashboard log
+				<svg
+					width="185"
+					height="4"
+					viewBox="0 0 185 4"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					style={{
+						flexShrink: 0,
+						strokeWidth: 4,
+						stroke: "#275EE7",
+					}}
+					className={classes.sectionTitleVector}
+				>
+					<line x1="0" y1="2" x2="185" y2="2" />
+				</svg>
+			</p>
+			<div className={classes.logTableContainer}>
+    <table className={classes.logTable}>
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Action</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div>
+                        <img src="chuj" alt="Korrumz2" className={classes.avatar} />
+                        <span>Korrumz2</span>
+                        <span className={classes.role}>Staff</span>
+                    </div>
+                </td>
+                <td>Started custombot</td>
+                <td>26.03.2025 21:37</td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <img src="dupa" alt="Korrumz2" className={classes.avatar} />
+                        <span>Korrumz2</span>
+                        <span className={classes.role}>Staff</span>
+                    </div>
+                </td>
+                <td>Created custombot</td>
+                <td>26.03.2025 21:37</td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <img src="dupa" alt="cyberl1" className={classes.avatar} />
+                        <span>cyberl1</span>
+                        <span className={classes.role}>Staff</span>
+                    </div>
+                </td>
+                <td>Created tomasz problem</td>
+                <td>26.03.2025 21:37</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+	</div>
 		</div>
 	);
 }
