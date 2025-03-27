@@ -114,24 +114,25 @@ export default function Page() {
 			<BetaWarning />
 			<JoinSupportAlert />
 
-<p className={classes.sectionTitle}> Main settings 
-
-<svg
-						width="185"
-						height="4"
-						viewBox="0 0 185 4"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-						style={{
-							flexShrink: 0,
-							strokeWidth: 4,
-							stroke: "#275EE7",
-						}}
-						className={classes.sectionTitleVector}
-					>
-						<line x1="0" y1="2" x2="185" y2="2" />
-					</svg>
-</p>
+			<p className={classes.sectionTitle}>
+				{" "}
+				Main settings
+				<svg
+					width="185"
+					height="4"
+					viewBox="0 0 185 4"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					style={{
+						flexShrink: 0,
+						strokeWidth: 4,
+						stroke: "#275EE7",
+					}}
+					className={classes.sectionTitleVector}
+				>
+					<line x1="0" y1="2" x2="185" y2="2" />
+				</svg>
+			</p>
 			<SettingContainer title="Starboard">
 				<SettingInput
 					title="Starboard Channel"
