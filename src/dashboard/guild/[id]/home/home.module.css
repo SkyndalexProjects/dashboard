@@ -90,46 +90,81 @@ margin-top: -40px;
 }
 .log-table-container {
 	width: 851.684px;
-height: 352.223px;
+	height: 352.223px;
 border-radius: 10px;
 background: rgba(0, 0, 0, 0.30);
 margin-left: 1030px;
 margin-top: 18px;
-display: flex;
 }
 .log-table {
     width: 100%;
     border-collapse: collapse;
-    color: #FFF;
-    font-family: "Poppins", sans-serif;
-    font-size: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+	text-align: left;
 }
-
 .log-table th {
-    text-align: left;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    font-weight: 600;
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px;
+	color: rgba(255, 255, 255, 0.20);
+	position: relative;
+	font-family: "Be Vietnam Pro";
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	text-align: left;
+	border: 1px solid rgba(68, 68, 68, 0.32)
 }
-
 .log-table td {
-    padding: 10px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
+	border: 1px solid rgba(68, 68, 68, 0.32);
 }
-
 .log-table tr:hover {
     background: rgba(255, 255, 255, 0.05);
 }
 
-.log-table th:last-child,
-.log-table td:last-child {
-    border-right: none; 
+.t-username {
+	position: relative;
+	color: #FFF;
+font-family: "Be Vietnam Pro";
+margin-top: -28px;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+margin-left: 50px;
 }
+.t-value {
+	color: #FFF;
+	position: relative;
+font-family: "Be Vietnam Pro";
+margin-left: 24px;
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+.date-container {
+	margin-left: 20px;
+}
+.t-date {
+	position: relative;
+	color: #FFF;
 
+font-family: "Be Vietnam Pro";
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+.t-hour {
+	color: rgba(255, 255, 255, 0.30);
+
+font-family: "Be Vietnam Pro";
+font-size: 10px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
 .avatar {
+	margin-left: 8px;
     width: 32px;
     height: 32px;
     border-radius: 50%;

@@ -5,7 +5,8 @@ import InputType from "@/components/ui/inputs/input";
 import SearchSelect from "@/components/ui/inputs/search";
 import { SelectOption } from "@/components/ui/inputs/search";
 import { useParams, useNavigate } from "react-router-dom";
-
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 import { useState, useEffect } from "react";
 
 export default function Page() {
@@ -16,7 +17,17 @@ export default function Page() {
 	const [searchTerm, setSearchTerm] = useState("");
 
 	const navigate = useNavigate();
+	const user = useSelector(
+		(state: RootState) =>
+			state.user.data as unknown as {
+				username: string;
+				avatar: string;
+				id: string;
+			},
+	);
+
 	const { id } = useParams<{ id: string }>();
+	const userId = user.id;
 	const redirectUser = async () => {
 		try {
 			const response = await fetch(
@@ -77,6 +88,8 @@ export default function Page() {
 						token,
 						activity,
 						status,
+						value: "custombot_created",
+						userId,
 					}),
 				},
 			);

@@ -5,7 +5,6 @@ interface CustomBotModalProps {
 	isOpen: boolean;
 	onClose: () => void;
 }
-
 const CustomBotModal: React.FC<CustomBotModalProps> = ({ isOpen, onClose }) => {
 	if (!isOpen) return null;
 
