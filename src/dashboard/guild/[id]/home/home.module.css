@@ -64,7 +64,7 @@ line-height: normal;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: flex-start;
-	margin-top: -1225px;
+	margin-top: -1227px;
 }
 .main-settings-section-title {
 	display: flex;
@@ -92,11 +92,11 @@ margin-top: -40px;
 	width: 851.684px;
 	height: auto;
 	max-height: 300px;
-border-radius: 10px;
 background: rgba(0, 0, 0, 0.30);
 margin-left: 1030px;
 margin-top: 18px;
-overflow-y: auto; /* Dodanie przewijania */
+overflow-y: auto;
+border-radius: 13px 13px 10px 10px;
 }
 .log-table {
 	caret-color: transparent;
