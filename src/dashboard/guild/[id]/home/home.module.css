@@ -90,13 +90,16 @@ margin-top: -40px;
 }
 .log-table-container {
 	width: 851.684px;
-	height: 352.223px;
+	height: auto;
+	max-height: 300px;
 border-radius: 10px;
 background: rgba(0, 0, 0, 0.30);
 margin-left: 1030px;
 margin-top: 18px;
+overflow-y: auto; /* Dodanie przewijania */
 }
 .log-table {
+	caret-color: transparent;
     width: 100%;
     border-collapse: collapse;
 	text-align: left;

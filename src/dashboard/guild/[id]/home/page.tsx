@@ -171,6 +171,7 @@ export default function Page() {
 		})();
 	}, [id]);
 
+	
 	const handleStarboardChannelChange = (value: string) => {
 		setStarboardChannel(value);
 	};
