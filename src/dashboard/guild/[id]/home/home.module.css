@@ -206,3 +206,15 @@ background: rgba(0, 0, 0, 0.30);
 margin-left: 1040px;
 margin-top: 133px;
 }
+
+.value-details {
+	color: #275EE7;
+font-family: "Be Vietnam Pro";
+font-size: 10px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+padding: 0;
+display: block;
+
+}

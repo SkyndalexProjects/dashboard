@@ -317,6 +317,10 @@ export default function Page() {
 											<p className={classes.tValue}>
 												{logValues[log.value] ||
 													log.value}
+
+													<button className={classes.valueDetails}>
+														View details
+													</button>
 											</p>
 										</td>
 										<td>
