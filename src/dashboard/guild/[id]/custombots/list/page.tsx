@@ -27,7 +27,6 @@ export default function CustombotList() {
 				},
 			);
 			const bots = await response.json();
-			console.log("Fetched bots:", bots);
 
 			const detailedBots = await Promise.all(
 				bots.map(async (bot: CustomBot) => {
@@ -50,6 +49,7 @@ export default function CustombotList() {
 				}),
 			);
 
+			console.log("detailedCustombots", detailedBots);
 			setCustombots(detailedBots);
 		} catch (error) {
 			console.error("Error fetching custom bots:", error);
@@ -70,6 +70,7 @@ export default function CustombotList() {
 		navigate(path);
 	};
 
+	console.log("custombots", custombots);
 	return (
 		<div>
 			<Navbar />
@@ -79,41 +80,42 @@ export default function CustombotList() {
 					isModalOpen ? classes.blurBackground : ""
 				}`}
 			>
-				{custombots.map((bot: CustomBot) => (
-					<div key={bot.id} className={classes.listItem}>
-						<img
-							src={`https://cdn.discordapp.com/avatars/${bot.clientId}/${bot.icon}.png`}
-							alt={bot.username}
-							className={classes.listItemIcon}
-						/>
-						<div>
-							<p className={classes.listItemName}>
-								{bot.username}
-							</p>
-							<p className={classes.listItemFooter}>
-								{bot.status || "No status"}
-							</p>
+				{custombots.map((bot: CustomBot) => {
+					const clientId = atob(bot.token.split(".")[0]);
+					return (
+						<div key={bot.id} className={classes.listItem}>
+							<img
+								src={`https://cdn.discordapp.com/avatars/${clientId}/${bot.icon}.png`}
+								alt={bot.username}
+								className={classes.listItemIcon}
+							/>
+								<p className={classes.listItemName}>
+									{bot.username}
+								</p>
+								<p className={classes.listItemFooter}>
+									{bot.status || "No status"}
+								</p>
+							<div className={classes.listItemActionButtons}>
+								<button
+									className={classes.listItemActionButton}
+									onClick={() =>
+										handleNavigation(
+											`/dashboard/guild/${id}/custombots/manage/${bot.id}`,
+										)
+									}
+								>
+									<img src="/edit-button.svg" alt="Edit" />
+								</button>
+								<button
+									className={classes.listItemActionButton}
+									onClick={() => toggleBot(bot.id)}
+								>
+									<img src="/trash.svg" alt="Trash" />
+								</button>
+							</div>
 						</div>
-						<div className={classes.listItemActionButtons}>
-							<button
-								className={classes.listItemActionButton}
-								onClick={() =>
-									handleNavigation(
-										`/dashboard/guild/${id}/custombots/manage/${bot.id}`,
-									)
-								}
-							>
-								<img src="/edit-button.svg" alt="Edit" />
-							</button>
-							<button
-								className={classes.listItemActionButton}
-								onClick={() => toggleBot(bot.id)}
-							>
-								<img src="/trash.svg" alt="Trash" />
-							</button>
-						</div>
-					</div>
-				))}
+					);
+				})}
 			</div>
 			<div className={classes.addMoreCustomBotsContainer}>
 				<button

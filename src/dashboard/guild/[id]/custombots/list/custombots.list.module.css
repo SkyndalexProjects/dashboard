@@ -35,11 +35,11 @@ button {
 }
 
 .list-item-name {
+	position: relative;
 	color: #fff;
-	text-align: center;
 	font: 800 25px / normal Poppins;
 	display: flex;
-	margin-bottom: 4px;
+	margin-bottom: 55px;
 	white-space: nowrap;
 	flex-shrink: 0;
 }
@@ -48,16 +48,18 @@ button {
 	text-align: center;
 	font: 500 20px / normal "Be Vietnam Pro";
 	display: flex;
-	align-items: center;
-	margin: 0;
 	flex-shrink: 0;
+	margin-top: 50px;
+	margin-left: 93px;
+	position: absolute;
 }
 
 .list-item-action-buttons {
+	position: absolute;
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 20px 30px 0 63%;
+	margin-top: 20px;
+	margin-bottom: 0;
+	margin-left: 1070px;
 	gap: 20px;
 	flex-shrink: 0;
 }
