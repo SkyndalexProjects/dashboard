@@ -16,7 +16,8 @@ export default function ManageCustombot() {
 		state.custombots.data.find((bot) => bot.id === Number(botId)),
 	);
 
-	
+	const clientId = atob(custombot.token.split(".")[0]);
+
 	const [detailedCustombot, setCustombot] = useState<CustomBot | null>(null);
 	const [custombotRPC, setCustombotRPC] = useState<CustomBotRPC | null>(null);
 
@@ -47,7 +48,7 @@ export default function ManageCustombot() {
 						credentials: "include",
 						headers: {
 							"Content-Type": "application/json",
-							clientid: custombot.clientId,
+							clientid: clientId,
 						},
 					},
 				);
