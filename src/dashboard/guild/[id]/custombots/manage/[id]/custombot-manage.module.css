@@ -1,19 +1,23 @@
+.containers {
+	display: block;
+	position: relative
+}
 .custombot {
 	display: flex;
-	width: 465.928px;
-	height: 104.282px;
+	width: 819.874px;
+height: 104.282px;
 	flex-shrink: 0;
 	border-radius: 10px;
 	background: rgba(14, 14, 14, 0.17);
-	margin-left: 20%;
+	margin-left: 370px;
 	margin-top: 10%;
-	position: absolute;
+	position: relative;
 }
 .custombot-status-name {
 	color: #fff;
 	font: 700 32px "Be Vietnam Pro", normal;
 	line-height: normal;
-	margin: 10px 0 0 25%;
+	margin: 10px 0 0 13%;
 	text-wrap: nowrap;
 }
 .custombot-status-type {
@@ -24,20 +28,18 @@
 	margin-top: 5px;
 }
 .custombot-about-me-box {
-	position: absolute;
-	width: 465.928px;
+	position: relative;
+	width: 819.508px;
 	height: 222.288px;
 	flex-shrink: 0;
 	border-radius: 10px;
 	background: rgba(0, 0, 0, 0.2);
-	margin: 8% 0 0 50%;
+	margin-left: 370px;
 }
 .custombot-about-me-box-title {
-	padding-right: 20px;
 	color: #bdbdbd;
-	margin-right: 65%;
 	padding-top: 20px;
-	text-align: center;
+	margin-left: 30px;
 	font: 700 20px "Be Vietnam Pro", normal;
 	line-height: normal;
 }

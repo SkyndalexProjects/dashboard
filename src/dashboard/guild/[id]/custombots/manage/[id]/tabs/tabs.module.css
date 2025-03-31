@@ -6,10 +6,13 @@
 	margin-left: 20%;
 	display: flex;
 	gap: 50px;
-	margin-top: 25%;
-	position: absolute;
+	margin-top: 50px;
+	position: relative;
 }
 .active-tab {
+	display: flex;
+	flex-direction: row;
+	position: relative;
 	color: #fff;
 	text-align: center;
 	font: normal 400 32px Poppins;
@@ -17,18 +20,25 @@
 	border-bottom: 4px solid #ffff;
 }
 .inactive-tab {
+	display: flex;
+	flex-direction: row;
+	position: relative;
 	color: #fff;
 	text-align: center;
 	font: normal 400 32px Poppins;
 	line-height: normal;
 }
 .tabContent {
-	margin-top: 30%;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	margin-top: 50px;
 	margin-left: 20%;
-	position: absolute;
 }
 .chatbot-tab-content {
-	position: absolute;
+	display: flex;
+	flex-direction: column;
+	position: relative;
 	width: 1214.309px;
 	height: 542.889px;
 	flex-shrink: 0;
@@ -40,11 +50,15 @@
 	margin-left: 25px;
 	text-wrap: nowrap;
 	font: normal 700 20px "Be Vietnam Pro";
+	display: flex;
+	flex-direction: column;
+	position: relative;
 	line-height: normal;
 }
 .chatbot-setting-box {
+	position: relative;
 	margin-left: 25px;
-	margin-top: 15px;
+	margin-top: 25px;
 	caret-color: transparent;
 	width: 375.836px;
 	height: 118.629px;
@@ -59,6 +73,7 @@
 }
 .chatbot-setting-box-title {
 	margin-right: 70%;
+	z-index: 1000;
 	color: #fff;
 	text-align: center;
 	font: normal 700 16px "Be Vietnam Pro";

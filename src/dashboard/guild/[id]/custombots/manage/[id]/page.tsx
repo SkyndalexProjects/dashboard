@@ -16,6 +16,7 @@ export default function ManageCustombot() {
 		state.custombots.data.find((bot) => bot.id === Number(botId)),
 	);
 
+	
 	const [detailedCustombot, setCustombot] = useState<CustomBot | null>(null);
 	const [custombotRPC, setCustombotRPC] = useState<CustomBotRPC | null>(null);
 
@@ -56,17 +57,17 @@ export default function ManageCustombot() {
 		};
 
 		fetchBotData();
-	}, [custombot]);
-
+	}, [custombot, id]);
 	const iconURL = `https://cdn.discordapp.com/avatars/${detailedCustombot?.id}/${detailedCustombot?.avatar}.png`;
 
+	console.log("custombotRPC", custombotRPC);
 	return (
 		<div>
 			<Navbar />
 			<Sidebar />
 			<h2>
 				{detailedCustombot && (
-					<div>
+					<div className={classes.containers}>
 						<div className={classes.custombot}>
 							<img
 								src={iconURL}

@@ -18,7 +18,15 @@ export default function GuildsSelect() {
 		name: string;
 		icon: string;
 	}) => {
-		navigate(`/dashboard/guild/${guild.id}/home`);
+		const currentPage = window.location.pathname.split("/").slice(4).join("/");
+		 console.log("currentPage", currentPage);
+		 const hasNumber = /\d/.test(currentPage); // fix problem with different custombots on different guilds
+		//  console.log("hasNumber", hasNumber);
+		 if (hasNumber) {
+			navigate(`/dashboard/guild/${guild.id}/home`, { replace: true });
+		} else {
+			navigate(`/dashboard/guild/${guild.id}/${currentPage}`, { replace: true });
+		}
 	};
 
 	const getGuildIconUrl = (guild: { id: string; icon: string }) =>
