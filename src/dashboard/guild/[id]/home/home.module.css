@@ -180,3 +180,29 @@ line-height: normal;
     color: #949BA4;
     margin-left: 5px;
 }
+.recent-changes-container {
+	display: flex;
+	flex-direction: row;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+.recent-changes-section-title {
+	display: flex;
+	flex-direction: column;
+	caret-color: transparent;
+	position: absolute;
+	color: #FFF;
+	font: 700 24px/normal Poppins;
+	margin-left: 1040px;
+	margin-top: 30px;
+}
+.recent-changes-table-container {
+	width: 669.955px;
+height: 352.223px;
+flex-shrink: 0;
+border-radius: 10px;
+background: rgba(0, 0, 0, 0.30);
+margin-left: 1040px;
+margin-top: 133px;
+}

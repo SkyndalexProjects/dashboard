@@ -10,6 +10,7 @@ import type { RootState } from "@/store";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
+import HomeTabs from "./hometabs/changelog-switch";
 interface SettingContainerProps {
 	title: string;
 	children?: React.ReactNode;
@@ -171,7 +172,6 @@ export default function Page() {
 		})();
 	}, [id]);
 
-	
 	const handleStarboardChannelChange = (value: string) => {
 		setStarboardChannel(value);
 	};
@@ -355,6 +355,32 @@ export default function Page() {
 								))}
 							</tbody>
 						</table>
+					</div>
+				</div>
+
+				<div className={classes.recentChangesContainer}>
+					<p className={classes.recentChangesSectionTitle}>
+						{" "}
+						Recent changes
+						<svg
+							width="185"
+							height="4"
+							viewBox="0 0 185 4"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							style={{
+								flexShrink: 0,
+								strokeWidth: 4,
+								stroke: "#275EE7",
+							}}
+							className={classes.sectionTitleVector}
+						>
+							<line x1="0" y1="2" x2="185" y2="2" />
+						</svg>
+					</p>
+
+					<div className={classes.recentChangesTableContainer}>
+						<HomeTabs />
 					</div>
 				</div>
 			</div>
