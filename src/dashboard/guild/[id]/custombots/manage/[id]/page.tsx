@@ -16,11 +16,40 @@ export default function ManageCustombot() {
 		state.custombots.data.find((bot) => bot.id === Number(botId)),
 	);
 
-	const clientId = atob(custombot.token.split(".")[0]);
-
+	const clientId = custombot?.token
+    ? (() => {
+          try {
+              return atob(custombot.token.split(".")[0]);
+          } catch (error) {
+              console.error("Failed to decode token:", error);
+              return null;
+          }
+      })()
+    : null;
 	const [detailedCustombot, setCustombot] = useState<CustomBot | null>(null);
 	const [custombotRPC, setCustombotRPC] = useState<CustomBotRPC | null>(null);
 
+	const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+    const toggleDropdown = () => {
+        setDropdownOpen((prev) => !prev);
+    };
+	const handleTurnOn = async () => {
+		if (custombot) {
+			await fetch(
+				`${import.meta.env.VITE_API_URL}/guilds/${id}/custombots/${botId}/start`,
+				{
+					method: "POST",
+					credentials: "include",
+					headers: {
+						"Content-Type": "application/json",
+						authorization: `Bot ${custombot.token}`,
+					},
+				},
+			);
+			setDropdownOpen(false);
+		}
+	}
 	useEffect(() => {
 		if (id) {
 			dispatch(fetchCustombots(id));
@@ -48,7 +77,7 @@ export default function ManageCustombot() {
 						credentials: "include",
 						headers: {
 							"Content-Type": "application/json",
-							clientid: clientId,
+							...(clientId && { clientid: clientId }),
 						},
 					},
 				);
@@ -60,7 +89,6 @@ export default function ManageCustombot() {
 		fetchBotData();
 	}, [custombot, id]);
 	const iconURL = `https://cdn.discordapp.com/avatars/${detailedCustombot?.id}/${detailedCustombot?.avatar}.png`;
-
 	console.log("custombotRPC", custombotRPC);
 	return (
 		<div>
@@ -79,9 +107,31 @@ export default function ManageCustombot() {
 								{detailedCustombot.username}
 								<p className={classes.custombotStatusType}>
 									{" "}
-									online{" "}
+									{custombotRPC?.status || "unknown"}{" "}
 								</p>{" "}
 							</p>
+							<button
+								className={classes.indicatorButton}
+								onClick={toggleDropdown}
+								aria-expanded={isDropdownOpen}
+								aria-label="Toggle dropdown"
+							>
+								<img
+									src="/indicator.svg"
+									alt="indicator"
+									className={`${classes.indicator} ${
+										isDropdownOpen ? classes.rotate : ""
+									}`}
+								/>
+							</button>
+							{isDropdownOpen && (
+                                <div className={classes.dropdownOptions}>
+                                    <ul>
+									<li onClick={handleTurnOn}> Turn on </li>
+									<li> Delete </li>
+                                    </ul>
+                                </div>
+                            )}
 						</div>
 						<div className={classes.custombotAboutMeBox}>
 							<p className={classes.custombotAboutMeBoxTitle}>

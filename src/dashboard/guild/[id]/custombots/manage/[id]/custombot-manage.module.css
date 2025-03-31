@@ -21,8 +21,7 @@ height: 104.282px;
 	text-wrap: nowrap;
 }
 .custombot-status-type {
-	/* online / dnd / idle */
-	color: #2dc660;
+	color: rgba(255, 255, 255, 0.2);
 	font: 700 24px "Be Vietnam Pro", normal;
 	line-height: normal;
 	margin-top: 5px;
@@ -42,6 +41,7 @@ height: 104.282px;
 	margin-left: 30px;
 	font: 700 20px "Be Vietnam Pro", normal;
 	line-height: normal;
+	caret-color: transparent;
 }
 .custombot-about-me-box-rpc-description {
 	margin-left: 20px;
@@ -55,6 +55,7 @@ height: 104.282px;
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
+	caret-color: transparent;
 }
 .botDetails {
 	display: flex;
@@ -76,7 +77,7 @@ height: 104.282px;
 .botDetails p {
 	flex-shrink: 0;
 	color: #fff;
-	font: 400 20px "ABC Ginto Normal Unlicensed Trial", normal;
+	font: 400 20px "Be Vietnam Pro", normal;
 	line-height: normal;
 	position: absolute;
 	margin: 70px 0 0 25px;
@@ -88,4 +89,54 @@ height: 104.282px;
 	border-radius: 15px;
 	position: absolute;
 	margin: 13px 0 0 15px;
+}
+.indicator {
+	width: 42.536px;
+height: 22.963px;
+flex-shrink: 0;
+position: relative;
+margin-left: 400px;
+caret-color: transparent;
+}
+.rotate {
+	transform: rotate(180deg);
+}
+.dropdownOptions {
+    z-index: 1000;
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    background-color: black; 
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;	
+}
+
+.dropdownOptions ul {
+    list-style: none; 
+    margin: 0;
+    padding: 0;
+}
+
+.dropdownOptions li {
+    padding: 8px 12px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.dropdownOptions li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

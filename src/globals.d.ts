@@ -12,6 +12,7 @@ interface CustomBot {
 interface CustomBotRPC {
 	id: string;
 	name: string;
+	status: string;
 	icon: string;
 	description: string;
 	summary: string;
