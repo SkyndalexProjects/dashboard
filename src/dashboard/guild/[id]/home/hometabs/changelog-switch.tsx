@@ -31,24 +31,26 @@ const HomeTabs = () => {
 				</button>
 			</div>
 
-            <div className={classes.tabContent}>
-                {activeTab === "Dashboard" && (
-                    <div>
-                        <p className={classes.tabContentTitle}>Dashboard Content</p>
-                        <p className={classes.tabContentDescription}>
-                            This is the content for the Dashboard tab.
-                        </p>
-                    </div>
-                )}
-                {activeTab === "Bot" && (
-                    <div>
-                        <p className={classes.tabContentTitle}>Bot Content</p>
-                        <p className={classes.tabContentDescription}>
-                            This is the content for the Bot tab.
-                        </p>
-                    </div>
-                )}
-            </div>
+			<div className={classes.tabContent}>
+				{activeTab === "Dashboard" && (
+					<div>
+						<p className={classes.tabContentTitle}>
+							Dashboard Content
+						</p>
+						<p className={classes.tabContentDescription}>
+							This is the content for the Dashboard tab.
+						</p>
+					</div>
+				)}
+				{activeTab === "Bot" && (
+					<div>
+						<p className={classes.tabContentTitle}>Bot Content</p>
+						<p className={classes.tabContentDescription}>
+							This is the content for the Bot tab.
+						</p>
+					</div>
+				)}
+			</div>
 		</div>
 	);
 };
