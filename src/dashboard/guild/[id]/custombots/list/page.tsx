@@ -89,12 +89,12 @@ export default function CustombotList() {
 								alt={bot.username}
 								className={classes.listItemIcon}
 							/>
-								<p className={classes.listItemName}>
-									{bot.username}
-								</p>
-								<p className={classes.listItemFooter}>
-									{bot.status || "No status"}
-								</p>
+							<p className={classes.listItemName}>
+								{bot.username}
+							</p>
+							<p className={classes.listItemFooter}>
+								{bot.status || "No status"}
+							</p>
 							<div className={classes.listItemActionButtons}>
 								<button
 									className={classes.listItemActionButton}

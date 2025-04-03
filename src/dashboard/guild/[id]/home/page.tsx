@@ -5,12 +5,13 @@ import JoinSupportAlert from "@/components/ui/alerts/support-join-warning";
 import classes from "./home.module.css";
 import SearchSelect from "@/components/ui/inputs/search";
 import { SelectOption } from "@/components/ui/inputs/search";
-import { useSelector } from "react-redux";
-import type { RootState } from "@/store";
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { AppDispatch, type RootState } from "@/store";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
 import HomeTabs from "./hometabs/changelog-switch";
+import { fetchChannels } from "@/thunks/channels";
+import { fetchRoles } from "@/thunks/roles";
 interface SettingContainerProps {
 	title: string;
 	children?: React.ReactNode;
@@ -82,9 +83,32 @@ export default function Page() {
 	const [, setGoodbyeChannel] = useState("");
 	const [, setAutoRole] = useState("");
 	const [logs, setLogs] = useState<Logs[]>([]);
+	const dispatch = useDispatch<AppDispatch>();
+	const channels = useSelector((state: RootState) =>
+		state.channels.areChannelsFetched ? state.channels.data : [],
+	);
+	const roles = useSelector((state: RootState) =>
+		state.roles.areRolesFetched ? state.roles.data : [],
+	);
+	const haveChannelsFetched = useSelector(
+		(state: RootState) => state.channels.areChannelsFetched,
+	);
+	const haveRolesFetched = useSelector(
+		(state: RootState) => state.roles.areRolesFetched,
+	);
+	const { id } = useParams<{ id: string }>();
 
-	const channels = useSelector((state: RootState) => state.channels.data);
-	const roles = useSelector((state: RootState) => state.roles.data);
+
+	useEffect(() => {
+		const fetchData = (shouldFetch: boolean, fetchAction: any) => {
+			if (shouldFetch && id) {
+				dispatch(fetchAction(id));
+			}
+		};
+
+		fetchData(!haveChannelsFetched || (channels.length === 0 && haveChannelsFetched), fetchChannels);
+		fetchData(!haveRolesFetched || (roles.length === 0 && haveRolesFetched), fetchRoles);
+	}, [dispatch, haveChannelsFetched, haveRolesFetched, channels, roles, id]);
 
 	const filteredChannels = (searchTerm: string) =>
 		channels
@@ -110,7 +134,6 @@ export default function Page() {
 		custombot_deleted: "Custom bot deleted",
 	};
 
-	const { id } = useParams<{ id: string }>();
 	async function fetchUser(userId: string) {
 		try {
 			const response = await fetch(

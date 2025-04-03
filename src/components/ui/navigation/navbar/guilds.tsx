@@ -1,10 +1,28 @@
-import { useSelector } from "react-redux";
-import type { RootState } from "@/store";
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState, AppDispatch } from "@/store";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { fetchGuilds } from "@/thunks/guilds";
 import classes from "./navbar.module.css";
 
 export default function GuildsSelect() {
-	const guilds = useSelector((state: RootState) => state.guilds.data);
+	const dispatch = useDispatch<AppDispatch>();
+
+	const guilds = useSelector((state: RootState) =>
+		state.guilds.haveGuildsFetched ? state.guilds.data : [],
+	);
+	const haveGuildsFetched = useSelector(
+		(state: RootState) => state.guilds.haveGuildsFetched,
+	);
+
+	useEffect(() => {
+		if (!haveGuildsFetched) {
+			dispatch(fetchGuilds());
+		}
+		if (guilds.length === 0 && haveGuildsFetched) {
+			dispatch(fetchGuilds());
+		}
+	}, [dispatch, haveGuildsFetched, guilds]);
 
 	const filteredGuilds = guilds.filter(
 		(guild) =>
@@ -18,14 +36,18 @@ export default function GuildsSelect() {
 		name: string;
 		icon: string;
 	}) => {
-		const currentPage = window.location.pathname.split("/").slice(4).join("/");
-		 console.log("currentPage", currentPage);
-		 const hasNumber = /\d/.test(currentPage); // fix problem with different custombots on different guilds
-		//  console.log("hasNumber", hasNumber);
-		 if (hasNumber) {
+		const currentPage = window.location.pathname
+			.split("/")
+			.slice(4)
+			.join("/");
+		console.log("currentPage", currentPage);
+		const hasNumber = /\d/.test(currentPage);
+		if (hasNumber) {
 			navigate(`/dashboard/guild/${guild.id}/home`, { replace: true });
 		} else {
-			navigate(`/dashboard/guild/${guild.id}/${currentPage}`, { replace: true });
+			navigate(`/dashboard/guild/${guild.id}/${currentPage}`, {
+				replace: true,
+			});
 		}
 	};
 

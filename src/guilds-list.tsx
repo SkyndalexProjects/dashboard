@@ -8,7 +8,28 @@ import { fetchUser } from "./thunks/user";
 import { useTranslation } from "react-i18next";
 export default function GuildsList() {
 	const dispatch = useDispatch<AppDispatch>();
-	const guilds = useSelector((state: RootState) => state.guilds.data);
+	const guilds = useSelector((state: RootState) =>
+		state.guilds.haveGuildsFetched ? state.guilds.data : [],
+	);
+	const haveGuildsFetched = useSelector(
+		(state: RootState) => state.guilds.haveGuildsFetched,
+	);
+	const user = useSelector(
+		(state: RootState) => state.user.data as unknown as User,
+	);
+
+	useEffect(() => {
+		if (!haveGuildsFetched) {
+			dispatch(fetchGuilds());
+		}
+		if (Object.keys(user).length === 0) {
+			dispatch(fetchUser());
+		}
+		if (guilds.length === 0 && haveGuildsFetched) {
+			dispatch(fetchGuilds());
+		}
+	}, [dispatch, haveGuildsFetched, user, guilds]);
+
 	const { t } = useTranslation();
 	const withBotAdded = guilds.filter(
 		(guild) =>
@@ -20,19 +41,6 @@ export default function GuildsList() {
 			(BigInt(guild.permissions) & BigInt(0x20)) === BigInt(0x20) &&
 			!guild.isBotAdded,
 	);
-
-	const user = useSelector(
-		(state: RootState) => state.user.data as unknown as User,
-	);
-
-	useEffect(() => {
-		if (Object.keys(user).length === 0) {
-			dispatch(fetchUser());
-		}
-		if (guilds.length === 0) {
-			dispatch(fetchGuilds());
-		}
-	}, [dispatch, user, guilds]);
 
 	if (withBotAdded.length === 0 && withoutBotAdded.length === 0) {
 		return (
