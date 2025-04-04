@@ -17,7 +17,6 @@ i18n();
 
 const store = makeStore();
 createRoot(document.getElementById("root")!).render(
-	<StrictMode>
 		<BrowserRouter>
 			<Provider store={store}>
 				<Routes>
@@ -55,5 +54,4 @@ createRoot(document.getElementById("root")!).render(
 				</Routes>
 			</Provider>
 		</BrowserRouter>
-	</StrictMode>,
 );
