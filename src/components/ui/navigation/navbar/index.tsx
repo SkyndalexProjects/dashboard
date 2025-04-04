@@ -1,15 +1,16 @@
 import GuildsDropdown from "./guilds";
 import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store";
 import { useNavigate } from "react-router-dom";
 import classes from "./navbar.module.css";
 import Select, { SelectOption } from "../../inputs/search";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { fetchUser } from "@/thunks/user";
 const Navbar = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
+	const dispatch = useDispatch<AppDispatch>();
 	const guildId = location.pathname.split("/")[3];
 	const guild = useSelector((state: RootState) =>
 		Array.isArray(state.guilds.data)
@@ -20,6 +21,15 @@ const Navbar = () => {
 	const getCurrentUser = useSelector(
 		(state: RootState) => state.user.data as unknown as User,
 	);
+	const haveUserFetched = useSelector(
+		(state: RootState) => state.user.isUserFetched,
+	);
+
+	useEffect(() => {
+		if (!haveUserFetched) {
+			dispatch(fetchUser());
+		}
+	}, [dispatch, haveUserFetched]);
 
 	const options = [
 		{ id: "user_panel", name: "Go to user panel" },
