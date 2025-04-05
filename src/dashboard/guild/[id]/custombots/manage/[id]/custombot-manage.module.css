@@ -5,13 +5,23 @@
 .custombot {
 	display: flex;
 	width: 819.874px;
-height: 104.282px;
+	height: 104.282px;
 	flex-shrink: 0;
 	border-radius: 10px;
 	background: rgba(14, 14, 14, 0.17);
 	margin-left: 370px;
 	margin-top: 10%;
 	position: relative;
+	transition: background-color 0.3s ease;
+}
+.red {
+    color: red !important;
+}
+.green {
+    color: green !important;
+}
+.custombot:hover {
+	background: rgba(39, 94, 231, 0.2);
 }
 .custombot-status-name {
 	color: #fff;
@@ -104,7 +114,7 @@ caret-color: transparent;
 .dropdownOptions {
     z-index: 1000;
     position: absolute;
-    top: 100%; 
+    top: 110%; 
     left: 0;
     background-color: black; 
     border-radius: 8px;

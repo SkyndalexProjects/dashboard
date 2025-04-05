@@ -28,6 +28,9 @@ export default function ManageCustombot() {
 		: null;
 	const [detailedCustombot, setCustombot] = useState<CustomBot | null>(null);
 	const [custombotRPC, setCustombotRPC] = useState<CustomBotRPC | null>(null);
+	const [statusText, setStatusText] = useState<string>(
+		custombot?.status || "unknown",
+	);
 
 	const [isDropdownOpen, setDropdownOpen] = useState(false);
 
@@ -36,19 +39,31 @@ export default function ManageCustombot() {
 	};
 	const handleTurnOn = async () => {
 		console.log("Token", custombot?.token);
-		await fetch(
-			`${import.meta.env.VITE_API_URL}/guilds/${id}/custombots/start`,
-			{
-				method: "POST",
-				credentials: "include",
-				headers: {
-					"Content-Type": "application/json",
+		setStatusText("loading");
+		try {
+			const response = await fetch(
+				`${import.meta.env.VITE_API_URL}/guilds/${id}/custombots/start`,
+				{
+					method: "POST",
+					credentials: "include",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						token: custombot.token,
+					}),
 				},
-				body: JSON.stringify({
-					token: custombot.token,
-				}),
-			},
-		);
+			);
+			const data = await response.json();
+			if (data.error) {
+				setStatusText("error");
+				return;
+			} else {
+				setStatusText("online");
+			}
+		} catch (error) {
+			setStatusText("error");
+		}
 		setDropdownOpen(false);
 	};
 	useEffect(() => {
@@ -98,6 +113,7 @@ export default function ManageCustombot() {
 				{detailedCustombot && (
 					<div className={classes.containers}>
 						<div className={classes.custombot}>
+							{" "}
 							<img
 								src={iconURL}
 								alt={`${detailedCustombot.username} icon`}
@@ -105,10 +121,19 @@ export default function ManageCustombot() {
 							/>
 							<p className={classes.custombotStatusName}>
 								{detailedCustombot.username}
-								<p className={classes.custombotStatusType}>
-									{" "}
-									{custombotRPC?.status || "unknown"}{" "}
-								</p>{" "}
+								<p
+									className={`${
+										classes.custombotStatusType
+									} ${
+										statusText === "error"
+											? classes.red
+											: statusText === "online"
+												? classes.green
+												: ""
+									}`}
+								>
+									{statusText || "unknown"}
+								</p>
 							</p>
 							<button
 								className={classes.indicatorButton}

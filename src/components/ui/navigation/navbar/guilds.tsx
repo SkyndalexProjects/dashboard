@@ -20,7 +20,7 @@ export default function GuildsSelect() {
 			dispatch(fetchGuilds());
 		}
 	}, [dispatch, haveGuildsFetched]);
-	
+
 	const filteredGuilds = guilds.filter(
 		(guild) =>
 			(BigInt(guild.permissions) & BigInt(0x20)) === BigInt(0x20) &&

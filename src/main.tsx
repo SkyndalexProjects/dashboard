@@ -17,41 +17,38 @@ i18n();
 
 const store = makeStore();
 createRoot(document.getElementById("root")!).render(
-		<BrowserRouter>
-			<Provider store={store}>
-				<Routes>
-					<Route
-						path="/dashboard/guild/:id/*"
-						element={
-							<Routes>
-								<Route path="home" element={<Home />} />
-								<Route
-									path="custombots"
-									element={<Custombots />}
-								/>
-								<Route
-									path="custombots/list"
-									element={<CustombotList />}
-								/>
-								<Route
-									path="custombots/manage/:botId"
-									element={<ManageCustombot />}
-								/>
-								<Route path="radio" element={<Page />} />
-							</Routes>
-						}
-					/>
-					<Route
-						path="/dashboard/user/:id/*"
-						element={
-							<Routes>
-								<Route path="home" element={<UserHome />} />
-							</Routes>
-						}
-					/>
-					<Route path="/" element={<GuildsList />} />
-					<Route path="*" element={<NoMatch />} />
-				</Routes>
-			</Provider>
-		</BrowserRouter>
+	<BrowserRouter>
+		<Provider store={store}>
+			<Routes>
+				<Route
+					path="/dashboard/guild/:id/*"
+					element={
+						<Routes>
+							<Route path="home" element={<Home />} />
+							<Route path="custombots" element={<Custombots />} />
+							<Route
+								path="custombots/list"
+								element={<CustombotList />}
+							/>
+							<Route
+								path="custombots/manage/:botId"
+								element={<ManageCustombot />}
+							/>
+							<Route path="radio" element={<Page />} />
+						</Routes>
+					}
+				/>
+				<Route
+					path="/dashboard/user/:id/*"
+					element={
+						<Routes>
+							<Route path="home" element={<UserHome />} />
+						</Routes>
+					}
+				/>
+				<Route path="/" element={<GuildsList />} />
+				<Route path="*" element={<NoMatch />} />
+			</Routes>
+		</Provider>
+	</BrowserRouter>,
 );

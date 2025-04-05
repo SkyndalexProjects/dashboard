@@ -98,7 +98,6 @@ export default function Page() {
 	);
 	const { id } = useParams<{ id: string }>();
 
-
 	useEffect(() => {
 		const fetchData = (shouldFetch: boolean, fetchAction: any) => {
 			if (shouldFetch && id) {
@@ -106,8 +105,15 @@ export default function Page() {
 			}
 		};
 
-		fetchData(!haveChannelsFetched || (channels.length === 0 && haveChannelsFetched), fetchChannels);
-		fetchData(!haveRolesFetched || (roles.length === 0 && haveRolesFetched), fetchRoles);
+		fetchData(
+			!haveChannelsFetched ||
+				(channels.length === 0 && haveChannelsFetched),
+			fetchChannels,
+		);
+		fetchData(
+			!haveRolesFetched || (roles.length === 0 && haveRolesFetched),
+			fetchRoles,
+		);
 	}, [dispatch, haveChannelsFetched, haveRolesFetched, channels, roles, id]);
 
 	const filteredChannels = (searchTerm: string) =>
