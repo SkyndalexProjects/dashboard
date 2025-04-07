@@ -116,6 +116,7 @@ export default function Page() {
 		);
 	}, [dispatch, haveChannelsFetched, haveRolesFetched, channels, roles, id]);
 
+	console.log("channels", channels);
 	const filteredChannels = (searchTerm: string) =>
 		channels
 			.filter((channel) =>
@@ -183,6 +184,7 @@ export default function Page() {
 
 				const data = await response.json();
 
+				console.log("dataLogs", data);
 				const updatedLogs: Logs[] = [];
 				for (const log of data) {
 					console.log("log", log);

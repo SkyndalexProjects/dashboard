@@ -7,6 +7,7 @@ export const fetchGuilds = createAsyncThunk(
 			const res = await fetch(`${import.meta.env.VITE_API_URL}/guilds`, {
 				credentials: "include",
 			});
+			console.log("fetchGuildsThunk", res);
 			const json = await res.json();
 
 			console.log("fetchGuildsThunk", json);

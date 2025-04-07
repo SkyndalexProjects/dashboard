@@ -16,7 +16,11 @@ export const initialState: InitialState = {
 export const guildsSlice = createSlice({
 	name: "guilds",
 	initialState,
-	reducers: {},
+	reducers: {
+		setHaveGuildsFetched(state, action) {
+			state.haveGuildsFetched = action.payload;
+		},
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(
@@ -42,5 +46,6 @@ export const guildsSlice = createSlice({
 			});
 	},
 });
+export const { setHaveGuildsFetched } = guildsSlice.actions;
 
 export default guildsSlice.reducer;
