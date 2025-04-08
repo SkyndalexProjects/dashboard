@@ -16,6 +16,10 @@ export default function ManageCustombot() {
 		state.custombots.data.find((bot) => bot.id === Number(botId)),
 	);
 
+	const currentUser = useSelector(
+		(state: RootState) => state.user.data as unknown as User,
+	);
+
 	const clientId = custombot?.token
 		? (() => {
 				try {
@@ -38,8 +42,7 @@ export default function ManageCustombot() {
 		setDropdownOpen((prev) => !prev);
 	};
 	const handleTurnOn = async () => {
-		console.log("Token", custombot?.token);
-		setStatusText("loading");
+		setStatusText("loading...");
 		try {
 			const response = await fetch(
 				`${import.meta.env.VITE_API_URL}/guilds/${id}/custombots/start`,
@@ -50,7 +53,9 @@ export default function ManageCustombot() {
 						"Content-Type": "application/json",
 					},
 					body: JSON.stringify({
-						token: custombot.token,
+						clientId,
+						requestedByUserId: currentUser.id,
+						guildId: id,
 					}),
 				},
 			);
@@ -119,9 +124,9 @@ export default function ManageCustombot() {
 								alt={`${detailedCustombot.username} icon`}
 								className={classes.botIcon}
 							/>
-							<p className={classes.custombotStatusName}>
+							<div className={classes.custombotStatusName}>
 								{detailedCustombot.username}
-								<p
+								<div
 									className={`${
 										classes.custombotStatusType
 									} ${
@@ -133,8 +138,8 @@ export default function ManageCustombot() {
 									}`}
 								>
 									{statusText || "unknown"}
-								</p>
-							</p>
+								</div>
+							</div>
 							<button
 								className={classes.indicatorButton}
 								onClick={toggleDropdown}

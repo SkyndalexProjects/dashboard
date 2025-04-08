@@ -90,6 +90,7 @@ export default function Page() {
 						status,
 						value: "custombot_created",
 						userId,
+						clientId: atob(token.split(".")[0]),
 					}),
 				},
 			);
