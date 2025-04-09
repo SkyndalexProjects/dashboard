@@ -5,6 +5,7 @@ import Select, {
 } from "../../../../../../../components/ui/inputs/search";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store";
+import Slider from "@/components/ui/inputs/slider";
 
 const CustombotSettingsTabs = () => {
 	const [activeTab, setActiveTab] = useState("Chatbot");
@@ -91,86 +92,153 @@ const CustombotSettingsTabs = () => {
 				{activeTab === "Chatbot" && (
 					<div>
 						<div className={classes.chatbotTabContent}>
-							<p className={classes.chatbotTabContentTitle}>
-								CHATBOT SETTINGS
-							</p>
-							<div className={classes.chatbotSettingBox}>
-								<p className={classes.chatbotSettingBoxTitle}>
-									CHANNEL
-								</p>
-								<div
-									className={classes.chatbotSettingBoxContent}
-								>
-									<Select
-										value={searchTerm}
-										onChange={handleSearchChange}
-										searchTerm={searchTerm}
-										setSearchTerm={setSearchTerm}
-										className={classes.selectContainer}
-										placeholder="Search for a channel"
-										inputClassName={classes.inputContainer}
-										indicatorClassName={classes.indicator}
-										disableSearch={false}
+							<div className={classes.column}>
+								<div className={classes.chatbotSettingBox}>
+									<p
+										className={
+											classes.chatbotSettingBoxTitle
+										}
 									>
-										{filteredChannels.map((channel) => (
-											<SelectOption
-												key={channel.id}
-												value={channel.name}
-											>
-												{channel.name}
-											</SelectOption>
-										))}
-									</Select>
-								</div>
-							</div>
-
-							<div className={classes.chatbotSettingBox}>
-								<p className={classes.chatbotSettingBoxTitle}>
-									PROMPT
-								</p>
-								<div
-									className={classes.chatbotSettingBoxContent}
-								>
-									<input
-										type="text"
-										value={promptInput}
-										onChange={handlePromptChange}
-										className={classes.promptInput}
-									/>
-								</div>
-							</div>
-
-							<div className={classes.chatbotSettingBox}>
-								<p className={classes.chatbotSettingBoxTitle}>
-									MODEL
-								</p>
-								<div
-									className={classes.chatbotSettingBoxContent}
-								>
-									<Select
-										value={modelSearchTerm}
-										onChange={handleModelSearchChange}
-										searchTerm={modelSearchTerm}
-										setSearchTerm={setModelSearchTerm}
-										inputClassName={classes.inputContainer}
-										className={classes.selectContainer}
-										placeholder="Search for a model"
-										indicatorClassName={classes.indicator}
+										CHANNEL
+									</p>
+									<div
+										className={
+											classes.chatbotSettingBoxContent
+										}
 									>
-										{filteredModels.map(
-											(model: {
-												id: string;
-												name: string;
-											}) => (
+										<Select
+											value={searchTerm}
+											onChange={handleSearchChange}
+											searchTerm={searchTerm}
+											setSearchTerm={setSearchTerm}
+											className={classes.selectContainer}
+											placeholder="Search for a channel"
+											inputClassName={
+												classes.inputContainer
+											}
+											indicatorClassName={
+												classes.indicator
+											}
+											disableSearch={false}
+										>
+											{filteredChannels.map((channel) => (
+												<SelectOption
+													key={channel.id}
+													value={channel.name}
+												>
+													{channel.name}
+												</SelectOption>
+											))}
+										</Select>
+									</div>
+								</div>
+
+								<div className={classes.chatbotSettingBox}>
+									<p
+										className={
+											classes.chatbotSettingBoxTitle
+										}
+									>
+										PROMPT
+									</p>
+									<div
+										className={
+											classes.chatbotSettingBoxContent
+										}
+									>
+										<input
+											type="text"
+											value={promptInput}
+											onChange={handlePromptChange}
+											className={classes.promptInput}
+										/>
+									</div>
+								</div>
+
+								<div className={classes.chatbotSettingBox}>
+									<p
+										className={
+											classes.chatbotSettingBoxTitle
+										}
+									>
+										MODEL
+									</p>
+									<div
+										className={
+											classes.chatbotSettingBoxContent
+										}
+									>
+										<Select
+											value={modelSearchTerm}
+											onChange={handleModelSearchChange}
+											searchTerm={modelSearchTerm}
+											setSearchTerm={setModelSearchTerm}
+											inputClassName={
+												classes.inputContainer
+											}
+											className={classes.selectContainer}
+											placeholder="Search for a model"
+											indicatorClassName={
+												classes.indicator
+											}
+										>
+											{filteredModels.map((model) => (
 												<SelectOption
 													key={model.id}
 													value={model.id}
 												>
 													{model.id}
 												</SelectOption>
-											),
-										)}
-									</Select>
+											))}
+										</Select>
+									</div>
+								</div>
+							</div>
+
+							<div className={classes.column}>
+								<div className={classes.chatbotSettingBox}>
+									<p
+										className={
+											classes.chatbotSettingBoxTitle
+										}
+									>
+										MAX TOKENS
+									</p>
+									<div
+										className={
+											classes.chatbotSettingBoxContent
+										}
+									>
+										<Slider
+											min={1}
+											max={4096}
+											initialValue={2048}
+											className={classes.sliderContainer}
+											inputClassName={
+												classes.sliderInputContainer
+											}
+											rageClassName={
+												classes.sliderRangeContainer
+											}
+										/>
+									</div>
+								</div>
+
+								<div className={classes.chatbotSettingBox}>
+									<p
+										className={
+											classes.chatbotSettingBoxTitle
+										}
+									>
+										TEMPERATURE
+									</p>
+									<div
+										className={
+											classes.chatbotSettingBoxContent
+										}
+									>
+										{/* Dodaj tutaj suwaki lub inne elementy */}
+									</div>
 								</div>
 							</div>
 						</div>
