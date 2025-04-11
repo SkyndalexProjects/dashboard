@@ -3,10 +3,10 @@ import classes from "./tabs.module.css";
 import Select, {
 	SelectOption,
 } from "../../../../../../../components/ui/inputs/search";
-import { useSelector } from "react-redux";
-import type { RootState } from "@/store";
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState, AppDispatch } from "@/store";
+import { fetchChannels } from "@/thunks/channels";
 import Slider from "@/components/ui/inputs/slider";
-
 const CustombotSettingsTabs = () => {
 	const [activeTab, setActiveTab] = useState("Chatbot");
 	const [modelList, setModelList] = useState<{
@@ -19,8 +19,16 @@ const CustombotSettingsTabs = () => {
 		setSearchTerm(value);
 		console.log("searchTerm", searchTerm);
 	};
+	const dispatch = useDispatch<AppDispatch>();
+
 	const channels = useSelector((state: RootState) => state.channels.data);
 
+	const guildIdFromUrl = window.location.pathname.split("/")[3];
+	useEffect(() => {
+		if (channels.length === 0) {
+			dispatch(fetchChannels(guildIdFromUrl))
+		}
+	})
 	const filteredChannels = channels
 		.filter((channel) =>
 			channel.name.toLowerCase().includes(searchTerm.toLowerCase()),
@@ -256,7 +264,91 @@ const CustombotSettingsTabs = () => {
 						</div>
 					</div>
 				)}
-				{activeTab === "Radio" && <div>Radio Content</div>}
+				{activeTab === "Radio" && 
+				<div>
+					<div className={classes.chatbotSettingBox}>
+									<p
+										className={
+											classes.chatbotSettingBoxTitle
+										}
+									>
+										VOICE CHANNEL
+									</p>
+									<div
+										className={
+											classes.chatbotSettingBoxContent
+										}
+									>
+										<Select
+											value={searchTerm}
+											onChange={handleSearchChange}
+											searchTerm={searchTerm}
+											setSearchTerm={setSearchTerm}
+											className={classes.selectContainer}
+											placeholder="Search for a channel"
+											inputClassName={
+												classes.inputContainer
+											}
+											indicatorClassName={
+												classes.indicator
+											}
+											disableSearch={false}
+										>
+											{filteredChannels
+											.filter((channel) => channel.type === 2)
+											.map((channel) => (
+												<SelectOption
+													key={channel.id}
+													value={channel.name}
+												>
+													{channel.name}
+												</SelectOption>
+											))}
+										</Select>
+									</div>
+								</div>
+								<div className={classes.chatbotSettingBox}>
+									<p
+										className={
+											classes.chatbotSettingBoxTitle
+										}
+									>
+										RADIO STATION
+									</p>
+									<div
+										className={
+											classes.chatbotSettingBoxContent
+										}
+									>
+										<Select
+											value={searchTerm}
+											onChange={handleSearchChange}
+											searchTerm={searchTerm}
+											setSearchTerm={setSearchTerm}
+											className={classes.selectContainer}
+											placeholder="Search for a channel"
+											inputClassName={
+												classes.inputContainer
+											}
+											indicatorClassName={
+												classes.indicator
+											}
+											disableSearch={false}
+										>
+											{filteredChannels
+											.filter((channel) => channel.type === 2)
+											.map((channel) => (
+												<SelectOption
+													key={channel.id}
+													value={channel.name}
+												>
+													{channel.name}
+												</SelectOption>
+											))}
+										</Select>
+									</div>
+								</div>
+					</div>}
 			</div>
 		</div>
 	);
