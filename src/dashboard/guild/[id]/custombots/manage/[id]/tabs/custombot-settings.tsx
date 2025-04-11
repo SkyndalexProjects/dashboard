@@ -249,7 +249,7 @@ const CustombotSettingsTabs = () => {
 												classes.sliderRangeContainer
 											}
 											discreteValues={[0, 1, 2]}
-											/>
+										/>
 									</div>
 								</div>
 							</div>

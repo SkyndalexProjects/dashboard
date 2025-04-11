@@ -24,14 +24,18 @@ export default function Slider({
 	const [value, setValue] = useState<number>(initialValue);
 	const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		let newValue = Number(e.target.value);
-	
+
 		if (discreteValues && discreteValues.length > 0) {
-			console.log("Discrete values:", discreteValues); // Debugging
 			newValue = discreteValues.reduce((prev, curr) =>
-				Math.abs(curr - newValue) < Math.abs(prev - newValue) ? curr : prev
+				Math.abs(curr - newValue) < Math.abs(prev - newValue)
+					? curr
+					: prev,
 			);
 		}
-	
+
+		// console.log("Slider value changed:", newValue);
+
+		// ADD HANDLING
 		setValue(newValue);
 	};
 
@@ -42,27 +46,27 @@ export default function Slider({
 		}
 	};
 
-    return (
-        <div className={className}>
-            <div className={classes.sliderLabel}>
-                <input
-                    type="number"
-                    value={value}
-                    onChange={handleInputChange}
-                    className={inputClassName}
-                    min={min}
-                    max={max}
-                />
-            </div>
-            <input
-                type="range"
-                min={min}
-                max={max}
-                step={step}
-                value={value}
-                onChange={handleSliderChange}
-                className={rageClassName}
-            />
-        </div>
-    );
+	return (
+		<div className={className}>
+			<div className={classes.sliderLabel}>
+				<input
+					type="number"
+					value={value}
+					onChange={handleInputChange}
+					className={inputClassName}
+					min={min}
+					max={max}
+				/>
+			</div>
+			<input
+				type="range"
+				min={min}
+				max={max}
+				step={step}
+				value={value}
+				onChange={handleSliderChange}
+				className={rageClassName}
+			/>
+		</div>
+	);
 }
