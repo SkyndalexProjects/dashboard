@@ -237,7 +237,19 @@ const CustombotSettingsTabs = () => {
 											classes.chatbotSettingBoxContent
 										}
 									>
-										{/* Dodaj tutaj suwaki lub inne elementy */}
+										<Slider
+											min={0}
+											max={2}
+											initialValue={1}
+											className={classes.sliderContainer}
+											inputClassName={
+												classes.sliderInputContainer
+											}
+											rageClassName={
+												classes.sliderRangeContainer
+											}
+											discreteValues={[0, 1, 2]}
+											/>
 									</div>
 								</div>
 							</div>
