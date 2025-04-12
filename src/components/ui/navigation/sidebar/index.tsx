@@ -32,11 +32,11 @@ const Sidebar = () => {
 			icon: "/economy.svg",
 			text: "Economy",
 		},
-		{
-			path: `/dashboard/guild/${guildId}/levels`,
-			icon: "/levels.svg",
-			text: "Levels",
-		},
+		// {
+		// 	path: `/dashboard/guild/${guildId}/levels`,
+		// 	icon: "/levels.svg",
+		// 	text: "Levels",
+		// },
 		{
 			path: `/dashboard/guild/${guildId}/radio`,
 			icon: "/radio.svg",

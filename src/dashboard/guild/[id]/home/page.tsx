@@ -184,7 +184,6 @@ export default function Page() {
 
 				const data = await response.json();
 
-				console.log("dataLogs", data);
 				const updatedLogs: Logs[] = [];
 				for (const log of data) {
 					console.log("log", log);

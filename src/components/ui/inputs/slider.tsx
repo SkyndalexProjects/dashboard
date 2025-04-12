@@ -33,9 +33,8 @@ export default function Slider({
 			);
 		}
 
-		// console.log("Slider value changed:", newValue);
+		console.log("Slider value changed:", newValue);
 
-		// ADD HANDLING
 		setValue(newValue);
 	};
 
