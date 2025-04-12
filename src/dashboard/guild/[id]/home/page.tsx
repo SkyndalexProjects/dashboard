@@ -154,7 +154,7 @@ export default function Page() {
 				},
 			);
 			if (!response.ok) {
-				throw new Error(`Failed to fetch user with ID: ${userId}`);
+				console.error(`Failed to fetch user with ID: ${userId}`);
 			}
 			const users = await response.json();
 			return users[0];
@@ -179,7 +179,7 @@ export default function Page() {
 				);
 
 				if (!response.ok) {
-					throw new Error("Failed to fetch logs");
+					 console.error("Failed to fetch logs");
 				}
 
 				const data = await response.json();
@@ -219,7 +219,6 @@ export default function Page() {
 	};
 
 	return (
-		console.log("logs", logs),
 		(
 			<div>
 				<Navbar />
