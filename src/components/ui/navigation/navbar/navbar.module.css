@@ -17,11 +17,9 @@ nav {
 	width: 100%;
 	padding: 10px;
 	position: fixed;
-	position: -webkit-sticky;
 	top: 0;
 	left: 0;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-	caret-color: none;
 	overflow: visible;
 	flex-wrap: wrap;
 	background: linear-gradient(to bottom, #1e2230, rgb(29, 33, 44) 100%);
@@ -29,13 +27,14 @@ nav {
 }
 
 .navTitle {
-	font-family: "Be Vietnam Pro", sans-serif;
-	color: white;
-	font-weight: 1000;
-	font-size: 25px;
-	padding: 10px;
-	overflow: hidden;
-	margin-left: 3px;
+	color: #FFF;
+	font-family: Poppins, sans-serif;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	margin-left: 10px;
+	margin-top: 20px;
 }
 
 .navRight {
@@ -49,7 +48,6 @@ nav {
 	font-family: "Noto Sans", sans-serif;
 	font-weight: 1000;
 	color: #a3a3a3;
-	font-weight: 500;
 	font-size: 24px;
 	padding: 17px;
 }
@@ -57,20 +55,19 @@ nav {
 	font-family: "Noto Sans", sans-serif;
 	font-weight: 1000;
 	color: white;
-	font-weight: 500;
 	font-size: 24px;
 }
 .guildsList {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 16px;
+	border-radius: 12px;
 	justify-content: center;
 	align-items: center;
 	background-color: rgba(0, 0, 0, 0.2);
-	border-radius: 10px;
 	width: auto;
-	height: 93px;
-	margin-left: 30px;
+	height: 68px;
+	margin-left: 140px;
 	padding: 15px;
 	box-sizing: border-box;
 }
@@ -78,14 +75,15 @@ nav {
 .guildIcon {
 	background-size: cover;
 	background-position: center;
-	width: 59px;
-	height: 59px;
+	width: 46px;
+	height: 46px;
 	border-radius: 50%;
+	margin-top: -4px;
 	transition: transform 0.3s ease;
 }
 
 .guildIcon:hover {
-	transform: scale(1.5);
+	transform: scale(1.2);
 }
 .guildIconContainer {
 	position: relative;
@@ -98,11 +96,11 @@ nav {
 	color: #fff;
 	text-align: center;
 	border-radius: 6px;
-	padding: 5px 10px;
+	padding: 3px 7px;
 	position: absolute;
 	z-index: 1000;
 	left: 50%;
-	top: 85px;
+	top: 60px;
 	transform: translateX(-50%);
 	opacity: 0;
 	transition: opacity 0.3s;
