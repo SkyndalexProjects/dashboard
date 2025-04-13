@@ -1,5 +1,4 @@
 import { useState } from "react";
-import classes from "./inputs.module.css";
 interface SwitchProps {
 	switchClassName: string;
 	knobClassName: string;
@@ -11,13 +10,11 @@ export default function Switch({
 	const [isOn, setIsOn] = useState(false);
 
 	const toggleSwitch = () => setIsOn(!isOn);
+
 	return (
-		<div className={switchClassName} onClick={toggleSwitch}>
-			<div
-				className={`${knobClassName} ${
-					isOn ? classes.on : classes.off
-				}`}
-			/>
-		</div>
+		<label className={switchClassName}>
+			<input type={"checkbox"} checked={isOn} onChange={toggleSwitch} />
+			<span className={`${knobClassName}`} />
+		</label>
 	);
 }
