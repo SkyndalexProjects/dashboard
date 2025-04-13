@@ -27,7 +27,10 @@ createRoot(document.getElementById("root")!).render(
 						element={
 							<Routes>
 								<Route path="home" element={<Home />} />
-								<Route path="custombots" element={<Custombots />} />
+								<Route
+									path="custombots"
+									element={<Custombots />}
+								/>
 								<Route
 									path="custombots/list"
 									element={<CustombotList />}
@@ -54,5 +57,5 @@ createRoot(document.getElementById("root")!).render(
 				</Routes>
 			</Provider>
 		</BrowserRouter>
-	</StrictMode>
+	</StrictMode>,
 );

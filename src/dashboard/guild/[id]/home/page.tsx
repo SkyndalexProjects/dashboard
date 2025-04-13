@@ -179,7 +179,7 @@ export default function Page() {
 				);
 
 				if (!response.ok) {
-					 console.error("Failed to fetch logs");
+					console.error("Failed to fetch logs");
 				}
 
 				const data = await response.json();
@@ -202,6 +202,8 @@ export default function Page() {
 		})();
 	}, [id]);
 
+	// TODO: handling
+
 	const handleStarboardChannelChange = (value: string) => {
 		setStarboardChannel(value);
 	};
@@ -219,208 +221,190 @@ export default function Page() {
 	};
 
 	return (
-		(
-			<div>
-				<Navbar />
-				<Sidebar />
-				<BetaWarning />
-				<JoinSupportAlert />
+		<div>
+			<Navbar />
+			<Sidebar />
+			<BetaWarning />
+			<JoinSupportAlert />
 
-				<div className={classes.mainSettingsContainer}>
-					<p className={classes.mainSettingsSectionTitle}>
-						{" "}
-						Main settings
-						<svg
-							width="185"
-							height="4"
-							viewBox="0 0 185 4"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-							style={{
-								flexShrink: 0,
-								strokeWidth: 4,
-								stroke: "#275EE7",
-							}}
-							className={classes.sectionTitleVector}
-						>
-							<line x1="0" y1="2" x2="185" y2="2" />
-						</svg>
-					</p>
-					<SettingContainer title="Starboard">
-						<SettingInput
-							title="Starboard Channel"
-							options={filteredChannels(
-								starboardChannelSearchTerm,
-							)}
-							searchTerm={starboardChannelSearchTerm}
-							setSearchTerm={setStarboardChannelSearchTerm}
-							onChange={handleStarboardChannelChange}
-						/>
-						<SettingInput
-							title="Starboard Type"
-							options={starboardTypeChoices.map((choice) => ({
-								id: choice.value,
-								name: choice.label,
-							}))}
-							searchTerm={starboardTypeSearchTerm}
-							setSearchTerm={setStarboardTypeSearchTerm}
-							onChange={handleStarboardTypeChange}
-						/>
-					</SettingContainer>
-					<SettingContainer title="Welcoming">
-						<SettingInput
-							title="Welcome Channel"
-							options={filteredChannels(welcomeChannelSearchTerm)}
-							searchTerm={welcomeChannelSearchTerm}
-							setSearchTerm={setWelcomeChannelSearchTerm}
-							onChange={handleWelcomeChannelChange}
-						/>
-						<SettingInput
-							title="Goodbye Channel"
-							options={filteredChannels(goodbyeChannelSearchTerm)}
-							searchTerm={goodbyeChannelSearchTerm}
-							setSearchTerm={setGoodbyeChannelSearchTerm}
-							onChange={handleGoodbyeChannelChange}
-						/>
-					</SettingContainer>
-					<SettingContainer title="Additionals">
-						<SettingInput
-							title="Auto Role"
-							options={filteredRoles(autoRoleSearchTerm)}
-							searchTerm={autoRoleSearchTerm}
-							setSearchTerm={setAutoRoleSearchTerm}
-							onChange={handleAutoRoleChange}
-						/>
-					</SettingContainer>
-				</div>
+			<div className={classes.mainSettingsContainer}>
+				<p className={classes.mainSettingsSectionTitle}>
+					{" "}
+					Main settings
+					<svg
+						width="185"
+						height="4"
+						viewBox="0 0 185 4"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						style={{
+							flexShrink: 0,
+							strokeWidth: 4,
+							stroke: "#275EE7",
+						}}
+						className={classes.sectionTitleVector}
+					>
+						<line x1="0" y1="2" x2="185" y2="2" />
+					</svg>
+				</p>
+				<SettingContainer title="Starboard">
+					<SettingInput
+						title="Starboard Channel"
+						options={filteredChannels(starboardChannelSearchTerm)}
+						searchTerm={starboardChannelSearchTerm}
+						setSearchTerm={setStarboardChannelSearchTerm}
+						onChange={handleStarboardChannelChange}
+					/>
+					<SettingInput
+						title="Starboard Type"
+						options={starboardTypeChoices.map((choice) => ({
+							id: choice.value,
+							name: choice.label,
+						}))}
+						searchTerm={starboardTypeSearchTerm}
+						setSearchTerm={setStarboardTypeSearchTerm}
+						onChange={handleStarboardTypeChange}
+					/>
+				</SettingContainer>
+				<SettingContainer title="Welcoming">
+					<SettingInput
+						title="Welcome Channel"
+						options={filteredChannels(welcomeChannelSearchTerm)}
+						searchTerm={welcomeChannelSearchTerm}
+						setSearchTerm={setWelcomeChannelSearchTerm}
+						onChange={handleWelcomeChannelChange}
+					/>
+					<SettingInput
+						title="Goodbye Channel"
+						options={filteredChannels(goodbyeChannelSearchTerm)}
+						searchTerm={goodbyeChannelSearchTerm}
+						setSearchTerm={setGoodbyeChannelSearchTerm}
+						onChange={handleGoodbyeChannelChange}
+					/>
+				</SettingContainer>
+				<SettingContainer title="Additionals">
+					<SettingInput
+						title="Auto Role"
+						options={filteredRoles(autoRoleSearchTerm)}
+						searchTerm={autoRoleSearchTerm}
+						setSearchTerm={setAutoRoleSearchTerm}
+						onChange={handleAutoRoleChange}
+					/>
+				</SettingContainer>
+			</div>
 
-				<div className={classes.dashboardLogContainer}>
-					<p className={classes.dashboardLogSectionTitle}>
-						{" "}
-						Dashboard log
-						<svg
-							width="185"
-							height="4"
-							viewBox="0 0 185 4"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-							style={{
-								flexShrink: 0,
-								strokeWidth: 4,
-								stroke: "#275EE7",
-							}}
-							className={classes.sectionTitleVector}
-						>
-							<line x1="0" y1="2" x2="185" y2="2" />
-						</svg>
-					</p>
-					<div className={classes.logTableContainer}>
-						<table className={classes.logTable}>
-							<thead>
-								<tr>
-									<th>User</th>
-									<th>Action</th>
-									<th>Date</th>
-								</tr>
-							</thead>
-							<tbody>
-								{logs.map((log) => (
-									<tr key={log.id}>
-										<td>
-											<div>
-												<img
-													src={`https://cdn.discordapp.com/avatars/${log.userId}/${log.avatar}.webp?size=128`}
-													alt={`avatar`}
-													className={classes.avatar}
-												/>
-												<p
-													className={
-														classes.tUsername
-													}
-												>
-													{log.username}
-												</p>
-											</div>
-										</td>
-										<td>
-											<p className={classes.tValue}>
-												{logValues[log.value] ||
-													log.value}
-
-												<button
-													className={
-														classes.valueDetails
-													}
-												>
-													View details
-												</button>
+			<div className={classes.dashboardLogContainer}>
+				<p className={classes.dashboardLogSectionTitle}>
+					{" "}
+					Dashboard log
+					<svg
+						width="185"
+						height="4"
+						viewBox="0 0 185 4"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						style={{
+							flexShrink: 0,
+							strokeWidth: 4,
+							stroke: "#275EE7",
+						}}
+						className={classes.sectionTitleVector}
+					>
+						<line x1="0" y1="2" x2="185" y2="2" />
+					</svg>
+				</p>
+				<div className={classes.logTableContainer}>
+					<table className={classes.logTable}>
+						<thead>
+							<tr>
+								<th>User</th>
+								<th>Action</th>
+								<th>Date</th>
+							</tr>
+						</thead>
+						<tbody>
+							{logs.map((log) => (
+								<tr key={log.id}>
+									<td>
+										<div>
+											<img
+												src={`https://cdn.discordapp.com/avatars/${log.userId}/${log.avatar}.webp?size=128`}
+												alt={`avatar`}
+												className={classes.avatar}
+											/>
+											<p className={classes.tUsername}>
+												{log.username}
 											</p>
-										</td>
-										<td>
-											<div
-												className={
-													classes.dateContainer
-												}
+										</div>
+									</td>
+									<td>
+										<p className={classes.tValue}>
+											{logValues[log.value] || log.value}
+
+											<button
+												className={classes.valueDetails}
 											>
-												<p className={classes.tDate}>
-													{new Date(log.date)
-														.toLocaleDateString(
-															"en-US",
-															{
-																day: "2-digit",
-																month: "2-digit",
-																year: "numeric",
-															},
-														)
-														.replace(/\//g, ".")}
-												</p>
-												<p className={classes.tHour}>
-													{new Date(
-														log.date,
-													).toLocaleTimeString(
+												View details
+											</button>
+										</p>
+									</td>
+									<td>
+										<div className={classes.dateContainer}>
+											<p className={classes.tDate}>
+												{new Date(log.date)
+													.toLocaleDateString(
 														"en-US",
 														{
-															hour: "2-digit",
-															minute: "2-digit",
-															timeZone: "UTC",
+															day: "2-digit",
+															month: "2-digit",
+															year: "numeric",
 														},
-													)}
-												</p>
-											</div>
-										</td>
-									</tr>
-								))}
-							</tbody>
-						</table>
-					</div>
-				</div>
-
-				<div className={classes.recentChangesContainer}>
-					<p className={classes.recentChangesSectionTitle}>
-						{" "}
-						Recent changes
-						<svg
-							width="185"
-							height="4"
-							viewBox="0 0 185 4"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-							style={{
-								flexShrink: 0,
-								strokeWidth: 4,
-								stroke: "#275EE7",
-							}}
-							className={classes.sectionTitleVector}
-						>
-							<line x1="0" y1="2" x2="185" y2="2" />
-						</svg>
-					</p>
-
-					<div className={classes.recentChangesTableContainer}>
-						<HomeTabs />
-					</div>
+													)
+													.replace(/\//g, ".")}
+											</p>
+											<p className={classes.tHour}>
+												{new Date(
+													log.date,
+												).toLocaleTimeString("en-US", {
+													hour: "2-digit",
+													minute: "2-digit",
+													timeZone: "UTC",
+												})}
+											</p>
+										</div>
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
 				</div>
 			</div>
-		)
+
+			<div className={classes.recentChangesContainer}>
+				<p className={classes.recentChangesSectionTitle}>
+					{" "}
+					Recent changes
+					<svg
+						width="185"
+						height="4"
+						viewBox="0 0 185 4"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						style={{
+							flexShrink: 0,
+							strokeWidth: 4,
+							stroke: "#275EE7",
+						}}
+						className={classes.sectionTitleVector}
+					>
+						<line x1="0" y1="2" x2="185" y2="2" />
+					</svg>
+				</p>
+
+				<div className={classes.recentChangesTableContainer}>
+					<HomeTabs />
+				</div>
+			</div>
+		</div>
 	);
 }

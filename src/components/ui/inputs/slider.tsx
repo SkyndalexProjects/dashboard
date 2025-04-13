@@ -33,8 +33,6 @@ export default function Slider({
 			);
 		}
 
-		console.log("Slider value changed:", newValue);
-
 		setValue(newValue);
 	};
 

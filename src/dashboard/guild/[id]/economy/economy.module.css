@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    margin-left: 362px;
-    margin-top: 170px;
+    margin-left: 378px;
+    margin-top: 134px;
     color: #FFF;
     text-align: center;
     font-family: Poppins, sans-serif;
@@ -12,6 +12,98 @@
     font-weight: 700;
     line-height: normal;
 }
+.setting-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
 .section-title-vector {
     position: relative;
+}
+.settings-money-section {
+    width: 584.98px;
+    height: 360.551px;
+    transform: rotate(-0.071deg);
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.30);
+    margin-left: 378px;
+    margin-top: 235px;
+    position: absolute;
+}
+.setting-title {
+
+    color: #949BA4;
+    font-family: Poppins, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-left: 21px;
+}
+.input {
+    width: 209px;
+    height: 42px;
+    caret-color: transparent;
+    border-radius: 10px;
+    border: 1px solid rgba(1, 1,1, 0.20);
+    margin-left: 21px;
+}
+.hint {
+    color: #949BA4;
+    font-family: Poppins, sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    margin-left: 16px;
+    margin-top: -11px;
+}
+.hint img {
+    margin-right: 8px;
+    margin-top: -5px;
+}
+.switch {
+    width: 29px;
+    height: 16px;
+    border-radius: 13px;
+    background-color: #1e293b;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    caret-color: transparent;
+}
+
+.knob {
+    caret-color: transparent;
+    width: 9px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #60a5fa;
+    transition: transform 0.3s ease;
+}
+
+.additional-setting-title {
+    display: flex;
+    flex-direction: row;
+    color: rgba(255, 255, 255, 0.30);
+    font-family: Poppins, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    position: relative;
+    gap: 9px;
+
+}
+.additional-settings {
+    width: 100%;
+    text-wrap: nowrap;
+    position: relative;
+    justify-content: space-between;
+    right: 10px;
 }

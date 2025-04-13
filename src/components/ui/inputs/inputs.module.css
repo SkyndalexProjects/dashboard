@@ -64,3 +64,10 @@
 .rotate {
 	transform: rotate(180deg);
 }
+.on {
+	transform: translateX(15px);
+}
+
+.off {
+	transform: translateX(3px);
+}

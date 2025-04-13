@@ -15,7 +15,7 @@ export default function InputType({
 	type,
 }: InputProps) {
 	return (
-		<div className={className}>
+		<div>
 			{placeholderLogo && (
 				<img
 					src={placeholderLogo}
