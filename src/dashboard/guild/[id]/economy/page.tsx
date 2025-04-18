@@ -4,6 +4,7 @@ import classes from "./economy.module.css";
 import InputType from "@/components/ui/inputs/input.tsx";
 import { useState } from "react";
 import Switch from "@/components/ui/inputs/switch.tsx";
+import EconomyCommandsSettings from "@/dashboard/guild/[id]/economy/commands-settings/commands-settings.tsx";
 
 export default function Economy() {
 	const [setStatus] = useState("");
@@ -107,6 +108,30 @@ export default function Economy() {
 						</div>
 					</div>
 				</div>
+			</div>
+
+			<p className={classes.commandsSettingsTitle}>
+				{" "}
+				Commands settings{" "}
+				<svg
+					width="185"
+					height="4"
+					viewBox="0 0 185 4"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					style={{
+						flexShrink: 0,
+						strokeWidth: 4,
+						stroke: "#275EE7",
+					}}
+					className={classes.sectionTitleVector}
+				>
+					<line x1="0" y1="2" x2="185" y2="2" />
+				</svg>
+			</p>
+
+			<div className={classes.commandsSettingsSection}>
+				<EconomyCommandsSettings />
 			</div>
 		</div>
 	);

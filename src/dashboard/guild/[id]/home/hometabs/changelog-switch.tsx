@@ -1,10 +1,12 @@
 import classes from "./hometabs.module.css";
 import { useState } from "react";
+import InputType from "@/components/ui/inputs/input.tsx";
 const HomeTabs = () => {
 	const [activeTab, setActiveTab] = useState("Dashboard");
 	const handleTabClick = (tab: string) => {
 		setActiveTab(tab);
 	};
+
 	return (
 		<div>
 			<div className={classes.tabsContainer}>
@@ -54,5 +56,4 @@ const HomeTabs = () => {
 		</div>
 	);
 };
-
 export default HomeTabs;

@@ -88,5 +88,8 @@ interface User {
 	public_flags: number;
 	verified: boolean;
 }
-
+interface ModalProps {
+	isOpen: boolean;
+	onClose: () => void;
+}
 type UserData = User[];

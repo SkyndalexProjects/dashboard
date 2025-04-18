@@ -1,7 +1,7 @@
 import React from "react";
-import classes from "./modals.module.css";
+import classes from "@/dashboard/guild/[id]/custombots/list/modals/modals.module.css";
 
-const CustomBotModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+const CreateReplyModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 	if (!isOpen) return null;
 
 	return (
@@ -10,16 +10,16 @@ const CustomBotModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 				<button onClick={onClose} className={classes.closeButton}>
 					X
 				</button>
-				<h2>Add new custom bot</h2>
+				<h2> Add new reply</h2>
 
 				<div className={classes.botForm}>
 					<form>
 						<label htmlFor="bot-token" className={classes.label}>
-							Your bot token
+							Your custom reply
 							<input
-								id="bot-token"
-								type="password"
-								placeholder="Enter token"
+								id="eco-reply"
+								type="text"
+								placeholder="Enter reply"
 								autoComplete="off"
 							/>
 						</label>
@@ -29,5 +29,4 @@ const CustomBotModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 		</div>
 	);
 };
-
-export default CustomBotModal;
+export default CreateReplyModal;
