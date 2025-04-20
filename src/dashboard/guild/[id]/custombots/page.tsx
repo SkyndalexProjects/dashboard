@@ -30,6 +30,7 @@ export default function Page() {
 	const userId = user.id;
 	const redirectUser = async () => {
 		try {
+			// @ts-ignore
 			const response = await fetch(
 				`${import.meta.env.VITE_API_URL}/guilds/${id}/custombots/get`,
 				{
@@ -76,6 +77,7 @@ export default function Page() {
 	}
 	const handleSaveButton = async () => {
 		try {
+			// @ts-ignore
 			const response = await fetch(
 				`${import.meta.env.VITE_API_URL}/guilds/${id}/custombots/add`,
 				{

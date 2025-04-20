@@ -14,6 +14,9 @@ export default function GuildsList() {
 	const haveGuildsFetched = useSelector(
 		(state: RootState) => state.guilds.haveGuildsFetched,
 	);
+	const isUserFetched = useSelector(
+		(state: RootState) => state.user.isUserFetched,
+	);
 	const user = useSelector(
 		(state: RootState) => state.user.data as unknown as User,
 	);
@@ -22,13 +25,10 @@ export default function GuildsList() {
 		if (!haveGuildsFetched) {
 			dispatch(fetchGuilds());
 		}
-		if (Object.keys(user).length === 0) {
+		if (!isUserFetched) {
 			dispatch(fetchUser());
 		}
-		if (guilds.length === 0 && haveGuildsFetched) {
-			dispatch(fetchGuilds());
-		}
-	}, [dispatch, haveGuildsFetched, user, guilds]);
+	}, []);
 
 	const { t } = useTranslation();
 	const withBotAdded = guilds.filter(

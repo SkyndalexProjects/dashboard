@@ -22,7 +22,6 @@ nav {
 	overflow: visible;
 	flex-wrap: wrap;
 	background: linear-gradient(to bottom, #1e2230, rgb(29, 33, 44) 100%);
-	z-index: 1000;
 }
 
 .navTitle {
@@ -35,7 +34,62 @@ nav {
 	margin-left: 10px;
 	margin-top: 20px;
 }
+.version-container {
+	display: flex;
+	flex-direction: row;
+	width: 60px;
+	height: 26px;
+	border-radius: 3px;
+	background: #3E6BFF;
+	margin-left: 8px;
+	margin-top: -5px;
+}
+.version {
+	color: #FFF;
+	font-family: "Be Vietnam Pro", sans-serif;
+	font-size: 14px;
+	margin: 0;
+	padding: 0;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	font-style: normal;
+	font-weight: 800;
+	line-height: normal;
+}
+.guild-chooser {
+	width: auto;
+	max-width: 355px;
+	min-width: 150px;
+	height: 55px;
+	margin-left: 20px;
+	border-radius: 15px;
+	background: #0000004C;
+	z-index: 1000;
+}
+.current-guild-name {
+	color: #FFF;
+	font-family: "Be Vietnam Pro", sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin-left: 30px;
+	margin-top: -30px;
 
+}
+.guildIcon {
+	width: 31px;
+	height: 31px;
+	border-radius: 31px;
+	margin-top: 12px;
+	margin-right: 100px;
+}
 .navRight {
 	display: flex;
 	align-items: center;
@@ -71,7 +125,7 @@ nav {
 	box-sizing: border-box;
 }
 
-.guildIcon {
+.botIcon {
 	background-size: cover;
 	background-position: center;
 	width: 46px;

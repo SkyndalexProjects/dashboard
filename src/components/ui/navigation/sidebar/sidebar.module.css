@@ -5,7 +5,7 @@
 	position: fixed;
 	top: 125px;
 	left: 0;
-	z-index: 1000;
+	z-index: 1;
 }
 .sidebarItem img {
 	width: 60px;

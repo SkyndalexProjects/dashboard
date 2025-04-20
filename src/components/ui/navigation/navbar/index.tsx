@@ -1,26 +1,26 @@
-import GuildsDropdown from "./guilds";
-import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
 import { useNavigate } from "react-router-dom";
 import classes from "./navbar.module.css";
 import Select, { SelectOption } from "../../inputs/search";
 import { useState, useEffect } from "react";
+import { fetchGuilds} from "@/thunks/guilds";
 import { fetchUser } from "@/thunks/user";
+import ChooseGuildModal from "@/components/ui/navigation/navbar/modals/ChooseGuild";
 const Navbar = () => {
-	const location = useLocation();
 	const navigate = useNavigate();
 	const dispatch = useDispatch<AppDispatch>();
-	const guildId = location.pathname.split("/")[3];
-	const guild = useSelector((state: RootState) =>
-		Array.isArray(state.guilds.data)
-			? state.guilds.data.find((x) => x.id === guildId)
-			: undefined,
-	);
 	const [searchTerm, setSearchTerm] = useState("");
 	const getCurrentUser = useSelector(
 		(state: RootState) => state.user.data as unknown as User,
 	);
+	const guildId = location.pathname.split("/")[3];
+	const getCurrentGuild = useSelector((state: RootState) =>
+		Array.isArray(state.guilds.data)
+			? state.guilds.data.find((x) => x.id === guildId)
+			: undefined,
+	);
+	console.log("guildDetails", getCurrentGuild);
 	const haveUserFetched = useSelector(
 		(state: RootState) => state.user.isUserFetched,
 	);
@@ -29,7 +29,10 @@ const Navbar = () => {
 		if (!haveUserFetched) {
 			dispatch(fetchUser());
 		}
-	}, [dispatch, haveUserFetched]);
+		if (!getCurrentGuild) {
+			dispatch(fetchGuilds());
+		}
+	}, []);
 
 	const options = [
 		{ id: "user_panel", name: "Go to user panel" },
@@ -44,34 +47,43 @@ const Navbar = () => {
 		}
 	};
 
-	const isUserPath = location.pathname.includes("/user");
+	const generateGuildIcon = `https://cdn.discordapp.com/icons/${getCurrentGuild?.id}/${getCurrentGuild?.icon}.webp`;
+	console.log("generateGuildIcon", generateGuildIcon);
+	console.log(classes.guildIcon);
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const openModal = () => setIsModalOpen(true);
+	const closeModal = () => setIsModalOpen(false);
 
 	return (
 		<>
 			<nav>
-				{isUserPath ? (
+				<img
+					className={classes.botIcon}
+					src={`https://cdn.discordapp.com/avatars/1059594156839809074/f2ed3c7590d834ed2d86912124c4ee1e.webp?size=1024`}
+					alt="Guild Icon"
+					onError={(e) => {
+						e.currentTarget.src = "/default_guild_icon.png";
+					}}
+				/>
+				<p className={classes.navTitle}>
+					Dashboard
+				</p>
+				<div className={classes.versionContainer}>
+					<p className={classes.version}> v0.0.0 </p>
+				</div>
+				<button className={classes.guildChooser}
+				onClick={openModal}
+				>
 					<img
 						className={classes.guildIcon}
-						src={`https://cdn.discordapp.com/avatars/${getCurrentUser.id}/${getCurrentUser.avatar}.png`}
-						alt="User Avatar"
-						onError={(e) => {
-							e.currentTarget.src = "/default_guild_icon.png";
-						}}
-					/>
-				) : (
-					<img
-						className={classes.guildIcon}
-						src={`https://cdn.discordapp.com/icons/${guild?.id}/${guild?.icon}.png`}
+						src={generateGuildIcon}
 						alt="Guild Icon"
 						onError={(e) => {
 							e.currentTarget.src = "/default_guild_icon.png";
 						}}
 					/>
-				)}
-				<p className={classes.navTitle}>
-					{isUserPath ? getCurrentUser?.username : guild?.name}
-				</p>
-				<GuildsDropdown />
+					<p className={classes.currentGuildName}> {getCurrentGuild?.name} </p>
+				</button>
 				<div className={classes.navRight}>
 					<Select
 						value={searchTerm}
@@ -94,6 +106,7 @@ const Navbar = () => {
 					</Select>
 				</div>
 			</nav>
+			<ChooseGuildModal isOpen={isModalOpen} onClose={closeModal} />
 		</>
 	);
 };

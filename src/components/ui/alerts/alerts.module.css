@@ -4,7 +4,7 @@
 	right: 45%;
 	position: relative;
 	margin-top: 15px;
-	z-index: 100;
+	z-index: 1;
 }
 .support-join-warning-icon {
 	width: 988px;
@@ -13,14 +13,14 @@
 	top: 10px;
 	position: relative;
 	margin-top: 15px;
-	z-index: 100;
+	z-index: 1;
 }
 .beta-warning-overlay {
 	width: max-content;
 	height: 67px;
 	border-radius: 15px;
 	border: 1px solid #b19b5f;
-	background-color: rgba(0, 0, 0, 0.2);
+	background-color: #00000033;
 	margin-left: 376px;
 	margin-top: 10%;
 	position: relative;
@@ -39,7 +39,7 @@
 .beta-warning-overlay-text {
 	word-break: break-word;
 	color: #fff;
-	font-family: "Be Vietnam Pro";
+	font-family: "Be Vietnam Pro", sans-serif;
 	font-size: 20px;
 	font-style: normal;
 	font-weight: 700;
@@ -54,16 +54,16 @@
 .support-join-warning-text {
 	word-break: break-word;
 	color: #fff;
-	font-family: "Be Vietnam Pro";
+	font-family: "Be Vietnam Pro", sans-serif;
 	font-size: 20px;
 	font-style: normal;
 	font-weight: 700;
-	line-height: 1.5; /* Zwiększenie odstępu między liniami */
-	white-space: normal; /* Pozwala na zawijanie tekstu */
+	line-height: 1.5;
+	white-space: normal;
 	position: relative;
 	flex-shrink: 0;
 	margin-top: -40px;
-	margin-left: 80px; /* Zmniejszenie marginesu dla lepszego dopasowania */
+	margin-left: 80px;
 	padding-right: 20px;
-	max-width: 90%; /* Ograniczenie szerokości tekstu */
+	max-width: 90%;
 }

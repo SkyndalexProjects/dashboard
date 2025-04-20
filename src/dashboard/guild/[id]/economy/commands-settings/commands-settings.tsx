@@ -1,8 +1,9 @@
 import { useState, useMemo } from "react";
 import classes from "./commands-settings.module.css";
-import InputType from "@/components/ui/inputs/input.tsx";
-import Switch from "@/components/ui/inputs/switch.tsx";
-import CreateReplyModal from "@/dashboard/guild/[id]/economy/commands-settings/modals/CreateReply.tsx";
+import InputType from "@/components/ui/inputs/input";
+import Switch from "@/components/ui/inputs/switch";
+import CreateReplyModal from "@/dashboard/guild/[id]/economy/commands-settings/modals/CreateReply";
+import React from "react";
 const EconomyCommandsSettings = () => {
 	const [activeTab, setActiveTab] = useState("Work");
 	const handleTabClick = (tab: string) => {

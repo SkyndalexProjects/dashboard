@@ -1,15 +1,16 @@
 import Navbar from "@/components/ui/navigation/navbar";
 import Sidebar from "@/components/ui/navigation/sidebar";
 import classes from "./economy.module.css";
-import InputType from "@/components/ui/inputs/input.tsx";
+import InputType from "@/components/ui/inputs/input";
 import { useState } from "react";
-import Switch from "@/components/ui/inputs/switch.tsx";
-import EconomyCommandsSettings from "@/dashboard/guild/[id]/economy/commands-settings/commands-settings.tsx";
+import Switch from "@/components/ui/inputs/switch";
+import EconomyCommandsSettings from "@/dashboard/guild/[id]/economy/commands-settings/commands-settings";
 
 export default function Economy() {
 	const [setStatus] = useState("");
 
 	const handleSymbolChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		// @ts-ignore
 		setStatus(e.target.value);
 	};
 
