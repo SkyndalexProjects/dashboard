@@ -68,6 +68,9 @@ nav {
 	border-radius: 15px;
 	background: #0000004C;
 	z-index: 1000;
+	display: flex;
+	align-items: center;
+
 }
 .current-guild-name {
 	color: #FFF;
@@ -80,16 +83,16 @@ nav {
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	margin-left: 30px;
-	margin-top: -30px;
-
+	margin-left: 10px;
 }
 .guildIcon {
 	width: 31px;
 	height: 31px;
 	border-radius: 31px;
-	margin-top: 12px;
-	margin-right: 100px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
 }
 .navRight {
 	display: flex;
@@ -111,20 +114,6 @@ nav {
 	color: white;
 	font-size: 24px;
 }
-.guildsList {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 16px;
-	border-radius: 12px;
-	justify-content: center;
-	align-items: center;
-	background-color: rgba(0, 0, 0, 0.2);
-	width: auto;
-	height: 68px;
-	margin-left: 140px;
-	padding: 15px;
-	box-sizing: border-box;
-}
 
 .botIcon {
 	background-size: cover;
@@ -134,10 +123,6 @@ nav {
 	border-radius: 50%;
 	margin-top: -4px;
 	transition: transform 0.3s ease;
-}
-
-.guildIcon:hover {
-	transform: scale(1.2);
 }
 .guildIconContainer {
 	position: relative;
@@ -163,39 +148,6 @@ nav {
 .guildIconContainer:hover .guildNameTooltip {
 	visibility: visible;
 	opacity: 1;
-}
-.guildIcon:hover {
-	cursor: pointer;
-}
-@keyframes loading {
-	0% {
-		transform: translateX(-100%);
-	}
-	100% {
-		transform: translateX(100%);
-	}
-}
-.loading {
-	position: relative;
-	background-color: rgba(0, 0, 0, 0.2);
-	overflow: hidden;
-}
-
-.loading::after {
-	display: block;
-	content: "";
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	transform: translateX(-100%);
-	background: linear-gradient(
-		90deg,
-		transparent,
-		rgba(134, 134, 134, 0.2),
-		transparent
-	);
-
-	animation: loading 0.8s infinite;
 }
 .selectContainer {
 	border-radius: 7px;

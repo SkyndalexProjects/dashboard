@@ -20,7 +20,7 @@ const Navbar = () => {
 			? state.guilds.data.find((x) => x.id === guildId)
 			: undefined,
 	);
-	console.log("guildDetails", getCurrentGuild);
+
 	const haveUserFetched = useSelector(
 		(state: RootState) => state.user.isUserFetched,
 	);
@@ -48,8 +48,7 @@ const Navbar = () => {
 	};
 
 	const generateGuildIcon = `https://cdn.discordapp.com/icons/${getCurrentGuild?.id}/${getCurrentGuild?.icon}.webp`;
-	console.log("generateGuildIcon", generateGuildIcon);
-	console.log(classes.guildIcon);
+
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const openModal = () => setIsModalOpen(true);
 	const closeModal = () => setIsModalOpen(false);
@@ -69,7 +68,7 @@ const Navbar = () => {
 				<div className={classes.versionContainer}>
 					<p className={classes.version}> v0.0.0 </p>
 				</div>
-				<button className={classes.guildChooser} onClick={openModal}>
+				<button onClick={openModal} className={classes.guildChooser}>
 					<img
 						className={classes.guildIcon}
 						src={generateGuildIcon}
