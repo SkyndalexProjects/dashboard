@@ -17,6 +17,7 @@
 	vertical-align: middle;
 	width: 30px;
 	height: 30px;
+	padding-left: 10px;
 }
 
 .sidebar button {
@@ -32,9 +33,7 @@
 	width: 315px;
 	height: 67px;
 	color: white;
-
 }
-
 .sidebarItem {
 
 	font-family: "Noto Sans", sans-serif;

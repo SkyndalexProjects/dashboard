@@ -20,7 +20,7 @@ const Sidebar = () => {
 		},
 		{
 			path: `/dashboard/guild/${guildId}/levels`,
-			icon: "/gear.svg",
+			icon: "/gear-icon-sidebar.svg",
 			text: "Main settings",
 		},
 		{
