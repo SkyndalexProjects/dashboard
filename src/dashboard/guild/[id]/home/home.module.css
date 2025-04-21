@@ -1,3 +1,6 @@
+.alerts {
+	margin-top: 120px;
+}
 .container {
 	width: 717px;
 	height: 428px;
@@ -105,7 +108,7 @@ flex-direction: column;
 caret-color: transparent;
 	position: absolute;
 	color: #FFF;
-font: 700 24px/normal Poppins;
+font: 700 20px/normal Poppins;
 margin-left: 1035px;
 margin-top: -40px;
 }
@@ -127,10 +130,12 @@ border-radius: 13px 13px 10px 10px;
     width: 100%;
     border-collapse: collapse;
 	text-align: left;
+	border-radius: 13px 13px 0px 0px;
+
 }
 .log-table th {
     padding: 15px;
-	color: rgba(255, 255, 255, 0.20);
+	color: rgb(255, 255, 255);
 	position: relative;
 	font-family: "Be Vietnam Pro";
 	font-size: 14px;
@@ -150,7 +155,7 @@ border-radius: 13px 13px 10px 10px;
 .t-username {
 	position: relative;
 	color: #FFF;
-font-family: "Be Vietnam Pro";
+font-family: "Be Vietnam Pro", sans-serif;
 margin-top: -28px;
 font-size: 16px;
 font-style: normal;
@@ -217,18 +222,19 @@ line-height: normal;
 	caret-color: transparent;
 	position: absolute;
 	color: #FFF;
-	font: 700 24px/normal Poppins;
+	font: 700 20px/normal Poppins;
 	margin-left: 1040px;
 	margin-top: 30px;
 }
 .recent-changes-table-container {
+
 	width: 669.955px;
 height: 352.223px;
 flex-shrink: 0;
 border-radius: 10px;
 background: rgba(0, 0, 0, 0.30);
 margin-left: 1040px;
-margin-top: 133px;
+margin-top: 100px;
 }
 
 .value-details {

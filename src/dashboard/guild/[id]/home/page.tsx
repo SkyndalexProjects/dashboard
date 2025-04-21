@@ -8,7 +8,6 @@ import { useParams } from "react-router-dom";
 import HomeTabs from "./hometabs/changelog-switch";
 import ReactApexChart from "react-apexcharts"
 import { ApexOptions } from "apexcharts"
-import {renderToPipeableStream} from "react-dom/server";
 
 interface SettingContainerProps {
 	title: string;
@@ -68,6 +67,7 @@ export default function Page() {
 		(async () => {
 			try {
 				console.log("Fetching user");
+
 				const response = await fetch(
 					`${import.meta.env.VITE_API_URL}/guilds/${id}/logs`,
 					{
@@ -167,8 +167,11 @@ export default function Page() {
 		<div>
 			<Navbar />
 			<Sidebar />
-			<BetaWarning />
-			<JoinSupportAlert />
+
+			<div className={classes.alerts}>
+				<BetaWarning />
+				<JoinSupportAlert />
+			</div>
 
 			<div className={classes.container}>
 				<div className={classes.header}>
@@ -178,6 +181,12 @@ export default function Page() {
 					</p>
 				</div>
 				<div className={classes.chartContainer}>
+					{/**
+					 ApexCharts has problem with typescript types unfortunately
+					 **/
+					 }
+
+					{/* @ts-ignore */ }
 					<ReactApexChart
 						options={options}
 						series={options.series}
@@ -194,6 +203,7 @@ export default function Page() {
 					</p>
 				</div>
 				<div className={classes.chartContainer}>
+					{/* @ts-ignore */ }
 					<ReactApexChart
 						options={updatedOptions}
 						series={options.series}
@@ -207,7 +217,7 @@ export default function Page() {
 					{" "}
 					Dashboard log
 					<svg
-						width="185"
+						width="153"
 						height="4"
 						viewBox="0 0 185 4"
 						fill="none"
@@ -294,7 +304,7 @@ export default function Page() {
 					{" "}
 					Recent changes
 					<svg
-						width="185"
+						width="166"
 						height="4"
 						viewBox="0 0 185 4"
 						fill="none"
