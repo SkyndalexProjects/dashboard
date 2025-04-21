@@ -3,25 +3,16 @@ import Sidebar from "@/components/ui/navigation/sidebar";
 import BetaWarning from "@/components/ui/alerts/beta-warning";
 import JoinSupportAlert from "@/components/ui/alerts/support-join-warning";
 import classes from "./home.module.css";
-import SearchSelect from "@/components/ui/inputs/search";
-import { SelectOption } from "@/components/ui/inputs/search";
-import { useSelector, useDispatch } from "react-redux";
-import { AppDispatch, type RootState } from "@/store";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import HomeTabs from "./hometabs/changelog-switch";
-import { fetchChannels } from "@/thunks/channels";
-import { fetchRoles } from "@/thunks/roles";
+import ReactApexChart from "react-apexcharts"
+import { ApexOptions } from "apexcharts"
+import {renderToPipeableStream} from "react-dom/server";
+
 interface SettingContainerProps {
 	title: string;
 	children?: React.ReactNode;
-}
-interface SettingInputProps {
-	title: string;
-	options: { id: string; name: string }[];
-	searchTerm: string;
-	setSearchTerm: (value: string) => void;
-	onChange: (value: string) => void;
 }
 interface Logs {
 	id: number;
@@ -42,99 +33,9 @@ const SettingContainer = ({
 		{children}
 	</div>
 );
-const SettingInput = ({
-	title,
-	options,
-	searchTerm,
-	setSearchTerm,
-	onChange,
-}: SettingInputProps) => (
-	<div className={classes.inputContainer}>
-		<p className={classes.inputTitle}>{title}</p>
-		<SearchSelect
-			value={searchTerm}
-			onChange={onChange}
-			searchTerm={searchTerm}
-			setSearchTerm={setSearchTerm}
-			inputClassName={classes.searchInput}
-			indicatorClassName={classes.searchIndicator}
-		>
-			{options.map((option) => (
-				<SelectOption key={option.id} value={option.name}>
-					{option.name}
-				</SelectOption>
-			))}
-		</SearchSelect>
-	</div>
-);
 export default function Page() {
-	const [starboardChannelSearchTerm, setStarboardChannelSearchTerm] =
-		useState("");
-	const [starboardTypeSearchTerm, setStarboardTypeSearchTerm] = useState("");
-	const [welcomeChannelSearchTerm, setWelcomeChannelSearchTerm] =
-		useState("");
-	const [goodbyeChannelSearchTerm, setGoodbyeChannelSearchTerm] =
-		useState("");
-	const [autoRoleSearchTerm, setAutoRoleSearchTerm] = useState("");
-
-	const [, setStarboardChannel] = useState("");
-	const [, setStarboardType] = useState("");
-	const [, setWelcomeChannel] = useState("");
-	const [, setGoodbyeChannel] = useState("");
-	const [, setAutoRole] = useState("");
 	const [logs, setLogs] = useState<Logs[]>([]);
-	const dispatch = useDispatch<AppDispatch>();
-	const channels = useSelector((state: RootState) =>
-		state.channels.areChannelsFetched ? state.channels.data : [],
-	);
-	const roles = useSelector((state: RootState) =>
-		state.roles.areRolesFetched ? state.roles.data : [],
-	);
-	const haveChannelsFetched = useSelector(
-		(state: RootState) => state.channels.areChannelsFetched,
-	);
-	const haveRolesFetched = useSelector(
-		(state: RootState) => state.roles.areRolesFetched,
-	);
 	const { id } = useParams<{ id: string }>();
-
-	useEffect(() => {
-		const fetchData = (shouldFetch: boolean, fetchAction: any) => {
-			if (shouldFetch && id) {
-				dispatch(fetchAction(id));
-			}
-		};
-
-		fetchData(
-			!haveChannelsFetched ||
-				(channels.length === 0 && haveChannelsFetched),
-			fetchChannels,
-		);
-		fetchData(
-			!haveRolesFetched || (roles.length === 0 && haveRolesFetched),
-			fetchRoles,
-		);
-	}, [dispatch, haveChannelsFetched, haveRolesFetched, channels, roles, id]);
-
-	console.log("channels", channels);
-	const filteredChannels = (searchTerm: string) =>
-		channels
-			.filter((channel) =>
-				channel.name.toLowerCase().includes(searchTerm.toLowerCase()),
-			)
-			.slice(0, 5);
-
-	const filteredRoles = (searchTerm: string) =>
-		roles
-			.filter((role) =>
-				role.name.toLowerCase().includes(searchTerm.toLowerCase()),
-			)
-			.slice(0, 5);
-
-	const starboardTypeChoices = [
-		{ label: "Quote", value: "quote" },
-		{ label: "Normal message", value: "normal" },
-	];
 
 	const logValues: { [key: string]: string } = {
 		custombot_created: "Custom bot created",
@@ -204,21 +105,63 @@ export default function Page() {
 
 	// TODO: handling
 
-	const handleStarboardChannelChange = (value: string) => {
-		setStarboardChannel(value);
+	const options: ApexOptions = {
+		series: [
+			{
+				name: "Economy Income",
+				data: [35, 41, 62, 42, 13, 18, 29, 37, 36, 51, 32, 35],
+			},
+		],
+		chart: {
+			height: 350,
+			type: "line",
+			zoom: { enabled: true },
+			background: "none",
+			toolbar: { show: false },
+		},
+		dataLabels: { enabled: false },
+		stroke: {
+			width: [3, 3, 3],
+			curve: "smooth",
+			dashArray: [11],
+		},
+		legend: {
+			show: false,
+		},
+		xaxis: {
+			categories: [
+				"JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+				"JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
+			],
+			labels: {
+				style: { colors: "#615E83", fontSize: "14" },
+			},
+			axisBorder: {
+				show: false,
+			},
+			axisTicks: {
+				show: false,
+			},
+		},
+		yaxis: {
+			labels: {
+				style: { colors: "#615E83", fontSize: "16"},
+			},
+		},
+		grid: {
+			borderColor: "#E5E5EF",
+			strokeDashArray: 0,
+		},
+		tooltip: {
+			theme: "dark",
+		},
+		colors: ["#27E761"],
 	};
-	const handleStarboardTypeChange = (value: string) => {
-		setStarboardType(value);
-	};
-	const handleWelcomeChannelChange = (value: string) => {
-		setWelcomeChannel(value);
-	};
-	const handleGoodbyeChannelChange = (value: string) => {
-		setGoodbyeChannel(value);
-	};
-	const handleAutoRoleChange = (value: string) => {
-		setAutoRole(value);
-	};
+
+	const updatedOptions = {
+		...options,
+		colors: ["#AE4634"]
+	}
 
 	return (
 		<div>
@@ -227,72 +170,38 @@ export default function Page() {
 			<BetaWarning />
 			<JoinSupportAlert />
 
-			<div className={classes.mainSettingsContainer}>
-				<p className={classes.mainSettingsSectionTitle}>
-					{" "}
-					Main settings
-					<svg
-						width="185"
-						height="4"
-						viewBox="0 0 185 4"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-						style={{
-							flexShrink: 0,
-							strokeWidth: 4,
-							stroke: "#275EE7",
-						}}
-						className={classes.sectionTitleVector}
-					>
-						<line x1="0" y1="2" x2="185" y2="2" />
-					</svg>
-				</p>
-				<SettingContainer title="Starboard">
-					<SettingInput
-						title="Starboard Channel"
-						options={filteredChannels(starboardChannelSearchTerm)}
-						searchTerm={starboardChannelSearchTerm}
-						setSearchTerm={setStarboardChannelSearchTerm}
-						onChange={handleStarboardChannelChange}
+			<div className={classes.container}>
+				<div className={classes.header}>
+					<p className={classes.title}>Statistics</p>
+					<p className={classes.subtitle}>
+						Total economy earnings
+					</p>
+				</div>
+				<div className={classes.chartContainer}>
+					<ReactApexChart
+						options={options}
+						series={options.series}
+						type="line"
+						height={275}
 					/>
-					<SettingInput
-						title="Starboard Type"
-						options={starboardTypeChoices.map((choice) => ({
-							id: choice.value,
-							name: choice.label,
-						}))}
-						searchTerm={starboardTypeSearchTerm}
-						setSearchTerm={setStarboardTypeSearchTerm}
-						onChange={handleStarboardTypeChange}
-					/>
-				</SettingContainer>
-				<SettingContainer title="Welcoming">
-					<SettingInput
-						title="Welcome Channel"
-						options={filteredChannels(welcomeChannelSearchTerm)}
-						searchTerm={welcomeChannelSearchTerm}
-						setSearchTerm={setWelcomeChannelSearchTerm}
-						onChange={handleWelcomeChannelChange}
-					/>
-					<SettingInput
-						title="Goodbye Channel"
-						options={filteredChannels(goodbyeChannelSearchTerm)}
-						searchTerm={goodbyeChannelSearchTerm}
-						setSearchTerm={setGoodbyeChannelSearchTerm}
-						onChange={handleGoodbyeChannelChange}
-					/>
-				</SettingContainer>
-				<SettingContainer title="Additionals">
-					<SettingInput
-						title="Auto Role"
-						options={filteredRoles(autoRoleSearchTerm)}
-						searchTerm={autoRoleSearchTerm}
-						setSearchTerm={setAutoRoleSearchTerm}
-						onChange={handleAutoRoleChange}
-					/>
-				</SettingContainer>
+				</div>
 			</div>
-
+			<div className={classes.container}>
+				<div className={classes.header}>
+					<p className={classes.title}>Statistics</p>
+					<p className={classes.subtitle}>
+						Total economy loss
+					</p>
+				</div>
+				<div className={classes.chartContainer}>
+					<ReactApexChart
+						options={updatedOptions}
+						series={options.series}
+						type="line"
+						height={275}
+					/>
+				</div>
+			</div>
 			<div className={classes.dashboardLogContainer}>
 				<p className={classes.dashboardLogSectionTitle}>
 					{" "}

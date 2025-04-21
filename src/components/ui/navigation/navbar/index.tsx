@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import classes from "./navbar.module.css";
 import Select, { SelectOption } from "../../inputs/search";
 import { useState, useEffect } from "react";
-import { fetchGuilds} from "@/thunks/guilds";
+import { fetchGuilds } from "@/thunks/guilds";
 import { fetchUser } from "@/thunks/user";
 import ChooseGuildModal from "@/components/ui/navigation/navbar/modals/ChooseGuild";
 const Navbar = () => {
@@ -65,15 +65,11 @@ const Navbar = () => {
 						e.currentTarget.src = "/default_guild_icon.png";
 					}}
 				/>
-				<p className={classes.navTitle}>
-					Dashboard
-				</p>
+				<p className={classes.navTitle}>Dashboard</p>
 				<div className={classes.versionContainer}>
 					<p className={classes.version}> v0.0.0 </p>
 				</div>
-				<button className={classes.guildChooser}
-				onClick={openModal}
-				>
+				<button className={classes.guildChooser} onClick={openModal}>
 					<img
 						className={classes.guildIcon}
 						src={generateGuildIcon}
@@ -82,7 +78,10 @@ const Navbar = () => {
 							e.currentTarget.src = "/default_guild_icon.png";
 						}}
 					/>
-					<p className={classes.currentGuildName}> {getCurrentGuild?.name} </p>
+					<p className={classes.currentGuildName}>
+						{" "}
+						{getCurrentGuild?.name}{" "}
+					</p>
 				</button>
 				<div className={classes.navRight}>
 					<Select

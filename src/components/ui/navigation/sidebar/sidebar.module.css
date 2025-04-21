@@ -7,17 +7,14 @@
 	left: 0;
 	z-index: 1;
 }
-.sidebarItem img {
-	width: 60px;
-	height: 30px;
-	vertical-align: middle;
-	color: white;
-}
 
+.sidebarItem,
 .sidebarItem.active img {
-	padding: 13px;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	flex-direction: row;
 	vertical-align: middle;
-	margin-top: -5px;
 	width: 30px;
 	height: 30px;
 }
@@ -27,43 +24,43 @@
 	border: none;
 }
 
+
 .sidebarItem.active {
 	border-radius: 0px 20px 20px 0px;
-	border-left: 10px solid rgba(39, 94, 231, 1);
+	border-left: 5px solid rgba(39, 94, 231, 1);
 	background: rgba(0, 0, 0, 0.35);
 	width: 315px;
 	height: 67px;
 	color: white;
+
 }
 
 .sidebarItem {
+
 	font-family: "Noto Sans", sans-serif;
 	font-weight: 500;
 	color: #a3a3a3;
 	width: 315px;
 	height: 67px;
-	font-size: 24px;
+	font-size: 20px;
 	text-align: left;
 	display: flex;
 	justify-content: flex-start;
-	padding: 10px 0px;
 	border-radius: 15px;
 	transition: background-color 0.3s;
 }
 .sidebarItem:hover {
 	border-radius: 0px 20px 20px 0px;
-	border-left: 10px solid rgba(39, 94, 231, 1);
+	border-left: 5px solid rgba(39, 94, 231, 1);
 	background: rgba(0, 0, 0, 0.24);
 	transition: background-color 0.3s ease-in-out;
 }
 .sidebarItemText {
+	margin-left: 15px;
 	font-family: "Noto Sans", sans-serif;
-	margin-left: 10px;
-	margin-top: 5px;
-}
-.sidebarIcon {
-	margin-top: 5px;
-	margin-left: 10px;
-	width: 30px;
-	height: 30px;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	flex-shrink: 0;
 }

@@ -19,6 +19,11 @@ const Sidebar = () => {
 			text: "Home",
 		},
 		{
+			path: `/dashboard/guild/${guildId}/levels`,
+			icon: "/gear.svg",
+			text: "Main settings",
+		},
+		{
 			path: `/dashboard/guild/${guildId}/custombots`,
 			icon: "/bot_icon.svg",
 			text: "Custombots",
@@ -32,11 +37,6 @@ const Sidebar = () => {
 			icon: "/economy.svg",
 			text: "Economy",
 		},
-		// {
-		// 	path: `/dashboard/guild/${guildId}/levels`,
-		// 	icon: "/levels.svg",
-		// 	text: "Levels",
-		// },
 		{
 			path: `/dashboard/guild/${guildId}/radio`,
 			icon: "/radio.svg",
@@ -48,7 +48,7 @@ const Sidebar = () => {
 			text: "AI",
 		},
 	];
-
+	console.log(classes.sidebarIcon);
 	return (
 		<div className={classes.sidebar}>
 			<div className={classes.sidebarBorder}>
@@ -63,12 +63,12 @@ const Sidebar = () => {
 						}`}
 						onClick={() => handleNavigation(path)}
 					>
+
 						<img
 							src={icon}
 							alt={text}
-							className={classes.sidebarIcon}
 						/>
-						<span className={classes.sidebarItemText}>{text}</span>
+						<p className={classes.sidebarItemText}>{text}</p>
 					</button>
 				))}
 			</div>
