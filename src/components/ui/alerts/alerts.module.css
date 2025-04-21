@@ -1,38 +1,39 @@
 .beta-warning-overlay-icon {
 	width: 988px;
-	height: 40px;
-	right: 45%;
+	height: 30px;
 	position: relative;
 	margin-top: 15px;
+	right: 456px;
 	z-index: 1;
 }
 .support-join-warning-icon {
 	width: 988px;
 	height: 40px;
-	right: 47%;
-	top: 10px;
+	right: 456px;
+	top: 5px;
 	position: relative;
 	margin-top: 15px;
 	z-index: 1;
 }
 .beta-warning-overlay {
+	caret-color: transparent;
 	width: max-content;
-	height: 67px;
+	height: 61px;
 	border-radius: 15px;
 	border: 1px solid #b19b5f;
 	background-color: #00000033;
-	margin-left: 376px;
+	margin-left: 346px;
 	margin-top: 10%;
 	position: relative;
 }
 .support-join-overlay {
-	width: 959px;
+	width: max-content;
 	border-radius: 15px;
 	border: 1px solid #587486;
-	height: 95px;
+	height: 79px;
 	background: rgba(0, 0, 0, 0.2);
-	margin-left: 376px;
-	margin-top: 40px;
+	margin-left: 346px;
+	margin-top: 30px;
 	position: relative;
 }
 
@@ -40,30 +41,31 @@
 	word-break: break-word;
 	color: #fff;
 	font-family: "Be Vietnam Pro", sans-serif;
-	font-size: 20px;
+	font-size: 16px;
 	font-style: normal;
 	font-weight: 700;
 	line-height: normal;
 	white-space: nowrap;
 	position: relative;
 	flex-shrink: 0;
-	margin-top: -40px;
-	margin-left: 80px;
+	margin-top: -30px;
+	margin-left: 70px;
+	caret-color: transparent;
 	padding-right: 20px;
 }
 .support-join-warning-text {
 	word-break: break-word;
 	color: #fff;
 	font-family: "Be Vietnam Pro", sans-serif;
-	font-size: 20px;
+	font-size: 16px;
 	font-style: normal;
 	font-weight: 700;
 	line-height: 1.5;
 	white-space: normal;
 	position: relative;
 	flex-shrink: 0;
-	margin-top: -40px;
-	margin-left: 80px;
+	margin-top: -35px;
+	margin-left: 70px;
 	padding-right: 20px;
-	max-width: 90%;
+	max-width: 100%;
 }
