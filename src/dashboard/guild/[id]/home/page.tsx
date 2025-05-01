@@ -219,21 +219,7 @@ export default function Page() {
 				<p className={classes.dashboardLogSectionTitle}>
 					{" "}
 					Dashboard log
-					<svg
-						width="153"
-						height="4"
-						viewBox="0 0 185 4"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-						style={{
-							flexShrink: 0,
-							strokeWidth: 4,
-							stroke: "#275EE7",
-						}}
-						className={classes.sectionTitleVector}
-					>
-						<line x1="0" y1="2" x2="185" y2="2" />
-					</svg>
+					<div className={classes.underlineVector}></div>
 				</p>
 				<div className={classes.logTableContainer}>
 					<table className={classes.logTable}>
@@ -306,21 +292,7 @@ export default function Page() {
 				<p className={classes.recentChangesSectionTitle}>
 					{" "}
 					Recent changes
-					<svg
-						width="166"
-						height="4"
-						viewBox="0 0 185 4"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-						style={{
-							flexShrink: 0,
-							strokeWidth: 4,
-							stroke: "#275EE7",
-						}}
-						className={classes.sectionTitleVector}
-					>
-						<line x1="0" y1="2" x2="185" y2="2" />
-					</svg>
+					<div className={classes.underlineVector}></div>
 				</p>
 
 				<div className={classes.recentChangesTableContainer}>

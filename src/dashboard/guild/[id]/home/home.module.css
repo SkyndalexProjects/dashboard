@@ -248,3 +248,9 @@ padding: 0;
 display: block;
 
 }
+.underlineVector {
+	width: 100%;
+	height: 4px;
+	background-color: #275EE7;
+	flex-shrink: 0;
+}
