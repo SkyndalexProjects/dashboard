@@ -86,17 +86,20 @@ export default function Page() {
 				const data = await response.json();
 
 				const updatedLogs: Logs[] = [];
-				for (const log of data) {
-					console.log("log", log);
-					const user = await fetchUser(log.userId);
-					console.log("fetched user", user);
-					updatedLogs.push({
-						...log,
-						username: user.username,
-						avatar: user.avatar,
-					});
+
+				if (Array.isArray(data)) {
+					for (const log of data) {
+						console.log("log", log);
+						const user = await fetchUser(log.userId);
+						console.log("fetched user", user);
+						updatedLogs.push({
+							...log,
+							username: user.username,
+							avatar: user.avatar,
+						});
+					}
+					setLogs(updatedLogs);
 				}
-				setLogs(updatedLogs);
 			} catch (error) {
 				console.error(error);
 			}
