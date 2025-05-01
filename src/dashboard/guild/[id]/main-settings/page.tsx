@@ -1,6 +1,6 @@
 import Navbar from "@/components/ui/navigation/navbar";
 import Sidebar from "@/components/ui/navigation/sidebar";
-import classes from "./home.module.css";
+import classes from "./main-settings.module.css";
 export default function MainSettings() {
 	return (
 		<div>

@@ -14,6 +14,7 @@ import Economy from "./dashboard/guild/[id]/economy/page";
 import NoMatch from "./NoMatch";
 import "./index.css";
 import GuildsList from "./guilds-list";
+import MainSettings from "@/dashboard/guild/[id]/main-settings/page";
 i18n();
 
 const store = makeStore();
@@ -41,6 +42,7 @@ createRoot(document.getElementById("root")!).render(
 								/>
 								<Route path="radio" element={<Page />} />
 								<Route path="economy" element={<Economy />} />
+								<Route path="main-settings" element={<MainSettings /> } />
 							</Routes>
 						}
 					/>
