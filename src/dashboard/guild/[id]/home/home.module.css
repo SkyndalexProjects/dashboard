@@ -253,4 +253,13 @@ display: block;
 	height: 4px;
 	background-color: #275EE7;
 	flex-shrink: 0;
+	animation: slide 0.5s ease forwards;
+}
+@keyframes slide {
+	from {
+		width: 0;
+	}
+	to {
+		width: 100%;
+	}
 }
