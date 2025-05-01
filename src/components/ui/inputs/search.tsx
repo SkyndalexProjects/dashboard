@@ -11,8 +11,8 @@ interface SelectProps {
 	className?: string;
 	inputClassName?: string;
 	indicatorClassName?: string;
-	placeholderLogo?: string;
 	placeholderClassName?: string;
+	placeholderLogo?: string;
 	type?: string;
 	disableSearch?: boolean;
 }

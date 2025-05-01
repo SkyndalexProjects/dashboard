@@ -42,7 +42,10 @@ createRoot(document.getElementById("root")!).render(
 								/>
 								<Route path="radio" element={<Page />} />
 								<Route path="economy" element={<Economy />} />
-								<Route path="main-settings" element={<MainSettings /> } />
+								<Route
+									path="main-settings"
+									element={<MainSettings />}
+								/>
 							</Routes>
 						}
 					/>

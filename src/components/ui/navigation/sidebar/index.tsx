@@ -63,11 +63,7 @@ const Sidebar = () => {
 						}`}
 						onClick={() => handleNavigation(path)}
 					>
-
-						<img
-							src={icon}
-							alt={text}
-						/>
+						<img src={icon} alt={text} />
 						<p className={classes.sidebarItemText}>{text}</p>
 					</button>
 				))}

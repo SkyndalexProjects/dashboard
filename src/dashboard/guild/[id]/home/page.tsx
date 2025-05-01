@@ -6,8 +6,8 @@ import classes from "./home.module.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import HomeTabs from "./hometabs/changelog-switch";
-import ReactApexChart from "react-apexcharts"
-import { ApexOptions } from "apexcharts"
+import ReactApexChart from "react-apexcharts";
+import { ApexOptions } from "apexcharts";
 
 interface SettingContainerProps {
 	title: string;
@@ -133,8 +133,18 @@ export default function Page() {
 		},
 		xaxis: {
 			categories: [
-				"JAN", "FEB", "MAR", "APR", "MAY", "JUN",
-				"JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
+				"JAN",
+				"FEB",
+				"MAR",
+				"APR",
+				"MAY",
+				"JUN",
+				"JUL",
+				"AUG",
+				"SEP",
+				"OCT",
+				"NOV",
+				"DEC",
 			],
 			labels: {
 				style: { colors: "#615E83", fontSize: "14" },
@@ -148,7 +158,7 @@ export default function Page() {
 		},
 		yaxis: {
 			labels: {
-				style: { colors: "#615E83", fontSize: "16"},
+				style: { colors: "#615E83", fontSize: "16" },
 			},
 		},
 		grid: {
@@ -163,8 +173,8 @@ export default function Page() {
 
 	const updatedOptions = {
 		...options,
-		colors: ["#AE4634"]
-	}
+		colors: ["#AE4634"],
+	};
 
 	return (
 		<div>
@@ -179,17 +189,14 @@ export default function Page() {
 			<div className={classes.container}>
 				<div className={classes.header}>
 					<p className={classes.title}>Statistics</p>
-					<p className={classes.subtitle}>
-						Total economy earnings
-					</p>
+					<p className={classes.subtitle}>Total economy earnings</p>
 				</div>
 				<div className={classes.chartContainer}>
 					{/**
 					 ApexCharts has problem with typescript types unfortunately
-					 **/
-					 }
+					 **/}
 
-					{/* @ts-ignore */ }
+					{/* @ts-ignore */}
 					<ReactApexChart
 						options={options}
 						series={options.series}
@@ -201,12 +208,10 @@ export default function Page() {
 			<div className={classes.container}>
 				<div className={classes.header}>
 					<p className={classes.title}>Statistics</p>
-					<p className={classes.subtitle}>
-						Total economy loss
-					</p>
+					<p className={classes.subtitle}>Total economy loss</p>
 				</div>
 				<div className={classes.chartContainer}>
-					{/* @ts-ignore */ }
+					{/* @ts-ignore */}
 					<ReactApexChart
 						options={updatedOptions}
 						series={options.series}
