@@ -1,5 +1,5 @@
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { fetchCustombots } from "../thunks/custombots.ts";
+import { fetchCustombots } from "@/thunks/custombots";
 
 export type InitialState = {
 	data: any[];
@@ -19,23 +19,17 @@ export const custombotsSlice = createSlice({
 	reducers: {},
 	extraReducers: (builder) => {
 		builder
-			.addCase(
-				fetchCustombots.fulfilled,
-				(state, action: PayloadAction<any[]>) => {
-					console.log("custombots/fetch is fulfilled");
+			.addCase(fetchCustombots.fulfilled, (state, action) => {
+				console.log("custombots/fetch is fulfilled");
 
-					state.data = action.payload;
-					state.areCustombotsFetched = true;
-				},
-			)
-			.addCase(
-				fetchCustombots.rejected,
-				(state, action: PayloadAction<any>) => {
-					state.error = action.payload;
-					console.log(action.payload);
-					console.log("rejected");
-				},
-			)
+				state.data = action.payload as any[];
+				state.areCustombotsFetched = true;
+			})
+			.addCase(fetchCustombots.rejected, (state, action) => {
+				state.error = action.error.message || "Unknown error";
+				console.log(action.error.message);
+				console.log("rejected");
+			})
 			.addCase(fetchCustombots.pending, () => {
 				console.log("it is pending");
 			});

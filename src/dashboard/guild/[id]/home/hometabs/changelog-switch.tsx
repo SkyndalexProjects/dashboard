@@ -1,6 +1,5 @@
 import classes from "./hometabs.module.css";
 import { useState } from "react";
-import InputType from "@/components/ui/inputs/input.tsx";
 const HomeTabs = () => {
 	const [activeTab, setActiveTab] = useState("Dashboard");
 	const handleTabClick = (tab: string) => {

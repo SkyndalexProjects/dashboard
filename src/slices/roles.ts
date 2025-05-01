@@ -1,5 +1,5 @@
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { fetchRoles } from "../thunks/roles.ts";
+import { fetchRoles } from "@/thunks/roles";
 
 export type InitialState = {
 	data: any[];
@@ -19,23 +19,19 @@ export const rolesSlice = createSlice({
 	reducers: {},
 	extraReducers: (builder) => {
 		builder
-			.addCase(
-				fetchRoles.fulfilled,
-				(state, action: PayloadAction<any[]>) => {
-					console.log("roles/fetch is fulfilled");
+			.addCase(fetchRoles.fulfilled, (state, action) => {
+				console.log("roles/fetch is fulfilled");
 
-					state.data = action.payload;
-					state.areRolesFetched = true;
-				},
-			)
-			.addCase(
-				fetchRoles.rejected,
-				(state, action: PayloadAction<any>) => {
-					state.error = action.payload;
-					console.log(action.payload);
-					console.log("rejected");
-				},
-			)
+				state.data = Array.isArray(action.payload)
+					? action.payload
+					: [];
+				state.areRolesFetched = true;
+			})
+			.addCase(fetchRoles.rejected, (state, action) => {
+				state.error = action.error.message || "Unknown error";
+				console.log(action.error.message);
+				console.log("rejected");
+			})
 			.addCase(fetchRoles.pending, () => {
 				console.log("it is pending");
 			});

@@ -1,5 +1,5 @@
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { fetchUser } from "../thunks/user.ts";
+import { fetchUser } from "@/thunks/user";
 
 export type InitialState = {
 	data: any[];
@@ -19,23 +19,19 @@ export const userSlice = createSlice({
 	reducers: {},
 	extraReducers: (builder) => {
 		builder
-			.addCase(
-				fetchUser.fulfilled,
-				(state, action: PayloadAction<any[]>) => {
-					console.log("user/fetch is fulfilled");
+			.addCase(fetchUser.fulfilled, (state, action) => {
+				console.log("user/fetch is fulfilled");
 
-					state.data = action.payload;
-					state.isUserFetched = true;
-				},
-			)
-			.addCase(
-				fetchUser.rejected,
-				(state, action: PayloadAction<any>) => {
-					state.error = action.payload;
-					console.log(action.payload);
-					console.log("rejected");
-				},
-			)
+				state.data = Array.isArray(action.payload)
+					? action.payload
+					: [];
+				state.isUserFetched = true;
+			})
+			.addCase(fetchUser.rejected, (state, action) => {
+				state.error = action.error.message || "Unknown error";
+				console.log(action.error.message);
+				console.log("rejected");
+			})
 			.addCase(fetchUser.pending, () => {
 				console.log("it is pending");
 			});
