@@ -8,19 +8,15 @@ export default function MainSettings() {
 		<div>
 			<Navbar />
 			<Sidebar />
-
 			<p className={classes.greetingsAndFarewell}>
 				{" "}
 				Greetings & Farewell
 				<div className={classes.underlineVector}></div>
 			</p>
 
-			<Switch
-				switchClassName={classes.switch}
-				knobClassName={classes.knob}
-			/>
-
-			<WelcomingTabs />
+			<div className={classes.container}>
+				<WelcomingTabs />
+			</div>
 		</div>
 	);
 }

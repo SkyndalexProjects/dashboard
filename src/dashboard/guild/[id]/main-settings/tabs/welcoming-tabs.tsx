@@ -1,5 +1,6 @@
 import classes from "./tabs.module.css";
-import { useState } from "react";
+import React, { useState } from "react";
+import Switch from "@/components/ui/inputs/switch";
 const WelcomingTabs = () => {
 	const [activeTab, setActiveTab] = useState("Greetings");
 
@@ -34,12 +35,22 @@ const WelcomingTabs = () => {
 			<div className={classes.tabContent}>
 				{activeTab === "Greetings" && (
 					<div>
-						<p> Test content </p>
+						<div className={classes.boolean}>
+							<p className={classes.imageBackgroundBoolean}>
+								{" "}
+								<Switch switchClassName={classes.switch} knobClassName={classes.knob} />
+								Greetings image
+							</p>
+						</div>
 					</div>
 				)}
 				{activeTab === "Goodbyes" && (
 					<div>
-						<p> Test content 2 </p>
+						<p className={classes.imageBackgroundBoolean}>
+							{" "}
+							<Switch switchClassName={classes.switch} knobClassName={classes.knob} />
+							Farewell image
+						</p>
 					</div>
 				)}
 			</div>
