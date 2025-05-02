@@ -8,14 +8,15 @@ import { fetchUser } from "./thunks/user";
 import { useTranslation } from "react-i18next";
 export default function GuildsList() {
 	const dispatch = useDispatch<AppDispatch>();
-	const guilds = useSelector((state: RootState) =>
-		state.guilds.haveGuildsFetched ? state.guilds.data : [],
-	);
+
 	const haveGuildsFetched = useSelector(
 		(state: RootState) => state.guilds.haveGuildsFetched,
 	);
 	const isUserFetched = useSelector(
 		(state: RootState) => state.user.isUserFetched,
+	);
+	const guilds = useSelector((state: RootState) =>
+		state.guilds.haveGuildsFetched ? state.guilds.data : [],
 	);
 	const user = useSelector(
 		(state: RootState) => state.user.data as unknown as User,
@@ -55,6 +56,7 @@ export default function GuildsList() {
 			</div>
 		);
 	}
+	console.log("user", user)
 	return (
 		<div>
 			<h1 className="title">

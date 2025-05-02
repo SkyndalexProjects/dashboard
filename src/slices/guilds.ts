@@ -17,30 +17,35 @@ export const guildsSlice = createSlice({
 	name: "guilds",
 	initialState,
 	reducers: {
-		setHaveGuildsFetched(state, action: PayloadAction<boolean>) {
+		setHaveGuildsFetched(state, action) {
 			state.haveGuildsFetched = action.payload;
 		},
 	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(fetchGuilds.fulfilled, (state, action) => {
-				console.log("guilds/fetch is fulfilled");
-				state.data = Array.isArray(action.payload)
-					? action.payload
-					: [];
-				state.haveGuildsFetched = true;
-			})
-			.addCase(fetchGuilds.rejected, (state, action) => {
-				state.error = action.error.message || "Unknown error";
-				console.log(action.error.message);
-				console.log("rejected");
-			})
+			.addCase(
+				fetchGuilds.fulfilled,
+				(state, action: PayloadAction<any[]>) => {
+					console.log("guilds/fetch is fulfilled");
+					state.data = Array.isArray(action.payload)
+						? action.payload
+						: [];
+					state.haveGuildsFetched = true;
+				},
+			)
+			.addCase(
+				fetchGuilds.rejected,
+				(state, action: PayloadAction<any>) => {
+					state.error = action.payload;
+					console.log(action.payload);
+					console.log("rejected");
+				},
+			)
 			.addCase(fetchGuilds.pending, () => {
 				console.log("it is pending");
 			});
 	},
 });
-
 export const { setHaveGuildsFetched } = guildsSlice.actions;
 
 export default guildsSlice.reducer;
