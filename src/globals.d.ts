@@ -66,7 +66,23 @@ interface RadioStation {
 		stream: string;
 	};
 }
-
+interface Channel {
+	id: string;
+	name: string;
+	type: number;
+	position: number;
+	guild_id: string;
+	parent_id: string | null;
+	nsfw: boolean | null;
+	topic: string | null;
+	last_message_id: string | null;
+	last_pin_timestamp: string | null;
+	rate_limit_per_user: number | null;
+	bitrate: number | null;
+	user_limit: number | null;
+	permission_overwrites: any[];
+	permissions: string | null;
+}
 interface User {
 	username: string;
 	accent_color: number | null;

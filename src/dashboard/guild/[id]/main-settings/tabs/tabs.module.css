@@ -98,15 +98,59 @@
 .image-background-boolean {
     display: flex;
     flex-direction: row;
+    gap: 8px;
     color: rgba(255, 255, 255, 0.30);
     font-family: Poppins, sans-serif;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     position: relative;
-    gap: 8px;
+}
+.setting {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 27px;
+}
+.setting-overlay {
+    width: 375px;
+    height: 118px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 1px solid #474747;
+    background: rgba(0, 0, 0, 0.20);
+}
+.overlay-title {
+    margin-left: 18px;
+    color: #FFF;
+    font-family: "Be Vietnam Pro", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.select-container {
+    caret-color: transparent;
+    margin-left: 19px;
+}
+.input-container {
+    caret-color: transparent;
+    display: flex;
+    flex-direction: row;
+    width: 303.96px;
+    height: 42.653px;
+    transform: rotate(0.254deg);
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 1px solid #8E8E8E;
+    background: rgba(32, 32, 32, 0.10);
+}
+.indicator {
+    caret-color: transparent;
+    margin-top: -60px;
+    margin-left: 255px;
+}
+.option-icon {
+    width: 28.191px;
+    height: 27px;
+    position: absolute;
 }

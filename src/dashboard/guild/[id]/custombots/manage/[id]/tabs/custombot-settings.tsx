@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import classes from "./tabs.module.css";
 import Select, {
 	SelectOption,
-} from "../../../../../../../components/ui/inputs/search";
+} from "@/components/ui/inputs/search";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState, AppDispatch } from "@/store";
 import { fetchChannels } from "@/thunks/channels";
