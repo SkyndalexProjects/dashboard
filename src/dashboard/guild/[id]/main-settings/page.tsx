@@ -3,10 +3,10 @@ import Sidebar from "@/components/ui/navigation/sidebar";
 import classes from "./main-settings.module.css";
 import Switch from "@/components/ui/inputs/switch";
 import WelcomingTabs from "@/dashboard/guild/[id]/main-settings/tabs/welcoming-tabs";
-import React, {useState} from "react";
-import Select, {SelectOption} from "@/components/ui/inputs/search";
-import {useSelector} from "react-redux";
-import type {RootState} from "@/store";
+import React, { useState } from "react";
+import Select, { SelectOption } from "@/components/ui/inputs/search";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/store";
 export default function MainSettings() {
 	// const channels = useSelector((state: RootState) => state.channels.data);
 	//
@@ -35,7 +35,7 @@ export default function MainSettings() {
 			name: "Command 2",
 			description: "Description 2",
 		},
-	]
+	];
 	return (
 		<div>
 			<Navbar />
@@ -56,16 +56,15 @@ export default function MainSettings() {
 				<div className={classes.underlineVector}></div>
 			</p>
 
-				<div className={classes.permissionSettings}>
-					<BlockedCommands />
-					<BlockedChannels />
-				</div>
+			<div className={classes.permissionSettings}>
+				<BlockedCommands />
+				<BlockedChannels />
+			</div>
 		</div>
-
 	);
 
 	function BlockedCommands() {
-		const [commandSearchTerm, setCommandSearchTerm] = useState('');
+		const [commandSearchTerm, setCommandSearchTerm] = useState("");
 
 		const handleCommandSearchChange = (value: string) => {
 			setCommandSearchTerm(value);
@@ -99,7 +98,7 @@ export default function MainSettings() {
 	}
 
 	function BlockedChannels() {
-		const [channelSearchTerm, setChannelSearchTerm] = useState('');
+		const [channelSearchTerm, setChannelSearchTerm] = useState("");
 
 		const handleChannelSearchChange = (value: string) => {
 			setChannelSearchTerm(value);
@@ -109,7 +108,9 @@ export default function MainSettings() {
 
 		const filteredChannels = channels
 			.filter((channel) =>
-				channel.name.toLowerCase().includes(channelSearchTerm.toLowerCase())
+				channel.name
+					.toLowerCase()
+					.includes(channelSearchTerm.toLowerCase()),
 			)
 			.slice(0, 5);
 
@@ -139,5 +140,4 @@ export default function MainSettings() {
 			</div>
 		);
 	}
-
 }
