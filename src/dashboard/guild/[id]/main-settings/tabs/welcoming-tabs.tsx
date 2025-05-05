@@ -1,13 +1,13 @@
 import classes from "./tabs.module.css";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Switch from "@/components/ui/inputs/switch";
 
 import Select, { SelectOption } from "@/components/ui/inputs/search";
 import { useSelector, useDispatch } from "react-redux";
 import { type RootState, AppDispatch } from "@/store";
-import {fetchUser} from "@/thunks/user";
-import {fetchGuilds} from "@/thunks/guilds";
-import {fetchChannels} from "@/thunks/channels";
+import { fetchUser } from "@/thunks/user";
+import { fetchGuilds } from "@/thunks/guilds";
+import { fetchChannels } from "@/thunks/channels";
 import InputType from "@/components/ui/inputs/input";
 const WelcomingTabs = () => {
 	const [activeTab, setActiveTab] = useState("Greetings");
@@ -73,7 +73,7 @@ const WelcomingTabs = () => {
 		</div>
 	);
 
-	function WelcomeChannel() : React.JSX.Element {
+	function WelcomeChannel(): React.JSX.Element {
 		const dispatch = useDispatch<AppDispatch>();
 		const [searchTerm, setSearchTerm] = useState("");
 		const handleSearchChange = (value: string) => {
@@ -83,7 +83,7 @@ const WelcomingTabs = () => {
 		const channels = useSelector((state: RootState) => state.channels.data);
 
 		const haveChannelsFetched = useSelector(
-			(state: RootState) => state.channels.areChannelsFetched
+			(state: RootState) => state.channels.areChannelsFetched,
 		);
 
 		const guildId = location.pathname.split("/")[3];
@@ -117,7 +117,10 @@ const WelcomingTabs = () => {
 							disableSearch={false}
 						>
 							{filteredChannels.map((channel: Channel) => (
-								<SelectOption key={channel.id} value={channel.name}>
+								<SelectOption
+									key={channel.id}
+									value={channel.name}
+								>
 									{channel.name}
 								</SelectOption>
 							))}
@@ -125,9 +128,9 @@ const WelcomingTabs = () => {
 					</div>
 				</div>
 			</div>
-		)
+		);
 	}
-	function Title() : React.JSX.Element {
+	function Title(): React.JSX.Element {
 		const [setStatus] = useState("");
 
 		const handleSymbolChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -149,9 +152,9 @@ const WelcomingTabs = () => {
 					</div>
 				</div>
 			</div>
-		)
+		);
 	}
-	function Description() : React.JSX.Element {
+	function Description(): React.JSX.Element {
 		const [setStatus] = useState("");
 
 		const handleSymbolChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -163,7 +166,9 @@ const WelcomingTabs = () => {
 			<div>
 				<div className={classes.setting}>
 					<div className={classes.settingOverlay}>
-						<p className={classes.overlayTitle}>WELCOME DESCRIPTION</p>
+						<p className={classes.overlayTitle}>
+							WELCOME DESCRIPTION
+						</p>
 
 						<InputType
 							onChange={handleSymbolChange}
@@ -173,7 +178,7 @@ const WelcomingTabs = () => {
 					</div>
 				</div>
 			</div>
-		)
+		);
 	}
 };
 

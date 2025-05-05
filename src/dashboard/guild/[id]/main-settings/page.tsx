@@ -3,7 +3,7 @@ import Sidebar from "@/components/ui/navigation/sidebar";
 import classes from "./main-settings.module.css";
 import { useDispatch } from "react-redux";
 import WelcomingTabs from "@/dashboard/guild/[id]/main-settings/tabs/welcoming-tabs";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { SelectOption } from "@/components/ui/inputs/search";
 import { useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "@/store";

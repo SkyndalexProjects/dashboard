@@ -85,7 +85,12 @@ export default function MultiSelect({
 					<div className={classes.tags}>
 						{selectedValues.map((value, index) => (
 							<div key={index} className={classes.tag}>
-								<p className={classes.multiValue}>{value}</p>
+								<p className={classes.multiValue}>
+									{" "}
+									{value.length > 8
+										? `${value.slice(0, 5)}...`
+										: value}{" "}
+								</p>
 								<button
 									onClick={(e) => {
 										e.stopPropagation();
