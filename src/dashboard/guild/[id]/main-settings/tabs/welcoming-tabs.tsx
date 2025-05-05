@@ -1,30 +1,20 @@
 import classes from "./tabs.module.css";
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import Switch from "@/components/ui/inputs/switch";
 
 import Select, { SelectOption } from "@/components/ui/inputs/search";
-import { useSelector } from "react-redux";
-import type { RootState } from "@/store";
+import { useSelector, useDispatch } from "react-redux";
+import { type RootState, AppDispatch } from "@/store";
+import {fetchUser} from "@/thunks/user";
+import {fetchGuilds} from "@/thunks/guilds";
+import {fetchChannels} from "@/thunks/channels";
+import InputType from "@/components/ui/inputs/input";
 const WelcomingTabs = () => {
 	const [activeTab, setActiveTab] = useState("Greetings");
-	const [searchTerm, setSearchTerm] = useState("");
-	const handleSearchChange = (value: string) => {
-		setSearchTerm(value);
-		console.log("searchTerm", searchTerm);
-	};
-	const channels = useSelector((state: RootState) => state.channels.data);
 
-	const filteredChannels = channels
-		.filter((channel) =>
-			channel.name.toLowerCase().includes(searchTerm.toLowerCase()),
-		)
-		.slice(0, 5);
 	const handleTabClick = (tab: string) => {
 		setActiveTab(tab);
 	};
-	interface SettingProps {
-		name: string;
-	}
 
 	return (
 		<div>
@@ -62,9 +52,9 @@ const WelcomingTabs = () => {
 							Greetings image
 						</p>
 
-						<TabSetting name={"WELCOME CHANNEL"} />
-						<TabSetting name={"WELCOME TITLE"} />
-						<TabSetting name={"WELCOME DESCRIPTION"} />
+						<WelcomeChannel />
+						<Title />
+						<Description />
 					</div>
 				)}
 				{activeTab === "Goodbyes" && (
@@ -83,34 +73,107 @@ const WelcomingTabs = () => {
 		</div>
 	);
 
-	// TODO: split this to the more functions and make better handling
+	function WelcomeChannel() : React.JSX.Element {
+		const dispatch = useDispatch<AppDispatch>();
+		const [searchTerm, setSearchTerm] = useState("");
+		const handleSearchChange = (value: string) => {
+			setSearchTerm(value);
+			console.log("searchTerm", searchTerm);
+		};
+		const channels = useSelector((state: RootState) => state.channels.data);
 
-	function TabSetting({ name }: SettingProps): React.JSX.Element {
+		const haveChannelsFetched = useSelector(
+			(state: RootState) => state.channels.areChannelsFetched
+		);
+
+		const guildId = location.pathname.split("/")[3];
+
+		useEffect(() => {
+			if (!haveChannelsFetched) {
+				dispatch(fetchChannels(guildId));
+			}
+		}, []);
+		const filteredChannels = channels
+			.filter((channel) =>
+				channel.name.toLowerCase().includes(searchTerm.toLowerCase()),
+			)
+			.slice(0, 5);
+
 		return (
-			<div className={classes.setting}>
-				<div className={classes.settingOverlay}>
-					<p className={classes.overlayTitle}>{name}</p>
+			<div>
+				<div className={classes.setting}>
+					<div className={classes.settingOverlay}>
+						<p className={classes.overlayTitle}>WELCOME CHANNEL</p>
 
-					<Select
-						value={searchTerm}
-						onChange={handleSearchChange}
-						searchTerm={searchTerm}
-						setSearchTerm={setSearchTerm}
-						className={classes.selectContainer}
-						placeholder="Search for a channel"
-						inputClassName={classes.inputContainer}
-						indicatorClassName={classes.indicator}
-						disableSearch={false}
-					>
-						{filteredChannels.map((channel: Channel) => (
-							<SelectOption key={channel.id} value={channel.name}>
-								{channel.name}
-							</SelectOption>
-						))}
-					</Select>
+						<Select
+							value={searchTerm}
+							onChange={handleSearchChange}
+							searchTerm={searchTerm}
+							setSearchTerm={setSearchTerm}
+							className={classes.selectContainer}
+							placeholder="Search for a channel"
+							inputClassName={classes.inputContainer}
+							indicatorClassName={classes.indicator}
+							disableSearch={false}
+						>
+							{filteredChannels.map((channel: Channel) => (
+								<SelectOption key={channel.id} value={channel.name}>
+									{channel.name}
+								</SelectOption>
+							))}
+						</Select>
+					</div>
 				</div>
 			</div>
-		);
+		)
+	}
+	function Title() : React.JSX.Element {
+		const [setStatus] = useState("");
+
+		const handleSymbolChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+			// @ts-ignore
+			setStatus(e.target.value);
+		};
+
+		return (
+			<div>
+				<div className={classes.setting}>
+					<div className={classes.settingOverlay}>
+						<p className={classes.overlayTitle}>WELCOME TITLE</p>
+
+						<InputType
+							onChange={handleSymbolChange}
+							className={classes.inputContainer}
+							type="text"
+						/>
+					</div>
+				</div>
+			</div>
+		)
+	}
+	function Description() : React.JSX.Element {
+		const [setStatus] = useState("");
+
+		const handleSymbolChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+			// @ts-ignore
+			setStatus(e.target.value);
+		};
+
+		return (
+			<div>
+				<div className={classes.setting}>
+					<div className={classes.settingOverlay}>
+						<p className={classes.overlayTitle}>WELCOME DESCRIPTION</p>
+
+						<InputType
+							onChange={handleSymbolChange}
+							className={classes.inputContainer}
+							type="text"
+						/>
+					</div>
+				</div>
+			</div>
+		)
 	}
 };
 

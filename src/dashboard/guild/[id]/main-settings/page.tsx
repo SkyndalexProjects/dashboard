@@ -1,13 +1,14 @@
 import Navbar from "@/components/ui/navigation/navbar";
 import Sidebar from "@/components/ui/navigation/sidebar";
 import classes from "./main-settings.module.css";
-import Switch from "@/components/ui/inputs/switch";
+import { useDispatch } from "react-redux";
 import WelcomingTabs from "@/dashboard/guild/[id]/main-settings/tabs/welcoming-tabs";
-import React, { useState } from "react";
-import Select, { SelectOption } from "@/components/ui/inputs/search";
+import React, {useEffect, useState} from "react";
+import { SelectOption } from "@/components/ui/inputs/search";
 import { useSelector } from "react-redux";
-import type { RootState } from "@/store";
+import type { RootState, AppDispatch } from "@/store";
 import MultiSelect from "@/components/ui/inputs/multi";
+import { fetchChannels } from "@/thunks/channels";
 export default function MainSettings() {
 	const exampleCommands = [
 		{
@@ -92,14 +93,35 @@ export default function MainSettings() {
 	}
 
 	function BlockedChannels() {
+		const dispatch = useDispatch<AppDispatch>();
 		const [blockedChannels, setBlockedChannels] = useState<string[]>([]);
 		const [channelsSearchTerm, setChannelsSearchTerm] = useState("");
 
 		const handleChannelChange = (values: string[]) => {
+			console.log("Selected values:", values);
 			setBlockedChannels(values);
 		};
 
 		const channels = useSelector((state: RootState) => state.channels.data);
+
+		console.log("channels from blocked channels", channels);
+		const haveChannelsFetched = useSelector(
+			(state: RootState) => state.channels.areChannelsFetched,
+		);
+
+		const guildId = location.pathname.split("/")[3];
+
+		useEffect(() => {
+			if (!blockedChannels.length && channels.length) {
+				setBlockedChannels(channels.map((channel) => channel.name));
+			}
+		}, [channels, blockedChannels]);
+
+		useEffect(() => {
+			if (!haveChannelsFetched) {
+				dispatch(fetchChannels(guildId));
+			}
+		}, []);
 
 		const filteredChannels = channels
 			.filter((channel) =>
