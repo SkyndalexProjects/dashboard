@@ -48,7 +48,8 @@
 }
 .setting-overlay {
     width: 375px;
-    height: 118px;
+    height: 145px;
+
     flex-shrink: 0;
     border-radius: 10px;
     border: 1px solid #474747;
@@ -67,17 +68,19 @@
     caret-color: transparent;
     margin-left: 19px;
 }
+
 .input-container {
-    caret-color: transparent;
+    height: 67px;
+    position: absolute;
     display: flex;
     flex-direction: row;
-    width: 303.96px;
-    height: 42.653px;
     transform: rotate(0.254deg);
     flex-shrink: 0;
-    border-radius: 10px;
-    border: 1px solid #8E8E8E;
-    background: rgba(32, 32, 32, 0.10);
+    border: transparent;
+    background-color: transparent;
+    overflow-y: auto;
+    margin-top: 70px;
+    margin-left: -7px;
 }
 .indicator {
     caret-color: transparent;

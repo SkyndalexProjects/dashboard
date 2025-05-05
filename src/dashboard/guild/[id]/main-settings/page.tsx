@@ -7,23 +7,8 @@ import React, { useState } from "react";
 import Select, { SelectOption } from "@/components/ui/inputs/search";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store";
+import MultiSelect from "@/components/ui/inputs/multi";
 export default function MainSettings() {
-	// const channels = useSelector((state: RootState) => state.channels.data);
-	//
-	// const filteredChannels = channels
-	// 	.filter((channel) =>
-	// 		channel.name.toLowerCase().includes(searchTerm.toLowerCase()),
-	// 	)
-	// 	.slice(0, 5);
-	interface SettingProps {
-		name: string;
-	}
-
-	interface Command {
-		id: number;
-		name: string;
-		description: string;
-	}
 	const exampleCommands = [
 		{
 			id: 1,
@@ -64,10 +49,20 @@ export default function MainSettings() {
 	);
 
 	function BlockedCommands() {
+		const [blockedCommands, setBlockedCommands] = useState<string[]>([
+			"Command 1",
+			"Command 2",
+			"Command 3",
+			"Command 4",
+			"Command 5",
+			"Command 6",
+			"Command 7",
+			"Command 8",
+		]);
 		const [commandSearchTerm, setCommandSearchTerm] = useState("");
 
-		const handleCommandSearchChange = (value: string) => {
-			setCommandSearchTerm(value);
+		const handleCommandChange = (values: string[]) => {
+			setBlockedCommands(values);
 		};
 
 		return (
@@ -75,13 +70,12 @@ export default function MainSettings() {
 				<div className={classes.settingOverlay}>
 					<p className={classes.overlayTitle}>BLOCKED COMMANDS</p>
 
-					<Select
-						value={commandSearchTerm}
-						onChange={handleCommandSearchChange}
+					<MultiSelect
+						values={blockedCommands}
+						onChange={handleCommandChange}
 						searchTerm={commandSearchTerm}
 						setSearchTerm={setCommandSearchTerm}
 						className={classes.selectContainer}
-						placeholder="Search for a command"
 						inputClassName={classes.inputContainer}
 						indicatorClassName={classes.indicator}
 						disableSearch={false}
@@ -91,17 +85,18 @@ export default function MainSettings() {
 								{command.name}
 							</SelectOption>
 						))}
-					</Select>
+					</MultiSelect>
 				</div>
 			</div>
 		);
 	}
 
 	function BlockedChannels() {
-		const [channelSearchTerm, setChannelSearchTerm] = useState("");
+		const [blockedChannels, setBlockedChannels] = useState<string[]>([]);
+		const [channelsSearchTerm, setChannelsSearchTerm] = useState("");
 
-		const handleChannelSearchChange = (value: string) => {
-			setChannelSearchTerm(value);
+		const handleChannelChange = (values: string[]) => {
+			setBlockedChannels(values);
 		};
 
 		const channels = useSelector((state: RootState) => state.channels.data);
@@ -110,7 +105,7 @@ export default function MainSettings() {
 			.filter((channel) =>
 				channel.name
 					.toLowerCase()
-					.includes(channelSearchTerm.toLowerCase()),
+					.includes(channelsSearchTerm.toLowerCase()),
 			)
 			.slice(0, 5);
 
@@ -119,23 +114,23 @@ export default function MainSettings() {
 				<div className={classes.settingOverlay}>
 					<p className={classes.overlayTitle}>BLOCKED CHANNELS</p>
 
-					<Select
-						value={channelSearchTerm}
-						onChange={handleChannelSearchChange}
-						searchTerm={channelSearchTerm}
-						setSearchTerm={setChannelSearchTerm}
+					<MultiSelect
+						values={blockedChannels}
+						onChange={handleChannelChange}
+						searchTerm={channelsSearchTerm}
+						setSearchTerm={setChannelsSearchTerm}
 						className={classes.selectContainer}
 						placeholder="Search for a channel"
 						inputClassName={classes.inputContainer}
 						indicatorClassName={classes.indicator}
 						disableSearch={false}
 					>
-						{filteredChannels.map((channel) => (
+						{filteredChannels.map((channel: Channel) => (
 							<SelectOption key={channel.id} value={channel.name}>
 								{channel.name}
 							</SelectOption>
 						))}
-					</Select>
+					</MultiSelect>
 				</div>
 			</div>
 		);

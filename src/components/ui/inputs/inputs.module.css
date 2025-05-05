@@ -19,7 +19,6 @@
 	padding: 10px;
 	width: auto;
 	text-wrap: nowrap;
-	margin-top: 30px;
 	border-radius: 15px;
 	z-index: 1000;
 	caret-color: transparent;
@@ -28,9 +27,40 @@
 	transform: scaleY(0);
 	transform-origin: top;
 	animation: dropdownOpen 0.3s forwards;
-	z-index: 9999;
 }
 
+.multi-option {
+	border-radius: 5px;
+	background: rgba(0, 0, 0, 0.31);
+	width: 76px;
+	color: #5F87EA;
+	height: 22px;
+}
+.multi-options {
+	position: absolute;
+	background-color: rgb(0, 0, 0);
+	padding: 10px;
+	width: auto;
+	text-wrap: nowrap;
+	border-radius: 15px;
+	caret-color: transparent;
+	cursor: pointer;
+	opacity: 0;
+	transform: scaleY(0);
+	transform-origin: top;
+	animation: dropdownOpen 0.3s forwards;
+	margin-top: 70px;
+}
+.multi-option {
+	position: relative;
+	background-color: rgba(0, 0, 0, 0.8);
+	font-family: "Poppins", sans-serif;
+	font-size: 15px;
+	font-weight: 500;
+	padding: 5px 0;
+	cursor: pointer;
+	caret-color: transparent;
+}
 @keyframes dropdownOpen {
 	to {
 		opacity: 1;
@@ -39,7 +69,6 @@
 }
 
 .option {
-	z-index: 1000;
 	position: relative;
 	background-color: rgba(0, 0, 0, 0.8);
 	font-family: "Poppins", sans-serif;
@@ -70,4 +99,152 @@
 
 .off {
 	transform: translateX(3px);
+}
+.inputContainer {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	padding: 8px;
+	border-radius: 10px;
+	background: rgba(32, 32, 32, 0.2);
+	width: 303.96px;
+	min-height: 42.653px;
+	max-height: 67px;
+}
+
+.selectedTagsContainer {
+	display: grid;
+	grid-template-columns: 4fr 1fr;
+	overflow-y: auto;
+	max-height: 160px;
+	gap: 4px;
+	align-items: center;
+	z-index: 1000;
+
+}
+
+.tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	z-index: 1000;
+}
+
+.tag {
+	width: 76px;
+	height: 22px;
+	background-color: rgba(2, 2, 2, 0.30);
+	border-radius: 4px;
+	padding: 2px 8px;
+	margin-right: 4px;
+	margin-bottom: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.multiValue {
+	color: #5F87EA;
+	font-family: Poppins, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	text-wrap: nowrap;
+}
+
+.removeTag {
+	background: none;
+	border: none;
+	cursor: pointer;
+	margin-left: 4px;
+	font-size: 14px;
+	line-height: 1;
+	padding: 0 4px;
+	color: white;
+}
+
+.placeholder {
+	flex: 1;
+	min-width: 50px;
+	border: none;
+	background: transparent;
+	color: white;
+	font-family: "Poppins", sans-serif;
+	font-size: 18px;
+	font-weight: 500;
+	outline: none;
+}
+
+.withLogo {
+	padding-left: 53px;
+}
+
+.multiOptions {
+	position: absolute;
+	top: calc(100% + 5px);
+	margin-top: 20px;
+	left: 0;
+	right: 0;
+	background-color: rgb(0, 0, 0);
+	padding: 10px;
+	border-radius: 15px;
+	caret-color: transparent;
+	cursor: pointer;
+	z-index: 1001;
+	max-height: 200px;
+	width: 100%;
+	height: 22px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.multiOption {
+	position: relative;
+	background-color: rgba(0, 0, 0, 0.8);
+	font-family: "Poppins", sans-serif;
+	font-size: 15px;
+	font-weight: 500;
+	padding: 8px 12px;
+	margin-bottom: 4px;
+	cursor: pointer;
+	caret-color: transparent;
+	border-radius: 5px;
+	color: white;
+	transition: background-color 0.2s;
+}
+
+.multiOption:hover {
+	background-color: rgba(95, 135, 234);
+}
+
+.selected {
+	background-color: rgba(0, 0, 0, 0.31);
+	color: #5F87EA;
+}
+
+@keyframes dropdownOpen {
+	from {
+		opacity: 0;
+		transform: scaleY(0.8);
+	}
+	to {
+		opacity: 1;
+		transform: scaleY(1);
+	}
+}
+
+.multiOptions {
+	animation: dropdownOpen 0.2s forwards;
+	transform-origin: top;
+
+}
+
+.logo {
+	position: absolute;
+	top: 38%;
+	margin-left: 8px;
+	width: 32px;
+	height: 32px;
+	flex-shrink: 0;
+	border-radius: 50px;
 }
