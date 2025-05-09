@@ -5,6 +5,7 @@ interface InputProps {
 	placeholderLogoClassName?: string;
 	className?: string;
 	type: string;
+	value: string;
 }
 export default function InputType({
 	onChange,
