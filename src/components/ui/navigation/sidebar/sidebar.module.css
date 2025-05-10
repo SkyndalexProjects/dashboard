@@ -1,65 +1,145 @@
 .sidebar {
-	width: 315px;
-	height: calc(100vh - 65px);
-	padding: 10px;
+	color: white;
+	width: 336px;
+	height: 100%;
 	position: fixed;
-	top: 125px;
 	left: 0;
-	z-index: 1;
+	top: 100px;
+	background: rgba(0, 0, 0, 0.20);
 }
 
-.sidebarItem,
-.sidebarItem.active img {
+.sidebarCategory {
+	margin-bottom: 15px;
+}
+
+.categoryHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+.divider-vector {
+	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	width: 290px;
+	background-color: rgba(255, 255, 255, 0.31);
+	position: absolute;
+	height: 1px;
+	margin-top: -35px;
+
+}
+.categoryTitle {
+	color: rgba(255, 255, 255, 0.60);
+	font-family: Poppins, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+}
+
+.chevron {
+	width: 16px;
+	height: 16px;
+	transition: transform 0.3s ease;
+}
+
+.chevron.expanded {
+	transform: rotate(180deg);
+}
+
+.categoryContent {
+	padding: 5px 0;
+}
+
+.sidebarItem {
 	display: flex;
-	flex-direction: row;
-	vertical-align: middle;
-	width: 30px;
-	height: 30px;
-	padding-left: 10px;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 15px;
+	margin: 2px 5px;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+	color: #FFF;
+	font-family: "Be Vietnam Pro", sans-serif;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
 }
 
-.sidebar button {
-	background: none;
-	border: none;
+.sidebarItem:hover {
+	background: rgba(0, 0, 0, 0.35);
+	border-left: 5px solid #275EE7;
+	border-radius: 0px 20px 20px 0px;
 }
-
 
 .sidebarItem.active {
-	border-radius: 0px 20px 20px 0px;
-	border-left: 5px solid rgba(39, 94, 231, 1);
 	background: rgba(0, 0, 0, 0.35);
-	width: 315px;
-	height: 67px;
-	color: white;
-}
-.sidebarItem {
-
-	font-family: "Noto Sans", sans-serif;
-	font-weight: 500;
-	color: #a3a3a3;
-	width: 315px;
-	height: 67px;
-	font-size: 20px;
-	text-align: left;
-	display: flex;
-	justify-content: flex-start;
-	border-radius: 15px;
-	transition: background-color 0.3s;
-}
-.sidebarItem:hover {
+	border-left: 5px solid #275EE7;
 	border-radius: 0px 20px 20px 0px;
-	border-left: 5px solid rgba(39, 94, 231, 1);
-	background: rgba(0, 0, 0, 0.24);
-	transition: background-color 0.3s ease-in-out;
 }
-.sidebarItemText {
-	margin-left: 15px;
-	font-family: "Noto Sans", sans-serif;
-	justify-content: center;
-	align-items: center;
+
+.itemContent {
 	display: flex;
-	flex-direction: row;
-	flex-shrink: 0;
+	align-items: center;
+}
+
+.sidebarIcon {
+	width: 20px;
+	height: 20px;
+	margin-right: 12px;
+}
+
+.sidebarText {
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 36px;
+	height: 20px;
+}
+
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.knob {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #363a45;
+	transition: .4s;
+	border-radius: 34px;
+}
+
+.knob:before {
+	position: absolute;
+	content: "";
+	height: 16px;
+	width: 16px;
+	left: 2px;
+	bottom: 2px;
+	background-color: white;
+	transition: .4s;
+	border-radius: 50%;
+}
+
+input:checked + .knob {
+	background-color: #2979ff;
+}
+
+input:checked + .knob:before {
+	transform: translateX(16px);
 }
