@@ -16,13 +16,19 @@ interface SidebarCategoryProps {
 	children: React.ReactNode;
 }
 
-const SidebarItem = ({ path, icon, text, hasSwitch = false, additionalPaths = [] }: SidebarItemProps) => {
+const SidebarItem = ({
+	path,
+	icon,
+	text,
+	hasSwitch = false,
+	additionalPaths = [],
+}: SidebarItemProps) => {
 	const location = useLocation();
 	const navigate = useNavigate();
 
 	const isActive = (path: string) => {
 		if (location.pathname === path) return true;
-		return additionalPaths.some(p => location.pathname.includes(p));
+		return additionalPaths.some((p) => location.pathname.includes(p));
 	};
 
 	const handleNavigation = () => {
@@ -31,7 +37,9 @@ const SidebarItem = ({ path, icon, text, hasSwitch = false, additionalPaths = []
 
 	return (
 		<div
-			className={`${classes.sidebarItem} ${isActive(path) ? classes.active : ""}`}
+			className={`${classes.sidebarItem} ${
+				isActive(path) ? classes.active : ""
+			}`}
 			onClick={handleNavigation}
 		>
 			<div className={classes.itemContent}>
@@ -62,13 +70,13 @@ const SidebarCategory = ({ title, children }: SidebarCategoryProps) => {
 				<img
 					src="/indicator.svg"
 					alt="Toggle"
-					className={`${classes.chevron} ${isExpanded ? classes.expanded : ""}`}
+					className={`${classes.chevron} ${
+						isExpanded ? classes.expanded : ""
+					}`}
 				/>
 			</div>
 			{isExpanded && (
-				<div className={classes.categoryContent}>
-					{children}
-				</div>
+				<div className={classes.categoryContent}>{children}</div>
 			)}
 		</div>
 	);

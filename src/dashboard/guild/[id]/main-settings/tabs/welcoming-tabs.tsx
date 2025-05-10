@@ -21,7 +21,7 @@ const ChannelSelector = ({ purpose }) => {
 	const [searchTerm, setSearchTerm] = useState("");
 	const channels = useSelector((state: RootState) => state.channels.data);
 	const haveChannelsFetched = useSelector(
-		(state: RootState) => state.channels.areChannelsFetched
+		(state: RootState) => state.channels.areChannelsFetched,
 	);
 	const guildId = location.pathname.split("/")[3];
 
@@ -37,7 +37,7 @@ const ChannelSelector = ({ purpose }) => {
 
 	const filteredChannels = channels
 		.filter((channel) =>
-			channel.name.toLowerCase().includes(searchTerm.toLowerCase())
+			channel.name.toLowerCase().includes(searchTerm.toLowerCase()),
 		)
 		.slice(0, 5);
 
@@ -101,13 +101,21 @@ const WelcomingTabs = () => {
 		<div>
 			<div className={classes.tabsContainer}>
 				<button
-					className={activeTab === "Greetings" ? classes.activeTab : classes.inactiveTab}
+					className={
+						activeTab === "Greetings"
+							? classes.activeTab
+							: classes.inactiveTab
+					}
 					onClick={() => handleTabClick("Greetings")}
 				>
 					Greetings
 				</button>
 				<button
-					className={activeTab === "Goodbyes" ? classes.activeTab : classes.inactiveTab}
+					className={
+						activeTab === "Goodbyes"
+							? classes.activeTab
+							: classes.inactiveTab
+					}
 					onClick={() => handleTabClick("Goodbyes")}
 				>
 					Goodbyes
