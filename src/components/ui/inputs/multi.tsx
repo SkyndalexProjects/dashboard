@@ -78,7 +78,7 @@ export default function MultiSelect({
 	return (
 		<div
 			ref={selectRef}
-			className={`${classes.inputContainer} ${className}`}
+			className={`${classes.multiInput} ${className}`}
 		>
 			<div className={classes.selectedTagsContainer}>
 				{selectedValues.length > 0 && (

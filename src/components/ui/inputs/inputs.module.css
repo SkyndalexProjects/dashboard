@@ -106,6 +106,15 @@
 	display: flex;
 	flex-direction: column;
 	position: relative;
+	border-radius: 10px;
+	width: 303px;
+	min-height: 42px;
+	max-height: 67px;
+}
+.multiInput {
+	display: flex;
+	flex-direction: column;
+	position: relative;
 	padding: 8px;
 	border-radius: 10px;
 	background: rgba(63, 63, 63, 0.2);
@@ -113,7 +122,6 @@
 	min-height: 42px;
 	max-height: 67px;
 }
-
 .selectedTagsContainer {
 	display: grid;
 	grid-template-columns: 4fr 1fr;

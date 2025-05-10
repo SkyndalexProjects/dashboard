@@ -49,7 +49,6 @@ const ChannelSelector = ({ purpose }) => {
 				searchTerm={searchTerm}
 				setSearchTerm={setSearchTerm}
 				className={classes.selectContainer}
-				placeholder={`Search for a ${purpose.toLowerCase()} channel`}
 				inputClassName={classes.inputContainer}
 				indicatorClassName={classes.indicator}
 				disableSearch={false}
