@@ -9,7 +9,20 @@ import { useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "@/store";
 import MultiSelect from "@/components/ui/inputs/multi";
 import { fetchChannels } from "@/thunks/channels";
+import {fetchRoles} from "@/thunks/roles";
+interface Role {
+	id: string;
+	name: string;
+	color: string;
+	permissions: string;
+	position: number;
+	hoist: boolean;
+	managed: boolean;
+	mentionable: boolean;
+}
 export default function MainSettings() {
+	const dispatch = useDispatch<AppDispatch>();
+
 	const exampleCommands = [
 		{
 			id: 1,
@@ -24,24 +37,35 @@ export default function MainSettings() {
 	];
 	return (
 		<div>
+			{/* TODO: fix containers*/}
+
 			<Navbar />
 			<Sidebar />
-			<p className={classes.greetingsAndFarewell}>
+			<div className={classes.greetingsAndFarewell}>
 				{" "}
 				Greetings & Farewell
 				<div className={classes.underlineVector}></div>
-			</p>
+			</div>
 
 			<div className={classes.container}>
 				<WelcomingTabs />
 			</div>
 
-			<p className={classes.permissions}>
+			<div className={classes.permissions}>
 				{" "}
 				Permissions
 				<div className={classes.underlineVector}></div>
-			</p>
+			</div>
 
+			<div className={classes.additionals}>
+				{" "}
+				Additionals
+				<div className={classes.underlineVector}></div>
+			</div>
+
+			<div className={classes.autoRoles}>
+				<AutoRoles />
+			</div>
 			<div className={classes.permissionSettings}>
 				<BlockedCommands />
 				<BlockedChannels />
@@ -93,7 +117,6 @@ export default function MainSettings() {
 	}
 
 	function BlockedChannels() {
-		const dispatch = useDispatch<AppDispatch>();
 		const [blockedChannels, setBlockedChannels] = useState<string[]>([]);
 		const [channelsSearchTerm, setChannelsSearchTerm] = useState("");
 
@@ -150,6 +173,59 @@ export default function MainSettings() {
 						{filteredChannels.map((channel: Channel) => (
 							<SelectOption key={channel.id} value={channel.name}>
 								{channel.name}
+							</SelectOption>
+						))}
+					</MultiSelect>
+				</div>
+			</div>
+		);
+	}
+	function AutoRoles() {
+		const [autoRoles, setAutoRoles] = useState<string[]>([]);
+		const [rolesSearchTerm, setRolesSearchTerm] = useState("");
+		const handleRoleChange = (values: string[]) => {
+			setAutoRoles(values);
+		};
+		const roles = useSelector((state: RootState) => state.roles.data);
+		const haveRolesFetched = useSelector(
+			(state: RootState) => state.roles.areRolesFetched,
+		);
+		const guildId = location.pathname.split("/")[3];
+		useEffect(() => {
+			if (!autoRoles.length && roles.length) {
+				setAutoRoles(roles.map((role) => role.name));
+			}
+		}, [roles, autoRoles]);
+		useEffect(() => {
+			if (!haveRolesFetched) {
+				dispatch(fetchRoles(guildId));
+			}
+		}, []);
+
+		const filteredRoles = roles
+			.filter((role) =>
+				role.name.toLowerCase().includes(rolesSearchTerm.toLowerCase()),
+			)
+			.slice(0, 5);
+
+		return (
+			<div className={classes.setting}>
+				<div className={classes.settingOverlay}>
+					<p className={classes.overlayTitle}>AUTO ROLES</p>
+
+					<MultiSelect
+						values={autoRoles}
+						onChange={handleRoleChange}
+						searchTerm={rolesSearchTerm}
+						setSearchTerm={setRolesSearchTerm}
+						className={classes.selectContainer}
+						inputClassName={classes.inputContainer}
+						indicatorClassName={classes.indicator}
+						disableSearch={false}
+					>
+						{filteredRoles.map((role: Role) => (
+							<SelectOption key={role.id} value={role.name}>
+								{role.name}
 							</SelectOption>
 						))}
 					</MultiSelect>
