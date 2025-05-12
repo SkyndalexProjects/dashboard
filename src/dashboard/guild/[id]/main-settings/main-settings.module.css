@@ -110,3 +110,76 @@
     font: 700 20px/normal "Be Vietnam Pro";
     margin-top: 441px;
 }
+.dangerous {
+    margin-left: 1247px;
+    display: flex;
+    flex-direction: column;
+    caret-color: transparent;
+    position: absolute;
+    color: #FFF;
+    font: 700 20px/normal "Be Vietnam Pro";
+    margin-top: -110px;
+}
+.alert {
+    width: 368px;
+    height: 62px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    border: 1px solid #D83C3C;
+    background: rgba(0, 0, 0, 0.20);
+    position: absolute;
+    margin-top: 30px;
+}
+.alert-text {
+    color: #FFF;
+    font-family: "Be Vietnam Pro", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.white-divider {
+    position: absolute;
+    width: 399px;
+    height: 1px;
+    background-color: #F8F8F8;
+    margin-top: 120px;
+}
+.button-containers {
+    position: absolute;
+    margin-top: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-wrap: nowrap;
+    gap: 25px;
+}
+.action-button {
+    display: inline-flex;
+    padding: 11px 22px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 18px;
+    border: 3px solid rgba(175, 95, 66, 0.62);
+    background: rgba(0, 0, 0, 0.47);
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins, sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+
+}
+.action-button:hover {
+    background: rgba(245, 0, 0, 0.61);
+    color: #000;
+    border: 3px solid rgba(0, 0, 0, 0.62);
+}

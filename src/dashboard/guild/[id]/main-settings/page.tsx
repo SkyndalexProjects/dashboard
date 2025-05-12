@@ -41,6 +41,7 @@ export default function MainSettings() {
 
 			<Navbar />
 			<Sidebar />
+
 			<div className={classes.greetingsAndFarewell}>
 				{" "}
 				Greetings & Farewell
@@ -50,7 +51,11 @@ export default function MainSettings() {
 			<div className={classes.container}>
 				<WelcomingTabs />
 			</div>
-
+			<div className={classes.dangerous}>
+				Dangerous
+				<div className={classes.underlineVector}></div>
+				<Dangerous />
+			</div>
 			<div className={classes.permissions}>
 				{" "}
 				Permissions
@@ -229,6 +234,29 @@ export default function MainSettings() {
 							</SelectOption>
 						))}
 					</MultiSelect>
+				</div>
+			</div>
+		);
+	}
+	function Dangerous() {
+		return (
+			<div>
+				<div className={classes.alert}>
+					<p className={classes.alertText}>
+						Be careful! There is no turning back!
+					</p>
+				</div>
+
+				<div className={classes.whiteDivider} />
+
+
+				<div className={classes.buttonContainers}>
+					<button className={classes.actionButton}>
+						Reset economy
+					</button>
+					<button className={classes.actionButton}>
+						Reset settings
+					</button>
 				</div>
 			</div>
 		);
