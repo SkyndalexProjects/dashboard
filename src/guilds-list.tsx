@@ -56,7 +56,6 @@ export default function GuildsList() {
 			</div>
 		);
 	}
-	console.log("user", user);
 	return (
 		<div>
 			<h1 className="title">

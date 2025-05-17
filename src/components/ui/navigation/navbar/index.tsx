@@ -56,17 +56,18 @@ const Navbar = () => {
 	return (
 		<>
 			<nav>
-				<img
-					className={classes.botIcon}
-					src={`https://cdn.discordapp.com/avatars/1059594156839809074/f2ed3c7590d834ed2d86912124c4ee1e.webp?size=1024`}
-					alt="Guild Icon"
-					onError={(e) => {
-						e.currentTarget.src = "/default_guild_icon.png";
-					}}
-				/>
-				<p className={classes.navTitle}>Dashboard</p>
-				<div className={classes.versionContainer}>
-					<p className={classes.version}> v0.0.0 </p>
+				<div className={classes.navLeft}>
+					<img
+						className={classes.botIcon}
+						src={`https://cdn.discordapp.com/avatars/1059594156839809074/f2ed3c7590d834ed2d86912124c4ee1e.webp?size=1024`}
+						alt="Guild Icon"
+						onError={(e) => {
+							e.currentTarget.src = "/default_guild_icon.png";
+						}}
+					/>
+
+					<p className={classes.navTitle}> Dashboard </p>
+					<div className={classes.versionOverlay}>v0.0.0</div>
 				</div>
 				<button onClick={openModal} className={classes.guildChooser}>
 					<img
@@ -89,11 +90,8 @@ const Navbar = () => {
 						searchTerm={searchTerm}
 						setSearchTerm={setSearchTerm}
 						className={classes.selectContainer}
-						inputClassName={classes.selectInput}
-						indicatorClassName={classes.selectIndicator}
 						placeholder={getCurrentUser?.username}
 						placeholderLogo={`https://cdn.discordapp.com/avatars/${getCurrentUser?.id}/${getCurrentUser?.avatar}.png`}
-						placeholderClassName={classes.selectPlaceholder}
 						disableSearch={true}
 					>
 						{options.map((option) => (

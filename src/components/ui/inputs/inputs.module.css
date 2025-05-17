@@ -1,23 +1,37 @@
 .selectInput {
 	border-radius: 10px;
-	background: rgba(32, 32, 32, 0.2);
-	width: 303.96px;
-	height: 42.653px;
+	background: rgba(0, 0, 0, 0.19);
+	width: 100%;
+	height: 56px;
 	flex-shrink: 0;
-	color: white;
-	font-family: "Poppins", sans-serif;
-	font-size: 18px;
-	font-weight: 500;
 	appearance: none;
 	z-index: 1000;
 	position: relative;
 }
 
-.options {
+.indicator {
+	align-items: center;
+	justify-content: space-between;
+	margin-right: 20px;
+}
+
+.optionsWrapper {
 	position: absolute;
+	left: 0;
+	top: 100%;
+	width: 100%;
+	margin-top: 5px;
+	z-index: 1001;
+}
+
+.options {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	background-color: rgb(0, 0, 0);
 	padding: 10px;
-	width: auto;
+	width: 100%;
 	text-wrap: nowrap;
 	border-radius: 15px;
 	z-index: 1000;
@@ -27,9 +41,61 @@
 	transform: scaleY(0);
 	transform-origin: top;
 	animation: dropdownOpen 0.3s forwards;
-	margin-top: 60px;
 }
 
+.inputContainer {
+	width: max-content;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10px;
+	caret-color: transparent;
+}
+
+.placeholder {
+	width: max-content;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	border: none;
+	background: none;
+	color: #667398;
+	font: normal 500 20px/normal "Be Vietnam Pro", sans-serif;
+	outline: none;
+}
+.placeholder-text {
+	color: #667398;
+	font: normal 500 20px/normal "Be Vietnam Pro", sans-serif;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	background: none;
+	border-radius: 10px;
+	outline: none;
+	transition: all 0.3s ease-in-out;
+}
+.option {
+	position: relative;
+	background-color: rgba(0, 0, 0, 0.8);
+	font-family: "Poppins", sans-serif;
+	font-size: 15px;
+	font-weight: 500;
+	padding: 5px 0;
+	cursor: pointer;
+	caret-color: transparent;
+	width: 100%;
+}
+.option:hover {
+	padding: 8px;
+	background-color: rgba(95, 135, 234);
+	border-radius: 10px;
+	transition: 0.2s;
+}
 .multi-option {
 	border-radius: 5px;
 	background: rgba(0, 0, 0, 0.31);
@@ -37,6 +103,7 @@
 	color: #5F87EA;
 	height: 22px;
 }
+
 .multi-options {
 	position: absolute;
 	background-color: rgb(0, 0, 0);
@@ -53,6 +120,7 @@
 	margin-top: 50px;
 	z-index: 1000;
 }
+
 .multi-option {
 	position: relative;
 	background-color: rgba(0, 0, 0, 0.8);
@@ -63,38 +131,10 @@
 	cursor: pointer;
 	caret-color: transparent;
 }
-@keyframes dropdownOpen {
-	to {
-		opacity: 1;
-		transform: scaleY(1);
-	}
-}
-
-.option {
-	position: relative;
-	background-color: rgba(0, 0, 0, 0.8);
-	font-family: "Poppins", sans-serif;
-	font-size: 15px;
-	font-weight: 500;
-	padding: 5px 0;
-	cursor: pointer;
-	caret-color: transparent;
-}
-.logo {
-	position: absolute;
-	top: 38%;
-	margin-left: 8px;
-	width: 32px;
-	height: 32px;
-	flex-shrink: 0;
-	border-radius: 50px;
-}
-.withLogo {
-	padding-left: 53px;
-}
 .rotate {
 	transform: rotate(180deg);
 }
+
 .on {
 	transform: translateX(15px);
 }
@@ -102,15 +142,19 @@
 .off {
 	transform: translateX(3px);
 }
-.inputContainer {
+
+.logo {
+	margin-left: 10px;
 	display: flex;
-	flex-direction: column;
-	position: relative;
-	border-radius: 10px;
-	width: 303px;
-	min-height: 42px;
-	max-height: 67px;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width: 32px;
+	height: 32px;
+	flex-shrink: 0;
+	border-radius: 50px;
 }
+
 .multiInput {
 	display: flex;
 	flex-direction: column;
@@ -122,6 +166,7 @@
 	min-height: 42px;
 	max-height: 67px;
 }
+
 .selectedTagsContainer {
 	display: grid;
 	grid-template-columns: 4fr 1fr;
@@ -130,7 +175,6 @@
 	gap: 4px;
 	align-items: center;
 	z-index: 1000;
-
 }
 
 .tags {
@@ -172,22 +216,6 @@
 	line-height: 1;
 	padding: 0 4px;
 	color: white;
-}
-
-.placeholder {
-	flex: 1;
-	min-width: 50px;
-	border: none;
-	background: transparent;
-	color: white;
-	font-family: "Poppins", sans-serif;
-	font-size: 18px;
-	font-weight: 500;
-	outline: none;
-}
-
-.withLogo {
-	padding-left: 53px;
 }
 
 .multiOptions {
@@ -246,15 +274,4 @@
 .multiOptions {
 	animation: dropdownOpen 0.2s forwards;
 	transform-origin: top;
-
-}
-
-.logo {
-	position: absolute;
-	top: 38%;
-	margin-left: 8px;
-	width: 32px;
-	height: 32px;
-	flex-shrink: 0;
-	border-radius: 50px;
 }

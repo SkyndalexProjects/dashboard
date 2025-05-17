@@ -50,7 +50,6 @@ const ChannelSelector = ({ purpose }) => {
 				setSearchTerm={setSearchTerm}
 				className={classes.selectContainer}
 				inputClassName={classes.inputContainer}
-				indicatorClassName={classes.indicator}
 				disableSearch={false}
 			>
 				{filteredChannels.map((channel) => (
@@ -99,47 +98,56 @@ const WelcomingTabs = () => {
 
 	return (
 		<div>
-			<div className={classes.tabsContainer}>
-				<button
-					className={
-						activeTab === "Greetings"
-							? classes.activeTab
-							: classes.inactiveTab
-					}
-					onClick={() => handleTabClick("Greetings")}
-				>
-					Greetings
-				</button>
-				<button
-					className={
-						activeTab === "Goodbyes"
-							? classes.activeTab
-							: classes.inactiveTab
-					}
-					onClick={() => handleTabClick("Goodbyes")}
-				>
-					Goodbyes
-				</button>
-			</div>
+			<div className={classes.container}>
+				<div className={classes.sectionStart}>
+					<p className={classes.sectionTitle}>
+						{" "}
+						Greetings & Farewell
+						<div className={classes.underlineVector}></div>
+					</p>
+				</div>
+				<div className={classes.tabsContainer}>
+					<button
+						className={
+							activeTab === "Greetings"
+								? classes.activeTab
+								: classes.inactiveTab
+						}
+						onClick={() => handleTabClick("Greetings")}
+					>
+						Greetings
+					</button>
+					<button
+						className={
+							activeTab === "Goodbyes"
+								? classes.activeTab
+								: classes.inactiveTab
+						}
+						onClick={() => handleTabClick("Goodbyes")}
+					>
+						Goodbyes
+					</button>
+				</div>
 
-			<div className={classes.tabContent}>
-				{activeTab === "Greetings" && (
-					<div>
-						<ImageToggle label="Greetings image" />
-						<ChannelSelector purpose="WELCOME" />
-						<TextField title="WELCOME TITLE" />
-						<TextField title="WELCOME DESCRIPTION" />
-					</div>
-				)}
+				<div className={classes.tabContent}>
+					{activeTab === "Greetings" && (
+						<div>
+							<ImageToggle label="Greetings image" />
+							<ChannelSelector purpose="WELCOME" />
+							<TextField title="WELCOME TITLE" />
+							<TextField title="WELCOME DESCRIPTION" />
+						</div>
+					)}
 
-				{activeTab === "Goodbyes" && (
-					<div>
-						<ImageToggle label="Farewell image" />
-						<ChannelSelector purpose="GOODBYE" />
-						<TextField title="GOODBYE TITLE" />
-						<TextField title="GOODBYE DESCRIPTION" />
-					</div>
-				)}
+					{activeTab === "Goodbyes" && (
+						<div>
+							<ImageToggle label="Farewell image" />
+							<ChannelSelector purpose="GOODBYE" />
+							<TextField title="GOODBYE TITLE" />
+							<TextField title="GOODBYE DESCRIPTION" />
+						</div>
+					)}
+				</div>
 			</div>
 		</div>
 	);

@@ -138,6 +138,7 @@ export default function Page() {
 					placeholderLogoClassName={classes.placeholderLogo}
 					className={classes.tokenInput}
 					type="password"
+					value={token}
 				/>
 				<p className={classes.description}> Authorize your bot </p>
 
@@ -176,6 +177,7 @@ export default function Page() {
 					placeholderLogoClassName={classes.placeholderLogo}
 					className={classes.tokenInput}
 					type="text"
+					value={status}
 				/>
 
 				<p className={classes.description}>

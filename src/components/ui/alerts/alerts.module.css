@@ -22,7 +22,6 @@
 	border-radius: 15px;
 	border: 1px solid #b19b5f;
 	background-color: #00000033;
-	margin-left: 346px;
 	position: relative;
 }
 .support-join-overlay {
@@ -31,7 +30,6 @@
 	border: 1px solid #587486;
 	height: 79px;
 	background: rgba(0, 0, 0, 0.2);
-	margin-left: 346px;
 	margin-top: 30px;
 	position: relative;
 }

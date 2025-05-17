@@ -9,9 +9,6 @@
 	flex-shrink: 0;
 	border-radius: 10px;
 	background: rgba(14, 14, 14, 0.17);
-	margin-left: 370px;
-	margin-top: 10%;
-	position: relative;
 	transition: background-color 0.3s ease;
 }
 .red {
@@ -43,7 +40,6 @@
 	flex-shrink: 0;
 	border-radius: 10px;
 	background: rgba(0, 0, 0, 0.2);
-	margin-left: 370px;
 }
 .custombot-about-me-box-title {
 	color: #bdbdbd;
@@ -54,17 +50,12 @@
 	caret-color: transparent;
 }
 .custombot-about-me-box-rpc-description {
-	margin-left: 20px;
 	width: 372.48px;
 	height: 97.255px;
 	flex-shrink: 0;
 	margin-left: 26px;
 	color: #fff;
-	font-family: "Be Vietnam Pro";
-	font-size: 20px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: normal;
+	font: 400 20px "Be Vietnam Pro", normal;
 	caret-color: transparent;
 }
 .botDetails {

@@ -10,8 +10,6 @@ interface SelectProps {
 	value?: string;
 	className?: string;
 	inputClassName?: string;
-	indicatorClassName?: string;
-	placeholderClassName?: string;
 	placeholderLogo?: string;
 	type?: string;
 	disableSearch?: boolean;
@@ -34,9 +32,7 @@ export default function SearchSelect({
 	searchTerm,
 	className,
 	inputClassName,
-	indicatorClassName,
 	placeholderLogo,
-	placeholderClassName,
 	disableSearch,
 }: SelectProps) {
 	const [isOpen, setIsOpen] = useState(false);
@@ -81,22 +77,32 @@ export default function SearchSelect({
 		: children;
 
 	return (
-		<div ref={selectRef} className={className}>
+		<div ref={selectRef} className={`${className} ${classes.selectInput}`}>
 			<div onClick={toggleDropdown} className={classes.inputContainer}>
-				{placeholderLogo && (
-					<img
-						src={placeholderLogo}
-						alt="logo"
-						className={classes.logo}
-					/>
-				)}
+				<div className={classes.placeholder}>
+					{placeholderLogo && (
+						<img
+							src={placeholderLogo}
+							alt="logo"
+							className={classes.logo}
+						/>
+					)}
+					{placeholder && (
+						<span
+							className={`${
+								classes.placeholderText
+							}`}
+						>
+							{placeholder}
+						</span>
+					)}
+				</div>
 				<input
 					type={"text"}
 					value={searchTerm}
-					placeholder={placeholder}
 					className={`${inputClassName} ${
-						placeholderLogo ? classes.withLogo : ""
-					} ${classes.placeholder} ${placeholderClassName}`}
+						classes.placeholder
+					}`}
 					onChange={(event) => {
 						try {
 							setSearchTerm(event.target.value);
@@ -107,8 +113,9 @@ export default function SearchSelect({
 					onClick={!searchTerm ? toggleDropdown : undefined}
 					disabled={disableSearch}
 				/>
+
 				<div
-					className={`${indicatorClassName || classes.indicator} ${
+					className={`${classes.indicator} ${
 						isOpen ? classes.open : ""
 					}`}
 				>
@@ -118,7 +125,10 @@ export default function SearchSelect({
 						className={isOpen ? classes.rotate : ""}
 					/>
 				</div>
-				{isOpen && (
+
+			</div>
+			{isOpen && (
+				<div className={classes.optionsWrapper}>
 					<div className={classes.options}>
 						{filteredChildren &&
 							(Array.isArray(filteredChildren)
@@ -147,8 +157,8 @@ export default function SearchSelect({
 									: null,
 							)}
 					</div>
-				)}
-			</div>
+				</div>
+			)}
 		</div>
 	);
 }

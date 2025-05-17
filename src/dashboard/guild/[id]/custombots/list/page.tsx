@@ -75,61 +75,65 @@ export default function CustombotList() {
 		<div>
 			<Navbar />
 			<Sidebar />
-			<div
-				className={`${classes.list} ${
-					isModalOpen ? classes.blurBackground : ""
-				}`}
-			>
-				{custombots.map((bot: CustomBot) => {
-					const clientId = atob(bot.token.split(".")[0]);
-					return (
-						<div key={bot.id} className={classes.listItem}>
-							<img
-								src={`https://cdn.discordapp.com/avatars/${clientId}/${bot.icon}.png`}
-								alt={bot.username}
-								className={classes.listItemIcon}
-							/>
-							<p className={classes.listItemName}>
-								{bot.username}
-							</p>
-							<p className={classes.listItemFooter}>
-								{bot.status || "No status"}
-							</p>
-							<div className={classes.listItemActionButtons}>
-								<button
-									className={classes.listItemActionButton}
-									onClick={() =>
-										handleNavigation(
-											`/dashboard/guild/${id}/custombots/manage/${bot.id}`,
-										)
-									}
-								>
-									<img src="/edit-button.svg" alt="Edit" />
-								</button>
-								<button
-									className={classes.listItemActionButton}
-									onClick={() => toggleBot(bot.id)}
-								>
-									<img src="/trash.svg" alt="Trash" />
-								</button>
-							</div>
-						</div>
-					);
-				})}
-			</div>
-			<div className={classes.addMoreCustomBotsContainer}>
-				<button
-					className={classes.addCustomBotButton}
-					onClick={openModal}
+			<div>
+				<div
+					className={`${classes.list} ${
+						isModalOpen ? classes.blurBackground : ""
+					}`}
 				>
-					<img
-						src="/plus.svg"
-						alt="plus.svg"
-						className={classes.addCustomBotIcon}
-					/>
-					<p>Add more custom bots</p>
-				</button>
-			</div>
+					{custombots.map((bot: CustomBot) => {
+						const clientId = atob(bot.token.split(".")[0]);
+						return (
+							<div key={bot.id} className={classes.listItem}>
+								<img
+									src={`https://cdn.discordapp.com/avatars/${clientId}/${bot.icon}.png`}
+									alt={bot.username}
+									className={classes.listItemIcon}
+								/>
+								<p className={classes.listItemName}>
+									{bot.username}
+								</p>
+								<p className={classes.listItemFooter}>
+									{bot.status || "No status"}
+								</p>
+								<div className={classes.listItemActionButtons}>
+									<button
+										className={classes.listItemActionButton}
+										onClick={() =>
+											handleNavigation(
+												`/dashboard/guild/${id}/custombots/manage/${bot.id}`,
+											)
+										}
+									>
+										<img src="/edit-button.svg" alt="Edit" />
+									</button>
+									<button
+										className={classes.listItemActionButton}
+										onClick={() => toggleBot(bot.id)}
+									>
+										<img src="/trash.svg" alt="Trash" />
+									</button>
+								</div>
+							</div>
+						);
+					})}
+					<div className={classes.addMoreCustomBotsContainer}>
+						<button
+							className={classes.addCustomBotButton}
+							onClick={openModal}
+						>
+							<img
+								src="/plus.svg"
+								alt="plus.svg"
+								className={classes.addCustomBotIcon}
+							/>
+						</button>
+						Add more custom bots
+
+					</div>
+				</div>
+				</div>
+
 			<CustomBotModal isOpen={isModalOpen} onClose={closeModal} />
 		</div>
 	);

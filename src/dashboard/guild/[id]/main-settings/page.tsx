@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "@/store";
 import MultiSelect from "@/components/ui/inputs/multi";
 import { fetchChannels } from "@/thunks/channels";
-import {fetchRoles} from "@/thunks/roles";
+import { fetchRoles } from "@/thunks/roles";
 interface Role {
 	id: string;
 	name: string;
@@ -41,40 +41,42 @@ export default function MainSettings() {
 
 			<Navbar />
 			<Sidebar />
-
-			<div className={classes.greetingsAndFarewell}>
-				{" "}
-				Greetings & Farewell
-				<div className={classes.underlineVector}></div>
+			<div className={classes.containers}>
+				<div className={classes.container}>
+					<WelcomingTabs />
+				</div>
+				<div className={classes.container}>
+					<p className={classes.sectionTitle}>
+						{" "}
+						Permissions
+						<div className={classes.underlineVector} />
+					</p>
+					<BlockedCommands />
+					<BlockedChannels />
+				</div>
+				<div className={classes.container}>
+					<p className={classes.sectionTitle}>
+						{" "}
+						Dangerous
+						<div className={classes.underlineVector} />
+					</p>
+					<Dangerous />
+				</div>
 			</div>
 
-			<div className={classes.container}>
-				<WelcomingTabs />
-			</div>
-			<div className={classes.dangerous}>
-				Dangerous
-				<div className={classes.underlineVector}></div>
-				<Dangerous />
-			</div>
-			<div className={classes.permissions}>
-				{" "}
-				Permissions
-				<div className={classes.underlineVector}></div>
-			</div>
+			{/*<div className={classes.additionals}>*/}
+			{/*	{" "}*/}
+			{/*	Additionals*/}
+			{/*	<div className={classes.underlineVector}></div>*/}
+			{/*</div>*/}
 
-			<div className={classes.additionals}>
-				{" "}
-				Additionals
-				<div className={classes.underlineVector}></div>
-			</div>
-
-			<div className={classes.autoRoles}>
-				<AutoRoles />
-			</div>
-			<div className={classes.permissionSettings}>
-				<BlockedCommands />
-				<BlockedChannels />
-			</div>
+			{/*<div className={classes.autoRoles}>*/}
+			{/*	<AutoRoles />*/}
+			{/*</div>*/}
+			{/*<div className={classes.permissionSettings}>*/}
+			{/*	<BlockedCommands />*/}
+			{/*	<BlockedChannels />*/}
+			{/*</div>*/}
 		</div>
 	);
 
@@ -96,27 +98,26 @@ export default function MainSettings() {
 		};
 
 		return (
-			<div className={classes.setting}>
-				<div className={classes.settingOverlay}>
-					<p className={classes.overlayTitle}>BLOCKED COMMANDS</p>
+			<div className={classes.settingOverlay}>
+				<p className={classes.overlayTitle}>BLOCKED COMMANDS</p>
 
-					<MultiSelect
-						values={blockedCommands}
-						onChange={handleCommandChange}
-						searchTerm={commandSearchTerm}
-						setSearchTerm={setCommandSearchTerm}
-						className={classes.selectContainer}
-						inputClassName={classes.inputContainer}
-						indicatorClassName={classes.indicator}
-						disableSearch={false}
-					>
-						{exampleCommands.map((command) => (
-							<SelectOption key={command.id} value={command.name}>
-								{command.name}
-							</SelectOption>
-						))}
-					</MultiSelect>
-				</div>
+				<MultiSelect
+					values={blockedCommands}
+					onChange={handleCommandChange}
+					searchTerm={commandSearchTerm}
+					setSearchTerm={setCommandSearchTerm}
+					className={classes.selectContainer}
+					placeholder="Search for a command"
+					inputClassName={classes.inputContainer}
+					indicatorClassName={classes.indicator}
+					disableSearch={false}
+				>
+					{exampleCommands.map((command) => (
+						<SelectOption key={command.id} value={command.name}>
+							{command.name}
+						</SelectOption>
+					))}
+				</MultiSelect>
 			</div>
 		);
 	}
@@ -160,28 +161,26 @@ export default function MainSettings() {
 			.slice(0, 5);
 
 		return (
-			<div className={classes.setting}>
-				<div className={classes.settingOverlay}>
-					<p className={classes.overlayTitle}>BLOCKED CHANNELS</p>
+			<div className={classes.settingOverlay}>
+				<p className={classes.overlayTitle}>BLOCKED CHANNELS</p>
 
-					<MultiSelect
-						values={blockedChannels}
-						onChange={handleChannelChange}
-						searchTerm={channelsSearchTerm}
-						setSearchTerm={setChannelsSearchTerm}
-						className={classes.selectContainer}
-						placeholder="Search for a channel"
-						inputClassName={classes.inputContainer}
-						indicatorClassName={classes.indicator}
-						disableSearch={false}
-					>
-						{filteredChannels.map((channel: Channel) => (
-							<SelectOption key={channel.id} value={channel.name}>
-								{channel.name}
-							</SelectOption>
-						))}
-					</MultiSelect>
-				</div>
+				<MultiSelect
+					values={blockedChannels}
+					onChange={handleChannelChange}
+					searchTerm={channelsSearchTerm}
+					setSearchTerm={setChannelsSearchTerm}
+					className={classes.selectContainer}
+					placeholder="Search for a channel"
+					inputClassName={classes.inputContainer}
+					indicatorClassName={classes.indicator}
+					disableSearch={false}
+				>
+					{filteredChannels.map((channel: Channel) => (
+						<SelectOption key={channel.id} value={channel.name}>
+							{channel.name}
+						</SelectOption>
+					))}
+				</MultiSelect>
 			</div>
 		);
 	}
@@ -241,14 +240,14 @@ export default function MainSettings() {
 	function Dangerous() {
 		return (
 			<div>
-				<div className={classes.alert}>
+				<div className={classes.alertOverlay}>
 					<p className={classes.alertText}>
+						<img src={"/deny.svg"} alt="deny-icon" />
 						Be careful! There is no turning back!
 					</p>
 				</div>
 
 				<div className={classes.whiteDivider} />
-
 
 				<div className={classes.buttonContainers}>
 					<button className={classes.actionButton}>
