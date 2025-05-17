@@ -89,7 +89,6 @@ const Navbar = () => {
 						onChange={handleOptionSelect}
 						searchTerm={searchTerm}
 						setSearchTerm={setSearchTerm}
-						className={classes.selectContainer}
 						placeholder={getCurrentUser?.username}
 						placeholderLogo={`https://cdn.discordapp.com/avatars/${getCurrentUser?.id}/${getCurrentUser?.avatar}.png`}
 						disableSearch={true}

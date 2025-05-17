@@ -8,7 +8,6 @@ interface SelectProps {
 	children: ReactNode;
 	placeholder?: string;
 	value?: string;
-	className?: string;
 	inputClassName?: string;
 	placeholderLogo?: string;
 	type?: string;
@@ -30,7 +29,6 @@ export default function SearchSelect({
 	children,
 	placeholder,
 	searchTerm,
-	className,
 	inputClassName,
 	placeholderLogo,
 	disableSearch,
@@ -77,7 +75,7 @@ export default function SearchSelect({
 		: children;
 
 	return (
-		<div ref={selectRef} className={`${className} ${classes.selectInput}`}>
+		<div ref={selectRef} className={`${classes.selectInput}`}>
 			<div onClick={toggleDropdown} className={classes.inputContainer}>
 				<div className={classes.placeholder}>
 					{placeholderLogo && (
@@ -88,11 +86,7 @@ export default function SearchSelect({
 						/>
 					)}
 					{placeholder && (
-						<span
-							className={`${
-								classes.placeholderText
-							}`}
-						>
+						<span className={`${classes.placeholderText}`}>
 							{placeholder}
 						</span>
 					)}
@@ -100,9 +94,7 @@ export default function SearchSelect({
 				<input
 					type={"text"}
 					value={searchTerm}
-					className={`${inputClassName} ${
-						classes.placeholder
-					}`}
+					className={`${inputClassName} ${classes.placeholder}`}
 					onChange={(event) => {
 						try {
 							setSearchTerm(event.target.value);
@@ -125,7 +117,6 @@ export default function SearchSelect({
 						className={isOpen ? classes.rotate : ""}
 					/>
 				</div>
-
 			</div>
 			{isOpen && (
 				<div className={classes.optionsWrapper}>

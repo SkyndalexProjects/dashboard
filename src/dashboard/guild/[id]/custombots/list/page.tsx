@@ -105,7 +105,10 @@ export default function CustombotList() {
 											)
 										}
 									>
-										<img src="/edit-button.svg" alt="Edit" />
+										<img
+											src="/edit-button.svg"
+											alt="Edit"
+										/>
 									</button>
 									<button
 										className={classes.listItemActionButton}
@@ -129,10 +132,9 @@ export default function CustombotList() {
 							/>
 						</button>
 						Add more custom bots
-
 					</div>
 				</div>
-				</div>
+			</div>
 
 			<CustomBotModal isOpen={isModalOpen} onClose={closeModal} />
 		</div>
