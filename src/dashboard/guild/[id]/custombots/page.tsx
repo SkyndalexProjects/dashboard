@@ -2,8 +2,7 @@ import Navbar from "@/components/ui/navigation/navbar";
 import Sidebar from "@/components/ui/navigation/sidebar";
 import classes from "./custombots.module.css";
 import InputType from "@/components/ui/inputs/input";
-import SearchSelect from "@/components/ui/inputs/search";
-import { SelectOption } from "@/components/ui/inputs/search";
+import SearchSelect, { SelectOption } from "@/components/ui/inputs/search";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
@@ -136,7 +135,6 @@ export default function Page() {
 					placeholder="Bot token"
 					placeholderLogo="/key.svg"
 					placeholderLogoClassName={classes.placeholderLogo}
-					className={classes.tokenInput}
 					type="password"
 					value={token}
 				/>
@@ -149,9 +147,6 @@ export default function Page() {
 					onChange={handleActivityChange}
 					searchTerm={searchTerm}
 					setSearchTerm={setSearchTerm}
-					inputClassName={classes.activityInput}
-					indicatorClassName={classes.indicator}
-					className={classes.activityInput}
 				>
 					{[
 						{ id: "1", name: "Idle" },
@@ -175,7 +170,6 @@ export default function Page() {
 					placeholder="Hey! I'm a custombot, have a nice day!"
 					placeholderLogo="/menu.svg"
 					placeholderLogoClassName={classes.placeholderLogo}
-					className={classes.tokenInput}
 					type="text"
 					value={status}
 				/>

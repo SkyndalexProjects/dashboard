@@ -2,11 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
 import { useNavigate } from "react-router-dom";
 import classes from "./navbar.module.css";
-import Select, { SelectOption } from "../../inputs/search";
 import { useState, useEffect } from "react";
 import { fetchGuilds } from "@/thunks/guilds";
 import { fetchUser } from "@/thunks/user";
 import ChooseGuildModal from "@/components/ui/navigation/navbar/modals/ChooseGuild";
+import Dropdown, { DropdownOption } from "../../inputs/dropdown";
 const Navbar = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch<AppDispatch>();
@@ -84,21 +84,16 @@ const Navbar = () => {
 					</p>
 				</button>
 				<div className={classes.navRight}>
-					<Select
-						value={searchTerm}
-						onChange={handleOptionSelect}
-						searchTerm={searchTerm}
-						setSearchTerm={setSearchTerm}
+					<Dropdown
 						placeholder={getCurrentUser?.username}
-						placeholderLogo={`https://cdn.discordapp.com/avatars/${getCurrentUser?.id}/${getCurrentUser?.avatar}.png`}
-						disableSearch={true}
+						placeholderIcon={`https://cdn.discordapp.com/avatars/${getCurrentUser?.id}/${getCurrentUser?.avatar}.png`}
 					>
 						{options.map((option) => (
-							<SelectOption key={option.id} value={option.id}>
+							<DropdownOption key={option.id} value={option.id}>
 								{option.name}
-							</SelectOption>
+							</DropdownOption>
 						))}
-					</Select>
+					</Dropdown>
 				</div>
 			</nav>
 			<ChooseGuildModal isOpen={isModalOpen} onClose={closeModal} />

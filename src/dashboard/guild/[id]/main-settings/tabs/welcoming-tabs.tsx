@@ -43,21 +43,20 @@ const ChannelSelector = ({ purpose }) => {
 
 	return (
 		<SettingField title={`${purpose} CHANNEL`}>
-			<Select
-				value={searchTerm}
-				onChange={handleSearchChange}
-				searchTerm={searchTerm}
-				setSearchTerm={setSearchTerm}
-				className={classes.selectContainer}
-				inputClassName={classes.inputContainer}
-				disableSearch={false}
-			>
-				{filteredChannels.map((channel) => (
-					<SelectOption key={channel.id} value={channel.name}>
-						{channel.name}
-					</SelectOption>
-				))}
-			</Select>
+			<div className={classes.inputContainer}>
+				<Select
+					value={searchTerm}
+					onChange={handleSearchChange}
+					searchTerm={searchTerm}
+					setSearchTerm={setSearchTerm}
+				>
+					{filteredChannels.map((channel) => (
+						<SelectOption key={channel.id} value={channel.name}>
+							{channel.name}
+						</SelectOption>
+					))}
+				</Select>
+			</div>
 		</SettingField>
 	);
 };
@@ -71,12 +70,9 @@ const TextField = ({ title }) => {
 
 	return (
 		<SettingField title={`${title}`}>
-			<InputType
-				onChange={handleChange}
-				className={classes.inputContainer}
-				type="text"
-				value={value}
-			/>
+			<div className={classes.inputContainer}>
+				<InputType onChange={handleChange} type="text" value={value} />
+			</div>
 		</SettingField>
 	);
 };

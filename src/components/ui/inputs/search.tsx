@@ -8,10 +8,7 @@ interface SelectProps {
 	children: ReactNode;
 	placeholder?: string;
 	value?: string;
-	inputClassName?: string;
 	placeholderLogo?: string;
-	type?: string;
-	disableSearch?: boolean;
 }
 
 interface SelectOptionProps {
@@ -20,7 +17,6 @@ interface SelectOptionProps {
 	value: string;
 	children: ReactNode;
 	className?: string;
-	inputClassName?: string;
 }
 
 export default function SearchSelect({
@@ -29,9 +25,7 @@ export default function SearchSelect({
 	children,
 	placeholder,
 	searchTerm,
-	inputClassName,
 	placeholderLogo,
-	disableSearch,
 }: SelectProps) {
 	const [isOpen, setIsOpen] = useState(false);
 	const [, setSelected] = useState<string | null>(null);
@@ -85,16 +79,13 @@ export default function SearchSelect({
 							className={classes.logo}
 						/>
 					)}
-					{placeholder && (
-						<span className={`${classes.placeholderText}`}>
-							{placeholder}
-						</span>
-					)}
 				</div>
+
 				<input
+					placeholder={placeholder}
 					type={"text"}
 					value={searchTerm}
-					className={`${inputClassName} ${classes.placeholder}`}
+					className={classes.searchInput}
 					onChange={(event) => {
 						try {
 							setSearchTerm(event.target.value);
@@ -103,51 +94,34 @@ export default function SearchSelect({
 						}
 					}}
 					onClick={!searchTerm ? toggleDropdown : undefined}
-					disabled={disableSearch}
 				/>
-
-				<div
-					className={`${classes.indicator} ${
-						isOpen ? classes.open : ""
-					}`}
-				>
-					<img
-						src="/indicator.svg"
-						alt="indicator"
-						className={isOpen ? classes.rotate : ""}
-					/>
-				</div>
 			</div>
 			{isOpen && (
-				<div className={classes.optionsWrapper}>
-					<div className={classes.options}>
-						{filteredChildren &&
-							(Array.isArray(filteredChildren)
-								? filteredChildren
-								: [filteredChildren]
-							).map((child, index) =>
-								child
-									? child.type === SelectOption
-										? child.props &&
-											((
-												optionProps: SelectOptionProps,
-											) => (
-												<div
-													key={index}
-													onClick={() =>
-														handleSelect(
-															optionProps.value,
-														)
-													}
-													className={classes.option}
-												>
-													{optionProps.children}
-												</div>
-											))(child.props)
-										: null
-									: null,
-							)}
-					</div>
+				<div className={classes.options}>
+					{filteredChildren &&
+						(Array.isArray(filteredChildren)
+							? filteredChildren
+							: [filteredChildren]
+						).map((child, index) =>
+							child
+								? child.type === SelectOption
+									? child.props &&
+										((optionProps: SelectOptionProps) => (
+											<div
+												key={index}
+												onClick={() =>
+													handleSelect(
+														optionProps.value,
+													)
+												}
+												className={classes.option}
+											>
+												{optionProps.children}
+											</div>
+										))(child.props)
+									: null
+								: null,
+						)}
 				</div>
 			)}
 		</div>

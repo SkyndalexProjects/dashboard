@@ -85,18 +85,6 @@ nav {
 	flex-direction: row;
 	margin-left: auto;
 }
-.select-container {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	border-radius: 7px;
-	background: rgba(0, 0, 0, 0.19);
-	height: 56px;
-	margin-right: 30px;
-	flex-shrink: 0;
-}
-
 .guildNameTooltip {
 	width: 100px;
 	background-color: #00000033;

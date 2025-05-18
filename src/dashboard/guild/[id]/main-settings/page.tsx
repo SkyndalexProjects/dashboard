@@ -4,12 +4,12 @@ import classes from "./main-settings.module.css";
 import { useDispatch } from "react-redux";
 import WelcomingTabs from "@/dashboard/guild/[id]/main-settings/tabs/welcoming-tabs";
 import React, { useEffect, useState } from "react";
-import { SelectOption } from "@/components/ui/inputs/search";
 import { useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "@/store";
 import MultiSelect from "@/components/ui/inputs/multi";
 import { fetchChannels } from "@/thunks/channels";
 import { fetchRoles } from "@/thunks/roles";
+import { DropdownOption } from "@/components/ui/inputs/dropdown";
 interface Role {
 	id: string;
 	name: string;
@@ -113,9 +113,9 @@ export default function MainSettings() {
 					disableSearch={false}
 				>
 					{exampleCommands.map((command) => (
-						<SelectOption key={command.id} value={command.name}>
+						<DropdownOption key={command.id} value={command.name}>
 							{command.name}
-						</SelectOption>
+						</DropdownOption>
 					))}
 				</MultiSelect>
 			</div>
@@ -176,9 +176,9 @@ export default function MainSettings() {
 					disableSearch={false}
 				>
 					{filteredChannels.map((channel: Channel) => (
-						<SelectOption key={channel.id} value={channel.name}>
+						<DropdownOption key={channel.id} value={channel.name}>
 							{channel.name}
-						</SelectOption>
+						</DropdownOption>
 					))}
 				</MultiSelect>
 			</div>
@@ -228,9 +228,9 @@ export default function MainSettings() {
 						disableSearch={false}
 					>
 						{filteredRoles.map((role: Role) => (
-							<SelectOption key={role.id} value={role.name}>
+							<DropdownOption key={role.id} value={role.name}>
 								{role.name}
-							</SelectOption>
+							</DropdownOption>
 						))}
 					</MultiSelect>
 				</div>

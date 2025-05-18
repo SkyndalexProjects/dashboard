@@ -139,23 +139,14 @@
 .selectContainer {
     composes: select-container;
 }
-
 .input-container {
-    caret-color: transparent;
     display: flex;
     flex-direction: row;
-    width: 303px;
-    height: 42px;
-    transform: rotate(0.254deg);
-    flex-shrink: 0;
-    border-radius: 10px;
-    border: 1px solid #8E8E8E;
-    background: rgba(32, 32, 32, 0.10);
-    margin-left: 10px;
-    padding: 0;
+    margin-left: 15px;
+
 }
 .option-icon {
-    width: 28.191px;
+    width: 28px;
     height: 27px;
     position: absolute;
 }

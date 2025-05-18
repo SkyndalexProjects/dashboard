@@ -60,8 +60,8 @@
 }
 .botDetails {
 	display: flex;
-	width: 465.928px;
-	height: 222.288px;
+	width: 465px;
+	height: 222px;
 	flex-shrink: 0;
 	border-radius: 10px;
 	background: rgba(14, 14, 14, 0.17);

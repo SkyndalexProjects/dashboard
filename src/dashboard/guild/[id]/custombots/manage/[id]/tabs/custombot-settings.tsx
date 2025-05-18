@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import type { RootState, AppDispatch } from "@/store";
 import { fetchChannels } from "@/thunks/channels";
 import Slider from "@/components/ui/inputs/slider";
+import InputType from "@/components/ui/inputs/input";
 const CustombotSettingsTabs = () => {
 	const [activeTab, setActiveTab] = useState("Chatbot");
 	const [modelList, setModelList] = useState<{
@@ -117,15 +118,7 @@ const CustombotSettingsTabs = () => {
 											onChange={handleSearchChange}
 											searchTerm={searchTerm}
 											setSearchTerm={setSearchTerm}
-											className={classes.selectContainer}
 											placeholder="Search for a channel"
-											inputClassName={
-												classes.inputContainer
-											}
-											indicatorClassName={
-												classes.indicator
-											}
-											disableSearch={false}
 										>
 											{filteredChannels.map((channel) => (
 												<SelectOption
@@ -152,11 +145,11 @@ const CustombotSettingsTabs = () => {
 											classes.chatbotSettingBoxContent
 										}
 									>
-										<input
+										<InputType
 											type="text"
 											value={promptInput}
 											onChange={handlePromptChange}
-											className={classes.promptInput}
+											placeholder="Enter prompt here"
 										/>
 									</div>
 								</div>
@@ -179,14 +172,7 @@ const CustombotSettingsTabs = () => {
 											onChange={handleModelSearchChange}
 											searchTerm={modelSearchTerm}
 											setSearchTerm={setModelSearchTerm}
-											inputClassName={
-												classes.inputContainer
-											}
-											className={classes.selectContainer}
 											placeholder="Search for a model"
-											indicatorClassName={
-												classes.indicator
-											}
 										>
 											{filteredModels.map((model) => (
 												<SelectOption
@@ -274,11 +260,7 @@ const CustombotSettingsTabs = () => {
 									onChange={handleSearchChange}
 									searchTerm={searchTerm}
 									setSearchTerm={setSearchTerm}
-									className={classes.selectContainer}
 									placeholder="Search for a channel"
-									inputClassName={classes.inputContainer}
-									indicatorClassName={classes.indicator}
-									disableSearch={false}
 								>
 									{filteredChannels
 										.filter((channel) => channel.type === 2)
@@ -303,11 +285,7 @@ const CustombotSettingsTabs = () => {
 									onChange={handleSearchChange}
 									searchTerm={searchTerm}
 									setSearchTerm={setSearchTerm}
-									className={classes.selectContainer}
 									placeholder="Search for a channel"
-									inputClassName={classes.inputContainer}
-									indicatorClassName={classes.indicator}
-									disableSearch={false}
 								>
 									{filteredChannels
 										.filter((channel) => channel.type === 2)
