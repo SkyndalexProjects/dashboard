@@ -1,68 +1,54 @@
-.beta-warning-overlay-icon {
-	width: 988px;
-	height: 30px;
-	position: relative;
-	margin-top: 15px;
-	right: 456px;
-	z-index: 1;
-}
-.support-join-warning-icon {
-	width: 988px;
-	height: 40px;
-	right: 456px;
-	top: 5px;
-	position: relative;
-	margin-top: 15px;
-	z-index: 1;
-}
 .beta-warning-overlay {
+	padding-right: 20px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
 	caret-color: transparent;
 	width: max-content;
 	height: 61px;
 	border-radius: 15px;
 	border: 1px solid #b19b5f;
 	background-color: #00000033;
-	position: relative;
+}
+.beta-warning-overlay-text {
+	color: #fff;
+	font: 700 16px "Be Vietnam Pro", sans-serif;
+	white-space: nowrap;
+	flex-shrink: 0;
+	caret-color: transparent;
+}
+.beta-warning-overlay-icon {
+	width: 30px;
+	height: 30px;
+	margin-left: 10px;
 }
 .support-join-overlay {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
 	width: max-content;
 	border-radius: 15px;
 	border: 1px solid #587486;
 	height: 79px;
 	background: rgba(0, 0, 0, 0.2);
 	margin-top: 30px;
-	position: relative;
+}
+.support-join-warning-icon {
+	margin-left: 10px;
+	width: 30px;
+	height: 30px;
 }
 
-.beta-warning-overlay-text {
-	word-break: break-word;
-	color: #fff;
-	font-family: "Be Vietnam Pro", sans-serif;
-	font-size: 16px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: normal;
-	white-space: nowrap;
-	position: relative;
-	flex-shrink: 0;
-	margin-top: -30px;
-	margin-left: 70px;
-	caret-color: transparent;
-	padding-right: 20px;
-}
 .support-join-warning-text {
 	word-break: break-word;
 	color: #fff;
-	font-family: "Be Vietnam Pro", sans-serif;
-	font-size: 16px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: 1.5;
+	font: 700 16px "Be Vietnam Pro", sans-serif;
 	white-space: normal;
-	position: relative;
 	flex-shrink: 0;
-	margin-top: -35px;
-	margin-left: 70px;
-	padding-right: 20px;
-	max-width: 100%;
+	padding-right: 10px;
+	max-width: 800px;
 }
