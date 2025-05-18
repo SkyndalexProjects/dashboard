@@ -6,7 +6,15 @@
         width: 100%;
     }
 }
-
+.containers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 .underline-vector {
     display: flex;
     flex-direction: column;
@@ -29,11 +37,6 @@
     flex-direction: row;
     gap: 60px;
 
-}
-.container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
 }
 .additionals {
     display: flex;
@@ -63,6 +66,7 @@
     line-height: normal;
 }
 .select-container {
+    border: 1px solid #474747;
     caret-color: transparent;
     margin-left: 19px;
 }

@@ -10,6 +10,7 @@ import MultiSelect from "@/components/ui/inputs/multi";
 import { fetchChannels } from "@/thunks/channels";
 import { fetchRoles } from "@/thunks/roles";
 import { DropdownOption } from "@/components/ui/inputs/dropdown";
+
 interface Role {
 	id: string;
 	name: string;
@@ -20,6 +21,7 @@ interface Role {
 	managed: boolean;
 	mentionable: boolean;
 }
+
 export default function MainSettings() {
 	const dispatch = useDispatch<AppDispatch>();
 
@@ -35,10 +37,10 @@ export default function MainSettings() {
 			description: "Description 2",
 		},
 	];
+
 	return (
 		<div>
 			{/* TODO: fix containers*/}
-
 			<Navbar />
 			<Sidebar />
 			<div className={classes.containers}>
@@ -53,6 +55,13 @@ export default function MainSettings() {
 					</p>
 					<BlockedCommands />
 					<BlockedChannels />
+
+					<p className={classes.sectionTitle}>
+						{" "}
+						Additionals
+						<div className={classes.underlineVector} />
+					</p>
+					<AutoRoles />
 				</div>
 				<div className={classes.container}>
 					<p className={classes.sectionTitle}>
@@ -63,20 +72,6 @@ export default function MainSettings() {
 					<Dangerous />
 				</div>
 			</div>
-
-			{/*<div className={classes.additionals}>*/}
-			{/*	{" "}*/}
-			{/*	Additionals*/}
-			{/*	<div className={classes.underlineVector}></div>*/}
-			{/*</div>*/}
-
-			{/*<div className={classes.autoRoles}>*/}
-			{/*	<AutoRoles />*/}
-			{/*</div>*/}
-			{/*<div className={classes.permissionSettings}>*/}
-			{/*	<BlockedCommands />*/}
-			{/*	<BlockedChannels />*/}
-			{/*</div>*/}
 		</div>
 	);
 
@@ -184,6 +179,7 @@ export default function MainSettings() {
 			</div>
 		);
 	}
+
 	function AutoRoles() {
 		const [autoRoles, setAutoRoles] = useState<string[]>([]);
 		const [rolesSearchTerm, setRolesSearchTerm] = useState("");
@@ -213,30 +209,30 @@ export default function MainSettings() {
 			.slice(0, 5);
 
 		return (
-			<div className={classes.setting}>
-				<div className={classes.settingOverlay}>
-					<p className={classes.overlayTitle}>AUTO ROLES</p>
+			<div className={classes.settingOverlay}>
+				<p className={classes.overlayTitle}>AUTO ROLES</p>
 
-					<MultiSelect
-						values={autoRoles}
-						onChange={handleRoleChange}
-						searchTerm={rolesSearchTerm}
-						setSearchTerm={setRolesSearchTerm}
-						className={classes.selectContainer}
-						inputClassName={classes.inputContainer}
-						indicatorClassName={classes.indicator}
-						disableSearch={false}
-					>
-						{filteredRoles.map((role: Role) => (
-							<DropdownOption key={role.id} value={role.name}>
-								{role.name}
-							</DropdownOption>
-						))}
-					</MultiSelect>
-				</div>
+				<MultiSelect
+					values={autoRoles}
+					onChange={handleRoleChange}
+					searchTerm={rolesSearchTerm}
+					setSearchTerm={setRolesSearchTerm}
+					className={classes.selectContainer}
+					inputClassName={classes.inputContainer}
+					indicatorClassName={classes.indicator}
+					placeholder={"Select roles"}
+					disableSearch={false}
+				>
+					{filteredRoles.map((role: Role) => (
+						<DropdownOption key={role.id} value={role.name}>
+							{role.name}
+						</DropdownOption>
+					))}
+				</MultiSelect>
 			</div>
 		);
 	}
+
 	function Dangerous() {
 		return (
 			<div>
