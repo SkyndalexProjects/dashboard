@@ -23,7 +23,6 @@
 	opacity: 0;
 	transform: scaleY(0);
 	transform-origin: top;
-	background-color: #0f1117;
 	animation: dropdownOpen 0.3s forwards;
 }
 .select {
@@ -40,6 +39,7 @@
 	color: #667398;
 	font: normal 500 20px/normal "Be Vietnam Pro", sans-serif;
 	margin-right: 30px;
+	padding-right: 10px;
 }
 .container {
 	display: flex;
