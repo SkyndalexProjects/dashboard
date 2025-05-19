@@ -78,7 +78,6 @@ const ChooseGuildModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 								/>
 								<p className={classes.guildName}>
 									{guild.name}
-
 									<img
 										src={"/indicator.svg"}
 										alt="indicator.svg"

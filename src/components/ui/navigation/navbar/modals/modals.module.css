@@ -19,7 +19,7 @@
     width: 567px;
     height: 459px;
     transform: scale(0.8);
-    animation: scaleIn 0.3s forwards;
+    animation: scaleIn 0.5s ease forwards;
     z-index: 1001;
 }
 .loggedIn {
@@ -50,6 +50,7 @@
     cursor: pointer;
 }
 .guild-list {
+
     cursor: none;
     margin-top: 100px;
     overflow-y: auto;
@@ -60,22 +61,23 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     padding: 10px;
     border-radius: 8px;
     justify-content: space-between;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 .guild-item:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    transform: scale(1.05);
     margin-left: 10px;
-    margin-top: 3px;
-    overflow-x: hidden;
-
+    transform: scale(1.05);
 }
 .guild-icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     width: 32px;
     height: 32px;
     border-radius: 32px;
@@ -90,14 +92,13 @@
     margin-left: 10px;
     width: 100%;
     color: #FFF;
-    font-family: "Be Vietnam Pro", sans-serif;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin-top: 5px;
+    font: normal 500 16px/normal "Be Vietnam Pro", sans-serif;
 }
 .redirectArrow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     transform: rotate(-90deg);
     margin-left: auto;
     height: 20px;
@@ -111,6 +112,6 @@
 
 @keyframes scaleIn {
     to {
-        transform: scale(1);
+        transform: scale(1)
     }
 }
