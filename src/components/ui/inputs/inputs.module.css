@@ -58,7 +58,6 @@
 	width: fit-content;
 	height: 42px;
 	background: none;
-	border: 1px solid #8E8E8E;
 	border-radius: 10px;
 	outline: none;
 	color: #667398;
@@ -85,7 +84,6 @@
 .option {
 	z-index: 100000;
 	position: relative;
-	background-color: rgba(0, 0, 0);
 	font-family: "Poppins", sans-serif;
 	font-size: 15px;
 	font-weight: 500;
@@ -97,45 +95,13 @@
 	width: 100%;
 }
 .option:hover {
-	z-index: 2000000;
+	z-index: 100000;
 	padding: 10px;
 	border-radius: 7px;
 	background-color: rgba(95, 135, 234);
 	transition: 0.2s;
 }
-.multi-option {
-	border-radius: 5px;
-	background: rgba(0, 0, 0, 0.31);
-	width: 76px;
-	color: #5F87EA;
-	height: 22px;
-}
 
-.multi-options {
-	position: absolute;
-	background-color: rgb(0, 0, 0);
-	padding: 10px;
-	width: auto;
-	text-wrap: nowrap;
-	border-radius: 15px;
-	caret-color: transparent;
-	cursor: pointer;
-	opacity: 0;
-	transform: scaleY(0);
-	transform-origin: top;
-	animation: dropdownOpen 0.3s forwards;
-	margin-top: 50px;
-	z-index: 1000;
-}
-
-.multi-option {
-	position: relative;
-	background-color: rgba(0, 0, 0, 0.8);
-	font: normal 500 15px/normal "Poppins", sans-serif;
-	padding: 3px 0;
-	cursor: pointer;
-	caret-color: transparent;
-}
 .rotate {
 	transform: rotate(180deg);
 }
@@ -168,10 +134,14 @@
 	border-radius: 10px;
 	background: rgba(63, 63, 63, 0.2);
 	width: 303px;
+	border: none;
+	outline:  none;
 	min-height: 42px;
 	max-height: 67px;
 }
-
+.multiInput:focus-within {
+	outline: 2px solid rgba(95, 135, 234, 0.8);
+}
 .selectedTagsContainer {
 	display: grid;
 	grid-template-columns: 4fr 1fr;
@@ -222,7 +192,10 @@
 	padding: 0 4px;
 	color: white;
 }
-
+input:focus, textarea:focus, select:focus {
+	outline: none;
+	box-shadow: none;
+}
 .multiOptions {
 	position: absolute;
 	top: calc(100% + 5px);
@@ -234,16 +207,17 @@
 	border-radius: 15px;
 	caret-color: transparent;
 	cursor: pointer;
-	z-index: 1001;
+	z-index: 100001;
 	max-height: 200px;
 	width: 100%;
 	height: 22px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 4px 8px rgba(0, 0, 0);
+	outline:  none;
 }
 
 .multiOption {
 	position: relative;
-	background-color: rgba(0, 0, 0, 0.8);
+	background-color: rgba(0, 0, 0);
 	font-family: "Poppins", sans-serif;
 	font-size: 15px;
 	font-weight: 500;
@@ -287,8 +261,11 @@
 	width: 303px;
 	height: 42px;
 	transform: rotate(0.254deg);
+	border: 1px solid rgba(0, 0, 0, 0.30);
 	flex-shrink: 0;
 	border-radius: 10px;
-	border: 1px solid #8E8E8E;
-	background: rgba(32, 32, 32, 0.10);
+	background: rgba(32, 32, 32, 0.20);
+}
+.input:focus {
+	outline: 2px solid rgba(95, 135, 234, 0.8);
 }

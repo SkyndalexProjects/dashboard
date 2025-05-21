@@ -69,7 +69,7 @@ export default function SearchSelect({
 		: children;
 
 	return (
-		<div ref={selectRef} className={`${classes.selectInput}`}>
+		<div ref={selectRef} className={classes.selectInput}>
 			<div onClick={toggleDropdown} className={classes.inputContainer}>
 				<div className={classes.placeholder}>
 					{placeholderLogo && (
