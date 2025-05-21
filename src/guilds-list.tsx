@@ -6,6 +6,7 @@ import type { RootState, AppDispatch } from "./store";
 import { fetchGuilds } from "./thunks/guilds";
 import { fetchUser } from "./thunks/user";
 import { useTranslation } from "react-i18next";
+
 export default function GuildsList() {
 	const dispatch = useDispatch<AppDispatch>();
 
@@ -45,17 +46,24 @@ export default function GuildsList() {
 
 	if (withBotAdded.length === 0 && withoutBotAdded.length === 0) {
 		return (
-			<div className="guild loading">
-				{Array.from({ length: 15 }).map((_, index) => (
-					<div key={index} className="guild-overlay loading">
-						<div className="guild-icon loading" />
-						<div className="guild-name loading" />
-						<div className="guild-button loading" />
+			<div>
+				<h1 className="title skeleton-text"></h1>
+				<h2 className="subtitle skeleton-text"></h2>
+				<div className="guilds-container">
+					<div className="guilds-grid">
+						{Array.from({ length: 9 }).map((_, index) => (
+							<div key={index} className="guild skeleton">
+								<div className="guild-icon-skeleton"></div>
+								<div className="guild-name-skeleton"></div>
+								<div className="guild-button-skeleton"></div>
+							</div>
+						))}
 					</div>
-				))}
+				</div>
 			</div>
 		);
 	}
+
 	return (
 		<div>
 			<h1 className="title">
@@ -87,17 +95,15 @@ export default function GuildsList() {
 								className="guild-icon"
 							/>
 							<p className="guild-name">{guild?.name}</p>
-							<button className="guild-button">
-								<Link
-									to={`/dashboard/guild/${guild?.id}/home`}
-									className="guild-button"
-								>
-									<img src="/gear.svg" alt="gear icon" />
-									{t("guild_list.button_set", {
-										username: user?.username,
-									})}
-								</Link>
-							</button>
+							<Link
+								to={`/dashboard/guild/${guild?.id}/home`}
+								className="guild-button"
+							>
+								<img src="/gear.svg" alt="gear icon" />
+								{t("guild_list.button_set", {
+									username: user?.username,
+								})}
+							</Link>
 						</div>
 					))}
 
@@ -117,17 +123,15 @@ export default function GuildsList() {
 								className="guild-icon"
 							/>
 							<p className="guild-name">{guild?.name}</p>
-							<button className="guild-button">
-								<Link
-									to={`/dashboard/guild/${guild?.id}/add`}
-									className="guild-button"
-								>
-									<img src="/invite.svg" alt="plus icon" />
-									{t("guild_list.button_invite", {
-										username: user?.username,
-									})}
-								</Link>
-							</button>
+							<Link
+								to={`/dashboard/guild/${guild?.id}/add`}
+								className="guild-button"
+							>
+								<img src="/invite.svg" alt="plus icon" />
+								{t("guild_list.button_invite", {
+									username: user?.username,
+								})}
+							</Link>
 						</div>
 					))}
 				</div>

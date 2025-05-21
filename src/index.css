@@ -18,8 +18,8 @@ body {
 }
 
 .guilds-grid {
-	grid-gap: 20px;
-	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	grid-gap: 125px;
+	grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
 	justify-content: center;
 	display: grid;
 	flex-wrap: wrap;
@@ -152,69 +152,89 @@ hr {
 .guild-button:hover img {
 	filter: invert(100%);
 }
-
-.guild.loading {
-	background: transparent;
+.skeleton {
 	position: relative;
 	overflow: hidden;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	margin-top: 10%;
+	background-color: rgba(217, 217, 217, 0.1);
 	border-radius: 25px;
-	padding: 20px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	width: 100%;
-	height: auto;
-	flex-wrap: wrap;
-	box-sizing: border-box;
-	gap: 25px;
 }
 
-.guild.loading::after {
+.skeleton::after {
 	content: "";
 	position: absolute;
+	top: 0;
+	left: 0;
 	width: 100%;
 	height: 100%;
-	transform: translateX(-100%);
-	background: -webkit-gradient(
-		linear,
-		left top,
-		right top,
-		from(transparent),
-		color-stop(rgba(146, 146, 146, 0.2)),
-		to(transparent)
-	);
 	background: linear-gradient(
-		90deg,
-		transparent,
-		rgba(134, 134, 134, 0.2),
-		transparent
+			90deg,
+			transparent,
+			rgba(134, 134, 134, 0.2),
+			transparent
 	);
 	animation: loading 0.8s infinite;
 }
-.guild-overlay.loading {
-	width: 220px;
-	height: 300px;
-	border-radius: 25px;
-	background-color: rgba(217, 217, 217, 0.1);
-}
-.guild-name.loading {
-	width: 169px;
-	height: 40px;
-	margin-left: 25px;
+
+.skeleton-text {
 	background-color: rgba(217, 217, 217, 0.1);
 	border-radius: 5px;
+	height: 40px;
+	width: 60%;
+	margin: 0 auto 20px;
+	position: relative;
+	overflow: hidden;
 }
-.guild-button.loading {
+
+.title.skeleton-text {
+	height: 50px;
+	margin-right: 400px;
+}
+
+.subtitle.skeleton-text {
+	height: 30px;
+	margin-right: 400px;
+	margin-bottom: 50px;
+}
+
+.guild.skeleton {
+	width: 220px;
+	height: 300px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	justify-content: flex-start;
+}
+
+.guild-icon-skeleton {
+	width: 170px;
+	height: 170px;
+	border-radius: 25px;
+	background-color: rgba(217, 217, 217, 0.1);
+	position: relative;
+	overflow: hidden;
+}
+
+.guild-name-skeleton {
+	width: 150px;
+	height: 40px;
+	margin-top: 10px;
+	border-radius: 5px;
+	background-color: rgba(217, 217, 217, 0.1);
+	position: relative;
+	overflow: hidden;
+}
+
+.guild-button-skeleton {
 	width: 170px;
 	height: 40px;
-	margin-left: 25px;
-	background-color: rgba(217, 217, 217, 0.1);
+	margin-top: auto;
 	border-radius: 10px;
-	margin-top: 20px;
+	background-color: rgba(217, 217, 217, 0.1);
+	position: relative;
+	overflow: hidden;
 }
+
 @keyframes loading {
 	0% {
 		transform: translateX(-100%);
