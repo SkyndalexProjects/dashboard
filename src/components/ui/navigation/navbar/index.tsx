@@ -10,7 +10,6 @@ import Dropdown, { DropdownOption } from "../../inputs/dropdown";
 const Navbar = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch<AppDispatch>();
-	const [searchTerm, setSearchTerm] = useState("");
 	const getCurrentUser = useSelector(
 		(state: RootState) => state.user.data as unknown as User,
 	);
@@ -28,9 +27,6 @@ const Navbar = () => {
 	useEffect(() => {
 		if (!haveUserFetched) {
 			dispatch(fetchUser());
-		}
-		if (!getCurrentGuild) {
-			dispatch(fetchGuilds());
 		}
 	}, []);
 
