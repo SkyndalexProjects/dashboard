@@ -39,6 +39,7 @@ export const guildsSlice = createSlice({
 					state.error = action.payload;
 					console.log(action.payload);
 					console.log("rejected");
+
 				},
 			)
 			.addCase(fetchGuilds.pending, () => {

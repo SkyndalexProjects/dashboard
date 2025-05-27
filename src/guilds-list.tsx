@@ -1,36 +1,33 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from './hooks';
 import "./index.css";
 import { Link } from "react-router-dom";
-import type { RootState, AppDispatch } from "./store";
 import { fetchGuilds } from "./thunks/guilds";
 import { fetchUser } from "./thunks/user";
 import { useTranslation } from "react-i18next";
+import { useRef } from "react";
 
 export default function GuildsList() {
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 
-	const haveGuildsFetched = useSelector(
-		(state: RootState) => state.guilds.haveGuildsFetched,
-	);
-	const isUserFetched = useSelector(
-		(state: RootState) => state.user.isUserFetched,
-	);
-	const guilds = useSelector((state: RootState) =>
-		state.guilds.haveGuildsFetched ? state.guilds.data : [],
-	);
-	const user = useSelector(
-		(state: RootState) => state.user.data as unknown as User,
-	);
+	const haveGuildsFetched = useAppSelector((state) => state.guilds.haveGuildsFetched);
+	const isUserFetched = useAppSelector((state) => state.user.isUserFetched);
+	const isInitialFetch = useRef(true);
+
+	const guilds = useAppSelector((state) => state.guilds.data);
+	const user = useAppSelector((state) => state.user.data as unknown as User)
 
 	useEffect(() => {
-		if (!haveGuildsFetched) {
-			dispatch(fetchGuilds());
+		if (isInitialFetch.current) {
+			if (!haveGuildsFetched) {
+				dispatch(fetchGuilds());
+			}
+			if (!isUserFetched) {
+				dispatch(fetchUser());
+			}
+			isInitialFetch.current = false;
 		}
-		if (!isUserFetched) {
-			dispatch(fetchUser());
-		}
-	}, []);
+	}, [haveGuildsFetched, isUserFetched, dispatch]);
 
 	const { t } = useTranslation();
 	const withBotAdded = guilds.filter(
