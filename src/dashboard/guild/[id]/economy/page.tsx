@@ -22,7 +22,6 @@ export default function Economy() {
 				{" "}
 				Money settings
 				<div className={classes.underlineVector} />
-
 				{/*<MoneySettings />*/}
 			</p>
 			{/*<p className={classes.moneySettings}>*/}

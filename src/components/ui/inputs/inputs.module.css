@@ -39,7 +39,7 @@
 	border-radius: 7px;
 	gap: 10px;
 	color: #667398;
-	font: normal 500 20px/normal "Be Vietnam Pro", sans-serif;
+	font: normal 500 20px / normal "Be Vietnam Pro", sans-serif;
 	margin-right: 30px;
 	padding-right: 10px;
 }
@@ -63,7 +63,7 @@
 	border-radius: 10px;
 	outline: none;
 	color: #667398;
-	font: normal 500 20px/normal "Be Vietnam Pro", sans-serif;
+	font: normal 500 20px / normal "Be Vietnam Pro", sans-serif;
 	display: flex;
 	flex-direction: row;
 	border: 1px solid rgba(255, 255, 255, 0.2);
@@ -75,7 +75,7 @@
 .placeholder-text {
 	width: max-content;
 	color: #667398;
-	font: normal 500 20px/normal "Be Vietnam Pro", sans-serif;
+	font: normal 500 20px / normal "Be Vietnam Pro", sans-serif;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -132,7 +132,7 @@
 
 .multiInput {
 	color: #667398;
-	font: normal 500 20px/normal "Be Vietnam Pro", sans-serif;
+	font: normal 500 20px / normal "Be Vietnam Pro", sans-serif;
 	display: flex;
 	flex-direction: column;
 	position: relative;
@@ -141,7 +141,7 @@
 	background: rgba(63, 63, 63, 0.2);
 	width: 303px;
 	border: none;
-	outline:  none;
+	outline: none;
 	min-height: 42px;
 	max-height: 67px;
 }
@@ -168,7 +168,7 @@
 .tag {
 	width: 76px;
 	height: 22px;
-	background-color: rgba(2, 2, 2, 0.30);
+	background-color: rgba(2, 2, 2, 0.3);
 	border-radius: 4px;
 	padding: 2px 8px;
 	margin-right: 4px;
@@ -179,8 +179,7 @@
 }
 
 .multiValue {
-
-	color: #5F87EA;
+	color: #5f87ea;
 	font-family: Poppins, sans-serif;
 	font-size: 12px;
 	font-style: normal;
@@ -199,7 +198,9 @@
 	padding: 0 4px;
 	color: white;
 }
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
 	outline: none;
 	box-shadow: none;
 }
@@ -219,7 +220,7 @@ input:focus, textarea:focus, select:focus {
 	width: 100%;
 	height: 22px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0);
-	outline:  none;
+	outline: none;
 }
 
 .multiOption {
@@ -243,7 +244,7 @@ input:focus, textarea:focus, select:focus {
 
 .selected {
 	background-color: rgba(0, 0, 0, 0.31);
-	color: #5F87EA;
+	color: #5f87ea;
 }
 
 @keyframes dropdownOpen {
@@ -263,7 +264,7 @@ input:focus, textarea:focus, select:focus {
 }
 .input {
 	color: #667398;
-	font: normal 500 20px/normal "Be Vietnam Pro", sans-serif;
+	font: normal 500 20px / normal "Be Vietnam Pro", sans-serif;
 	caret-color: transparent;
 	display: flex;
 	flex-direction: row;
@@ -274,7 +275,6 @@ input:focus, textarea:focus, select:focus {
 	background: rgba(63, 63, 63, 0.2);
 	flex-shrink: 0;
 	border-radius: 10px;
-
 }
 .input:focus {
 	outline: 2px solid rgba(95, 135, 234, 0.8);

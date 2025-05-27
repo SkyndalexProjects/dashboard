@@ -72,7 +72,12 @@ const TextField = ({ title }) => {
 	return (
 		<SettingField title={`${title}`}>
 			<div className={classes.inputContainer}>
-				<InputType onChange={handleChange} type="text" value={value} placeholder={`Type ${title.toLowerCase()}`} />
+				<InputType
+					onChange={handleChange}
+					type="text"
+					value={value}
+					placeholder={`Type ${title.toLowerCase()}`}
+				/>
 			</div>
 		</SettingField>
 	);

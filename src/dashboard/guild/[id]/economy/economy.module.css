@@ -1,18 +1,18 @@
 .underline-vector {
-    display: flex;
-    flex-direction: column;
-    width: max-content;
-    height: 4px;
-    background-color: #275EE7;
-    flex-shrink: 0;
-    animation: slide 0.5s ease forwards;
+	display: flex;
+	flex-direction: column;
+	width: max-content;
+	height: 4px;
+	background-color: #275ee7;
+	flex-shrink: 0;
+	animation: slide 0.5s ease forwards;
 }
 .section-title {
-    display: flex;
-    flex-direction: column;
-    width: max-content;
-    color: #FFF;
-    font: 700 20px/normal "Be Vietnam Pro", sans-serif;
+	display: flex;
+	flex-direction: column;
+	width: max-content;
+	color: #fff;
+	font: 700 20px / normal "Be Vietnam Pro", sans-serif;
 }
 /*.money-settings {*/
 /*    display: flex;*/

@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import classes from "./modals.module.css";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { fetchGuilds } from "@/thunks/guilds";
 
 const ChooseGuildModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 	if (!isOpen) return null;
-	const guildsList = useSelector((state: RootState) =>
-		state.guilds.haveGuildsFetched ? state.guilds.data : [],
+	const dispatch = useAppDispatch();
+	const haveGuildsFetched = useAppSelector(
+		(state) => state.guilds.haveGuildsFetched,
 	);
+	const guildsList = useAppSelector((state) => state.guilds.data);
+	const isInitialFetch = useRef(true);
+
+	useEffect(() => {
+		if (isInitialFetch.current) {
+			if (!haveGuildsFetched) {
+				dispatch(fetchGuilds());
+			}
+			isInitialFetch.current = false;
+		}
+	}, [haveGuildsFetched, dispatch]);
+
 	const filteredGuilds = guildsList.filter(
 		(guild) =>
 			(BigInt(guild.permissions) & BigInt(0x20)) === BigInt(0x20) &&

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from './hooks';
+import { useAppDispatch, useAppSelector } from "./hooks";
 import "./index.css";
 import { Link } from "react-router-dom";
 import { fetchGuilds } from "./thunks/guilds";
@@ -10,12 +10,14 @@ import { useRef } from "react";
 export default function GuildsList() {
 	const dispatch = useAppDispatch();
 
-	const haveGuildsFetched = useAppSelector((state) => state.guilds.haveGuildsFetched);
+	const haveGuildsFetched = useAppSelector(
+		(state) => state.guilds.haveGuildsFetched,
+	);
 	const isUserFetched = useAppSelector((state) => state.user.isUserFetched);
 	const isInitialFetch = useRef(true);
 
 	const guilds = useAppSelector((state) => state.guilds.data);
-	const user = useAppSelector((state) => state.user.data as unknown as User)
+	const user = useAppSelector((state) => state.user.data as unknown as User);
 
 	useEffect(() => {
 		if (isInitialFetch.current) {

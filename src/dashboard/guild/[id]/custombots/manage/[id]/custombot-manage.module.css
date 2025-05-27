@@ -1,6 +1,6 @@
 .containers {
 	display: block;
-	position: relative
+	position: relative;
 }
 .custombot {
 	display: flex;
@@ -12,10 +12,10 @@
 	transition: background-color 0.3s ease;
 }
 .red {
-    color: red !important;
+	color: red !important;
 }
 .green {
-    color: green !important;
+	color: green !important;
 }
 .custombot:hover {
 	background: rgba(39, 94, 231, 0.2);
@@ -93,51 +93,51 @@
 }
 .indicator {
 	width: 42.536px;
-height: 22.963px;
-flex-shrink: 0;
-position: relative;
-margin-left: 400px;
-caret-color: transparent;
+	height: 22.963px;
+	flex-shrink: 0;
+	position: relative;
+	margin-left: 400px;
+	caret-color: transparent;
 }
 .rotate {
 	transform: rotate(180deg);
 }
 .dropdownOptions {
-    z-index: 1000;
-    position: absolute;
-    top: 110%; 
-    left: 0;
-    background-color: black; 
-    border-radius: 8px;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.3s ease-in-out;	
+	z-index: 1000;
+	position: absolute;
+	top: 110%;
+	left: 0;
+	background-color: black;
+	border-radius: 8px;
+	padding: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	animation: fadeIn 0.3s ease-in-out;
 }
 
 .dropdownOptions ul {
-    list-style: none; 
-    margin: 0;
-    padding: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
 .dropdownOptions li {
-    padding: 8px 12px;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+	padding: 8px 12px;
+	color: white;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
 }
 
 .dropdownOptions li:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+	background-color: rgba(255, 255, 255, 0.1);
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }

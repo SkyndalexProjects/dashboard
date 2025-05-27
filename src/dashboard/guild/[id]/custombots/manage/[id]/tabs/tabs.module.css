@@ -34,22 +34,22 @@
 	margin-top: 50px;
 }
 .chatbot-tab-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr; 
-    grid-template-rows: auto; 
-    grid-gap: 20px; 
-    position: relative;
-    width: 100%;
-    height: auto;
-    flex-shrink: 0;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.2);
-    padding: 20px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto;
+	grid-gap: 20px;
+	position: relative;
+	width: 100%;
+	height: auto;
+	flex-shrink: 0;
+	border-radius: 10px;
+	background: rgba(0, 0, 0, 0.2);
+	padding: 20px;
 }
 .chatbot-tab-content > .column {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; 
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }
 .chatbot-tab-content-title {
 	color: #bdbdbd;
@@ -103,17 +103,17 @@
 .slider-container {
 	z-index: 1000;
 	display: flex;
-	flex-direction: column;	
+	flex-direction: column;
 }
 .slider-input-container {
 	margin-top: -30px;
 	margin-left: 239px;
 	width: 84px;
-height: 34px;
-border-radius: 8px;
-background: rgba(0, 0, 0, 0.14);
-position: absolute;
-z-index: 1000;
+	height: 34px;
+	border-radius: 8px;
+	background: rgba(0, 0, 0, 0.14);
+	position: absolute;
+	z-index: 1000;
 }
 .slider-range-container {
 	margin-left: 5px;
