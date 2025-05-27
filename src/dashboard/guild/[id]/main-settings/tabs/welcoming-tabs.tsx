@@ -49,6 +49,7 @@ const ChannelSelector = ({ purpose }) => {
 					onChange={handleSearchChange}
 					searchTerm={searchTerm}
 					setSearchTerm={setSearchTerm}
+					placeholder={`Search ${purpose.toLowerCase()} channel`}
 				>
 					{filteredChannels.map((channel) => (
 						<SelectOption key={channel.id} value={channel.name}>
@@ -71,7 +72,7 @@ const TextField = ({ title }) => {
 	return (
 		<SettingField title={`${title}`}>
 			<div className={classes.inputContainer}>
-				<InputType onChange={handleChange} type="text" value={value} />
+				<InputType onChange={handleChange} type="text" value={value} placeholder={`Type ${title.toLowerCase()}`} />
 			</div>
 		</SettingField>
 	);

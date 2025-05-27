@@ -70,7 +70,6 @@ export default function CustombotList() {
 		navigate(path);
 	};
 
-	console.log("custombots", custombots);
 	return (
 		<div>
 			<Navbar />
@@ -85,17 +84,22 @@ export default function CustombotList() {
 						const clientId = atob(bot.token.split(".")[0]);
 						return (
 							<div key={bot.id} className={classes.listItem}>
-								<img
-									src={`https://cdn.discordapp.com/avatars/${clientId}/${bot.icon}.png`}
-									alt={bot.username}
-									className={classes.listItemIcon}
-								/>
-								<p className={classes.listItemName}>
-									{bot.username}
-								</p>
-								<p className={classes.listItemFooter}>
-									{bot.status || "No status"}
-								</p>
+								<div className={classes.itemDetails}>
+									<img
+										src={`https://cdn.discordapp.com/avatars/${clientId}/${bot.icon}.png`}
+										alt={bot.username}
+										className={classes.listItemIcon}
+									/>
+									<div className={classes.listItemHeaders}>
+										<p className={classes.listItemName}>
+											{bot.username}
+										</p>
+										<p className={classes.listItemFooter}>
+											{bot.status || "No status"}
+										</p>
+									</div>
+								</div>
+
 								<div className={classes.listItemActionButtons}>
 									<button
 										className={classes.listItemActionButton}

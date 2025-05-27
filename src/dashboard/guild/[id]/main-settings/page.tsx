@@ -40,7 +40,6 @@ export default function MainSettings() {
 
 	return (
 		<div>
-			{/* TODO: fix containers*/}
 			<Navbar />
 			<Sidebar />
 			<div className={classes.containers}>
@@ -128,7 +127,6 @@ export default function MainSettings() {
 
 		const channels = useSelector((state: RootState) => state.channels.data);
 
-		console.log("channels from blocked channels", channels);
 		const haveChannelsFetched = useSelector(
 			(state: RootState) => state.channels.areChannelsFetched,
 		);

@@ -104,6 +104,16 @@ interface User {
 	public_flags: number;
 	verified: boolean;
 }
+interface Guild {
+	id: string;
+	name: string;
+	icon: string | null;
+	owner_id: string;
+	permissions: string;
+	features: string[];
+	member_count: number;
+	isBotAdded?: boolean;
+}
 interface ModalProps {
 	isOpen: boolean;
 	onClose: () => void;
