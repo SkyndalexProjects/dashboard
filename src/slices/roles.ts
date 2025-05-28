@@ -22,8 +22,9 @@ export const rolesSlice = createSlice({
 			.addCase(
 				fetchRoles.fulfilled,
 				(state, action: PayloadAction<any[]>) => {
-					console.log("roles/fetch is fulfilled");
+					// console.log("roles/fetch is fulfilled");
 
+					console.log("[STATE] fetchRoles is fulfilled");
 					state.data = action.payload;
 					state.areRolesFetched = true;
 				},

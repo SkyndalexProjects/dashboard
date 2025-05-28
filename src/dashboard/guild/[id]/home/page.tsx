@@ -66,8 +66,6 @@ export default function Page() {
 	useEffect(() => {
 		(async () => {
 			try {
-				console.log("Fetching user");
-
 				const response = await fetch(
 					`${import.meta.env.VITE_API_URL}/guilds/${id}/logs`,
 					{

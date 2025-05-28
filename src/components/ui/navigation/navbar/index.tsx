@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
 import { useNavigate } from "react-router-dom";
 import classes from "./navbar.module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { fetchGuilds } from "@/thunks/guilds";
 import { fetchUser } from "@/thunks/user";
 import ChooseGuildModal from "@/components/ui/navigation/navbar/modals/ChooseGuild";
@@ -14,21 +14,30 @@ const Navbar = () => {
 		(state: RootState) => state.user.data as unknown as User,
 	);
 	const guildId = location.pathname.split("/")[3];
+	const isInitialFetch = useRef(true);
+	const haveGuildsFetched = useSelector(
+		(state: RootState) => state.guilds.haveGuildsFetched
+	);
+	const isUserFetched = useSelector(
+		(state: RootState) => state.user.isUserFetched,
+	);
 	const getCurrentGuild = useSelector((state: RootState) =>
 		Array.isArray(state.guilds.data)
 			? state.guilds.data.find((x) => x.id === guildId)
 			: undefined,
 	);
 
-	const haveUserFetched = useSelector(
-		(state: RootState) => state.user.isUserFetched,
-	);
-
 	useEffect(() => {
-		if (!haveUserFetched) {
-			dispatch(fetchUser());
+		if (isInitialFetch.current) {
+			if (!haveGuildsFetched) {
+				dispatch(fetchGuilds());
+			}
+			if (!isUserFetched) {
+				dispatch(fetchUser());
+			}
+			isInitialFetch.current = false;
 		}
-	}, []);
+	}, [haveGuildsFetched, isUserFetched, dispatch]);
 
 	const options = [
 		{ id: "user_panel", name: "Go to user panel" },

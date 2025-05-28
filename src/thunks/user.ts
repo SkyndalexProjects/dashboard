@@ -11,7 +11,8 @@ export const fetchUser = createAsyncThunk("user/fetch", async (_, thunkAPI) => {
 		});
 		const json = await res.json();
 
-		console.log("fetchUserThunk response:", json);
+		// console.log('%c[DATA] userData are available.', 'color: #2200ff; font-weight: bold', json);
+
 		return json;
 	} catch (err) {
 		console.log(err, "fetchUserThunk");
