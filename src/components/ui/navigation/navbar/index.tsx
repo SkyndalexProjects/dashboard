@@ -16,7 +16,7 @@ const Navbar = () => {
 	const guildId = location.pathname.split("/")[3];
 	const isInitialFetch = useRef(true);
 	const haveGuildsFetched = useSelector(
-		(state: RootState) => state.guilds.haveGuildsFetched
+		(state: RootState) => state.guilds.haveGuildsFetched,
 	);
 	const isUserFetched = useSelector(
 		(state: RootState) => state.user.isUserFetched,

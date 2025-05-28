@@ -1,18 +1,24 @@
 import classes from "./inputs.module.css";
+import React from "react";
+
 interface InputProps {
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	placeholder?: string;
 	placeholderLogo?: string;
 	placeholderLogoClassName?: string;
 	type: string;
-	value: string;
+	className?: string;
+	value?: string;
 }
+
 export default function InputType({
 	onChange,
 	placeholder,
 	placeholderLogo,
 	placeholderLogoClassName,
 	type,
+	className,
+	value,
 }: InputProps) {
 	return (
 		<div>
@@ -26,8 +32,11 @@ export default function InputType({
 			<input
 				placeholder={placeholder}
 				onChange={(e) => onChange(e)}
-				className={classes.input}
+				className={
+					className ? `${classes.input} ${className}` : classes.input
+				}
 				type={type}
+				value={value}
 				style={placeholderLogo ? { paddingLeft: "60px" } : undefined}
 			/>
 		</div>

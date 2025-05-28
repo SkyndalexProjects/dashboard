@@ -6,162 +6,113 @@ import React, { useState } from "react";
 import Switch from "@/components/ui/inputs/switch";
 import EconomyCommandsSettings from "@/dashboard/guild/[id]/economy/commands-settings/commands-settings";
 
-export default function Economy() {
-	const [setStatus] = useState("");
+interface SettingProps {
+	name: string;
+	children: React.ReactNode;
+}
 
-	const handleSymbolChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		// @ts-ignore
-		setStatus(e.target.value);
-	};
+const Setting: React.FC<SettingProps> = ({ name, children }) => {
+	return (
+		<div>
+			<p className={classes.settingTitle}>{name}</p>
+			{children}
+		</div>
+	);
+};
+
+interface MoneySettingsProps {
+	title: React.ReactNode;
+	children: React.ReactNode;
+}
+
+const MoneySettings: React.FC<MoneySettingsProps> = ({ title, children }) => {
+	return (
+		<div className={classes.settingsMoneySection}>
+			{title}
+			<div className={classes.settingRow}>{children}</div>
+		</div>
+	);
+};
+export default function Economy() {
+	const sectionTitle = (
+		<div className={classes.sectionTitle}>
+			Money settings
+			<div className={classes.underlineVector}></div>
+		</div>
+	);
 
 	return (
 		<div>
 			<Navbar />
 			<Sidebar />
-			<p className={classes.sectionTitle}>
-				{" "}
-				Money settings
-				<div className={classes.underlineVector} />
-				{/*<MoneySettings />*/}
-			</p>
-			{/*<p className={classes.moneySettings}>*/}
-			{/*	{" "}*/}
-			{/*	Money settings{" "}*/}
-			{/*	<svg*/}
-			{/*		width="185"*/}
-			{/*		height="4"*/}
-			{/*		viewBox="0 0 185 4"*/}
-			{/*		fill="none"*/}
-			{/*		xmlns="http://www.w3.org/2000/svg"*/}
-			{/*		style={{*/}
-			{/*			flexShrink: 0,*/}
-			{/*			strokeWidth: 4,*/}
-			{/*			stroke: "#275EE7",*/}
-			{/*		}}*/}
-			{/*		className={classes.sectionTitleVector}*/}
-			{/*	>*/}
-			{/*		<line x1="0" y1="2" x2="185" y2="2" />*/}
-			{/*	</svg>*/}
-			{/*</p>*/}
 
-			{/*<div className={classes.settingsMoneySection}>*/}
-			{/*	<div className={classes.settingColumn}>*/}
-			{/*		<div className={classes.setting}>*/}
-			{/*			<p className={classes.settingTitle}>Symbol</p>*/}
-			{/*			<InputType*/}
-			{/*				onChange={handleSymbolChange}*/}
-			{/*				placeholder="$"*/}
-			{/*				className={classes.input}*/}
-			{/*				type="text"*/}
-			{/*			/>*/}
-
-			{/*			<p className={classes.hint}>*/}
-			{/*				<img src={"/hint.svg"} alt={"hint"} />*/}
-			{/*				Use win + . to choose emoji*/}
-			{/*			</p>*/}
-			{/*		</div>*/}
-			{/*		<div className={classes.setting}>*/}
-			{/*			<p className={classes.settingTitle}>*/}
-			{/*				Starting point (wallet)*/}
-			{/*			</p>*/}
-			{/*			<InputType*/}
-			{/*				onChange={handleSymbolChange}*/}
-			{/*				placeholder="$"*/}
-			{/*				className={classes.input}*/}
-			{/*				type="text"*/}
-			{/*			/>*/}
-
-			{/*			<p className={classes.hint}>*/}
-			{/*				<img src={"/hint.svg"} alt={"hint"} />*/}
-			{/*				Money for the new users (wallet)*/}
-			{/*			</p>*/}
-			{/*		</div>*/}
-			{/*		<div className={classes.setting}>*/}
-			{/*			<p className={classes.settingTitle}>*/}
-			{/*				Starting point (bank)*/}
-			{/*			</p>*/}
-			{/*			<InputType*/}
-			{/*				onChange={handleSymbolChange}*/}
-			{/*				placeholder="$"*/}
-			{/*				className={classes.input}*/}
-			{/*				type="text"*/}
-			{/*			/>*/}
-
-			{/*			<p className={classes.hint}>*/}
-			{/*				<img src={"/hint.svg"} alt={"hint"} />*/}
-			{/*				Money for the new users (bank)*/}
-			{/*			</p>*/}
-			{/*		</div>*/}
-			{/*		<div className={classes.additionalSettings}>*/}
-			{/*			<div className={classes.setting}>*/}
-			{/*				<p className={classes.settingTitle}>*/}
-			{/*					Additional settings*/}
-			{/*					<p className={classes.additionalSettingTitle}>*/}
-			{/*						<Switch*/}
-			{/*							switchClassName={classes.switch}*/}
-			{/*							knobClassName={classes.knob}*/}
-			{/*						/>*/}
-			{/*						Clear money after leaving the guild*/}
-			{/*					</p>*/}
-			{/*					<p className={classes.additionalSettingTitle}>*/}
-			{/*						<Switch*/}
-			{/*							switchClassName={classes.switch}*/}
-			{/*							knobClassName={classes.knob}*/}
-			{/*						/>*/}
-			{/*						Enable rob system*/}
-			{/*					</p>*/}
-			{/*				</p>*/}
-			{/*			</div>*/}
-			{/*		</div>*/}
-			{/*	</div>*/}
-			{/*</div>*/}
-
-			{/*<p className={classes.commandsSettingsTitle}>*/}
-			{/*	{" "}*/}
-			{/*	Commands settings{" "}*/}
-			{/*	<svg*/}
-			{/*		width="185"*/}
-			{/*		height="4"*/}
-			{/*		viewBox="0 0 185 4"*/}
-			{/*		fill="none"*/}
-			{/*		xmlns="http://www.w3.org/2000/svg"*/}
-			{/*		style={{*/}
-			{/*			flexShrink: 0,*/}
-			{/*			strokeWidth: 4,*/}
-			{/*			stroke: "#275EE7",*/}
-			{/*		}}*/}
-			{/*		className={classes.sectionTitleVector}*/}
-			{/*	>*/}
-			{/*		<line x1="0" y1="2" x2="185" y2="2" />*/}
-			{/*	</svg>*/}
-			{/*</p>*/}
-
-			{/*<div className={classes.commandsSettingsSection}>*/}
-			{/*	<EconomyCommandsSettings />*/}
-			{/*</div>*/}
+			<MoneySettings title={sectionTitle}>
+				<SymbolSetting />
+				<StartingPointSetting />
+				<AdditionalSettings />
+			</MoneySettings>
 		</div>
 	);
-	function MoneySettings() {
-		const [symbol, setSymbol] = useState("$");
-		return (
-			<div className={classes.settingsMoneySection}>
-				<div className={classes.settingColumn}>
-					<div className={classes.setting}>
-						<p className={classes.settingTitle}>Symbol</p>
-						<InputType
-							value={symbol}
-							onChange={handleSymbolChange}
-							placeholder="$"
-							type="text"
-						/>
+}
+function SymbolSetting() {
+	const [symbol, setSymbol] = useState("$");
 
-						<p className={classes.hint}>
-							<img src={"/hint.svg"} alt={"hint"} />
-							Use win + . to choose emoji
-						</p>
-					</div>
-				</div>
+	const handleSymbolChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setSymbol(e.target.value);
+	};
+
+	return (
+		<div className={classes.setting}>
+			<Setting name="Symbol">
+				<InputType
+					value={symbol}
+					onChange={handleSymbolChange}
+					placeholder="$"
+					type="text"
+					className={classes.input}
+				/>
+			</Setting>
+		</div>
+	);
+}
+
+function StartingPointSetting() {
+	const [startingAmount, setStartingAmount] = useState("100");
+	const [isForBank, setIsForBank] = useState(false);
+
+	const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setStartingAmount(e.target.value);
+	};
+
+	const handleToggleChange = (isChecked: boolean) => {
+		setIsForBank(isChecked);
+	};
+
+	return (
+		<div className={classes.setting}>
+			<Setting name="Starting point">
+				<InputType
+					value={startingAmount}
+					onChange={handleAmountChange}
+					placeholder="100"
+					type="text"
+					className={classes.input}
+				/>
+			</Setting>
+		</div>
+	);
+}
+function AdditionalSettings() {
+	return <div className={classes.additionalSettings}>
+		<Setting name="Additional Settings">
+			<div className={classes.additionalSettingsRow}>
+				Enable rob system
+				<Switch />
 			</div>
-		);
-	}
+			<div className={classes.additionalSettingsRow}>
+				Clear money after leaving the guild
+				<Switch />
+			</div>
+		</Setting>
+	</div>;
 }

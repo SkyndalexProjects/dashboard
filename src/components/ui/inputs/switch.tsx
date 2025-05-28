@@ -1,20 +1,14 @@
 import { useState } from "react";
-interface SwitchProps {
-	switchClassName: string;
-	knobClassName: string;
-}
-export default function Switch({
-	switchClassName,
-	knobClassName,
-}: SwitchProps) {
+import classes from "./inputs.module.css";
+export default function Switch() {
 	const [isOn, setIsOn] = useState(false);
 
 	const toggleSwitch = () => setIsOn(!isOn);
 
 	return (
-		<label className={switchClassName}>
+		<label className={classes.switch}>
 			<input type={"checkbox"} checked={isOn} onChange={toggleSwitch} />
-			<span className={`${knobClassName}`} />
+			<span className={`${classes.knob}`} />
 		</label>
 	);
 }

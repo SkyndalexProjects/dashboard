@@ -22,7 +22,10 @@ export const userSlice = createSlice({
 			.addCase(
 				fetchUser.fulfilled,
 				(state, action: PayloadAction<any[]>) => {
-					console.log('%c[STATE] fetchUser is fulfilled', 'color: #4CAF50; font-weight: bold');
+					console.log(
+						"%c[STATE] fetchUser is fulfilled",
+						"color: #4CAF50; font-weight: bold",
+					);
 					state.data = action.payload;
 					state.isUserFetched = true;
 				},
@@ -31,13 +34,17 @@ export const userSlice = createSlice({
 				fetchUser.rejected,
 				(state, action: PayloadAction<any>) => {
 					state.error = action.payload;
-					console.log('%c[STATE] fetchUser is rejected', 'color: #fc0b03; font-weight: bold');
-
+					console.log(
+						"%c[STATE] fetchUser is rejected",
+						"color: #fc0b03; font-weight: bold",
+					);
 				},
 			)
 			.addCase(fetchUser.pending, () => {
-				console.log('%c[STATE] fetchUser is pending', 'color: #fcd303; font-weight: bold');
-
+				console.log(
+					"%c[STATE] fetchUser is pending",
+					"color: #fcd303; font-weight: bold",
+				);
 			});
 	},
 });
