@@ -4,7 +4,7 @@ import InputType from "@/components/ui/inputs/input";
 import Switch from "@/components/ui/inputs/switch";
 import CreateReplyModal from "@/dashboard/guild/[id]/economy/commands-settings/modals/CreateReply";
 import React from "react";
-const EconomyCommandsSettings = () => {
+const CommandsTabs = () => {
 	const [activeTab, setActiveTab] = useState("Work");
 	const handleTabClick = (tab: string) => {
 		setActiveTab(tab);
@@ -103,155 +103,8 @@ export function CommandSettings({ cmd }: CommandSettingsProps) {
 
 	return (
 		<div>
-			<div className={`${isModalOpen ? classes.blurBackground : ""}`}>
-				<div className={classes.cooldownSetting}>
-					<p className={classes.cooldownTitle}>Cooldown</p>
 
-					<div className={classes.cooldownOverlay}>
-						<InputType
-							onChange={handleCooldownChange}
-							placeholder="30s"
-							placeholderLogoClassName={classes.placeholder}
-							className={classes.input}
-							type="text"
-						/>
-					</div>
-					<div className={classes.chanceOverlay}>
-						<p className={classes.chanceTitle}>Chance</p>
-
-						<InputType
-							onChange={handleCooldownChange}
-							placeholder="30s"
-							placeholderLogoClassName={classes.placeholder}
-							className={classes.input}
-							type="text"
-						/>
-						<div className={classes.hint}>
-							<img
-								src={"/hint.svg"}
-								alt={"hint"}
-								width={"26px"}
-								height={"26px"}
-							/>
-							<p className={classes.hintTitle}> Chance of win </p>
-						</div>
-					</div>
-					<div className={classes.payoutOverlay}>
-						<p className={classes.payoutTitle}>Payout</p>
-
-						<div className={classes.inputs}>
-							<InputType
-								onChange={handleCooldownChange}
-								placeholder="min"
-								placeholderLogoClassName={classes.placeholder}
-								className={classes.input}
-								type="text"
-							/>
-							<InputType
-								onChange={handleCooldownChange}
-								placeholder="max"
-								placeholderLogoClassName={classes.placeholder}
-								className={classes.input}
-								type="text"
-							/>
-						</div>
-					</div>
-					<div className={classes.additionalSettings}>
-						<p className={classes.additionalSettingsTitle}>
-							Additional settings
-						</p>
-
-						<div className={classes.defaultReplies}>
-							<Switch
-								switchClassName={classes.switch}
-								knobClassName={classes.knob}
-							/>
-							<p className={classes.defaultRepliesTitle}>
-								{" "}
-								Use default replies
-							</p>
-						</div>
-					</div>
-					<div className={`${classes.customReplies}`}>
-						<p className={classes.customRepliesTitle}>
-							Custom replies
-						</p>
-
-						<button
-							className={classes.createReplyButton}
-							onClick={openModal}
-						>
-							<img
-								src="/plus.svg"
-								alt="plus.svg"
-								width={"21px"}
-								height={"21px"}
-							/>
-							<p>Create reply</p>
-						</button>
-					</div>
-
-					<div className={classes.repliesTable}>
-						<input
-							type="text"
-							placeholder="Search replies"
-							value={searchTerm}
-							onChange={(e) => setSearchTerm(e.target.value)}
-							className={classes.searchInput}
-						/>
-
-						<div className={classes.repliesHeader}>
-							<p className={classes.columnTitleLeft}>Added by</p>
-							<p className={classes.columnTitleRight}>Reply</p>
-						</div>
-
-						<div className={classes.repliesList}>
-							{filteredReplies.map((item) => (
-								<div className={classes.replyRow} key={item.id}>
-									<div className={classes.userInfo}>
-										<img
-											src={
-												item.avatarURL ||
-												"/default-avatar.png"
-											}
-											alt="avatar"
-											className={classes.avatar}
-										/>
-										<div>
-											<div className={classes.username}>
-												{item.addedBy}
-											</div>
-											<div className={classes.userRole}>
-												Staff
-											</div>
-										</div>
-									</div>
-									<div className={classes.replyWrap}>
-										<div className={classes.replyContent}>
-											<span className={classes.replyText}>
-												{item.reply.length > 65
-													? `${item.reply.substring(
-															1,
-															65,
-														)} [...]`
-													: item.reply}
-												<a
-													href={`/reply/${item.id}`}
-													className={classes.viewLink}
-												>
-													View
-												</a>
-											</span>
-										</div>
-									</div>
-								</div>
-							))}
-						</div>
-					</div>
-				</div>
-			</div>
-			<CreateReplyModal isOpen={isModalOpen} onClose={closeModal} />
 		</div>
 	);
 }
-export default EconomyCommandsSettings;
+export default CommandsTabs;

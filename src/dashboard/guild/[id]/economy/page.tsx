@@ -4,7 +4,7 @@ import classes from "./economy.module.css";
 import InputType from "@/components/ui/inputs/input";
 import React, { useState } from "react";
 import Switch from "@/components/ui/inputs/switch";
-import EconomyCommandsSettings from "@/dashboard/guild/[id]/economy/commands-settings/commands-settings";
+import CommandsTabs from "@/dashboard/guild/[id]/economy/commands-settings/commands-settings";
 
 interface SettingProps {
 	name: string;
@@ -20,37 +20,37 @@ const Setting: React.FC<SettingProps> = ({ name, children }) => {
 	);
 };
 
-interface MoneySettingsProps {
+interface SectionProps {
 	title: React.ReactNode;
 	children: React.ReactNode;
 }
 
-const MoneySettings: React.FC<MoneySettingsProps> = ({ title, children }) => {
+const Section: React.FC<SectionProps> = ({ title, children }) => {
 	return (
 		<div className={classes.settingsMoneySection}>
-			{title}
+			<div className={classes.sectionTitle}>
+				{title}
+				<div className={classes.underlineVector}></div>
+
+			</div>
 			<div className={classes.settingRow}>{children}</div>
 		</div>
 	);
 };
 export default function Economy() {
-	const sectionTitle = (
-		<div className={classes.sectionTitle}>
-			Money settings
-			<div className={classes.underlineVector}></div>
-		</div>
-	);
-
 	return (
 		<div>
 			<Navbar />
 			<Sidebar />
 
-			<MoneySettings title={sectionTitle}>
+			<Section title="Money settings">
 				<SymbolSetting />
 				<StartingPointSetting />
 				<AdditionalSettings />
-			</MoneySettings>
+			</Section>
+			<Section title="Commands settings">
+				<CommandsSettings />
+			</Section>
 		</div>
 	);
 }
@@ -115,4 +115,11 @@ function AdditionalSettings() {
 			</div>
 		</Setting>
 	</div>;
+}
+function CommandsSettings() {
+	return (
+		<div className={classes.commandsSettings}>
+			<CommandsTabs />
+		</div>
+	)
 }
