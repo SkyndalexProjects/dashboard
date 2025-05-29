@@ -4,6 +4,7 @@ import { guildsSlice } from "@/slices/guilds";
 import { userSlice } from "@/slices/user";
 import { rolesSlice } from "@/slices/roles";
 import { custombotsSlice } from "@/slices/custombots";
+import { logsSlice } from "@/slices/logs";
 export const makeStore = () => {
 	return configureStore({
 		reducer: {
@@ -12,6 +13,7 @@ export const makeStore = () => {
 			channels: channelsSlice.reducer,
 			roles: rolesSlice.reducer,
 			custombots: custombotsSlice.reducer,
+			logs: logsSlice.reducer
 		},
 		devTools: true,
 	});

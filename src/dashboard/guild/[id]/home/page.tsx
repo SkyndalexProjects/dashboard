@@ -4,10 +4,12 @@ import BetaWarning from "@/components/ui/alerts/beta-warning";
 import JoinSupportAlert from "@/components/ui/alerts/support-join-warning";
 import classes from "./home.module.css";
 import { useState, useEffect } from "react";
+import { fetchLogs } from "@/thunks/logs";
 import { useParams } from "react-router-dom";
 import HomeTabs from "./hometabs/changelog-switch";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
+import {useAppDispatch, useAppSelector} from "@/hooks";
 
 interface SettingContainerProps {
 	title: string;
@@ -33,13 +35,19 @@ const SettingContainer = ({
 	</div>
 );
 export default function Page() {
-	const [logs, setLogs] = useState<Logs[]>([]);
+	const dispatch = useAppDispatch()
+	const logs = useAppSelector((state) => state.logs.data);
 	const { id } = useParams<{ id: string }>();
 
 	const logValues: { [key: string]: string } = {
 		custombot_created: "Custom bot created",
 		custombot_deleted: "Custom bot deleted",
 	};
+	useEffect(() => {
+		if (id) {
+			dispatch(fetchLogs(id));
+		}
+	}, [dispatch, id]);
 
 	async function fetchUser(userId: string) {
 		try {
@@ -63,48 +71,6 @@ export default function Page() {
 			return null;
 		}
 	}
-	useEffect(() => {
-		(async () => {
-			try {
-				const response = await fetch(
-					`${import.meta.env.VITE_API_URL}/guilds/${id}/logs`,
-					{
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json",
-						},
-						body: JSON.stringify({ id }),
-					},
-				);
-
-				if (!response.ok) {
-					console.error("Failed to fetch logs");
-				}
-
-				const data = await response.json();
-
-				const updatedLogs: Logs[] = [];
-
-				if (Array.isArray(data)) {
-					for (const log of data) {
-						console.log("log", log);
-						const user = await fetchUser(log.userId);
-						console.log("fetched user", user);
-						updatedLogs.push({
-							...log,
-							username: user.username,
-							avatar: user.avatar,
-						});
-					}
-					setLogs(updatedLogs);
-				}
-			} catch (error) {
-				console.error(error);
-			}
-		})();
-	}, [id]);
-
-	// TODO: handling
 
 	const options: ApexOptions = {
 		series: [
@@ -227,14 +193,15 @@ export default function Page() {
 				<div className={classes.logTableContainer}>
 					<table className={classes.logTable}>
 						<thead>
-							<tr>
-								<th>User</th>
-								<th>Action</th>
-								<th>Date</th>
-							</tr>
+						<tr>
+							<th>User</th>
+							<th>Action</th>
+							<th>Date</th>
+						</tr>
 						</thead>
 						<tbody>
-							{logs.map((log) => (
+						{logs && logs.length > 0 ? (
+							logs.map((log) => (
 								<tr key={log.id}>
 									<td>
 										<div>
@@ -285,7 +252,14 @@ export default function Page() {
 										</div>
 									</td>
 								</tr>
-							))}
+							))
+						) : (
+							<tr>
+								<td colSpan={3} className={classes.noLogs}>
+									No logs found
+								</td>
+							</tr>
+						)}
 						</tbody>
 					</table>
 				</div>
