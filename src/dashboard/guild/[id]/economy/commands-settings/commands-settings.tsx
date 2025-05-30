@@ -103,7 +103,83 @@ export function CommandSettings({ cmd }: CommandSettingsProps) {
 
 	return (
 		<div>
-
+			<Table cmd={cmd} filteredReplies={filteredReplies} />
+		</div>
+	);
+}
+interface CommandSettingsProps {
+	cmd: string;
+	filteredReplies?: {
+		id: number;
+		addedBy: string;
+		reply: string;
+		avatarURL: string;
+	}[];
+}
+function Table({
+	cmd,
+	filteredReplies,
+}: {
+	cmd: string;
+	filteredReplies: {
+		id: number;
+		addedBy: string;
+		reply: string;
+		avatarURL: string;
+	}[];
+}) {
+	return (
+		<div>
+			<table className={classes.table}>
+				<thead>
+					<tr>
+						<th className={classes.tableHeader}>Added by</th>
+						<th className={classes.tableHeader}>Reply</th>
+						<th className={classes.tableHeader}>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{filteredReplies &&
+						filteredReplies.map((reply) => (
+							<tr key={reply.id} className={classes.tableRow}>
+								<td>
+									<div className={classes.userInfo}>
+										<img
+											src={reply.avatarURL}
+											alt={reply.addedBy}
+											className={classes.avatar}
+										/>
+										<span className={classes.author}>
+											{reply.addedBy}
+										</span>
+									</div>
+								</td>
+								<td className={classes.reply}>{reply.reply}</td>
+								<td>
+									<div className={classes.actionButtons}>
+										<button
+											className={
+												classes.listItemActionButton
+											}
+										>
+											<img
+												src="/edit-button.svg"
+												alt="Edit"
+											/>
+										</button>
+										<button
+											className={
+												classes.listItemActionButton
+											}
+										>
+											<img src="/trash.svg" alt="Trash" />
+										</button>
+									</div>
+								</td>
+							</tr>
+						))}
+				</tbody>
+			</table>
 		</div>
 	);
 }

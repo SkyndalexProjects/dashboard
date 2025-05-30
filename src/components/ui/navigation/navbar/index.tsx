@@ -3,10 +3,11 @@ import { AppDispatch, RootState } from "@/store";
 import { useNavigate } from "react-router-dom";
 import classes from "./navbar.module.css";
 import { useState, useEffect, useRef } from "react";
-import { fetchGuilds } from "@/thunks/guilds";
-import { fetchUser } from "@/thunks/user";
+import { fetchGuilds } from "@/features/guilds";
 import ChooseGuildModal from "@/components/ui/navigation/navbar/modals/ChooseGuild";
 import Dropdown, { DropdownOption } from "../../inputs/dropdown";
+import { fetchUser } from "@/features/user";
+
 const Navbar = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch<AppDispatch>();

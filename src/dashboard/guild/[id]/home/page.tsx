@@ -4,12 +4,12 @@ import BetaWarning from "@/components/ui/alerts/beta-warning";
 import JoinSupportAlert from "@/components/ui/alerts/support-join-warning";
 import classes from "./home.module.css";
 import { useState, useEffect } from "react";
-import { fetchLogs } from "@/thunks/logs";
+import { fetchLogs } from "@/features/logs";
 import { useParams } from "react-router-dom";
 import HomeTabs from "./hometabs/changelog-switch";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
-import {useAppDispatch, useAppSelector} from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 
 interface SettingContainerProps {
 	title: string;
@@ -35,7 +35,7 @@ const SettingContainer = ({
 	</div>
 );
 export default function Page() {
-	const dispatch = useAppDispatch()
+	const dispatch = useAppDispatch();
 	const logs = useAppSelector((state) => state.logs.data);
 	const { id } = useParams<{ id: string }>();
 
@@ -193,73 +193,87 @@ export default function Page() {
 				<div className={classes.logTableContainer}>
 					<table className={classes.logTable}>
 						<thead>
-						<tr>
-							<th>User</th>
-							<th>Action</th>
-							<th>Date</th>
-						</tr>
+							<tr>
+								<th>User</th>
+								<th>Action</th>
+								<th>Date</th>
+							</tr>
 						</thead>
 						<tbody>
-						{logs && logs.length > 0 ? (
-							logs.map((log) => (
-								<tr key={log.id}>
-									<td>
-										<div>
-											<img
-												src={`https://cdn.discordapp.com/avatars/${log.userId}/${log.avatar}.webp?size=128`}
-												alt={`avatar`}
-												className={classes.avatar}
-											/>
-											<p className={classes.tUsername}>
-												{log.username}
-											</p>
-										</div>
-									</td>
-									<td>
-										<p className={classes.tValue}>
-											{logValues[log.value] || log.value}
+							{logs && logs.length > 0 ? (
+								logs.map((log) => (
+									<tr key={log.id}>
+										<td>
+											<div>
+												<img
+													src={`https://cdn.discordapp.com/avatars/${log.userId}/${log.avatar}.webp?size=128`}
+													alt={`avatar`}
+													className={classes.avatar}
+												/>
+												<p
+													className={
+														classes.tUsername
+													}
+												>
+													{log.username}
+												</p>
+											</div>
+										</td>
+										<td>
+											<p className={classes.tValue}>
+												{logValues[log.value] ||
+													log.value}
 
-											<button
-												className={classes.valueDetails}
+												<button
+													className={
+														classes.valueDetails
+													}
+												>
+													View details
+												</button>
+											</p>
+										</td>
+										<td>
+											<div
+												className={
+													classes.dateContainer
+												}
 											>
-												View details
-											</button>
-										</p>
-									</td>
-									<td>
-										<div className={classes.dateContainer}>
-											<p className={classes.tDate}>
-												{new Date(log.date)
-													.toLocaleDateString(
+												<p className={classes.tDate}>
+													{new Date(log.date)
+														.toLocaleDateString(
+															"en-US",
+															{
+																day: "2-digit",
+																month: "2-digit",
+																year: "numeric",
+															},
+														)
+														.replace(/\//g, ".")}
+												</p>
+												<p className={classes.tHour}>
+													{new Date(
+														log.date,
+													).toLocaleTimeString(
 														"en-US",
 														{
-															day: "2-digit",
-															month: "2-digit",
-															year: "numeric",
+															hour: "2-digit",
+															minute: "2-digit",
+															timeZone: "UTC",
 														},
-													)
-													.replace(/\//g, ".")}
-											</p>
-											<p className={classes.tHour}>
-												{new Date(
-													log.date,
-												).toLocaleTimeString("en-US", {
-													hour: "2-digit",
-													minute: "2-digit",
-													timeZone: "UTC",
-												})}
-											</p>
-										</div>
+													)}
+												</p>
+											</div>
+										</td>
+									</tr>
+								))
+							) : (
+								<tr>
+									<td colSpan={3} className={classes.noLogs}>
+										No logs found
 									</td>
 								</tr>
-							))
-						) : (
-							<tr>
-								<td colSpan={3} className={classes.noLogs}>
-									No logs found
-								</td>
-							</tr>
-						)}
+							)}
 						</tbody>
 					</table>
 				</div>

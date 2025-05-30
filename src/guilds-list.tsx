@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import "./index.css";
 import { Link } from "react-router-dom";
-import { fetchGuilds } from "./thunks/guilds";
-import { fetchUser } from "./thunks/user";
+import { fetchGuilds } from "./features/guilds";
+import { fetchUser } from "@/features/user";
 import { useTranslation } from "react-i18next";
 import { useRef } from "react";
 

@@ -5,7 +5,7 @@ import Select, { SelectOption } from "@/components/ui/inputs/search";
 import InputType from "@/components/ui/inputs/input";
 import { useSelector, useDispatch } from "react-redux";
 import { type RootState, AppDispatch } from "@/store";
-import { fetchChannels } from "@/thunks/channels";
+import { fetchChannels } from "@/features/channels";
 
 const SettingField = ({ title, children }) => (
 	<div className={classes.setting}>
@@ -90,10 +90,7 @@ const WelcomingTabs = () => {
 
 	const ImageToggle = ({ label }) => (
 		<p className={classes.imageBackgroundBoolean}>
-			<Switch
-				switchClassName={classes.switch}
-				knobClassName={classes.knob}
-			/>
+			<Switch />
 			{label}
 		</p>
 	);

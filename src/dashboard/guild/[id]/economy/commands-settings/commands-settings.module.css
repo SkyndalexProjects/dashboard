@@ -8,7 +8,6 @@
 	border-radius: 5px;
 	margin-left: 40px;
 	margin-top: 30px;
-
 }
 .active-tab {
 	display: flex;
@@ -23,9 +22,8 @@
 	text-wrap: nowrap;
 	flex-shrink: 0;
 	border-radius: 5px;
-	background: rgba(40, 58, 118, 0.60);
+	background: rgba(40, 58, 118, 0.6);
 	padding: 17px;
-
 }
 .inactive-tab {
 	text-wrap: nowrap;
@@ -40,5 +38,98 @@
 	color: #fff;
 	padding: 17px;
 	font: 700 16px "Be Vietnam Pro", sans-serif;
+}
+.user-info {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	width: 100%;
+}
+.table {
+	width: 985px;
+	margin-top: 21px;
+	margin-left: 407px;
+	border-collapse: collapse;
+	caret-color: transparent;
+	table-layout: fixed;
+	background: rgba(0, 0, 0, 0.31);
+	border: 1px solid rgba(255, 255, 255, 0.19);
+	border-radius: 10px;
+}
 
+.table thead {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.table th,
+.table td {
+	padding: 13px 16px;
+
+	color: #fff;
+	vertical-align: middle;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tableHeader {
+	border-radius: 5px 5px 0px 0px;
+
+	font-weight: 700;
+	font-size: 14px;
+	font-family: "Be Vietnam Pro", sans-serif;
+}
+
+.tableRow {
+	display: table-row;
+}
+
+.userInfo {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.avatar {
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.author {
+	font-weight: 700;
+	font-size: 14px;
+	color: #fff;
+	font-family: "Be Vietnam Pro", sans-serif;
+}
+
+.reply {
+	color: #fff;
+	font-size: 14px;
+	font-family: "Be Vietnam Pro", sans-serif;
+	font-weight: 400;
+	white-space: normal;
+	word-wrap: break-word;
+	text-wrap: wrap;
+}
+
+.actionButtons {
+	display: flex;
+	gap: 12px;
+	justify-content: center;
+	align-items: center;
+}
+
+.listItemActionButton {
+	background: none;
+	border: none;
+	padding: 0;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
 }

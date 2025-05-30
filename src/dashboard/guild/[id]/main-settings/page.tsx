@@ -7,8 +7,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "@/store";
 import MultiSelect from "@/components/ui/inputs/multi";
-import { fetchChannels } from "@/thunks/channels";
-import { fetchRoles } from "@/thunks/roles";
+import { fetchChannels } from "@/features/channels";
+import { fetchRoles } from "@/features/roles";
 import { DropdownOption } from "@/components/ui/inputs/dropdown";
 
 interface Role {

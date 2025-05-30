@@ -3,7 +3,7 @@ import Navbar from "@/components/ui/navigation/navbar";
 import Sidebar from "@/components/ui/navigation/sidebar";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store";
-import { fetchCustombots } from "@/thunks/custombots";
+import { fetchCustombots } from "@/features/custombots";
 import { AppDispatch } from "@/store";
 import { useEffect, useState } from "react";
 import classes from "./custombot-manage.module.css";

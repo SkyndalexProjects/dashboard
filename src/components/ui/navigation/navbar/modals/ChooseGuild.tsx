@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { fetchGuilds } from "@/thunks/guilds";
+import { fetchGuilds } from "@/features/guilds";
 
 const ChooseGuildModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 	if (!isOpen) return null;

@@ -31,7 +31,6 @@ const Section: React.FC<SectionProps> = ({ title, children }) => {
 			<div className={classes.sectionTitle}>
 				{title}
 				<div className={classes.underlineVector}></div>
-
 			</div>
 			<div className={classes.settingRow}>{children}</div>
 		</div>
@@ -48,6 +47,7 @@ export default function Economy() {
 				<StartingPointSetting />
 				<AdditionalSettings />
 			</Section>
+
 			<Section title="Commands settings">
 				<CommandsSettings />
 			</Section>
@@ -103,23 +103,25 @@ function StartingPointSetting() {
 	);
 }
 function AdditionalSettings() {
-	return <div className={classes.additionalSettings}>
-		<Setting name="Additional Settings">
-			<div className={classes.additionalSettingsRow}>
-				Enable rob system
-				<Switch />
-			</div>
-			<div className={classes.additionalSettingsRow}>
-				Clear money after leaving the guild
-				<Switch />
-			</div>
-		</Setting>
-	</div>;
+	return (
+		<div className={classes.additionalSettings}>
+			<Setting name="Additional Settings">
+				<div className={classes.additionalSettingsRow}>
+					Enable rob system
+					<Switch />
+				</div>
+				<div className={classes.additionalSettingsRow}>
+					Clear money after leaving the guild
+					<Switch />
+				</div>
+			</Setting>
+		</div>
+	);
 }
 function CommandsSettings() {
 	return (
 		<div className={classes.commandsSettings}>
 			<CommandsTabs />
 		</div>
-	)
+	);
 }

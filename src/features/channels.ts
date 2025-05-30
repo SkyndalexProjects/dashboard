@@ -1,5 +1,8 @@
-import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { fetchChannels } from "@/thunks/channels";
+import {
+	type PayloadAction,
+	createSlice,
+	createAsyncThunk,
+} from "@reduxjs/toolkit";
 
 export type InitialState = {
 	data: any[];
@@ -12,7 +15,32 @@ export const initialState: InitialState = {
 	areChannelsFetched: false,
 	error: null,
 };
+export const fetchChannels = createAsyncThunk(
+	"channels/fetch",
+	async (guildId: string, thunkAPI) => {
+		try {
+			const endpoint = `${
+				import.meta.env.VITE_API_URL
+			}/guilds/${guildId}/channels`;
+			if (!endpoint) {
+				throw new Error("CHANNELS_DATA_ENDPOINT is not defined");
+			}
 
+			const res = await fetch(endpoint, {
+				method: "POST",
+				credentials: "include",
+			});
+
+			const json = await res.json();
+
+			console.log("fetchChannelsThunk response:", json);
+			return json;
+		} catch (err) {
+			console.log(err, "fetchChannelsThunk");
+			return thunkAPI.rejectWithValue(err);
+		}
+	},
+);
 export const channelsSlice = createSlice({
 	name: "channels",
 	initialState,

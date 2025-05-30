@@ -1,5 +1,24 @@
-import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { fetchUser } from "@/thunks/user";
+import {
+	createAsyncThunk,
+	createSlice,
+	type PayloadAction,
+} from "@reduxjs/toolkit";
+
+export const fetchUser = createAsyncThunk("user/fetch", async (_, thunkAPI) => {
+	try {
+		const endpoint = `${import.meta.env.VITE_API_URL}/user`;
+		if (!endpoint) {
+			throw new Error("USER_DATA_ENDPOINT is not defined");
+		}
+		const res = await fetch(endpoint, {
+			credentials: "include",
+		});
+		return await res.json();
+	} catch (err) {
+		console.log(err, "fetchUserThunk");
+		return thunkAPI.rejectWithValue(err);
+	}
+});
 
 export type InitialState = {
 	data: any[];

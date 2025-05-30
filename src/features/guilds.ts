@@ -1,5 +1,8 @@
-import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { fetchGuilds } from "@/thunks/guilds";
+import {
+	type PayloadAction,
+	createSlice,
+	createAsyncThunk,
+} from "@reduxjs/toolkit";
 
 export type InitialState = {
 	data: any[];
@@ -12,6 +15,23 @@ export const initialState: InitialState = {
 	haveGuildsFetched: false,
 	error: null,
 };
+export const fetchGuilds = createAsyncThunk(
+	"guilds/fetch",
+	async (_, thunkAPI) => {
+		try {
+			const res = await fetch(`${import.meta.env.VITE_API_URL}/guilds`, {
+				credentials: "include",
+			});
+			const json = await res.json();
+
+			console.log("fetchGuildsThunk", json);
+			return json;
+		} catch (err) {
+			console.log(err, "fetchGuildsThunk");
+			return thunkAPI.rejectWithValue(err);
+		}
+	},
+);
 
 export const guildsSlice = createSlice({
 	name: "guilds",

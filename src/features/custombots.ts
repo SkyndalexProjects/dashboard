@@ -1,5 +1,8 @@
-import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { fetchCustombots } from "@/thunks/custombots";
+import {
+	type PayloadAction,
+	createSlice,
+	createAsyncThunk,
+} from "@reduxjs/toolkit";
 
 export type InitialState = {
 	data: any[];
@@ -12,6 +15,33 @@ export const initialState: InitialState = {
 	areCustombotsFetched: false,
 	error: null,
 };
+
+export const fetchCustombots = createAsyncThunk(
+	"custombots/fetch",
+	async (guildId: string, thunkAPI) => {
+		try {
+			const endpoint = `${
+				import.meta.env.VITE_API_URL
+			}/guilds/${guildId}/custombots/get`;
+			if (!endpoint) {
+				throw new Error("ROLES_DATA_ENDPOINT is not defined");
+			}
+
+			const res = await fetch(endpoint, {
+				method: "POST",
+				credentials: "include",
+			});
+
+			const json = await res.json();
+
+			console.log("fetchCustombots response:", json);
+			return json;
+		} catch (err) {
+			console.log(err, "fetchCustombotsThunk");
+			return thunkAPI.rejectWithValue(err);
+		}
+	},
+);
 
 export const custombotsSlice = createSlice({
 	name: "custombots",
