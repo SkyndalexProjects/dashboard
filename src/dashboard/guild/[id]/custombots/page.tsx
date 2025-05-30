@@ -116,71 +116,45 @@ export default function Page() {
 			<Navbar />
 			<Sidebar />
 
-			<div className={classes.noCustombotsWarningContainer}>
-				<img
-					src="/warning-icon.svg"
-					alt="warning"
-					className={classes.warningIcon}
-				/>
-				<p className={classes.warningText}>
-					You don't have any custombots yet. Create one now
-				</p>
+			<div className={classes.alert}>
+				<img src="/warning-icon.svg" alt="Alert" />
+				You don’t have any custombots. Please create one
 			</div>
+
 			<div className={classes.container}>
-				<p className={classes.title}>Custombot details</p>
-				<p className={classes.subtitle}> Bot token </p>
+				<p className={classes.title}> Custombot details </p>
 
-				<InputType
-					onChange={handleTokenChange}
-					placeholder="Bot token"
-					placeholderLogo="/key.svg"
-					placeholderLogoClassName={classes.placeholderLogo}
-					type="password"
-					value={token}
-				/>
-				<p className={classes.description}> Authorize your bot </p>
+				<div className={classes.inputContainer}>
+					Token
+					<InputType
+						onChange={handleTokenChange}
+						type={"password"}
+						className={classes.input}
+					/>
+				</div>
+				<div className={classes.inputContainer}>
+					Activity type
+					<InputType
+						onChange={handleTokenChange}
+						type={"text"}
+						className={classes.input}
+					/>
+				</div>
+				<div className={classes.inputContainer}>
+					Status
+					<InputType
+						onChange={handleTokenChange}
+						type={"text"}
+						className={classes.input}
+					/>
+				</div>
 
-				<p className={classes.subtitle}> Activity type </p>
-
-				<SearchSelect
-					value={searchTerm}
-					onChange={handleActivityChange}
-					searchTerm={searchTerm}
-					setSearchTerm={setSearchTerm}
+				<button
+					onClick={handleSaveButton}
+					className={classes.saveButton}
 				>
-					{[
-						{ id: "1", name: "Idle" },
-						{ id: "2", name: "Do not Disturb" },
-						{ id: "3", name: "Online" },
-					].map((channel) => (
-						<SelectOption key={channel.id} value={channel.name}>
-							{channel.name}
-						</SelectOption>
-					))}
-				</SearchSelect>
-				<p className={classes.description}>
 					{" "}
-					Select DND/Idle/Online etc.{" "}
-				</p>
-
-				<p className={classes.subtitle}> Status </p>
-
-				<InputType
-					onChange={handleStatusChange}
-					placeholder="Hey! I'm a custombot, have a nice day!"
-					placeholderLogo="/menu.svg"
-					placeholderLogoClassName={classes.placeholderLogo}
-					type="text"
-					value={status}
-				/>
-
-				<p className={classes.description}>
-					{" "}
-					Type status for activity{" "}
-				</p>
-
-				<button className={classes.button} onClick={handleSaveButton}>
-					Save
+					Save{" "}
 				</button>
 			</div>
 		</div>

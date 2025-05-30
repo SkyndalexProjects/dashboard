@@ -29,6 +29,7 @@ const ChooseGuildModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 			(BigInt(guild.permissions) & BigInt(0x20)) === BigInt(0x20) &&
 			guild.isBotAdded,
 	);
+	console.log("filteredGuilds", filteredGuilds);
 	const currentUser = useSelector(
 		(state: RootState) => state.user.data,
 	) as unknown as User;
