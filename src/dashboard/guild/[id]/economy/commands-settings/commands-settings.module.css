@@ -22,8 +22,9 @@
 	text-wrap: nowrap;
 	flex-shrink: 0;
 	border-radius: 5px;
-	background: rgba(40, 58, 118, 0.6);
+	background-color: #275ee7;
 	padding: 17px;
+	transition: all 0.3s ease;
 }
 .inactive-tab {
 	text-wrap: nowrap;
@@ -38,6 +39,22 @@
 	color: #fff;
 	padding: 17px;
 	font: 700 16px "Be Vietnam Pro", sans-serif;
+	transition: all 0.3s ease;
+	position: relative;
+}
+.inactive-tab::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 2px;
+	transition: all 0.3s ease;
+	transform: translateX(-50%);
+}
+
+.inactive-tab:hover::after {
+	width: 70%;
 }
 .user-info {
 	display: flex;
