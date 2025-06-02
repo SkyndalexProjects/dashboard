@@ -38,14 +38,11 @@ const CommandsTabs = () => {
 			</div>
 
 			<div className={classes.tabContent}>
-				<CommandSettings cmd={activeTab} />
+				<CommandSettings cmd={activeTab} children={""} />
 			</div>
 		</div>
 	);
 };
-interface CommandSettingsProps {
-	cmd: string;
-}
 // TODO: cmd handling
 
 export function CommandSettings({ cmd }: CommandSettingsProps) {
@@ -101,9 +98,81 @@ export function CommandSettings({ cmd }: CommandSettingsProps) {
 		setCooldown(e.target.value);
 	};
 
+	interface SectionProps {
+		title: React.ReactNode;
+		children: React.ReactNode;
+	}
+	const CommandSetting: React.FC<SectionProps> = ({ title, children }) => {
+		return <div className={classes.commandSettingBox}>{title}</div>;
+	};
+	const cooldown = "60";
+	const chance = "50";
+
+	const handleChanceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		// sometime
+	};
+	const handlePayoutChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		// sometime
+	};
+
 	return (
-		<div>
-			<Table cmd={cmd} filteredReplies={filteredReplies} />
+		<div className={classes.settingsAndTableContainer}>
+			<div className={classes.settingsContainer}>
+				<div className={classes.commandSettingsContainer}>
+					<div className={classes.commandSettingBox}>
+						Cooldown (s)
+						<InputType
+							value={cooldown}
+							onChange={handleCooldownChange}
+							placeholder="60"
+							type="text"
+							className={classes.commandSettingInput}
+						/>
+					</div>
+
+					<div className={classes.commandSettingBox}>
+						Chance (%)
+						<InputType
+							value={chance}
+							onChange={handleChanceChange}
+							placeholder="50"
+							type="text"
+							className={classes.commandSettingInput}
+						/>
+					</div>
+
+					<div className={classes.payoutContainer}>
+						Payout
+						<div className={classes.inputsWrapper}>
+							<div className={classes.payoutInputContainer}>
+								<InputType
+									onChange={handlePayoutChange}
+									placeholder="min"
+									type="text"
+									className={classes.commandSettingInput}
+								/>
+							</div>
+							<div className={classes.payoutInputContainer}>
+								<InputType
+									onChange={handlePayoutChange}
+									placeholder="max"
+									type="text"
+									className={classes.commandSettingInput}
+								/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div className={classes.tableContainer}>
+				<Table
+					cmd={cmd}
+					filteredReplies={
+						filteredReplies.length ? filteredReplies : initialData
+					}
+				/>
+			</div>
 		</div>
 	);
 }
@@ -115,9 +184,9 @@ interface CommandSettingsProps {
 		reply: string;
 		avatarURL: string;
 	}[];
+	children: React.ReactNode;
 }
 function Table({
-	cmd,
 	filteredReplies,
 }: {
 	cmd: string;

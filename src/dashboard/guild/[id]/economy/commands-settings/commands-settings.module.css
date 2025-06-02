@@ -43,7 +43,7 @@
 	position: relative;
 }
 .inactive-tab::after {
-	content: '';
+	content: "";
 	position: absolute;
 	bottom: 0;
 	left: 50%;
@@ -64,10 +64,21 @@
 	gap: 10px;
 	width: 100%;
 }
+.settingsAndTableContainer {
+	display: flex;
+	flex-direction: row;
+	gap: 30px;
+	margin-top: 28px;
+	align-items: flex-start;
+}
+.settingsContainer {
+	flex: 0 0 auto;
+}
+.tableContainer {
+	flex: 1;
+}
 .table {
 	width: 985px;
-	margin-top: 21px;
-	margin-left: 407px;
 	border-collapse: collapse;
 	caret-color: transparent;
 	table-layout: fixed;
@@ -149,4 +160,66 @@
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
+}
+.commandSettingBox {
+	width: 146px;
+	height: 107px;
+	flex-shrink: 0;
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+}
+.commandSettingsContainer {
+	display: grid;
+	grid-template-columns: repeat(2, 146px);
+	grid-gap: 26px;
+	margin-left: 26px;
+}
+.commandSettingBox {
+	padding-top: 13px;
+	padding-left: 13px;
+	width: 146px;
+	height: 107px;
+	color: #fff;
+	font-family: "Be Vietnam Pro", sans-serif;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+}
+.payout-container {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	margin-top: 150px;
+	width: 313px;
+	height: 149px;
+	flex-shrink: 0;
+	border-radius: 10px;
+	background: rgba(0, 0, 0, 0.3);
+	padding: 15px;
+	color: #fff;
+	font-family: "Be Vietnam Pro", sans-serif;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+}
+.commandSettingInput {
+	display: flex;
+	flex-direction: row;
+	border-radius: 10px;
+	background: rgba(1, 1, 1, 0.2);
+	width: 101px;
+	height: 35px;
+	flex-shrink: 0;
+}
+.inputs-wrapper {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	gap: 5px;
+	margin-top: 10px;
+}
+.payoutInputContainer:first-child {
+	margin-right: 5px;
 }
