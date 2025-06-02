@@ -79,12 +79,14 @@
 }
 .table {
 	width: 985px;
-	border-collapse: collapse;
+	border-collapse: separate;
+	border-spacing: 0;
 	caret-color: transparent;
 	table-layout: fixed;
 	background: rgba(0, 0, 0, 0.31);
 	border: 1px solid rgba(255, 255, 255, 0.19);
-	border-radius: 10px;
+	border-radius: 25px;
+	overflow: hidden;
 }
 
 .table thead {
