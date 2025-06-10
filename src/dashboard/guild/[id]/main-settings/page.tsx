@@ -10,6 +10,7 @@ import MultiSelect from "@/components/ui/inputs/multi";
 import { fetchChannels } from "@/features/channels";
 import { fetchRoles } from "@/features/roles";
 import { DropdownOption } from "@/components/ui/inputs/dropdown";
+import { useTranslation } from "react-i18next";
 
 interface Role {
 	id: string;
@@ -24,7 +25,7 @@ interface Role {
 
 export default function MainSettings() {
 	const dispatch = useDispatch<AppDispatch>();
-
+	const { t } = useTranslation();
 	const exampleCommands = [
 		{
 			id: 1,
@@ -49,7 +50,7 @@ export default function MainSettings() {
 				<div className={classes.container}>
 					<p className={classes.sectionTitle}>
 						{" "}
-						Permissions
+						{t("ui.titles.permissions")}
 						<div className={classes.underlineVector} />
 					</p>
 					<BlockedCommands />
@@ -57,7 +58,7 @@ export default function MainSettings() {
 
 					<p className={classes.sectionTitle}>
 						{" "}
-						Additionals
+						{t("ui.titles.additionals")}
 						<div className={classes.underlineVector} />
 					</p>
 					<AutoRoles />
@@ -65,7 +66,7 @@ export default function MainSettings() {
 				<div className={classes.container}>
 					<p className={classes.sectionTitle}>
 						{" "}
-						Dangerous
+						{t("ui.titles.dangerous")}
 						<div className={classes.underlineVector} />
 					</p>
 					<Dangerous />
@@ -101,7 +102,6 @@ export default function MainSettings() {
 					searchTerm={commandSearchTerm}
 					setSearchTerm={setCommandSearchTerm}
 					className={classes.selectContainer}
-					placeholder="Search for a command"
 					inputClassName={classes.inputContainer}
 					indicatorClassName={classes.indicator}
 					disableSearch={false}
@@ -163,7 +163,6 @@ export default function MainSettings() {
 					searchTerm={channelsSearchTerm}
 					setSearchTerm={setChannelsSearchTerm}
 					className={classes.selectContainer}
-					placeholder="Search for a channel"
 					inputClassName={classes.inputContainer}
 					indicatorClassName={classes.indicator}
 					disableSearch={false}
@@ -218,7 +217,6 @@ export default function MainSettings() {
 					className={classes.selectContainer}
 					inputClassName={classes.inputContainer}
 					indicatorClassName={classes.indicator}
-					placeholder={"Select roles"}
 					disableSearch={false}
 				>
 					{filteredRoles.map((role: Role) => (

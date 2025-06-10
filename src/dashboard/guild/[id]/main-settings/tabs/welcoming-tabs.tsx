@@ -6,6 +6,7 @@ import InputType from "@/components/ui/inputs/input";
 import { useSelector, useDispatch } from "react-redux";
 import { type RootState, AppDispatch } from "@/store";
 import { fetchChannels } from "@/features/channels";
+import { useTranslation } from "react-i18next";
 
 const SettingField = ({ title, children }) => (
 	<div className={classes.setting}>
@@ -49,7 +50,6 @@ const ChannelSelector = ({ purpose }) => {
 					onChange={handleSearchChange}
 					searchTerm={searchTerm}
 					setSearchTerm={setSearchTerm}
-					placeholder={`Search ${purpose.toLowerCase()} channel`}
 				>
 					{filteredChannels.map((channel) => (
 						<SelectOption key={channel.id} value={channel.name}>
@@ -76,7 +76,6 @@ const TextField = ({ title }) => {
 					onChange={handleChange}
 					type="text"
 					value={value}
-					placeholder={`Type ${title.toLowerCase()}`}
 				/>
 			</div>
 		</SettingField>
@@ -95,13 +94,14 @@ const WelcomingTabs = () => {
 		</p>
 	);
 
+	const { t } = useTranslation()
 	return (
 		<div>
 			<div className={classes.container}>
 				<div className={classes.sectionStart}>
 					<p className={classes.sectionTitle}>
 						{" "}
-						Greetings & Farewell
+						{t("ui.titles.greetings_goodbyes")}
 						<div className={classes.underlineVector}></div>
 					</p>
 				</div>
@@ -114,7 +114,7 @@ const WelcomingTabs = () => {
 						}
 						onClick={() => handleTabClick("Greetings")}
 					>
-						Greetings
+						{t("ui.tabs.greetings")}
 					</button>
 					<button
 						className={
@@ -124,7 +124,7 @@ const WelcomingTabs = () => {
 						}
 						onClick={() => handleTabClick("Goodbyes")}
 					>
-						Goodbyes
+						{t("ui.tabs.goodbyes")}
 					</button>
 				</div>
 

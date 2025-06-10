@@ -8,5 +8,19 @@
 			"beta_warning": "Dashboard is still under BETA version. Stable release will be out after v1.0.0",
 			"support_join_warning": "You did not join our discord support guild. It is highly recommended to keep up to date with the changes in the bot that are currently being carried out."
 		}
+	},
+	"ui": {
+		"titles": {
+			"dashboard_log": "Dashboard Log",
+			"recent_changes": "Recent Changes",
+			"greetings_goodbyes": "Goodbyes and Greetings",
+			"permissions": "Permissions",
+			"dangerous": "Dangerous",
+			"additionals": "Additionals"
+		},
+		"tabs": {
+			"greetings": "Greetings",
+			"goodbyes": "Goodbyes"
+		}
 	}
 }

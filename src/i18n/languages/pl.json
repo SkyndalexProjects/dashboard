@@ -10,5 +10,19 @@
 			"beta_warning": "Dashboard jest aktualnie w wersji BETA. Stabilna wersja zostanie wydana po wersji v1.0.0",
 			"support_join_warning": "Nie dołączyłeś do naszego serwera wsparcia na Discordzie. Zaleca się to, aby być na bieżąco ze zmianami w bocie, które są obecnie wprowadzane."
 		}
+	},
+	"ui": {
+		"titles": {
+			"dashboard_log": "Logi Dashboardu",
+			"recent_changes": "Ostatnie zmiany",
+			"greetings_goodbyes": "Powitania i pożegnania",
+			"permissions": "System permisji",
+			"dangerous": "Ostrożne",
+			"additionals": "Dodatkowe"
+		},
+		"tabs": {
+			"greetings": "Powitania",
+			"goodbyes": "Pożegnania"
+		}
 	}
 }

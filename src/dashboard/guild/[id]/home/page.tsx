@@ -10,6 +10,7 @@ import HomeTabs from "./hometabs/changelog-switch";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import { useAppDispatch, useAppSelector } from "@/hooks";
+import { useTranslation } from "react-i18next";
 
 interface SettingContainerProps {
 	title: string;
@@ -38,6 +39,7 @@ export default function Page() {
 	const dispatch = useAppDispatch();
 	const logs = useAppSelector((state) => state.logs.data);
 	const { id } = useParams<{ id: string }>();
+	const { t } = useTranslation();
 
 	const logValues: { [key: string]: string } = {
 		custombot_created: "Custom bot created",
@@ -187,7 +189,7 @@ export default function Page() {
 			<div className={classes.dashboardLogContainer}>
 				<p className={classes.dashboardLogSectionTitle}>
 					{" "}
-					Dashboard log
+					{t("ui.titles.dashboard_log")}
 					<div className={classes.underlineVector}></div>
 				</p>
 				<div className={classes.logTableContainer}>
@@ -282,7 +284,7 @@ export default function Page() {
 			<div className={classes.recentChangesContainer}>
 				<p className={classes.recentChangesSectionTitle}>
 					{" "}
-					Recent changes
+					{t("ui.titles.recent_changes")}
 					<div className={classes.underlineVector}></div>
 				</p>
 
