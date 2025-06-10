@@ -25,7 +25,6 @@ export const fetchLogs = createAsyncThunk(
 			}
 
 			const res = await fetch(endpoint, {
-				method: "POST",
 				credentials: "include",
 			});
 
