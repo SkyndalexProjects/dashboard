@@ -8,7 +8,7 @@ interface SelectProps {
 	children: ReactNode;
 	placeholder?: string;
 	value?: string;
-	placeholderLogo?: string;
+	placeholderIcon?: string;
 }
 
 interface SelectOptionProps {
@@ -25,7 +25,7 @@ export default function SearchSelect({
 	children,
 	placeholder,
 	searchTerm,
-	placeholderLogo,
+	placeholderIcon,
 }: SelectProps) {
 	const [isOpen, setIsOpen] = useState(false);
 	const [, setSelected] = useState<string | null>(null);
@@ -72,9 +72,9 @@ export default function SearchSelect({
 		<div ref={selectRef} className={classes.selectInput}>
 			<div onClick={toggleDropdown} className={classes.inputContainer}>
 				<div className={classes.placeholder}>
-					{placeholderLogo && (
+					{placeholderIcon && (
 						<img
-							src={placeholderLogo}
+							src={placeholderIcon}
 							alt="logo"
 							className={classes.logo}
 						/>

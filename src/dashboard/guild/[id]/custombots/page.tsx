@@ -2,7 +2,6 @@ import Navbar from "@/components/ui/navigation/navbar";
 import Sidebar from "@/components/ui/navigation/sidebar";
 import classes from "./custombots.module.css";
 import InputType from "@/components/ui/inputs/input";
-import SearchSelect, { SelectOption } from "@/components/ui/inputs/search";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
