@@ -72,11 +72,7 @@ const TextField = ({ title }) => {
 	return (
 		<SettingField title={`${title}`}>
 			<div className={classes.inputContainer}>
-				<InputType
-					onChange={handleChange}
-					type="text"
-					value={value}
-				/>
+				<InputType onChange={handleChange} type="text" value={value} />
 			</div>
 		</SettingField>
 	);
@@ -94,7 +90,7 @@ const WelcomingTabs = () => {
 		</p>
 	);
 
-	const { t } = useTranslation()
+	const { t } = useTranslation();
 	return (
 		<div>
 			<div className={classes.container}>
