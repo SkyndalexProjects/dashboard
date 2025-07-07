@@ -66,7 +66,7 @@
 	display: flex;
 	flex-direction: row;
 	border: 1px solid rgba(255, 255, 255, 0.2);
-	background: rgba(63, 63, 63, 0.2);
+	background: rgba(32, 32, 32, 0.1);
 	align-items: center;
 	justify-content: space-between;
 	caret-color: transparent;
@@ -137,9 +137,9 @@
 	position: relative;
 	padding: 8px;
 	border-radius: 10px;
-	background: rgba(63, 63, 63, 0.2);
+	background: rgba(32, 32, 32, 0.1);
 	width: 303px;
-	border: none;
+	border: 1px solid #8e8e8e;
 	outline: none;
 	min-height: 42px;
 	max-height: 67px;
@@ -271,7 +271,8 @@ select:focus {
 	height: 42px;
 	transform: rotate(0.254deg);
 	border: 1px solid rgba(255, 255, 255, 0.2);
-	background: rgba(63, 63, 63, 0.2);
+	background: rgba(32, 32, 32, 0.1);
+
 	flex-shrink: 0;
 	border-radius: 10px;
 }
