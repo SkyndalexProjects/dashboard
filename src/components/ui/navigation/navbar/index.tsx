@@ -7,7 +7,7 @@ import { fetchGuilds } from "@/features/guilds";
 import ChooseGuildModal from "@/components/ui/navigation/navbar/modals/ChooseGuild";
 import Dropdown, { DropdownOption } from "../../inputs/dropdown";
 import { fetchUser } from "@/features/user";
-
+import { version } from "../../../../../package.json"
 const Navbar = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch<AppDispatch>();
@@ -73,7 +73,7 @@ const Navbar = () => {
 					/>
 
 					<p className={classes.navTitle}> Dashboard </p>
-					<div className={classes.versionOverlay}>v0.0.0</div>
+					<div className={classes.versionOverlay}>{version}</div>
 				</div>
 				<button onClick={openModal} className={classes.guildChooser}>
 					<img
