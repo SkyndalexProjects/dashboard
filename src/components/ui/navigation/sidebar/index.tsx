@@ -47,10 +47,7 @@ const SidebarItem = ({
 				<span className={classes.sidebarText}>{text}</span>
 			</div>
 			{hasSwitch && (
-				<Switch
-					switchClassName={classes.switch}
-					knobClassName={classes.knob}
-				/>
+				<Switch />
 			)}
 		</div>
 	);
