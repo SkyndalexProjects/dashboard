@@ -1,5 +1,5 @@
 import { useState } from "react";
-import classes from "./inputs.module.css";
+import classes from "./selectors.module.css";
 export default function Switch() {
 	const [isOn, setIsOn] = useState(false);
 

@@ -32,6 +32,10 @@
 	color: #fff;
 	font: 700 20px / normal "Be Vietnam Pro", sans-serif;
 }
+.deny-icon {
+	width: 26px;
+	height: 26px;
+}
 .containers {
 	display: flex;
 	flex-direction: row;
@@ -81,7 +85,6 @@
 	background-color: transparent;
 	overflow-y: auto;
 	margin-top: 70px;
-	margin-left: -7px;
 }
 .option-icon {
 	width: 28.191px;

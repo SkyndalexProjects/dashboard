@@ -1,7 +1,7 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import classes from "./sidebar.module.css";
-import Switch from "@/components/ui/inputs/switch";
+import Switch from "@/components/ui/selectors/switch";
 
 interface SidebarItemProps {
 	path: string;

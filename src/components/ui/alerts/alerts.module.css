@@ -1,18 +1,22 @@
 .beta-warning-overlay {
 	padding-right: 20px;
-	display: flex;
+	display: inline-flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
 	gap: 10px;
 	caret-color: transparent;
 	width: max-content;
-	height: 61px;
-	border-radius: 15px;
-	border: 1px solid #b19b5f;
-	background-color: #00000033;
+	height: 60px;
+	border-radius: 0 15px 15px 0;
+	border-left: 10px solid #f1ab15;
+	background: rgba(0, 0, 0, 0.3);
+	clip-path: inset(0 100% 0 0);
+	animation: revealFromLeft 0.5s ease-out forwards;
 }
+
 .beta-warning-overlay-text {
+	display: inline-flex;
 	color: #fff;
 	font: 700 16px "Be Vietnam Pro", sans-serif;
 	white-space: nowrap;
@@ -31,11 +35,21 @@
 	justify-content: space-between;
 	gap: 10px;
 	width: max-content;
-	border-radius: 15px;
-	border: 1px solid #587486;
+	border-radius: 0 5px 5px 0;
+	border-left: 10px solid #275ee7;
+	clip-path: inset(0 100% 0 0);
+	animation: revealFromLeft 0.5s ease-out forwards;
 	height: 79px;
-	background: rgba(0, 0, 0, 0.2);
+	background: rgba(0, 0, 0, 0.3);
 	margin-top: 30px;
+}
+@keyframes revealFromLeft {
+	0% {
+		clip-path: inset(0 100% 0 0);
+	}
+	100% {
+		clip-path: inset(0 0 0 0);
+	}
 }
 .support-join-warning-icon {
 	margin-left: 10px;

@@ -11,7 +11,9 @@ import { fetchChannels } from "@/features/channels";
 import { fetchRoles } from "@/features/roles";
 import { DropdownOption } from "@/components/ui/inputs/dropdown";
 import { useTranslation } from "react-i18next";
-
+import denyicon from "@/assets/icons/deny.svg";
+import userIcon from "@/assets/icons/user.svg";
+import { ReactSVG } from "react-svg";
 interface Role {
 	id: string;
 	name: string;
@@ -104,6 +106,7 @@ export default function MainSettings() {
 					className={classes.selectContainer}
 					inputClassName={classes.inputContainer}
 					indicatorClassName={classes.indicator}
+					placeholderLogo={denyicon}
 					disableSearch={false}
 				>
 					{exampleCommands.map((command) => (
@@ -145,13 +148,11 @@ export default function MainSettings() {
 			}
 		}, []);
 
-		const filteredChannels = channels
-			.filter((channel) =>
-				channel.name
-					.toLowerCase()
-					.includes(channelsSearchTerm.toLowerCase()),
-			)
-			.slice(0, 5);
+		const filteredChannels = channels.filter((channel) =>
+			channel.name
+				.toLowerCase()
+				.includes(channelsSearchTerm.toLowerCase()),
+		);
 
 		return (
 			<div className={classes.settingOverlay}>
@@ -165,6 +166,7 @@ export default function MainSettings() {
 					className={classes.selectContainer}
 					inputClassName={classes.inputContainer}
 					indicatorClassName={classes.indicator}
+					placeholderLogo={denyicon}
 					disableSearch={false}
 				>
 					{filteredChannels.map((channel: Channel) => (
@@ -199,11 +201,9 @@ export default function MainSettings() {
 			}
 		}, []);
 
-		const filteredRoles = roles
-			.filter((role) =>
-				role.name.toLowerCase().includes(rolesSearchTerm.toLowerCase()),
-			)
-			.slice(0, 5);
+		const filteredRoles = roles.filter((role) =>
+			role.name.toLowerCase().includes(rolesSearchTerm.toLowerCase()),
+		);
 
 		return (
 			<div className={classes.settingOverlay}>
@@ -216,6 +216,7 @@ export default function MainSettings() {
 					setSearchTerm={setRolesSearchTerm}
 					className={classes.selectContainer}
 					inputClassName={classes.inputContainer}
+					placeholderLogo={userIcon}
 					indicatorClassName={classes.indicator}
 					disableSearch={false}
 				>
@@ -234,7 +235,19 @@ export default function MainSettings() {
 			<div>
 				<div className={classes.alertOverlay}>
 					<p className={classes.alertText}>
-						<img src={"/deny.svg"} alt="deny-icon" />
+						<ReactSVG
+							src={denyicon}
+							className={classes.denyIcon}
+							beforeInjection={(svg) => {
+								const paths = svg.querySelectorAll("path");
+								paths.forEach((path) => {
+									path.setAttribute("fill", "#D83C3C");
+								});
+							}}
+							onError={(error) => {
+								console.error(error);
+							}}
+						/>
 						Be careful! There is no turning back!
 					</p>
 				</div>

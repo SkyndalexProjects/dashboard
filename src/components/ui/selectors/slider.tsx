@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import classes from "./inputs.module.css";
+import classes from "./selectors.module.css";
 interface SliderProps {
 	min: number;
 	max: number;

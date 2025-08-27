@@ -4,7 +4,7 @@ import Select, { SelectOption } from "@/components/ui/inputs/search";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState, AppDispatch } from "@/store";
 import { fetchChannels } from "@/features/channels";
-import Slider from "@/components/ui/inputs/slider";
+import Slider from "@/components/ui/selectors/slider";
 import InputType from "@/components/ui/inputs/input";
 const CustombotSettingsTabs = () => {
 	const [activeTab, setActiveTab] = useState("Chatbot");

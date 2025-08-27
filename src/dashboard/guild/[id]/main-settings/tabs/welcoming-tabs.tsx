@@ -1,13 +1,15 @@
 import classes from "./tabs.module.css";
 import React, { useEffect, useState } from "react";
-import Switch from "@/components/ui/inputs/switch";
-import Select, { SelectOption } from "@/components/ui/inputs/search";
+import Switch from "@/components/ui/selectors/switch";
+import { SelectOption } from "@/components/ui/inputs/search";
 import InputType from "@/components/ui/inputs/input";
 import { useSelector, useDispatch } from "react-redux";
 import { type RootState, AppDispatch } from "@/store";
 import { fetchChannels } from "@/features/channels";
 import { useTranslation } from "react-i18next";
-
+import SearchSelect from "@/components/ui/inputs/search";
+import hashtagIcon from "@/assets/icons/hashtag.svg";
+import tagIcon from "@/assets/icons/tag.svg";
 const SettingField = ({ title, children }) => (
 	<div className={classes.setting}>
 		<div className={classes.settingOverlay}>
@@ -36,27 +38,31 @@ const ChannelSelector = ({ purpose }) => {
 		setSearchTerm(value);
 	};
 
-	const filteredChannels = channels
-		.filter((channel) =>
-			channel.name.toLowerCase().includes(searchTerm.toLowerCase()),
-		)
-		.slice(0, 5);
+	const filteredChannels = channels.filter((channel) => {
+		return (
+			channel.type === "GuildText" &&
+			channel.name.toLowerCase().includes(searchTerm.toLowerCase())
+		);
+	});
 
 	return (
 		<SettingField title={`${purpose} CHANNEL`}>
 			<div className={classes.inputContainer}>
-				<Select
+				<SearchSelect
 					value={searchTerm}
 					onChange={handleSearchChange}
 					searchTerm={searchTerm}
 					setSearchTerm={setSearchTerm}
+					placeholderIcon={hashtagIcon}
+					inputStyle={classes.searchSelectInput}
+					placeholderStyle={classes.searchSelectPlaceholder}
 				>
 					{filteredChannels.map((channel) => (
 						<SelectOption key={channel.id} value={channel.name}>
 							{channel.name}
 						</SelectOption>
 					))}
-				</Select>
+				</SearchSelect>
 			</div>
 		</SettingField>
 	);
@@ -72,7 +78,13 @@ const TextField = ({ title }) => {
 	return (
 		<SettingField title={`${title}`}>
 			<div className={classes.inputContainer}>
-				<InputType onChange={handleChange} type="text" value={value} />
+				<InputType
+					onChange={handleChange}
+					type="text"
+					value={value}
+					className={classes.typeInputStyle}
+					placeholderIcon={tagIcon}
+				/>
 			</div>
 		</SettingField>
 	);
@@ -80,7 +92,6 @@ const TextField = ({ title }) => {
 
 const WelcomingTabs = () => {
 	const [activeTab, setActiveTab] = useState("Greetings");
-
 	const handleTabClick = (tab) => setActiveTab(tab);
 
 	const ImageToggle = ({ label }) => (
@@ -130,7 +141,6 @@ const WelcomingTabs = () => {
 							<ImageToggle label="Greetings image" />
 							<ChannelSelector purpose="WELCOME" />
 							<TextField title="WELCOME TITLE" />
-							<TextField title="WELCOME DESCRIPTION" />
 						</div>
 					)}
 
@@ -139,7 +149,6 @@ const WelcomingTabs = () => {
 							<ImageToggle label="Farewell image" />
 							<ChannelSelector purpose="GOODBYE" />
 							<TextField title="GOODBYE TITLE" />
-							<TextField title="GOODBYE DESCRIPTION" />
 						</div>
 					)}
 				</div>

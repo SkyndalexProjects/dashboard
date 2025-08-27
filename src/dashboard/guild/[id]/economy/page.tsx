@@ -3,7 +3,7 @@ import Sidebar from "@/components/ui/navigation/sidebar";
 import classes from "./economy.module.css";
 import InputType from "@/components/ui/inputs/input";
 import React, { useState } from "react";
-import Switch from "@/components/ui/inputs/switch";
+import Switch from "@/components/ui/selectors/switch";
 import CommandsTabs from "@/dashboard/guild/[id]/economy/commands-settings/commands-settings";
 
 interface SettingProps {

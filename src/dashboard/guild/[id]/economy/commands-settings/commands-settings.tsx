@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import classes from "./commands-settings.module.css";
 import InputType from "@/components/ui/inputs/input";
-import Switch from "@/components/ui/inputs/switch";
+import Switch from "@/components/ui/selectors/switch";
 import CreateReplyModal from "@/dashboard/guild/[id]/economy/commands-settings/modals/CreateReply";
 import React from "react";
 const CommandsTabs = () => {

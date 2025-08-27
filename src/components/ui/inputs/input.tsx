@@ -1,43 +1,40 @@
 import classes from "./inputs.module.css";
 import React from "react";
+import { ReactSVG } from "react-svg";
 
 interface InputProps {
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	placeholder?: string;
-	placeholderLogo?: string;
-	placeholderLogoClassName?: string;
+	placeholderIcon?: string;
 	type: string;
 	className?: string;
 	value?: string;
+	onIconError?: (iconUrl: string) => void;
 }
 
 export default function InputType({
 	onChange,
 	placeholder,
-	placeholderLogo,
-	placeholderLogoClassName,
+	placeholderIcon,
 	type,
 	className,
 	value,
 }: InputProps) {
 	return (
-		<div>
-			{placeholderLogo && (
-				<img
-					src={placeholderLogo}
-					alt={"placeholder logo"}
-					className={placeholderLogoClassName}
-				/>
-			)}
+		<div className={className}>
+			<ReactSVG
+				src={placeholderIcon}
+				className={classes.logo}
+				onError={(error) => {
+					console.error(error);
+				}}
+			/>
 			<input
 				placeholder={placeholder}
 				onChange={(e) => onChange(e)}
-				className={
-					className ? `${classes.input} ${className}` : classes.input
-				}
+				className={classes.searchInputField}
 				type={type}
 				value={value}
-				style={placeholderLogo ? { paddingLeft: "60px" } : undefined}
 			/>
 		</div>
 	);

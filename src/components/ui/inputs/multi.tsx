@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, ReactNode } from "react";
 import classes from "./inputs.module.css";
-
+import { ReactSVG } from "react-svg";
 interface SelectProps {
 	onChange?: (value: string[]) => void;
 	setSearchTerm: (value: string) => void;
@@ -78,29 +78,39 @@ export default function MultiSelect({
 	return (
 		<div ref={selectRef} className={`${classes.multiInput} ${className}`}>
 			<div className={classes.selectedTagsContainer}>
-				{selectedValues.length > 0 && (
-					<div className={classes.tags}>
-						{selectedValues.map((value, index) => (
-							<div key={index} className={classes.tag}>
-								<p className={classes.multiValue}>
-									{" "}
-									{value.length > 8
-										? `${value.slice(0, 5)}...`
-										: value}{" "}
-								</p>
-								<button
-									onClick={(e) => {
-										e.stopPropagation();
-										handleRemoveValue(value);
-									}}
-									className={classes.removeTag}
-								>
-									×
-								</button>
-							</div>
-						))}
-					</div>
-				)}
+				<div className={classes.container}>
+					<ReactSVG
+						src={placeholderLogo}
+						className={classes.logo}
+						onError={(error) => {
+							console.error(error);
+						}}
+					/>
+					{selectedValues.length > 0 && (
+						<div className={classes.tags}>
+							{selectedValues.map((value, index) => (
+								<div key={index} className={classes.tag}>
+									<p className={classes.multiValue}>
+										{" "}
+										{value.length > 8
+											? `${value.slice(0, 5)}...`
+											: value}{" "}
+									</p>
+									<button
+										onClick={(e) => {
+											e.stopPropagation();
+											handleRemoveValue(value);
+										}}
+										className={classes.removeTag}
+									>
+										×
+									</button>
+								</div>
+							))}
+						</div>
+					)}
+				</div>
+
 				<input
 					type="text"
 					value={searchTerm}
@@ -114,6 +124,12 @@ export default function MultiSelect({
 						if (!isOpen) toggleDropdown();
 					}}
 					disabled={disableSearch}
+				/>
+
+				<img
+					src="/indicator.svg"
+					alt="indicator"
+					className={isOpen ? classes.rotate : classes.neutral}
 				/>
 			</div>
 			{isOpen && (

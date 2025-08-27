@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, ReactNode } from "react";
 import classes from "./inputs.module.css";
+import { ReactSVG } from "react-svg";
 
 interface DropdownProps {
 	children: ReactNode;
@@ -60,14 +61,29 @@ export default function Dropdown({
 	return (
 		<div ref={selectRef}>
 			<div className={classes.select} onClick={toggleDropdown}>
-				<div className={classes.container}>
-					{placeholderIcon && (
-						<img
-							src={placeholderIcon}
-							alt="logo"
-							className={classes.logo}
-						/>
-					)}
+				<div className={classes.dropdownContainer}>
+					{placeholderIcon &&
+						(placeholderIcon.toLowerCase().endsWith(".svg") ? (
+							<ReactSVG
+								src={placeholderIcon}
+								className={classes.logo}
+								onError={(error) => {
+									console.error("SVG loading error:", error);
+								}}
+							/>
+						) : (
+							<img
+								src={placeholderIcon}
+								className={classes.logo}
+								alt="Placeholder icon"
+								onError={(error) => {
+									console.error(
+										"Image loading error:",
+										error,
+									);
+								}}
+							/>
+						))}
 					{placeholder && (
 						<p className={`${classes.placeholderText}`}>
 							{placeholder}
@@ -79,41 +95,39 @@ export default function Dropdown({
 						className={isOpen ? classes.rotate : ""}
 					/>
 				</div>
-				{isOpen && (
-					<div className={classes.optionsWrapper}>
-						<div className={classes.options}>
-							{filteredChildren &&
-								(Array.isArray(filteredChildren)
-									? filteredChildren
-									: [filteredChildren]
-								).map((child, index) =>
-									child
-										? child.type === DropdownOption
-											? child.props &&
-												((
-													optionProps: DropdownOptionProps,
-												) => (
-													<div
-														key={index}
-														onClick={() =>
-															handleSelect(
-																optionProps.value,
-															)
-														}
-														className={
-															classes.option
-														}
-													>
-														{optionProps.children}
-													</div>
-												))(child.props)
-											: null
-										: null,
-								)}
-						</div>
-					</div>
-				)}
 			</div>
+			{isOpen && (
+				<div className={classes.optionsWrapper}>
+					<div className={classes.options}>
+						{filteredChildren &&
+							(Array.isArray(filteredChildren)
+								? filteredChildren
+								: [filteredChildren]
+							).map((child, index) =>
+								child
+									? child.type === DropdownOption
+										? child.props &&
+											((
+												optionProps: DropdownOptionProps,
+											) => (
+												<div
+													key={index}
+													onClick={() =>
+														handleSelect(
+															optionProps.value,
+														)
+													}
+													className={classes.option}
+												>
+													{optionProps.children}
+												</div>
+											))(child.props)
+										: null
+									: null,
+							)}
+					</div>
+				</div>
+			)}
 		</div>
 	);
 }
