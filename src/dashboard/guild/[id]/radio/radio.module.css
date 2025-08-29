@@ -1,9 +1,0 @@
-.underline-vector {
-	display: flex;
-	flex-direction: column;
-	width: max-content;
-	height: 4px;
-	background-color: #275ee7;
-	flex-shrink: 0;
-	animation: slide 0.5s ease forwards;
-}
