@@ -4,7 +4,11 @@
       "subtitle": "ekonomia, radio, customboty, ai",
       "detailed-subtitle": "\t\t\t\tSkyndalex to wszechstronny bot na platformę Discord — pomaga utrzymać porządek na serwerze, angażuje społeczność\n i dodaje odrobinę zabawy",
       "add-btn": "Dodaj bota",
-      "dashboard-btn": "Panel zarządzania"
+      "dashboard-btn": "Panel zarządzania",
+      "home": "Strona główna",
+      "policy": "Polityka prywatności",
+      "links": "Linki",
+      "project": "Projekt"
     }
   }
 }

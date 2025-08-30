@@ -4,7 +4,11 @@
       "subtitle": "economy, radio, custombots, ai",
       "detailed-subtitle": "\t\t\t\tSkyndalex is your all-in-one Discord sidekick—keeping your server organized, engaging your\n\t\t\t\tcommunity, and adding a dash of fun!",
       "add-btn": "Add bot",
-      "dashboard-btn": "Dashboard"
+      "dashboard-btn": "Dashboard",
+      "home": "Home",
+      "policy": "Policy & Privacy",
+      "links": "Links",
+      "project": "Project"
     }
   }
 }

@@ -84,10 +84,8 @@
 		background: linear-gradient(180deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
 	}
 	.app::before {
-		content: '';
 		position: absolute;
-		bottom: 0;
-		left: 0;
+		content: '';
 		width: 100%;
 		height: 100%;
 		background: url('/background.svg') no-repeat bottom center;
@@ -101,6 +99,8 @@
 		margin-left: 200px;
 		width: 617px;
 		height: 235px;
+		user-select: none;
+		pointer-events: none;
 		flex-shrink: 0;
 	}
 
@@ -111,9 +111,8 @@
 		justify-content: center;
 		align-items: stretch;
 		margin: 0 auto;
-		max-width: 1200px;
+		max-width: 100%;
 		width: 100%;
-		padding: 0 20px;
 		min-height: 100vh;
 		z-index: 1;
 	}
