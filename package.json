@@ -35,6 +35,8 @@
 	},
 	"dependencies": {
 		"@fontsource/be-vietnam-pro": "^5.2.6",
-		"@fontsource/poppins": "^5.2.6"
+		"@fontsource/poppins": "^5.2.6",
+		"i18next": "^25.4.2",
+		"svelte-i18next": "^2.2.2"
 	}
 }
