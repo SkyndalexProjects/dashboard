@@ -1,6 +1,6 @@
 <script>
-	import { getContext } from "svelte";
-	const i18n = getContext("i18n");
+	import { getContext } from 'svelte';
+	const i18n = getContext('i18n');
 </script>
 
 <nav>
@@ -9,12 +9,12 @@
 		<p class="bot-name">Skyndalex</p>
 	</div>
 	<div class="links">
-		<a class="link-active"> {$i18n.t("page.home.home")} </a>
+		<a class="link-active"> {$i18n.t('page.home.home')} </a>
 		<a class="link" href="https://skyndalex.com">
-			{$i18n.t("page.home.policy")}
+			{$i18n.t('page.home.policy')}
 		</a>
-		<a class="link"> {$i18n.t("page.home.links")}</a>
-		<a class="link"> {$i18n.t("page.home.project")}</a>
+		<a class="link"> {$i18n.t('page.home.links')}</a>
+		<a class="link"> {$i18n.t('page.home.project')}</a>
 	</div>
 	<div class="right-corner">
 		<button class="dashboard-redirect">
@@ -45,7 +45,9 @@
 	}
 
 	a {
-		transition: color 0.3s ease, opacity 0.3s ease;
+		transition:
+			color 0.3s ease,
+			opacity 0.3s ease;
 	}
 	a:hover {
 		color: #fff;
@@ -118,7 +120,9 @@
 			sans-serif;
 		cursor: pointer;
 		z-index: 2;
-		transition: background-color 0.3s ease, transform 0.3s ease;
+		transition:
+			background-color 0.3s ease,
+			transform 0.3s ease;
 	}
 	.dashboard-redirect:hover {
 		background-color: rgba(0, 0, 0, 0.5);

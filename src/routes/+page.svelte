@@ -1,9 +1,8 @@
 <script>
 	import Navbar from './Navbar.svelte';
 	import '../app.css';
-	import { getContext } from "svelte";
-	const i18n = getContext("i18n");
-
+	import { getContext } from 'svelte';
+	const i18n = getContext('i18n');
 </script>
 
 <svelte:head>
@@ -25,13 +24,13 @@
 	<section class="hero-section">
 		<div class="headers">
 			<p class="title">Skyndalex</p>
-			<p class="sub-title"> { $i18n.t("page.home.subtitle")}</p>
+			<p class="sub-title">{$i18n.t('page.home.subtitle')}</p>
 			<p class="detailed-description">
-				{$i18n.t("page.home.detailed-subtitle")}
+				{$i18n.t('page.home.detailed-subtitle')}
 			</p>
 			<div class="buttons">
-				<button class="button-main"> {$i18n.t("page.home.add-btn")} </button>
-				<button class="button-secondary">{$i18n.t("page.home.dashboard-btn")} </button>
+				<button class="button-main"> {$i18n.t('page.home.add-btn')} </button>
+				<button class="button-secondary">{$i18n.t('page.home.dashboard-btn')} </button>
 			</div>
 		</div>
 
