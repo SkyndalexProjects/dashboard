@@ -1,6 +1,21 @@
 <script>
 	import { getContext } from 'svelte';
+	import { userStore } from '$lib/userStore.svelte.js';
+
 	const i18n = getContext('i18n');
+
+	function handleLogin() {
+		window.location.href = 'http://localhost:3000';
+	}
+	function getAvatarUrl(user) {
+		if (user && user.id && user.avatar) {
+			return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.webp?size=1024`;
+		}
+		return user?.id
+			? `https://cdn.discordapp.com/embed/avatars/${parseInt(user.id) % 5}.png`
+			: '/default-avatar.png';
+	}
+	console.log('user', $userStore);
 </script>
 
 <nav>
@@ -17,9 +32,18 @@
 		<a class="link"> {$i18n.t('page.home.project')}</a>
 	</div>
 	<div class="right-corner">
-		<button class="dashboard-redirect">
-			<img src="/icons/login.svg" alt="login" class="login-icon" />
-			Login
+		<button class="dashboard-redirect" on:click={handleLogin}>
+			<!--			<img src="/icons/login.svg" alt="login" class="login-icon" />-->
+			<!--			Login-->
+			{#if $userStore}
+				<!--				<h1>{$userStore.username}</h1>-->
+				<img
+					src={getAvatarUrl($userStore)}
+					alt={$userStore.username || 'Avatar'}
+					class="login-icon"
+				/>
+				{$userStore.username}
+			{/if}
 		</button>
 	</div>
 </nav>
@@ -129,6 +153,7 @@
 		transform: scale(1.05);
 	}
 	.login-icon {
+		border-radius: 50%;
 		width: 30px;
 		height: 30px;
 	}
