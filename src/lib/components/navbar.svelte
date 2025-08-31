@@ -1,13 +1,13 @@
-<script>
-	import { getContext } from 'svelte';
-	import { userStore } from '$lib/userStore.svelte.js';
-
-	const i18n = getContext('i18n');
+<script lang="ts">
+	import type { APIUser } from 'discord-api-types/v10';
+	import getI18nStore from '../../i18n';
+	const i18n = getI18nStore();
 
 	function handleLogin() {
 		window.location.href = 'http://localhost:3000';
 	}
-	function getAvatarUrl(user) {
+
+	function getAvatarUrl(user: APIUser) {
 		if (user && user.id && user.avatar) {
 			return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.webp?size=1024`;
 		}
@@ -15,7 +15,8 @@
 			? `https://cdn.discordapp.com/embed/avatars/${parseInt(user.id) % 5}.png`
 			: '/default-avatar.png';
 	}
-	console.log('user', $userStore);
+
+	const { user }: { user?: APIUser | null } = $props();
 </script>
 
 <nav>
@@ -33,16 +34,12 @@
 	</div>
 	<div class="right-corner">
 		<button class="dashboard-redirect" on:click={handleLogin}>
-			<!--			<img src="/icons/login.svg" alt="login" class="login-icon" />-->
-			<!--			Login-->
-			{#if $userStore}
-				<!--				<h1>{$userStore.username}</h1>-->
-				<img
-					src={getAvatarUrl($userStore)}
-					alt={$userStore.username || 'Avatar'}
-					class="login-icon"
-				/>
-				{$userStore.username}
+			{#if user}
+				<img src={getAvatarUrl(user)} alt={user?.username || 'Avatar'} class="login-icon" />
+				{user?.username}
+			{:else}
+				<img src="/icons/login.svg" alt="login" class="login-icon" />
+				Login
 			{/if}
 		</button>
 	</div>

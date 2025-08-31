@@ -1,8 +1,9 @@
 <script>
-	import Navbar from './Navbar.svelte';
+	import Navbar from '$lib/components/navbar.svelte';
+	import geti18ncontext from "../i18n"
 	import '../app.css';
-	import { getContext } from 'svelte';
-	const i18n = getContext('i18n');
+	const i18n = geti18ncontext()
+	const { data } = $props();
 </script>
 
 <svelte:head>
@@ -19,7 +20,7 @@
 </svelte:head>
 
 <div class="app">
-	<Navbar />
+	<Navbar user={data.user} />
 
 	<section class="hero-section">
 		<div class="headers">
