@@ -11,9 +11,6 @@
 		if (user && user.id && user.avatar) {
 			return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.webp?size=1024`;
 		}
-		return user?.id
-			? `https://cdn.discordapp.com/embed/avatars/${parseInt(user.id) % 5}.png`
-			: '/default-avatar.png';
 	}
 
 	const { user }: { user?: APIUser | null } = $props();
@@ -34,7 +31,7 @@
 	</div>
 	<div class="right-corner">
 		<button class="dashboard-redirect" on:click={handleLogin}>
-			{#if user}
+			{#if user?.username}
 				<img src={getAvatarUrl(user)} alt={user?.username || 'Avatar'} class="login-icon" />
 				{user?.username}
 			{:else}
