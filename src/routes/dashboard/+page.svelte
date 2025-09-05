@@ -155,7 +155,7 @@
 		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 		gap: 50px;
 		justify-items: center;
-		justify-content: center; /* dodaj tę linię */
+		justify-content: center;
 		width: 100%;
 		max-width: 1200px;
 	}

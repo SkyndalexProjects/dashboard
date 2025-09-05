@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Alert from '$lib/components/ui/alert.svelte';
 	import ManagementNavbar from '$lib/components/navigation/ManagementNavbar.svelte';
 	const guildId = page.params.id;
 	console.log('guildId', guildId);

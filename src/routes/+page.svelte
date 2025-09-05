@@ -1,6 +1,6 @@
 <script>
 	import LandingNavbar from '$lib/components/navigation/LandingNavbar.svelte';
-	import geti18ncontext from '../i18n';
+	import geti18ncontext from '$lib/i18n';
 	import '../app.css';
 	const i18n = geti18ncontext();
 	const { data } = $props();
