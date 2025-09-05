@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let type: string;
+	const { children, type } = $props();
 </script>
 
 <div class="alert {type}">
@@ -151,7 +151,7 @@
 	{/if}
 
 	<div class="content">
-		<slot />
+		{@render children()}
 	</div>
 </div>
 
