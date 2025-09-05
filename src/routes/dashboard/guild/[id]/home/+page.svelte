@@ -1,3 +1,10 @@
+<script lang="ts">
+	import { page } from '$app/state';
+	import Alert from '$lib/components/ui/alert.svelte';
+	const guildId = page.params.id;
+	console.log('guildId', guildId);
+</script>
+
 <svelte:head>
 	<title>Skyndalex</title>
 	<meta property="og:title" content="Skyndalex" />
@@ -7,20 +14,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </svelte:head>
 
-<div class="app">
-	<section class="guilds">
-		<h1 class="title">Choose guild</h1>
-	</section>
-</div>
+<Alert type="warning">
+	Dashboard is still under BETA version. Stable release will be out after v1.0.0"
+</Alert>
 
 <style>
-	.app {
-		display: flex;
-		flex-direction: column;
-		min-height: 100vh;
-		caret-color: transparent;
-		background: linear-gradient(180deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
-		align-items: center;
-		justify-content: center;
-	}
 </style>

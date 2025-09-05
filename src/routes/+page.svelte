@@ -1,8 +1,8 @@
 <script>
 	import Navbar from '$lib/components/navbar.svelte';
-	import geti18ncontext from "../i18n"
+	import geti18ncontext from '../i18n';
 	import '../app.css';
-	const i18n = geti18ncontext()
+	const i18n = geti18ncontext();
 	const { data } = $props();
 </script>
 
@@ -79,9 +79,7 @@
 	.app {
 		display: flex;
 		flex-direction: column;
-		min-height: 100vh;
 		caret-color: transparent;
-		background: linear-gradient(180deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
 	}
 	.app::before {
 		position: absolute;
