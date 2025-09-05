@@ -1,5 +1,5 @@
 <script>
-	import Navbar from '$lib/components/navbar.svelte';
+	import LandingNavbar from '$lib/components/navigation/LandingNavbar.svelte';
 	import geti18ncontext from '../i18n';
 	import '../app.css';
 	const i18n = geti18ncontext();
@@ -20,7 +20,7 @@
 </svelte:head>
 
 <div class="app">
-	<Navbar user={data.user} />
+	<LandingNavbar user={data.user} />
 
 	<section class="hero-section">
 		<div class="headers">

@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import Alert from '$lib/components/ui/alert.svelte';
+	import ManagementNavbar from '$lib/components/navigation/ManagementNavbar.svelte';
 	const guildId = page.params.id;
 	console.log('guildId', guildId);
+	const { data } = $props();
+
+	const selectedGuild = data.guilds?.find((g: { id: string }) => g.id === guildId);
 </script>
 
 <svelte:head>
@@ -14,9 +18,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </svelte:head>
 
-<Alert type="warning">
-	Dashboard is still under BETA version. Stable release will be out after v1.0.0"
-</Alert>
+<ManagementNavbar {selectedGuild} user={data.user} />
 
 <style>
 </style>

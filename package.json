@@ -1,7 +1,7 @@
 {
 	"name": "dashboard",
 	"private": true,
-	"version": "0.0.1",
+	"version": "0.0.1-experimental",
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
@@ -37,6 +37,7 @@
 		"@fontsource/be-vietnam-pro": "^5.2.6",
 		"@fontsource/poppins": "^5.2.6",
 		"discord-api-types": "^0.38.22",
+		"fs": "^0.0.1-security",
 		"i18next": "^25.4.2",
 		"svelte-i18next": "^2.2.2"
 	}

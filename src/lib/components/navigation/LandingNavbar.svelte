@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { APIUser } from 'discord-api-types/v10';
-	import getI18nStore from '../../i18n';
+	import getI18nStore from '../../../i18n';
 	const i18n = getI18nStore();
 
 	function handleLogin() {
