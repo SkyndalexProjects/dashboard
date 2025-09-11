@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import ManagementNavbar from '$lib/components/navigation/ManagementNavbar.svelte';
+	import Sidebar from '$lib/components/navigation/Sidebar.svelte';
+	import Switch from '$lib/components/ui/Switch.svelte';
 	const guildId = page.params.id;
 	console.log('guildId', guildId);
 	const { data } = $props();
@@ -18,6 +20,7 @@
 </svelte:head>
 
 <ManagementNavbar {selectedGuild} user={data.user} />
+<Sidebar guildId={selectedGuild.id} />
 
 <style>
 </style>

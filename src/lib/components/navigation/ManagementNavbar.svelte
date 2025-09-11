@@ -42,7 +42,7 @@
 		</div>
 	</div>
 	<div class="right-corner">
-		<button class="dashboard-redirect" on:click={handleLogin}>
+		<button class="dashboard-redirect" onclick={handleLogin}>
 			{#if user?.username}
 				<img src={getAvatarUrl(user)} alt={user?.username || 'Avatar'} class="login-icon" />
 				{user?.username}
