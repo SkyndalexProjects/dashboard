@@ -10,5 +10,26 @@
 			"links": "Links",
 			"project": "Project"
 		}
+	},
+	"system": {
+		"errors": {
+			"not_finished": "This page is not finished yet. Follow the progress on our support server"
+		},
+		"navbar": {
+			"title": "Dashboard"
+		},
+		"sidebar": {
+			"home": "Home",
+			"insights": "Insights",
+			"main-settings": "Main Settings",
+			"logs": "Logs",
+			"custombots": "Custombots",
+			"economy": "Economy",
+			"radio": "Radio",
+			"ai": "AI",
+			"overview": "Overview",
+			"management": "Management",
+			"fun": "Fun"
+		}
 	}
 }

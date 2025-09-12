@@ -3,7 +3,6 @@
 	import ManagementNavbar from '$lib/components/navigation/ManagementNavbar.svelte';
 	import Sidebar from '$lib/components/navigation/Sidebar.svelte';
 	const guildId = page.params.id;
-	console.log('guildId', guildId);
 	const { data } = $props();
 
 	const selectedGuild = data.guilds?.find((g: { id: string }) => g.id === guildId);
@@ -20,6 +19,7 @@
 
 <ManagementNavbar {selectedGuild} user={data.user} />
 <Sidebar guildId={selectedGuild.id} />
+<alert type="error" message="404: Not found"></alert>
 
 <style>
 </style>

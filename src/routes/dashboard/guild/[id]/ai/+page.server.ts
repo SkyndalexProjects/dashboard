@@ -5,9 +5,8 @@ export async function load({ fetch }) {
 		const res = await fetch(`http://localhost:3000/api/guilds`, {
 			credentials: 'include'
 		});
-
 		if (!res.ok) {
-			throw error(res.status, 'Error while fetching guilds');
+			error(res.status, 'Error while fetching guilds');
 		}
 
 		const guildsData = await res.json();

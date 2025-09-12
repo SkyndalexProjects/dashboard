@@ -1,5 +1,7 @@
 <script lang="ts">
 	import type { APIGuild, APIUser } from 'discord-api-types/v10';
+	import getI18nStore from '$lib/i18n';
+	const i18n = getI18nStore();
 
 	const { user, selectedGuild } = $props();
 
@@ -28,7 +30,7 @@
 			src={`https://cdn.discordapp.com/avatars/1059594156839809074/f2ed3c7590d834ed2d86912124c4ee1e.webp?size=1024`}
 			alt="Guild Icon"
 		/>
-		Dashboard
+		{$i18n.t('system.navbar.title')}
 
 		<div class="version">v0.0.1-experimental</div>
 

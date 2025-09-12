@@ -10,5 +10,26 @@
 			"links": "Linki",
 			"project": "Projekt"
 		}
+	},
+	"system": {
+		"errors": {
+			"not_finished": "Strona nie jest jeszcze ukończona. Obserwuj prace na naszym serwerze wsparcia"
+		},
+		"navbar": {
+			"title": "Panel zarządzania"
+		},
+		"sidebar": {
+			"home": "Strona główna",
+			"insights": "Wgląd systemowy",
+			"main-settings": "Ustawienia główne",
+			"logs": "Logi",
+			"custombots": "Customboty",
+			"economy": "Ekonomia",
+			"radio": "Radio",
+			"ai": "AI",
+			"overview": "Przegląd",
+			"management": "Zarządzanie",
+			"fun": "Zabawa"
+		}
 	}
 }

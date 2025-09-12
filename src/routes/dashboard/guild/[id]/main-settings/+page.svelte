@@ -2,10 +2,13 @@
 	import { page } from '$app/state';
 	import ManagementNavbar from '$lib/components/navigation/ManagementNavbar.svelte';
 	import Sidebar from '$lib/components/navigation/Sidebar.svelte';
+	import geti18ncontext from '$lib/i18n';
+	const i18n = geti18ncontext();
+
 	const guildId = page.params.id;
 	console.log('guildId', guildId);
 	const { data } = $props();
-
+	import Alert from '$lib/components/ui/alert.svelte';
 	const selectedGuild = data.guilds?.find((g: { id: string }) => g.id === guildId);
 </script>
 
@@ -21,5 +24,20 @@
 <ManagementNavbar {selectedGuild} user={data.user} />
 <Sidebar guildId={selectedGuild.id} />
 
+<div class="alert">
+	<Alert type="warning">{$i18n.t('system.errors.not_finished')}</Alert>
+</div>
+
 <style>
+	.alert {
+		position: fixed;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		width: 100%;
+		top: 100px;
+		z-index: 100;
+		left: 400px;
+	}
 </style>

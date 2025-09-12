@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import Switch from '$lib/components/ui/Switch.svelte';
-	import { goto } from "$app/navigation"
+	import { goto } from '$app/navigation';
+	import getI18nStore from '$lib/i18n';
+	const i18n = getI18nStore();
 	const { guildId } = $props();
 
 	interface SidebarItemProps {
@@ -12,26 +14,29 @@
 		switchActive?: boolean;
 		additionalPaths?: string[];
 	}
+
 	function isItemActive(item: SidebarItemProps) {
 		if (item.path === page.url.pathname) return true;
 		return !!(item.additionalPaths && item.additionalPaths.includes(page.url.pathname));
 	}
-	function handleItemClick(item: SidebarItemProps) {
-		goto(item.path);
+	async function handleItemClick(item: SidebarItemProps, event?: MouseEvent) {
+		event?.preventDefault();
+
+		await goto(item.path);
 	}
 
 	const overviewItems: SidebarItemProps[] = [
 		{
 			path: `/dashboard/guild/${guildId}/home`,
 			icon: '/icons/sidebar/home.svg',
-			text: 'Home',
+			text: $i18n.t('system.sidebar.home'),
 			hasSwitch: false,
 			switchActive: false
 		},
 		{
 			path: `/dashboard/guild/${guildId}/insights`,
 			icon: '/icons/sidebar/insights.svg',
-			text: 'Insights',
+			text: $i18n.t('system.sidebar.insights'),
 			hasSwitch: false,
 			switchActive: false
 		}
@@ -41,21 +46,21 @@
 		{
 			path: `/dashboard/guild/${guildId}/main-settings`,
 			icon: '/icons/sidebar/gear-icon.svg',
-			text: 'Main settings',
+			text: $i18n.t('system.sidebar.main-settings'),
 			hasSwitch: false,
 			switchActive: false
 		},
 		{
 			path: `/dashboard/guild/${guildId}/logs`,
 			icon: '/icons/sidebar/log.svg',
-			text: 'Logs',
+			text: $i18n.t('system.sidebar.logs'),
 			hasSwitch: true,
 			switchActive: false
 		},
 		{
 			path: `/dashboard/guild/${guildId}/custombots`,
 			icon: '/icons/sidebar/custombot.svg',
-			text: 'Custombots',
+			text: $i18n.t('system.sidebar.custombots'),
 			hasSwitch: true,
 			switchActive: false,
 			additionalPaths: [
@@ -69,30 +74,30 @@
 		{
 			path: `/dashboard/guild/${guildId}/economy`,
 			icon: '/icons/sidebar/economy.svg',
-			text: 'Economy',
+			text: $i18n.t('system.sidebar.economy'),
 			hasSwitch: true,
 			switchActive: false
 		},
 		{
 			path: `/dashboard/guild/${guildId}/radio`,
 			icon: '/icons/sidebar/radio.svg',
-			text: 'Radio',
+			text: $i18n.t('system.sidebar.radio'),
 			hasSwitch: true,
 			switchActive: false
 		},
 		{
 			path: `/dashboard/guild/${guildId}/ai`,
 			icon: '/icons/sidebar/sparkles.svg',
-			text: 'AI',
+			text: $i18n.t('system.sidebar.ai'),
 			hasSwitch: true,
 			switchActive: false
 		}
 	];
 
 	const categories = [
-		{ name: 'overview', items: overviewItems },
-		{ name: 'management', items: managementItems },
-		{ name: 'fun', items: funItems }
+		{ name: $i18n.t('system.sidebar.overview'), items: overviewItems },
+		{ name: $i18n.t('system.sidebar.management'), items: managementItems },
+		{ name: $i18n.t('system.sidebar.fun'), items: funItems }
 	];
 </script>
 
@@ -166,7 +171,9 @@
 		width: 100%;
 		padding-left: 20px;
 		color: rgba(255, 255, 255, 0.6);
-		font: 700 14px / normal 'Poppins', sans-serif;
+		font:
+			700 14px / normal 'Poppins',
+			sans-serif;
 		cursor: pointer;
 		transition: color 0.2s ease;
 		padding-top: 20px;
@@ -179,7 +186,9 @@
 		background: rgba(0, 0, 0, 0.35);
 		border-left: 5px solid #275ee7;
 		border-radius: 0px 20px 20px 0px;
-		transition: background-color 0.5s ease, border-left-color 0.5s ease;
+		transition:
+			background-color 0.5s ease,
+			border-left-color 0.5s ease;
 		cursor: pointer;
 	}
 	.item-active {
@@ -193,7 +202,9 @@
 		border-radius: 0 20px 20px 0;
 		border-left: 5px solid #275ee7;
 		background: rgba(0, 0, 0, 0.35);
-		font: 700 20px / normal 'Be Vietnam Pro', sans-serif;
+		font:
+			700 20px / normal 'Be Vietnam Pro',
+			sans-serif;
 		gap: 15px;
 		cursor: pointer;
 	}
@@ -207,7 +218,9 @@
 		flex-shrink: 0;
 		border-radius: 0 20px 20px 0;
 		color: rgba(255, 255, 255, 0.56);
-		font: 700 20px / normal 'Be Vietnam Pro', sans-serif;
+		font:
+			700 20px / normal 'Be Vietnam Pro',
+			sans-serif;
 		gap: 15px;
 		margin-right: 30px;
 	}
