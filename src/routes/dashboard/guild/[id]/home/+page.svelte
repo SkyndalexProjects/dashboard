@@ -155,8 +155,9 @@
 <style>
 	.app {
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 		justify-content: center;
+		margin-left: 373px;
 		flex-direction: column;
 		caret-color: transparent;
 	}
@@ -167,7 +168,6 @@
 		justify-content: center;
 		width: max-content;
 		margin-top: 100px;
-		margin-left: 100px;
 		gap: 20px;
 	}
 	.economy-charts {
