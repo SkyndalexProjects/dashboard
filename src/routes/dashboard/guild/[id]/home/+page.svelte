@@ -2,7 +2,7 @@
 	import { page } from '$app/state';
 	import ManagementNavbar from '$lib/components/navigation/ManagementNavbar.svelte';
 	import Sidebar from '$lib/components/navigation/Sidebar.svelte';
-	import Alert from '$lib/components/ui/alert.svelte';
+	import Alert from '$lib/components/ui/Alert.svelte';
 	import { linear } from 'svelte/easing';
 
 	import { curveCatmullRom } from 'd3-shape';
@@ -45,7 +45,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </svelte:head>
 
-<ManagementNavbar {selectedGuild} user={data.user} />
+<ManagementNavbar {selectedGuild} user={data.user} guilds={data.guilds} />
 <Sidebar guildId={selectedGuild.id} />
 
 <div class="app">
@@ -183,6 +183,7 @@
 			700 20px Poppins,
 			sans-serif;
 		margin-left: 375px;
+
 	}
 	.chart {
 		margin-top: 30px;
@@ -190,6 +191,7 @@
 		border-radius: 20px;
 		width: 809px;
 		height: 537px;
+		z-index: -1;
 	}
 	.chart-divider {
 		position: absolute;

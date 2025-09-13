@@ -13,6 +13,7 @@
 	:global(body) {
 		caret-color: transparent;
 		background: linear-gradient(180deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
+		z-index: -1;
 	}
 
 	:global([data-slot='chart'] .lc-text-svg) {

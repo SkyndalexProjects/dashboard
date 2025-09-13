@@ -8,7 +8,7 @@
 	const guildId = page.params.id;
 	console.log('guildId', guildId);
 	const { data } = $props();
-	import Alert from '$lib/components/ui/alert.svelte';
+	import Alert from '$lib/components/ui/Alert.svelte';
 	const selectedGuild = data.guilds?.find((g: { id: string }) => g.id === guildId);
 </script>
 
