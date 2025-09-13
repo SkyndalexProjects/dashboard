@@ -20,7 +20,6 @@
 		overflow: visible;
 	}
 
-
 	:global([data-slot='chart'] .lc-rule-y-line:not(.lc-grid-y-rule)) {
 		stroke-width: 1;
 	}

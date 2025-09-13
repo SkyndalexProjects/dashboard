@@ -48,7 +48,10 @@
 							class="guild-icon"
 						/>
 						<p class="guild-name">{guild?.name}</p>
-						<a href={`/dashboard/guild/${guild?.id}/home`} class="guild-button">
+						<button
+							class="guild-button"
+							onclick={() => (window.location.href = `/dashboard/guild/${guild?.id}/home`)}
+						>
 							<svg
 								width="25"
 								height="25"
@@ -62,7 +65,7 @@
 								/>
 							</svg>
 							SET
-						</a>
+						</button>
 					</div>
 				{/each}
 				{#each withoutBotAdded as guild (guild?.id)}
@@ -103,6 +106,10 @@
 <style>
 	a {
 		gap: 5px;
+	}
+	button {
+		all: unset;
+		cursor: pointer;
 	}
 	.guilds {
 		display: flex;

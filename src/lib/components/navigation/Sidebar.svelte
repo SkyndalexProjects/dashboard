@@ -21,8 +21,7 @@
 	}
 	async function handleItemClick(item: SidebarItemProps, event?: MouseEvent) {
 		event?.preventDefault();
-
-		await goto(item.path);
+		window.location.href = item.path;
 	}
 
 	const overviewItems: SidebarItemProps[] = [

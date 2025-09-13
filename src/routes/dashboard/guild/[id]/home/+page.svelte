@@ -183,7 +183,6 @@
 			700 20px Poppins,
 			sans-serif;
 		margin-left: 375px;
-
 	}
 	.chart {
 		margin-top: 30px;

@@ -3,17 +3,15 @@
 	import getI18nStore from '$lib/i18n';
 	const i18n = getI18nStore();
 	import Modal from '../ui/Modal.svelte';
-	import Alert from "$lib/components/ui/Alert.svelte";
+	import Alert from '$lib/components/ui/Alert.svelte';
 	import { goto } from '$app/navigation';
-	let showModal = $state(false)
+	let showModal = $state(false);
 	const { user, selectedGuild, guilds } = $props();
 
-	console.log("Guilds from management navbar", guilds)
+	console.log('Guilds from management navbar', guilds);
 
 	const filteredGuilds = guilds.filter(
-			(guild) =>
-					(BigInt(guild.permissions) & BigInt(0x20)) === BigInt(0x20) &&
-					guild.isBotAdded,
+		(guild) => (BigInt(guild.permissions) & BigInt(0x20)) === BigInt(0x20) && guild.isBotAdded
 	);
 	function getGuildAvatarUrl(guild: APIGuild): string {
 		return guild?.id && guild?.icon
@@ -56,25 +54,39 @@
 		<Modal bind:showModal>
 			{#snippet header()}
 				<div class="headers">
-					Logged in as <img src={getAvatarUrl(user)} alt={user?.username || 'Avatar'} class="login-icon" /> <span class="header-username"> {user?.username} </span>
+					Logged in as <img
+						src={getAvatarUrl(user)}
+						alt={user?.username || 'Avatar'}
+						class="login-icon"
+					/> <span class="header-username"> {user?.username} </span>
 				</div>
 
 				<div class="header-alert">
-					<Alert type="info"> Please choose a guild. </Alert>
+					<Alert type="info">Please choose a guild.</Alert>
 				</div>
 			{/snippet}
 
 			{#snippet children()}
 				<ul>
 					{#each filteredGuilds as guild}
-						<button tabindex="0" class="guild-list-item"
-								onclick={() => { window.location.href = `/dashboard/guild/${guild.id}/home`; showModal = false; }}>
-							<img src={getGuildAvatarUrl(guild)} alt={guild.name || 'Guild Icon'} class="guild-icon" />
+						<button
+							tabindex="0"
+							class="guild-list-item"
+							onclick={() => {
+								window.location.href = `/dashboard/guild/${guild.id}/home`;
+								showModal = false;
+							}}
+						>
+							<img
+								src={getGuildAvatarUrl(guild)}
+								alt={guild.name || 'Guild Icon'}
+								class="guild-icon"
+							/>
 							{guild.name}
 						</button>
 					{/each}
 				</ul>
-				{/snippet}
+			{/snippet}
 		</Modal>
 	</div>
 	<div class="right-corner">
@@ -118,7 +130,7 @@
 		height: 90px;
 		padding: 0 20px;
 		color: #ffffff;
-		font-family: "Be Vietnam Pro", sans-serif;
+		font-family: 'Be Vietnam Pro', sans-serif;
 		font-size: 18px;
 		font-style: normal;
 		font-weight: 500;
@@ -156,7 +168,7 @@
 		margin-bottom: 30px;
 	}
 	.header-username {
-		color: #FFF;
+		color: #fff;
 		text-align: center;
 		font-family: Poppins, sans-serif;
 		font-size: 16px;
@@ -224,7 +236,7 @@
 		border-radius: 15px;
 		background: rgba(0, 0, 0, 0.3);
 		color: #ffffff;
-		font-family: "Be Vietnam Pro", sans-serif;
+		font-family: 'Be Vietnam Pro', sans-serif;
 		font-size: 20px;
 		font-style: normal;
 		font-weight: 500;
