@@ -14,4 +14,13 @@
 		caret-color: transparent;
 		background: linear-gradient(180deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
 	}
+
+	:global([data-slot='chart'] .lc-text-svg) {
+		overflow: visible;
+	}
+
+
+	:global([data-slot='chart'] .lc-rule-y-line:not(.lc-grid-y-rule)) {
+		stroke-width: 1;
+	}
 </style>

@@ -40,7 +40,7 @@
 				alt={selectedGuild?.name || 'Avatar'}
 				class="guild-icon"
 			/>
-			{selectedGuild.name}
+			{selectedGuild?.name}
 		</div>
 	</div>
 	<div class="right-corner">
@@ -58,6 +58,7 @@
 
 <style>
 	nav {
+		position: fixed;
 		caret-color: transparent;
 		display: flex;
 		flex-direction: row;
@@ -65,13 +66,13 @@
 		align-items: center;
 		width: 100%;
 		height: 90px;
-		position: fixed;
 		overflow: visible;
 		flex-wrap: wrap;
 		background: rgba(0, 0, 0, 0.2);
 		backdrop-filter: blur(8px);
 		-webkit-backdrop-filter: blur(8px);
 		z-index: 1000;
+		user-select: none;
 	}
 	.left-corner {
 		display: flex;

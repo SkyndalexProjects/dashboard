@@ -18,7 +18,7 @@
 </svelte:head>
 
 <ManagementNavbar {selectedGuild} user={data.user} />
-<Sidebar guildId={selectedGuild.id} />
+<Sidebar guildId={selectedGuild?.id} />
 <alert type="error" message="404: Not found"></alert>
 
 <style>

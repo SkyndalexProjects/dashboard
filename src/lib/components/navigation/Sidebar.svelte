@@ -146,6 +146,7 @@
 		top: 90px;
 		background: rgba(0, 0, 0, 0.2);
 		padding-top: 20px;
+		user-select: none;
 	}
 	.switches {
 		position: absolute;
