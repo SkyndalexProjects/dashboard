@@ -5,6 +5,7 @@
 	import Modal from '../ui/Modal.svelte';
 	import Alert from '$lib/components/ui/Alert.svelte';
 	import { goto } from '$app/navigation';
+	import Dropdown from "$lib/components/ui/Dropdown.svelte";
 	let showModal = $state(false);
 	const { user, selectedGuild, guilds } = $props();
 
@@ -25,9 +26,11 @@
 			: undefined;
 	}
 
-	function handleLogin(): void {
+	function handleLogout(): void {
 		window.location.href = 'http://localhost:3000';
 	}
+	let isDropdownOpen = $state(false);
+
 	console.log('data', user);
 </script>
 
@@ -90,15 +93,41 @@
 		</Modal>
 	</div>
 	<div class="right-corner">
-		<button class="dashboard-redirect" onclick={handleLogin}>
-			{#if user?.username}
-				<img src={getAvatarUrl(user)} alt={user?.username || 'Avatar'} class="login-icon" />
-				{user?.username}
-			{:else}
-				<img src="/icons/login.svg" alt="login" class="login-icon" />
-				Login
-			{/if}
-		</button>
+		<Dropdown>
+			{#snippet trigger()}
+				<button class="dashboard-redirect">
+					<img
+							src={getAvatarUrl(user)}
+							alt={user?.username || 'Avatar'}
+							class="login-icon"
+					/>
+					<span class="username">{user?.username}</span>
+					<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							class="chevron-icon">
+						<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				{/snippet}
+
+			{#snippet items()}
+				<button class="dropdown-item">
+					Chuj
+				</button>
+				<button class="dropdown-item">
+					Dupa
+				</button>
+				<button class="dropdown-item logout" onclick={handleLogout}>
+					Logout
+				</button>
+			{/snippet}
+		</Dropdown>
 	</div>
 </nav>
 
@@ -282,5 +311,39 @@
 		background: transparent;
 		border: none;
 		outline: none;
+	}
+
+	.dropdown-item {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		left: 0.5rem;
+		justify-content: flex-start;
+		gap: 12px;
+		width: 100%;
+		height: 50px;
+		padding: 10px;
+		color: #ffffff;
+		font-family: 'Be Vietnam Pro', sans-serif;
+		background-color: rgba(0, 0, 0, 0.5);
+		font-size: 15px;
+		font-weight: 500;
+		text-align: left;
+		cursor: pointer;
+		border-radius: 3px;
+		margin-top: 10px;
+		transition: background-color 0.2s ease;
+	}
+
+	.dropdown-item:hover {
+		background-color: rgba(95, 135, 234);
+	}
+
+	.dropdown-item.logout {
+		color: #ff6b6b;
+	}
+
+	.dropdown-item.logout:hover {
+		background-color: rgba(255, 107, 107, 0.15);
 	}
 </style>
