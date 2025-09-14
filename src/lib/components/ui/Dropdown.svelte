@@ -1,175 +1,173 @@
 <script lang="ts">
-    import { slide } from 'svelte/transition';
-    import type { Snippet } from 'svelte';
+	import { slide } from 'svelte/transition';
+	import type { Snippet } from 'svelte';
 
-    //todo: fix typings for props
+	//todo: fix typings for props
 
-    interface DropdownProps {
-        position?: 'left' | 'right' | 'center';
-        maxWidth?: string;
-        trigger?: () => Snippet | null;
-        items?: () => Snippet | null;
-    }
+	interface DropdownProps {
+		position?: 'left' | 'right' | 'center';
+		maxWidth?: string;
+		trigger?: () => Snippet | null;
+		items?: () => Snippet | null;
+	}
 
-    const {
-        trigger,
-        items
-    }: DropdownProps = $props();
+	const { trigger, items }: DropdownProps = $props();
 
-    let isDropdownOpen = $state(false);
-    let dropdownRef: HTMLDivElement;
+	let isDropdownOpen = $state(false);
+	let dropdownRef: HTMLDivElement;
 
-    const handleDropdownClick = () => {
-        isDropdownOpen = !isDropdownOpen;
-    }
+	const handleDropdownClick = () => {
+		isDropdownOpen = !isDropdownOpen;
+	};
 
-    const handleDropdownFocusLoss = ({ relatedTarget, currentTarget }: FocusEvent) => {
-        if (
-            relatedTarget instanceof HTMLElement &&
-            currentTarget instanceof HTMLElement &&
-            currentTarget.contains(relatedTarget)
-        ) return;
-        isDropdownOpen = false;
-    }
+	const handleDropdownFocusLoss = ({ relatedTarget, currentTarget }: FocusEvent) => {
+		if (
+			relatedTarget instanceof HTMLElement &&
+			currentTarget instanceof HTMLElement &&
+			currentTarget.contains(relatedTarget)
+		)
+			return;
+		isDropdownOpen = false;
+	};
 
-    const handleClickOutside = (event: MouseEvent) => {
-        if (dropdownRef && !dropdownRef.contains(event.target as Node)) {
-            isDropdownOpen = false;
-        }
-    }
+	const handleClickOutside = (event: MouseEvent) => {
+		if (dropdownRef && !dropdownRef.contains(event.target as Node)) {
+			isDropdownOpen = false;
+		}
+	};
 
-    $effect(() => {
-        if (isDropdownOpen) {
-            document.addEventListener('click', handleClickOutside);
-        } else {
-            document.removeEventListener('click', handleClickOutside);
-        }
+	$effect(() => {
+		if (isDropdownOpen) {
+			document.addEventListener('click', handleClickOutside);
+		} else {
+			document.removeEventListener('click', handleClickOutside);
+		}
 
-        return () => {
-            document.removeEventListener('click', handleClickOutside);
-        };
-    });
+		return () => {
+			document.removeEventListener('click', handleClickOutside);
+		};
+	});
 </script>
 
 <div class="dropdown-container" bind:this={dropdownRef}>
-    <div class="dropdown" onfocusout={handleDropdownFocusLoss}>
-        <button class="dropdown-trigger" onclick={handleDropdownClick}>
-            {#if trigger}
-                {@render trigger()}
-            {:else}
-                <div class="default-trigger">
-                    {#if isDropdownOpen}
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                class="inline-block h-6 w-6 stroke-current">
-                            <title>Close Dropdown</title>
-                            <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    {:else}
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                class="inline-block h-6 w-6 stroke-current">
-                            <title>Open Dropdown</title>
-                            <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    {/if}
-                </div>
-            {/if}
-        </button>
+	<div class="dropdown" onfocusout={handleDropdownFocusLoss}>
+		<button class="dropdown-trigger" onclick={handleDropdownClick}>
+			{#if trigger}
+				{@render trigger()}
+			{:else}
+				<div class="default-trigger">
+					{#if isDropdownOpen}
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							class="inline-block h-6 w-6 stroke-current"
+						>
+							<title>Close Dropdown</title>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M6 18L18 6M6 6l12 12"
+							/>
+						</svg>
+					{:else}
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							class="inline-block h-6 w-6 stroke-current"
+						>
+							<title>Open Dropdown</title>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M4 6h16M4 12h16M4 18h16"
+							/>
+						</svg>
+					{/if}
+				</div>
+			{/if}
+		</button>
 
-        {#if isDropdownOpen}
-            <div
-                    class="dropdown-menu"
-                    transition:slide={{ duration: 200 }}
-            >
-                {#if items}
-                    {@render items()}
-                {:else}
-                    <button class="dropdown-item">Item 1</button>
-                    <button class="dropdown-item">Item 2</button>
-                {/if}
-            </div>
-        {/if}
-    </div>
+		{#if isDropdownOpen}
+			<div class="dropdown-menu" transition:slide={{ duration: 200 }}>
+				{#if items}
+					{@render items()}
+				{:else}
+					<button class="dropdown-item">Item 1</button>
+					<button class="dropdown-item">Item 2</button>
+				{/if}
+			</div>
+		{/if}
+	</div>
 </div>
 
 <style>
-    button {
-        all: unset;
-    }
-    .dropdown-container {
-        position: relative;
-        display: inline-block;
-    }
-    .dropdown-trigger {
-        cursor: pointer;
-    }
+	button {
+		all: unset;
+	}
+	.dropdown-container {
+		position: relative;
+		display: inline-block;
+	}
+	.dropdown-trigger {
+		cursor: pointer;
+	}
 
-    .default-trigger {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 8px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 6px;
-        color: #ffffff;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
+	.default-trigger {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 8px;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 6px;
+		color: #ffffff;
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
 
-    .default-trigger:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-        border-color: rgba(255, 255, 255, 0.3);
-    }
+	.default-trigger:hover {
+		background-color: rgba(255, 255, 255, 0.1);
+		border-color: rgba(255, 255, 255, 0.3);
+	}
 
-    .dropdown-menu {
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        width: 100%;
-        z-index: 1000;
-        border-radius: 8px;
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-    }
+	.dropdown-menu {
+		position: absolute;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: flex-start;
+		width: 100%;
+		z-index: 1000;
+		border-radius: 8px;
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+	}
 
-    .dropdown-item {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        color: #ffffff;
-        font-family: 'Be Vietnam Pro', sans-serif;
-        font-size: 14px;
-        font-weight: 500;
-        background: transparent;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
-    }
+	.dropdown-item {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: flex-start;
+		color: #ffffff;
+		font-family: 'Be Vietnam Pro', sans-serif;
+		font-size: 14px;
+		font-weight: 500;
+		background: transparent;
+		border: none;
+		border-radius: 6px;
+		cursor: pointer;
+		transition: background-color 0.2s ease;
+	}
 
+	.dropdown-item:hover {
+		background-color: rgba(62, 107, 255, 0.15);
+	}
 
-    .dropdown-item:hover {
-        background-color: rgba(62, 107, 255, 0.15);
-    }
-
-    .dropdown-item:focus {
-        outline: none;
-        background-color: rgba(62, 107, 255, 0.25);
-    }
+	.dropdown-item:focus {
+		outline: none;
+		background-color: rgba(62, 107, 255, 0.25);
+	}
 </style>

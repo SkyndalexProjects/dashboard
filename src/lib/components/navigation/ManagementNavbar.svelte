@@ -5,7 +5,7 @@
 	import Modal from '../ui/Modal.svelte';
 	import Alert from '$lib/components/ui/Alert.svelte';
 	import { goto } from '$app/navigation';
-	import Dropdown from "$lib/components/ui/Dropdown.svelte";
+	import Dropdown from '$lib/components/ui/Dropdown.svelte';
 	let showModal = $state(false);
 	const { user, selectedGuild, guilds } = $props();
 
@@ -96,36 +96,28 @@
 		<Dropdown>
 			{#snippet trigger()}
 				<button class="dashboard-redirect">
-					<img
-							src={getAvatarUrl(user)}
-							alt={user?.username || 'Avatar'}
-							class="login-icon"
-					/>
+					<img src={getAvatarUrl(user)} alt={user?.username || 'Avatar'} class="login-icon" />
 					<span class="username">{user?.username}</span>
 					<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							class="chevron-icon">
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						class="chevron-icon"
+					>
 						<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M19 9l-7 7-7-7" />
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M19 9l-7 7-7-7"
+						/>
 					</svg>
 				</button>
-				{/snippet}
+			{/snippet}
 
 			{#snippet items()}
-				<button class="dropdown-item">
-					Chuj
-				</button>
-				<button class="dropdown-item">
-					Dupa
-				</button>
-				<button class="dropdown-item logout" onclick={handleLogout}>
-					Logout
-				</button>
+				<button class="dropdown-item"> Chuj </button>
+				<button class="dropdown-item"> Dupa </button>
+				<button class="dropdown-item logout" onclick={handleLogout}> Logout </button>
 			{/snippet}
 		</Dropdown>
 	</div>
