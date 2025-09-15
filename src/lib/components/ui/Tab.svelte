@@ -6,6 +6,7 @@
 		onTabSelect(tab);
 	}
 </script>
+
 <!-- TODO: custom tab styling-->
 
 <div class="tabs">
@@ -22,7 +23,9 @@
 		display: flex;
 		gap: 0.5rem;
 		border-bottom: 2px solid #e0e0e0;
+		width: max-content;
 		padding-bottom: 0.5rem;
+		z-index: 1;
 	}
 	button {
 		background: none;

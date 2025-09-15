@@ -147,6 +147,7 @@
 	}
 
 	.dropdown-item {
+		margin-top: 10px;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;

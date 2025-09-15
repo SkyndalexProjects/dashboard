@@ -57,9 +57,7 @@
 	}
 
 	button {
-		background: transparent;
-		border: none;
-		outline: none;
+		all: unset;
 	}
 
 	a {
@@ -126,13 +124,13 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		text-align: center;
 		gap: 10px;
 		border-radius: 10px;
 		background-color: rgba(0, 0, 0, 0.26);
 		width: 190px;
 		height: 64px;
 		color: #667398;
-		text-align: center;
 		font:
 			600 24px / normal 'Be Vietnam Pro',
 			sans-serif;

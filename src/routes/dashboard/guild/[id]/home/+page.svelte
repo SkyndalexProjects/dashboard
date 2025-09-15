@@ -38,13 +38,48 @@
 		{ date: new Date('2023-07-01'), value: 0 }
 	];
 	const logs = [
-		{ timestamp: '2024-06-01 12:00', event: 'custombot_created', description: 'Utworzono bota', author: data.user },
-		{ timestamp: '2024-06-02 15:30', event: 'custombot_deleted', description: 'Usunięto bota', author: data.user },
-		{ timestamp: '2024-06-03 09:10', event: 'custombot_created', description: 'Utworzono bota',author: data.user},
-		{ timestamp: '2024-06-02 15:30', event: 'custombot_deleted', description: 'Usunięto bota', author: data.user },
-		{ timestamp: '2024-06-03 09:10', event: 'custombot_created', description: 'Utworzono bota',author: data.user},
-		{ timestamp: '2024-06-02 15:30', event: 'custombot_deleted', description: 'Usunięto bota', author: data.user },
-		{ timestamp: '2024-06-03 09:10', event: 'custombot_created', description: 'Utworzono bota',author: data.user}
+		{
+			timestamp: '2024-06-01 12:00',
+			event: 'custombot_created',
+			description: 'Utworzono bota',
+			author: data.user
+		},
+		{
+			timestamp: '2024-06-02 15:30',
+			event: 'custombot_deleted',
+			description: 'Usunięto bota',
+			author: data.user
+		},
+		{
+			timestamp: '2024-06-03 09:10',
+			event: 'custombot_created',
+			description: 'Utworzono bota',
+			author: data.user
+		},
+		{
+			timestamp: '2024-06-02 15:30',
+			event: 'custombot_deleted',
+			description: 'Usunięto bota',
+			author: data.user
+		},
+		{
+			timestamp: '2024-06-03 09:10',
+			event: 'custombot_created',
+			description: 'Utworzono bota',
+			author: data.user
+		},
+		{
+			timestamp: '2024-06-02 15:30',
+			event: 'custombot_deleted',
+			description: 'Usunięto bota',
+			author: data.user
+		},
+		{
+			timestamp: '2024-06-03 09:10',
+			event: 'custombot_created',
+			description: 'Utworzono bota',
+			author: data.user
+		}
 	];
 	const recentChanges = [
 		{ date: '2024-06-01', change: 'New version update changelog', author: data.user },
@@ -176,12 +211,12 @@
 		<!-- TODO: Other data than economy chart -->
 		<div class="chart">
 			<svg
-					width="770"
-					height="1"
-					viewBox="0 0 770 1"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-					class="chart-divider"
+				width="770"
+				height="1"
+				viewBox="0 0 770 1"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+				class="chart-divider"
 			>
 				<line y1="0.5" x2="770" y2="0.5" stroke="#E5E5EF" />
 			</svg>
@@ -193,66 +228,78 @@
 
 			<div class="lines-info">
 				<div class="loss">
-					<svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg
+						width="9"
+						height="9"
+						viewBox="0 0 9 9"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
 						<circle cx="4.86206" cy="4.5" r="4.13794" fill="#D83C3C" />
 					</svg>
 					Loss
 				</div>
 				<div class="revenue">
-					<svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg
+						width="9"
+						height="9"
+						viewBox="0 0 9 9"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
 						<circle cx="4.86206" cy="4.5" r="4.13794" fill="#27E761" />
 					</svg>
 					Revenue
 				</div>
 			</div>
 			<LineChart
-					x="date"
-					y="value"
-					series={[
-				{
-					data: revenueData,
-					key: 'Revenue',
-					color: '#27E761'
-				},
-				{
-					data: lossData,
-					key: 'Loss',
-					color: '#D83C3C'
-				}
-			]}
-					yNice
-					renderContext="svg"
-					padding={{ top: 150, right: 10, bottom: 40, left: 50 }}
+				x="date"
+				y="value"
+				series={[
+					{
+						data: revenueData,
+						key: 'Revenue',
+						color: '#27E761'
+					},
+					{
+						data: lossData,
+						key: 'Loss',
+						color: '#D83C3C'
+					}
+				]}
+				yNice
+				renderContext="svg"
+				padding={{ top: 150, right: 10, bottom: 40, left: 50 }}
 			>
 				{#snippet children({ context })}
 					<Layer type="svg">
 						<Axis
-								placement="left"
-								grid
-								style="stroke: rgba(255,255,255,0.2); fill: #615E83; font-size: 15px;"
+							placement="left"
+							grid
+							style="stroke: rgba(255,255,255,0.2); fill: #615E83; font-size: 15px;"
 						/>
 						<Axis
-								placement="bottom"
-								rule
-								style="fill: #615E83; font-size: 15px; font-family: Inter, sans-serif; font-weight: 400;"
+							placement="bottom"
+							rule
+							style="fill: #615E83; font-size: 15px; font-family: Inter, sans-serif; font-weight: 400;"
 						/>
 
 						<Spline
-								data={revenueData}
-								x="date"
-								y="value"
-								curve={curveCatmullRom}
-								draw={{ duration: 1000, easing: linear }}
-								style="stroke: #27E761; stroke-width: 3; fill: none; stroke-dasharray: 10,10;"
+							data={revenueData}
+							x="date"
+							y="value"
+							curve={curveCatmullRom}
+							draw={{ duration: 1000, easing: linear }}
+							style="stroke: #27E761; stroke-width: 3; fill: none; stroke-dasharray: 10,10;"
 						/>
 
 						<Spline
-								data={lossData}
-								x="date"
-								y="value"
-								curve={curveCatmullRom}
-								draw={{ duration: 1000, easing: linear }}
-								style="stroke: #D83C3C; stroke-width: 3; fill: none; stroke-dasharray: 10, 10;"
+							data={lossData}
+							x="date"
+							y="value"
+							curve={curveCatmullRom}
+							draw={{ duration: 1000, easing: linear }}
+							style="stroke: #D83C3C; stroke-width: 3; fill: none; stroke-dasharray: 10, 10;"
 						/>
 					</Layer>
 				{/snippet}
@@ -300,31 +347,31 @@
 	<div class="dashboard-log-container">
 		<table class="dashboard-log-table">
 			<thead>
-			<tr>
-				<th>User</th>
-				<th>Action</th>
-			</tr>
+				<tr>
+					<th>User</th>
+					<th>Action</th>
+				</tr>
 			</thead>
 			<tbody>
-			{#each logs as log}
-				<tr>
-					<td>
-						<div class="user-info">
-							<img class="user-avatar" src={getAvatarUrl(log.author)} alt="avatar" />
-							<div>
-								<div class="user-name">{log.author?.username}</div>
-								<div class="user-date">{log.timestamp}</div>
+				{#each logs as log}
+					<tr>
+						<td>
+							<div class="user-info">
+								<img class="user-avatar" src={getAvatarUrl(log.author)} alt="avatar" />
+								<div>
+									<div class="user-name">{log.author?.username}</div>
+									<div class="user-date">{log.timestamp}</div>
+								</div>
 							</div>
-						</div>
-					</td>
-					<td>
-						<div class="action-info">
-							<div class="action-event">{log.description}</div>
-							<div class="view-details">View details</div>
-						</div>
-					</td>
-				</tr>
-			{/each}
+						</td>
+						<td>
+							<div class="action-info">
+								<div class="action-event">{log.description}</div>
+								<div class="view-details">View details</div>
+							</div>
+						</td>
+					</tr>
+				{/each}
 			</tbody>
 		</table>
 	</div>
@@ -468,8 +515,8 @@
 		color: #fff;
 		text-align: center;
 		font:
-				700 20px Poppins,
-				sans-serif;
+			700 20px Poppins,
+			sans-serif;
 		margin-top: 705px;
 		margin-left: 1234px;
 	}
@@ -478,25 +525,25 @@
 		height: 471px;
 		table-layout: fixed;
 		border-collapse: collapse;
-
 	}
 
-	.dashboard-log-table th, .dashboard-log-table td {
+	.dashboard-log-table th,
+	.dashboard-log-table td {
 		padding: 16px 12px;
-		border-bottom: 1px solid rgba(255,255,255,0.08);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 		text-align: left;
 		vertical-align: middle;
 	}
 
 	.dashboard-log-table thead {
-		background: rgba(0, 0, 0, 0.50);
+		background: rgba(0, 0, 0, 0.5);
 		border-radius: 10px 10px 0 0;
-		border: 1px solid rgba(255, 255, 255, 0.20);
+		border: 1px solid rgba(255, 255, 255, 0.2);
 	}
 	.dashboard-log-table tr {
-		background: rgba(0, 0, 0, 0.30);
+		background: rgba(0, 0, 0, 0.3);
 		border-radius: 10px 10px 0 0;
-		border: 1px solid rgba(255, 255, 255, 0.20);
+		border: 1px solid rgba(255, 255, 255, 0.2);
 	}
 	.user-info {
 		display: flex;
@@ -512,7 +559,7 @@
 	}
 
 	.user-name {
-		color: #FFF;
+		color: #fff;
 		font-family: Poppins, sans-serif;
 		font-size: 18px;
 		font-style: normal;
@@ -521,9 +568,9 @@
 	}
 
 	.user-date {
-		color: rgba(255, 255, 255, 0.20);
+		color: rgba(255, 255, 255, 0.2);
 		text-align: center;
-		font-family: "Be Vietnam Pro", sans-serif;
+		font-family: 'Be Vietnam Pro', sans-serif;
 		font-size: 15px;
 		font-style: normal;
 		font-weight: 400;
@@ -534,7 +581,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 4px;
-		color: #FFF;
+		color: #fff;
 		font-family: Poppins, sans-serif;
 		font-size: 18px;
 		font-style: normal;
@@ -548,7 +595,7 @@
 	}
 
 	.view-details {
-		color: #275EE7;
+		color: #275ee7;
 		font-family: Poppins, sans-serif;
 		font-size: 15px;
 		font-style: normal;

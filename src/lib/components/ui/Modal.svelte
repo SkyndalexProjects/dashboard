@@ -28,8 +28,8 @@
 		border-radius: 0.2em;
 		border: none;
 		padding: 0;
-		background-color: rgb(0, 0, 0, 0.2);
-		z-index: 10000;
+		background-color: rgb(14, 13, 13);
+		z-index: -1;
 	}
 	dialog::backdrop {
 		backdrop-filter: blur(15px);
@@ -37,6 +37,7 @@
 	}
 	dialog > div {
 		padding: 1em;
+		z-index: 100;
 	}
 	dialog[open] {
 		animation: zoom 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -51,6 +52,7 @@
 	}
 	dialog[open]::backdrop {
 		animation: fade 0.2s ease-out;
+		z-index: 100;
 	}
 	@keyframes fade {
 		from {

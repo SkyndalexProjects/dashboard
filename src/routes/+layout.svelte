@@ -13,7 +13,6 @@
 	:global(body) {
 		caret-color: transparent;
 		background: linear-gradient(180deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
-		z-index: -1;
 		height: 100%;
 		min-height: 100vh;
 		width: 100%;
