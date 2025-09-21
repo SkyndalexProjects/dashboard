@@ -6,20 +6,11 @@
 	interface APIGuild extends BaseAPIGuild {
 		isBotAdded: boolean;
 	}
-
-	const withBotAdded = data.guilds.filter(
-		(guild: APIGuild) =>
-			guild.permissions !== undefined &&
-			(BigInt(guild.permissions) & BigInt(0x20)) === BigInt(0x20) &&
-			guild.isBotAdded
-	);
-
-	const withoutBotAdded = data.guilds.filter(
-		(guild: APIGuild) =>
-			guild.permissions !== undefined &&
-			(BigInt(guild.permissions) & BigInt(0x20)) === BigInt(0x20) &&
-			!guild.isBotAdded
-	);
+	console.log('data.guilds:', data.guilds);
+	const guilds: APIGuild[] = data.guilds as APIGuild[];
+	const adminGuilds = guilds.filter((guild) => (guild?.permissions & 0x8) === 0x8);
+	const withBotAdded = adminGuilds.filter((guild) => guild.isBotAdded);
+	const withoutBotAdded = adminGuilds.filter((guild) => !guild.isBotAdded);
 
 	function handleImageError(event: Event) {
 		(event.target as HTMLImageElement).src = '/default_guild_icon.png';

@@ -1,19 +1,14 @@
 <script lang="ts">
-	import { page } from '$app/state';
 	import ManagementNavbar from '$lib/components/navigation/ManagementNavbar.svelte';
 	import Sidebar from '$lib/components/navigation/Sidebar.svelte';
 	import Alert from '$lib/components/ui/Alert.svelte';
 	import { linear } from 'svelte/easing';
 	import { curveCatmullRom } from 'd3-shape';
-	import { LineChart, Axis, Layer, Spline, Highlight, Tooltip } from 'layerchart';
+	import { LineChart, Axis, Layer, Spline } from 'layerchart';
 	import Tab from '$lib/components/ui/Tab.svelte';
 	import type { APIUser } from 'discord-api-types/v10';
-
-	const guildId = page.params.id;
 	const { data } = $props();
-
-	const selectedGuild = data.guilds?.find((g: { id: string }) => g.id === guildId);
-
+	console.log('data.guild', data.guild);
 	function getAvatarUrl(user: APIUser) {
 		if (user && user.id && user.avatar) {
 			return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.webp?size=1024`;
@@ -104,112 +99,30 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </svelte:head>
 
-<ManagementNavbar {selectedGuild} user={data.user} guilds={data.guilds} />
-<Sidebar guildId={selectedGuild.id} />
-
-<div class="app">
-	<div class="alerts">
-		<Alert type="info">
-			You did not join our discord support guild. It is highly recommended to keep up to date with
-			the changes in the bot that are currently being intensively carried out
-		</Alert>
-		<Alert type="warning">
-			Dashboard is still under BETA version. Stable release will be out after v1.0.0
-		</Alert>
+{#await data.guilds}
+	<p>Test</p>
+{:then guilds}
+	<ManagementNavbar guild={data.guild} user={data.user} {guilds} />
+	<Sidebar guildId={data.guild.id} />
+	<div class="app">
+		<div class="alerts">
+			<Alert type="info">
+				You did not join our discord support guild. It is highly recommended to keep up to date with
+				the changes in the bot that are currently being intensively carried out
+			</Alert>
+			<Alert type="warning">
+				Dashboard is still under BETA version. Stable release will be out after v1.0.0
+			</Alert>
+		</div>
 	</div>
-</div>
 
-<div class="economy-charts">
-	Economy charts
-	<svg xmlns="http://www.w3.org/2000/svg" width="165" height="2" viewBox="0 0 165 2" fill="none">
-		<path d="M0 1L165 1" stroke="#275EE7" stroke-width="2" />
-	</svg>
-
-	<div class="chart" data-slot="chart">
-		<svg
-			width="770"
-			height="1"
-			viewBox="0 0 770 1"
-			fill="none"
-			xmlns="http://www.w3.org/2000/svg"
-			class="chart-divider"
-		>
-			<line y1="0.5" x2="770" y2="0.5" stroke="#E5E5EF" />
+	<div class="economy-charts">
+		Economy charts
+		<svg xmlns="http://www.w3.org/2000/svg" width="165" height="2" viewBox="0 0 165 2" fill="none">
+			<path d="M0 1L165 1" stroke="#275EE7" stroke-width="2" />
 		</svg>
 
-		<div class="headers">
-			<p class="chart-category-title">Entire guild stats</p>
-			<p class="chart-title">Total economy earnings</p>
-		</div>
-
-		<div class="lines-info">
-			<div class="loss">
-				<svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<circle cx="4.86206" cy="4.5" r="4.13794" fill="#D83C3C" />
-				</svg>
-				Loss
-			</div>
-			<div class="revenue">
-				<svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<circle cx="4.86206" cy="4.5" r="4.13794" fill="#27E761" />
-				</svg>
-				Revenue
-			</div>
-		</div>
-		<LineChart
-			x="date"
-			y="value"
-			series={[
-				{
-					data: revenueData,
-					key: 'Revenue',
-					color: '#27E761'
-				},
-				{
-					data: lossData,
-					key: 'Loss',
-					color: '#D83C3C'
-				}
-			]}
-			yNice
-			renderContext="svg"
-			padding={{ top: 150, right: 10, bottom: 40, left: 50 }}
-		>
-			{#snippet children({ context })}
-				<Layer type="svg">
-					<Axis
-						placement="left"
-						grid
-						style="stroke: rgba(255,255,255,0.2); fill: #615E83; font-size: 15px;"
-					/>
-					<Axis
-						placement="bottom"
-						rule
-						style="fill: #615E83; font-size: 15px; font-family: Inter, sans-serif; font-weight: 400;"
-					/>
-
-					<Spline
-						data={revenueData}
-						x="date"
-						y="value"
-						curve={curveCatmullRom}
-						draw={{ duration: 1000, easing: linear }}
-						style="stroke: #27E761; stroke-width: 3; fill: none; stroke-dasharray: 10,10;"
-					/>
-
-					<Spline
-						data={lossData}
-						x="date"
-						y="value"
-						curve={curveCatmullRom}
-						draw={{ duration: 1000, easing: linear }}
-						style="stroke: #D83C3C; stroke-width: 3; fill: none; stroke-dasharray: 10, 10;"
-					/>
-				</Layer>
-			{/snippet}
-		</LineChart>
-		<!-- TODO: Other data than economy chart -->
-		<div class="chart">
+		<div class="chart" data-slot="chart">
 			<svg
 				width="770"
 				height="1"
@@ -304,78 +217,175 @@
 					</Layer>
 				{/snippet}
 			</LineChart>
+			<!-- TODO: Other data than economy chart -->
+			<div class="chart">
+				<svg
+					width="770"
+					height="1"
+					viewBox="0 0 770 1"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					class="chart-divider"
+				>
+					<line y1="0.5" x2="770" y2="0.5" stroke="#E5E5EF" />
+				</svg>
+
+				<div class="headers">
+					<p class="chart-category-title">Entire guild stats</p>
+					<p class="chart-title">Total economy earnings</p>
+				</div>
+
+				<div class="lines-info">
+					<div class="loss">
+						<svg
+							width="9"
+							height="9"
+							viewBox="0 0 9 9"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<circle cx="4.86206" cy="4.5" r="4.13794" fill="#D83C3C" />
+						</svg>
+						Loss
+					</div>
+					<div class="revenue">
+						<svg
+							width="9"
+							height="9"
+							viewBox="0 0 9 9"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<circle cx="4.86206" cy="4.5" r="4.13794" fill="#27E761" />
+						</svg>
+						Revenue
+					</div>
+				</div>
+				<LineChart
+					x="date"
+					y="value"
+					series={[
+						{
+							data: revenueData,
+							key: 'Revenue',
+							color: '#27E761'
+						},
+						{
+							data: lossData,
+							key: 'Loss',
+							color: '#D83C3C'
+						}
+					]}
+					yNice
+					renderContext="svg"
+					padding={{ top: 150, right: 10, bottom: 40, left: 50 }}
+				>
+					{#snippet children({ context })}
+						<Layer type="svg">
+							<Axis
+								placement="left"
+								grid
+								style="stroke: rgba(255,255,255,0.2); fill: #615E83; font-size: 15px;"
+							/>
+							<Axis
+								placement="bottom"
+								rule
+								style="fill: #615E83; font-size: 15px; font-family: Inter, sans-serif; font-weight: 400;"
+							/>
+
+							<Spline
+								data={revenueData}
+								x="date"
+								y="value"
+								curve={curveCatmullRom}
+								draw={{ duration: 1000, easing: linear }}
+								style="stroke: #27E761; stroke-width: 3; fill: none; stroke-dasharray: 10,10;"
+							/>
+
+							<Spline
+								data={lossData}
+								x="date"
+								y="value"
+								curve={curveCatmullRom}
+								draw={{ duration: 1000, easing: linear }}
+								style="stroke: #D83C3C; stroke-width: 3; fill: none; stroke-dasharray: 10, 10;"
+							/>
+						</Layer>
+					{/snippet}
+				</LineChart>
+			</div>
 		</div>
 	</div>
-</div>
-<div class="recent-changes">
-	Recent changes
-	<svg xmlns="http://www.w3.org/2000/svg" width="165" height="2" viewBox="0 0 165 2" fill="none">
-		<path d="M0 1L165 1" stroke="#275EE7" stroke-width="2" />
-	</svg>
+	<div class="recent-changes">
+		Recent changes
+		<svg xmlns="http://www.w3.org/2000/svg" width="165" height="2" viewBox="0 0 165 2" fill="none">
+			<path d="M0 1L165 1" stroke="#275EE7" stroke-width="2" />
+		</svg>
 
-	<!-- TODO: fix tabs design + add icons -->
+		<!-- TODO: fix tabs design + add icons -->
 
-	<div class="recent-changes-container">
-		<Tab tabs={['Dashboard', 'Bot']} {selectedTab} onTabSelect={handleTabSelect}>
-			{#if selectedTab === 'Dashboard'}
-				<div class="dashboard">
-					{#each recentChanges as change}
-						<div class="change-item">
-							<img class="change-avatar" src={getAvatarUrl(change.author)} alt="avatar" />
-							<div class="change-content">
-								<p class="change-header">{change.change}</p>
-								<p class="change-footer">{change.date}</p>
-							</div>
-						</div>
-					{/each}
-				</div>
-			{:else if selectedTab === 'Bot'}
-				<div class="bot">
-					<h2>Bot Content</h2>
-					<p>This is the content of the Bot tab.</p>
-				</div>
-			{/if}
-		</Tab>
-	</div>
-</div>
-<div class="dashboard-log">
-	Dashboard log
-	<svg xmlns="http://www.w3.org/2000/svg" width="165" height="2" viewBox="0 0 165 2" fill="none">
-		<path d="M0 1L165 1" stroke="#275EE7" stroke-width="2" />
-	</svg>
-
-	<div class="dashboard-log-container">
-		<table class="dashboard-log-table">
-			<thead>
-				<tr>
-					<th>User</th>
-					<th>Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				{#each logs as log}
-					<tr>
-						<td>
-							<div class="user-info">
-								<img class="user-avatar" src={getAvatarUrl(log.author)} alt="avatar" />
-								<div>
-									<div class="user-name">{log.author?.username}</div>
-									<div class="user-date">{log.timestamp}</div>
+		<div class="recent-changes-container">
+			<Tab tabs={['Dashboard', 'Bot']} {selectedTab} onTabSelect={handleTabSelect}>
+				{#if selectedTab === 'Dashboard'}
+					<div class="dashboard">
+						{#each recentChanges as change}
+							<div class="change-item">
+								<img class="change-avatar" src={getAvatarUrl(change.author)} alt="avatar" />
+								<div class="change-content">
+									<p class="change-header">{change.change}</p>
+									<p class="change-footer">{change.date}</p>
 								</div>
 							</div>
-						</td>
-						<td>
-							<div class="action-info">
-								<div class="action-event">{log.description}</div>
-								<div class="view-details">View details</div>
-							</div>
-						</td>
-					</tr>
-				{/each}
-			</tbody>
-		</table>
+						{/each}
+					</div>
+				{:else if selectedTab === 'Bot'}
+					<div class="bot">
+						<h2>Bot Content</h2>
+						<p>This is the content of the Bot tab.</p>
+					</div>
+				{/if}
+			</Tab>
+		</div>
 	</div>
-</div>
+	<div class="dashboard-log">
+		Dashboard log
+		<svg xmlns="http://www.w3.org/2000/svg" width="165" height="2" viewBox="0 0 165 2" fill="none">
+			<path d="M0 1L165 1" stroke="#275EE7" stroke-width="2" />
+		</svg>
+
+		<div class="dashboard-log-container">
+			<table class="dashboard-log-table">
+				<thead>
+					<tr>
+						<th>User</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{#each logs as log}
+						<tr>
+							<td>
+								<div class="user-info">
+									<img class="user-avatar" src={getAvatarUrl(log.author)} alt="avatar" />
+									<div>
+										<div class="user-name">{log.author?.username}</div>
+										<div class="user-date">{log.timestamp}</div>
+									</div>
+								</div>
+							</td>
+							<td>
+								<div class="action-info">
+									<div class="action-event">{log.description}</div>
+									<div class="view-details">View details</div>
+								</div>
+							</td>
+						</tr>
+					{/each}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{/await}
 
 <style>
 	/* TODO: refactor font settings to the one line  */

@@ -4,16 +4,13 @@
 	const i18n = getI18nStore();
 	import Modal from '../ui/Modal.svelte';
 	import Alert from '$lib/components/ui/Alert.svelte';
-	import { goto } from '$app/navigation';
 	import Dropdown from '$lib/components/ui/Dropdown.svelte';
 	let showModal = $state(false);
-	const { user, selectedGuild, guilds } = $props();
+	const { user, guild, guilds } = $props();
+	console.log('guilds:', guilds);
+	const extendedGuilds: ExtendedAPIGuild[] = guilds as ExtendedAPIGuild[];
+	const adminGuilds = guilds.filter((guild) => (guild?.permissions & 0x8) === 0x8);
 
-	console.log('Guilds from management navbar', guilds);
-
-	const filteredGuilds = guilds.filter(
-		(guild) => (BigInt(guild.permissions) & BigInt(0x20)) === BigInt(0x20) && guild.isBotAdded
-	);
 	function getGuildAvatarUrl(guild: APIGuild): string {
 		return guild?.id && guild?.icon
 			? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp?size=1024`
@@ -31,7 +28,9 @@
 	}
 	let isDropdownOpen = $state(false);
 
-	console.log('data', user);
+	interface ExtendedAPIGuild extends APIGuild {
+		isBotAdded: boolean;
+	}
 </script>
 
 <nav>
@@ -46,12 +45,8 @@
 		<div class="version">v0.0.1-experimental</div>
 
 		<button class="guild-selector" onclick={() => (showModal = true)}>
-			<img
-				src={getGuildAvatarUrl(selectedGuild)}
-				alt={selectedGuild?.name || 'Avatar'}
-				class="guild-icon"
-			/>
-			{selectedGuild?.name}
+			<img src={getGuildAvatarUrl(guild)} alt={guild?.name || 'Avatar'} class="guild-icon" />
+			{guild?.name}
 		</button>
 
 		<Modal bind:showModal>
@@ -71,23 +66,25 @@
 
 			{#snippet children()}
 				<ul>
-					{#each filteredGuilds as guild}
-						<button
-							tabindex="0"
-							class="guild-list-item"
-							onclick={() => {
-								window.location.href = `/dashboard/guild/${guild.id}/home`;
-								showModal = false;
-							}}
-						>
-							<img
-								src={getGuildAvatarUrl(guild)}
-								alt={guild.name || 'Guild Icon'}
-								class="guild-icon"
-							/>
-							{guild.name}
-						</button>
-					{/each}
+					{#if adminGuilds}
+						{#each guilds as guild}
+							<button
+								tabindex="0"
+								class="guild-list-item"
+								onclick={() => {
+									window.location.href = `/dashboard/guild/${guild.id}/home`;
+									showModal = false;
+								}}
+							>
+								<img
+									src={getGuildAvatarUrl(guild)}
+									alt={guild.name || 'Guild Icon'}
+									class="guild-icon"
+								/>
+								{guild.name}
+							</button>
+						{/each}
+					{/if}
 				</ul>
 			{/snippet}
 		</Modal>

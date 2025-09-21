@@ -1,13 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import Switch from '$lib/components/ui/Switch.svelte';
-	import Toast from '$lib/components/ui/Toast.svelte';
-	import { tick } from 'svelte';
 	import getI18nStore from '$lib/i18n';
-	let isLoading = $state(false);
+
 	const i18n = getI18nStore();
 	const { guildId } = $props();
-
 	interface SidebarItemProps {
 		path: string;
 		icon: string;
@@ -22,9 +19,6 @@
 		return !!(item.additionalPaths && item.additionalPaths.includes(page.url.pathname));
 	}
 	async function handleItemClick(item: SidebarItemProps, event?: MouseEvent) {
-		// TODO: skeleton loading for the main content area
-
-		isLoading = true;
 		event?.preventDefault();
 		window.location.href = item.path;
 	}
@@ -105,11 +99,6 @@
 	];
 </script>
 
-{#if isLoading}
-	<Toast status="loading">Loading data</Toast>
-{:else if !isLoading}
-	<Toast status="success">Success.</Toast>
-{/if}
 <div class="sidebar">
 	{#each categories as category, idx}
 		<svg

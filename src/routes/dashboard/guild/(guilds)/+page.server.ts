@@ -8,7 +8,7 @@ export async function load({ fetch }): Promise<{ guilds: APIGuild[] }> {
 		});
 
 		if (!res.ok) {
-			error(res.status, 'Error while fetching guilds');
+			return error(res.status, 'Error while fetching guilds');
 		}
 
 		const guildsData: APIGuild[] = await res.json();
