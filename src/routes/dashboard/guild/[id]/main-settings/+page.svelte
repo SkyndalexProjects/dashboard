@@ -65,12 +65,11 @@
 							<div class="setting-container dropdown-container">
 								CHANNEL
 								{#if channels}
-									{#each channels.filter((channel) => channel.type === 0) as channel}
-										<div>{channel.name}</div>
-									{/each}
+									<!-- TODO: fix typing -->
+
 									<Search
 										menuItems={channels
-											.filter((channel) => channel.type === 0)
+											.filter((channel) => channel.type === 'GuildText')
 											.map((channel) => `#${channel.name}`)}
 									/>
 								{/if}

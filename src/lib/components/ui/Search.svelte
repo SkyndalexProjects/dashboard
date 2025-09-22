@@ -69,6 +69,9 @@
 		color: #ffffff;
 		width: 303px;
 		height: 42px;
+		padding-left: 10px;
+		font-family: Poppins, sans-serif;
+		font-weight: 700;
 	}
 	.dropdown {
 		position: absolute;
