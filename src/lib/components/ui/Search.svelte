@@ -38,6 +38,8 @@
 		onfocus={handleFocus}
 		onblur={handleBlur}
 	/>
+
+	<img src="/icons/indicator.svg" alt="indicator" class="indicator" class:rotated={showDropdown} />
 	{#if showDropdown && filteredItems.length > 0}
 		<ul class="dropdown" transition:slide={{ duration: 200 }}>
 			{#each filteredItems as item}
@@ -126,5 +128,19 @@
 		width: 30px;
 		height: 30px;
 		pointer-events: none;
+	}
+	.indicator {
+		position: absolute;
+		right: 10px;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 15px;
+		height: 15px;
+		pointer-events: none;
+		transition: transform 0.3s ease;
+	}
+
+	.rotated {
+		transform: translateY(-50%) rotate(180deg);
 	}
 </style>

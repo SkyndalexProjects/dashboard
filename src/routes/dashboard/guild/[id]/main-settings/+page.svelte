@@ -66,7 +66,6 @@
 								CHANNEL
 								{#if channels}
 									<!-- TODO: fix typing -->
-
 									<Search
 										menuItems={channels
 											.filter((channel) => channel.type === 'GuildText')
