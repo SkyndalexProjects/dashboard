@@ -7,10 +7,12 @@
 	import Dropdown from '$lib/components/ui/Dropdown.svelte';
 	let showModal = $state(false);
 	const { user, guild, guilds } = $props();
-	console.log('guilds:', guilds);
-	const extendedGuilds: ExtendedAPIGuild[] = guilds as ExtendedAPIGuild[];
-	const adminGuilds = guilds.filter((guild) => (guild?.permissions & 0x8) === 0x8);
 
+	const adminGuilds = (guilds as (APIGuild & { isBotAdded?: boolean })[]).filter(
+		(guild) => (Number(guild?.permissions) & 0x8) === 0x8 && guild.isBotAdded === true
+	);
+
+	console.log('adminGuilds:', adminGuilds);
 	function getGuildAvatarUrl(guild: APIGuild): string {
 		return guild?.id && guild?.icon
 			? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp?size=1024`
@@ -25,11 +27,6 @@
 
 	function handleLogout(): void {
 		window.location.href = 'http://localhost:3000';
-	}
-	let isDropdownOpen = $state(false);
-
-	interface ExtendedAPIGuild extends APIGuild {
-		isBotAdded: boolean;
 	}
 </script>
 
@@ -67,7 +64,7 @@
 			{#snippet children()}
 				<ul>
 					{#if adminGuilds}
-						{#each guilds as guild}
+						{#each adminGuilds as guild}
 							<button
 								tabindex="0"
 								class="guild-list-item"
