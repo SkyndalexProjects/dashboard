@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
 
-	let { menuItems = [], placeholder = '', inputValue = '' } = $props();
+	let { menuItems = [], placeholder = '', inputValue = '', icon = '' } = $props();
 
 	let filteredItems: string[] = $derived([]);
 	let showDropdown = $state(false);
@@ -26,6 +26,8 @@
 </script>
 
 <div class="autocomplete-container">
+	<img src={icon} alt="Search Icon" class="icon" />
+
 	<input
 		type="text"
 		{placeholder}
@@ -69,7 +71,7 @@
 		color: #ffffff;
 		width: 303px;
 		height: 42px;
-		padding-left: 10px;
+		padding-left: 40px;
 		font-family: Poppins, sans-serif;
 		font-weight: 700;
 	}
@@ -115,5 +117,14 @@
 	}
 	.dropdown-item:hover {
 		background-color: rgba(62, 107, 255, 0.15);
+	}
+	.icon {
+		position: absolute;
+		left: 2px;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 30px;
+		height: 30px;
+		pointer-events: none;
 	}
 </style>

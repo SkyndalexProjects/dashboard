@@ -70,17 +70,16 @@
 									<Search
 										menuItems={channels
 											.filter((channel) => channel.type === 'GuildText')
-											.map((channel) => `#${channel.name}`)}
+											.map((channel) => channel.name)}
+										icon="/icons/dropdowns/hashtag.svg"
 									/>
 								{/if}
 							</div>
 							<div class="setting-container">
 								WELCOME TITLE
-								<input
-									type="text"
-									placeholder="Welcome to the server, {data?.user?.username}!"
-									class="text-input"
-								/>
+								<img src="/icons/dropdowns/tag.svg" alt="h" class="icon" />
+
+								<input type="text" class="text-input" />
 							</div>
 						</div>
 					{:else if selectedTab === 'Goodbye'}
@@ -189,7 +188,7 @@
 		color: #ffffff;
 		font-family: 'Poppins', sans-serif;
 		font-size: 20px;
-		padding-left: 10px;
+		padding-left: 40px;
 		font-weight: 700;
 		z-index: 0;
 	}
@@ -304,6 +303,14 @@
 		margin-left: 400px;
 		margin-top: 250px;
 		z-index: 1;
+	}
+	.icon {
+		position: absolute;
+		width: 20px;
+		height: 20px;
+		pointer-events: none;
+		padding-top: 34px;
+		padding-left: 10px;
 	}
 	@keyframes skeleton-loading {
 		0% {
