@@ -16,6 +16,8 @@
 		height: 100%;
 		min-height: 100vh;
 		width: 100%;
+		z-index: 0;
+		overflow: hidden;
 	}
 
 	:global([data-slot='chart'] .lc-text-svg) {

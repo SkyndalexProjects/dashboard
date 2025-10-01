@@ -13,6 +13,23 @@
 		selectedTab = tab;
 	}
 	console.log('data.guild', data.guild);
+
+	const initCommands = [
+		'ban',
+		'kick',
+		'mute',
+		'unmute',
+		'warn',
+		'clear',
+		'lock',
+		'unlock',
+		'nick',
+		'role',
+		'temprole',
+		'addrole',
+		'removerole',
+		'slowmode',
+	];
 </script>
 
 <svelte:head>
@@ -44,57 +61,116 @@
 	<ManagementNavbar guild={data.guild} user={data.user} {guilds} />
 	<Sidebar guildId={data.guild.id} />
 
-	<div class="welcome-settings">
-		<div class="title-container">
-			Greetings & Goodbye settings
-			<svg class="title-underline" viewBox="0 0 165 2" fill="none" preserveAspectRatio="none">
-				<path d="M0 1L165 1" stroke="#275EE7" stroke-width="2" />
-			</svg>
-		</div>
+	<div class="settings">
+		<div class="welcome-settings">
+			<div class="title-container">
+				Greetings & Goodbye settings
+				<svg class="title-underline" viewBox="0 0 165 2" fill="none" preserveAspectRatio="none">
+					<path d="M0 1L165 1" stroke="#275EE7" stroke-width="2" />
+				</svg>
+			</div>
 
-		{#await data.channels}
-			<div>Loading channels...</div>
-		{:then channels}
-			<div class="tabs">
-				<Tab tabs={['Greetings', 'Goodbye']} {selectedTab} onTabSelect={handleTabSelect}>
-					{#if selectedTab === 'Greetings'}
-						<div class="switch-container">
-							<Switch active={false} /> Enable image
-						</div>
-						<div class="containers">
-							<div class="setting-container dropdown-container">
-								CHANNEL
-								{#if channels}
-									<!-- TODO: fix typing -->
-									<Search
-										menuItems={channels
+			{#await data.channels}
+				<div>Loading channels...</div>
+			{:then channels}
+				<div class="tabs">
+					<Tab tabs={['Greetings', 'Goodbye']} {selectedTab} onTabSelect={handleTabSelect}>
+						{#if selectedTab === 'Greetings'}
+							<div class="switch-container">
+								<Switch active={false} /> Enable image
+							</div>
+							<div class="containers">
+								<div class="setting-container dropdown-container">
+									CHANNEL
+									{#if channels}
+										<!-- TODO: fix typing -->
+										<Search
+												menuItems={channels
 											.filter((channel) => channel.type === 'GuildText')
 											.map((channel) => channel.name)}
-										icon="/icons/dropdowns/hashtag.svg"
-									/>
-								{/if}
-							</div>
-							<div class="setting-container">
-								WELCOME TITLE
-								<img src="/icons/dropdowns/tag.svg" alt="h" class="icon" />
+												icon="/icons/dropdowns/hashtag.svg"
+										/>
+									{/if}
+								</div>
+								<div class="setting-container">
+									WELCOME TITLE
+									<img src="/icons/dropdowns/tag.svg" alt="h" class="icon" />
 
-								<input type="text" class="text-input" />
+									<input type="text" class="text-input" />
+								</div>
 							</div>
-						</div>
-					{:else if selectedTab === 'Goodbye'}
-						<div>Goodbye settings</div>
-					{/if}
-				</Tab>
+						{:else if selectedTab === 'Goodbye'}
+							<div>Goodbye settings</div>
+						{/if}
+					</Tab>
+				</div>
+			{/await}
+		</div>
+
+		<div class="permissions-settings">
+			<div class="title-container">
+				Permissions settings
+				<svg class="title-underline" viewBox="0 0 165 2" fill="none" preserveAspectRatio="none">
+					<path d="M0 1L165 1" stroke="#275EE7" stroke-width="2" />
+				</svg>
 			</div>
-		{/await}
+			{#await data.channels}
+				<div>Loading channels...</div>
+			{:then channels}
+				<div class="setting-container multi-input">
+					BLOCKED COMMANDS
+
+					<Search
+							menuItems={initCommands}
+							icon="/icons/dropdowns/deny.svg"
+							multiSelect={true}
+					/>
+				</div>
+				<div class="setting-container multi-input">
+					BLOCKED CHANNELS
+
+					<Search
+							menuItems={channels
+											.filter((channel) => channel.type === 'GuildText')
+											.map((channel) => channel.name)}
+							icon="/icons/dropdowns/deny.svg"
+							multiSelect={true}
+					/>
+				</div>
+			{/await}
+
+		</div>
 	</div>
 {:catch error}
 	<div class="error-state">Error loading guilds: {error.message}</div>
 {/await}
 
 <style>
+	.settings {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: flex-start;
+		width: 100%;
+		min-height: 100vh;
+		z-index: 1;
+	}
+	.permissions-settings {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		color: #fff;
+		text-align: center;
+		font:
+			700 20px Poppins,
+			sans-serif;
+		margin-left: 100px;
+		margin-top: 140px;
+		width: max-content;
+		z-index: 1;
+	}
 	.welcome-settings {
-		position: absolute;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
@@ -146,6 +222,7 @@
 	}
 
 	.setting-container {
+		position: relative;
 		gap: 15px;
 		display: flex;
 		flex-direction: column;
@@ -156,7 +233,6 @@
 		margin-top: 45px;
 		width: 376px;
 		height: 118px;
-		transform: rotate(0.254deg);
 		align-self: stretch;
 		color: #fff;
 		border-radius: 10px;
@@ -168,10 +244,14 @@
 		font-weight: 700;
 		line-height: normal;
 	}
-
+	.setting-container.multi-input {
+		height: 170px;
+		justify-content: normal;
+		padding-top: 15px;
+	}
 	.dropdown-container {
 		position: relative;
-		z-index: 10;
+		z-index: 10001;
 		overflow: visible;
 	}
 
