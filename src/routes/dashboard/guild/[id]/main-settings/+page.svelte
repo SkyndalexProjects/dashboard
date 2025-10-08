@@ -28,7 +28,7 @@
 		'temprole',
 		'addrole',
 		'removerole',
-		'slowmode',
+		'slowmode'
 	];
 </script>
 
@@ -85,10 +85,10 @@
 									{#if channels}
 										<!-- TODO: fix typing -->
 										<Search
-												menuItems={channels
-											.filter((channel) => channel.type === 'GuildText')
-											.map((channel) => channel.name)}
-												icon="/icons/dropdowns/hashtag.svg"
+											menuItems={channels
+												.filter((channel) => channel.type === 'GuildText')
+												.map((channel) => channel.name)}
+											icon="/icons/dropdowns/hashtag.svg"
 										/>
 									{/if}
 								</div>
@@ -120,25 +120,20 @@
 				<div class="setting-container multi-input">
 					BLOCKED COMMANDS
 
-					<Search
-							menuItems={initCommands}
-							icon="/icons/dropdowns/deny.svg"
-							multiSelect={true}
-					/>
+					<Search menuItems={initCommands} icon="/icons/dropdowns/deny.svg" multiSelect={true} />
 				</div>
 				<div class="setting-container multi-input">
 					BLOCKED CHANNELS
 
 					<Search
-							menuItems={channels
-											.filter((channel) => channel.type === 'GuildText')
-											.map((channel) => channel.name)}
-							icon="/icons/dropdowns/deny.svg"
-							multiSelect={true}
+						menuItems={channels
+							.filter((channel) => channel.type === 'GuildText')
+							.map((channel) => channel.name)}
+						icon="/icons/dropdowns/deny.svg"
+						multiSelect={true}
 					/>
 				</div>
 			{/await}
-
 		</div>
 	</div>
 {:catch error}

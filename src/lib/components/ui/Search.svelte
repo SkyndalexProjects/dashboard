@@ -1,7 +1,13 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
 
-	let { menuItems = [], placeholder = '', inputValue = '', icon = '', multiSelect = false } = $props();
+	let {
+		menuItems = [],
+		placeholder = '',
+		inputValue = '',
+		icon = '',
+		multiSelect = false
+	} = $props();
 
 	let filteredItems: string[] = $derived([]);
 	let showDropdown = $state(false);
@@ -21,7 +27,7 @@
 	function handleBlur() {
 		if (multiSelect) return;
 		setTimeout(() => (showDropdown = false), 100);
-		console.log("clicked outside");
+		console.log('clicked outside');
 	}
 	function selectItem(item: string) {
 		if (multiSelect) {
@@ -62,40 +68,40 @@
 
 	{#if multiSelect}
 		<button
-				class="input-tags"
-				tabindex="0"
-				onfocusin={handleFocus}
-				onclick={() => inputEl && inputEl.focus()}
+			class="input-tags"
+			tabindex="0"
+			onfocusin={handleFocus}
+			onclick={() => inputEl && inputEl.focus()}
 		>
 			{#each selectedItems as item}
-        <span class="selected-item">
-          {item}
-			<button onclick={() => removeSelected(item)}>×</button>
-        </span>
+				<span class="selected-item">
+					{item}
+					<button onclick={() => removeSelected(item)}>×</button>
+				</span>
 			{/each}
 
 			<input
-					id="searchInput"
-					type="text"
-					placeholder={selectedItems.length === 0 ? placeholder : ''}
-					autocomplete="off"
-					bind:this={inputEl}
-					bind:value={inputValue}
-					oninput={handleInput}
-					onfocus={handleFocus}
-					onblur={handleBlur}
-			/>
-		</button>
-	{:else}
-		<input
 				id="searchInput"
 				type="text"
-				{placeholder}
+				placeholder={selectedItems.length === 0 ? placeholder : ''}
 				autocomplete="off"
+				bind:this={inputEl}
 				bind:value={inputValue}
 				oninput={handleInput}
 				onfocus={handleFocus}
 				onblur={handleBlur}
+			/>
+		</button>
+	{:else}
+		<input
+			id="searchInput"
+			type="text"
+			{placeholder}
+			autocomplete="off"
+			bind:value={inputValue}
+			oninput={handleInput}
+			onfocus={handleFocus}
+			onblur={handleBlur}
 		/>
 	{/if}
 
@@ -105,18 +111,18 @@
 		<ul class="dropdown" transition:slide={{ duration: 200 }}>
 			{#each filteredItems as item}
 				<button
-						type="button"
-						class="dropdown-item"
-						class:selected={selectedItems.includes(item)}
-						onmousedown={() => selectItem(item)}
+					type="button"
+					class="dropdown-item"
+					class:selected={selectedItems.includes(item)}
+					onmousedown={() => selectItem(item)}
 				>
-					{item} {#if multiSelect && selectedItems.includes(item)}✓{/if}
+					{item}
+					{#if multiSelect && selectedItems.includes(item)}✓{/if}
 				</button>
 			{/each}
 		</ul>
 	{/if}
 </div>
-
 
 <style>
 	.autocomplete-container {
@@ -188,7 +194,6 @@
 		backdrop-filter: blur(12px);
 		-webkit-backdrop-filter: blur(12px);
 		overflow-y: hidden;
-
 	}
 
 	.dropdown {
@@ -208,7 +213,6 @@
 		margin-top: 10px;
 		backdrop-filter: blur(12px);
 		-webkit-backdrop-filter: blur(12px);
-
 	}
 	.dropdown::-webkit-scrollbar {
 		display: none;
@@ -233,7 +237,6 @@
 		width: 100%;
 		text-align: left;
 		z-index: 10001;
-
 	}
 	.dropdown-item:hover {
 		background-color: rgba(62, 107, 255, 0.15);

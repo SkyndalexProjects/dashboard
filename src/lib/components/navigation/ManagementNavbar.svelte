@@ -5,6 +5,7 @@
 	import Modal from '../ui/Modal.svelte';
 	import Alert from '$lib/components/ui/Alert.svelte';
 	import Dropdown from '$lib/components/ui/Dropdown.svelte';
+	import { authClient } from '$lib/auth-client';
 	let showModal = $state(false);
 	const { user, guild, guilds } = $props();
 
@@ -25,8 +26,10 @@
 			: undefined;
 	}
 
-	function handleLogout(): void {
-		window.location.href = 'http://localhost:3000';
+	async function handleLogout() {
+		await authClient.signOut();
+
+		window.location.href = '/';
 	}
 </script>
 
@@ -96,8 +99,6 @@
 			{/snippet}
 
 			{#snippet items()}
-				<button class="dropdown-item"> Chuj </button>
-				<button class="dropdown-item"> Dupa </button>
 				<button class="dropdown-item logout" onclick={handleLogout}> Logout </button>
 			{/snippet}
 		</Dropdown>

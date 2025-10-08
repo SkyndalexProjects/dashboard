@@ -8,7 +8,7 @@
 	}
 	console.log('data.guilds:', data.guilds);
 	const guilds: APIGuild[] = data.guilds as APIGuild[];
-	const adminGuilds = guilds.filter((guild) => (guild?.permissions & 0x8) === 0x8);
+	const adminGuilds = guilds.filter((guild) => (Number(guild.permissions ?? 0) & 0x8) === 0x8);
 	const withBotAdded = adminGuilds.filter((guild) => guild.isBotAdded);
 	const withoutBotAdded = adminGuilds.filter((guild) => !guild.isBotAdded);
 

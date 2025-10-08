@@ -1,10 +1,15 @@
 <script lang="ts">
 	import type { APIUser } from 'discord-api-types/v10';
 	import getI18nStore from '$lib/i18n';
+	import { authClient } from '$lib/auth-client';
+
 	const i18n = getI18nStore();
 
-	function handleLogin() {
-		window.location.href = 'http://localhost:3000';
+	function handleLogin(e?: MouseEvent) {
+		authClient.signIn.social({
+			provider: 'discord',
+			callbackURL: 'http://localhost:5173/dashboard/guild'
+		});
 	}
 
 	function getAvatarUrl(user: APIUser) {
