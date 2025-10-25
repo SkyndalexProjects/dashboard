@@ -1,12 +1,24 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
 
+	interface Item {
+		id: string;
+		name: string;
+	}
 	let {
 		menuItems = [],
 		placeholder = '',
 		inputValue = '',
 		icon = '',
-		multiSelect = false
+		multiSelect = false,
+		onChange
+	}: {
+		menuItems?: Item[];
+		placeholder?: string;
+		inputValue?: string;
+		icon?: string;
+		multiSelect?: boolean;
+		onChange?: (value: string | string[]) => void;
 	} = $props();
 
 	let filteredItems: string[] = $derived([]);
@@ -14,8 +26,9 @@
 	let selectedItems: string[] = $state([]);
 	let inputEl: HTMLInputElement | null = $state(null);
 
-	function handleInput(event: Event) {
-		filteredItems = menuItems.filter((item) => item.toLowerCase().match(inputValue.toLowerCase()));
+	function handleInput() {
+		const q = inputValue.toLowerCase();
+		filteredItems = menuItems.filter((item) => item?.name?.toLowerCase().includes(q));
 		showDropdown = true;
 	}
 
@@ -27,27 +40,26 @@
 	function handleBlur() {
 		if (multiSelect) return;
 		setTimeout(() => (showDropdown = false), 100);
-		console.log('clicked outside');
 	}
-	function selectItem(item: string) {
+	function selectItem(item: Item) {
 		if (multiSelect) {
-			if (!selectedItems.includes(item)) {
-				selectedItems = [...selectedItems, item];
-			} else {
-				selectedItems = selectedItems.filter((i) => i !== item);
-			}
+			const exists = selectedItems.some((i) => i.id === item.id);
+			selectedItems = exists
+				? selectedItems.filter((i) => i.id !== item.id)
+				: [...selectedItems, item];
+
 			inputValue = '';
 			filteredItems = menuItems;
+			onChange?.(selectedItems.map((i) => i.id));
 		} else {
-			inputValue = item;
+			inputValue = item.name;
 			showDropdown = false;
+			onChange?.(item.id);
 		}
 	}
 	function clickOutside(node: HTMLElement) {
 		const onPointerDown = (e: PointerEvent) => {
-			if (!node.contains(e.target as Node)) {
-				showDropdown = false;
-			}
+			if (!node.contains(e.target as Node)) showDropdown = false;
 		};
 		document.addEventListener('pointerdown', onPointerDown, true);
 		return {
@@ -56,8 +68,9 @@
 			}
 		};
 	}
-	function removeSelected(item: string) {
-		selectedItems = selectedItems.filter((i) => i !== item);
+	function removeSelected(itemId: string) {
+		selectedItems = selectedItems.filter((i) => i.id !== itemId);
+		onChange?.(selectedItems.map((i) => i.id));
 	}
 </script>
 
@@ -90,6 +103,7 @@
 				oninput={handleInput}
 				onfocus={handleFocus}
 				onblur={handleBlur}
+				onchange={onChange}
 			/>
 		</button>
 	{:else}
@@ -102,6 +116,7 @@
 			oninput={handleInput}
 			onfocus={handleFocus}
 			onblur={handleBlur}
+			onchange={onChange}
 		/>
 	{/if}
 
@@ -113,11 +128,12 @@
 				<button
 					type="button"
 					class="dropdown-item"
-					class:selected={selectedItems.includes(item)}
+					class:selected={selectedItems.some((i) => i.id === item.id)}
+					value={item.id}
 					onmousedown={() => selectItem(item)}
 				>
-					{item}
-					{#if multiSelect && selectedItems.includes(item)}✓{/if}
+					{item.name}
+					{#if multiSelect && selectedItems.some((i) => i.id === item.id)}✓{/if}
 				</button>
 			{/each}
 		</ul>
@@ -171,7 +187,7 @@
 		font-weight: 700;
 		max-height: 170px;
 		overflow-y: auto;
-		height: 100px;
+		height: 50px;
 	}
 	.has-icon .input-tags {
 		padding-left: 32px;

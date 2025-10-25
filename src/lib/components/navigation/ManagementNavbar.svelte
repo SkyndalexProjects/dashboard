@@ -264,7 +264,7 @@
 		gap: 10px;
 		border-radius: 10px;
 		background-color: rgba(0, 0, 0, 0.26);
-		width: 190px;
+		width: max-content;
 		height: 64px;
 		color: #667398;
 		text-align: center;

@@ -1,18 +1,47 @@
 <script lang="ts">
 	import ManagementNavbar from '$lib/components/navigation/ManagementNavbar.svelte';
 	import Sidebar from '$lib/components/navigation/Sidebar.svelte';
-	import geti18ncontext from '$lib/i18n';
-	const i18n = geti18ncontext();
-	const { data } = $props();
 	import Tab from '$lib/components/ui/Tab.svelte';
 	import Switch from '$lib/components/ui/Switch.svelte';
 	import Search from '$lib/components/ui/Search.svelte';
+	const { data } = $props();
 	let selectedTab = $state('Greetings');
 
 	function handleTabSelect(tab: string) {
 		selectedTab = tab;
 	}
-	console.log('data.guild', data.guild);
+
+	interface Channel {
+		id: string;
+		guildId: string;
+		name: string;
+		type: string;
+	}
+
+	type Item = { id: string; name: string };
+
+	const defaultSettings = {
+		welcomeChannel: '',
+		goodbyeChannel: '',
+		welcomeTitle: '',
+		goodbyeTitle: '',
+		blockedCommands: [] as string[],
+		blockedChannels: [] as string[]
+	};
+
+	type Settings = typeof defaultSettings;
+
+	let settings: Settings = $state({ ...defaultSettings });
+
+	let isDirty = $state(false);
+
+	function textChannelItems(chs: Channel[]): Item[] {
+		const arr = (chs as Channel[] | undefined) ?? [];
+		console.log('arr', arr);
+		return arr
+			.filter((c: Channel) => c && c.type === 'GuildText')
+			.map((c: Channel) => ({ id: String(c.id), name: String(c.name) }));
+	}
 
 	const initCommands = [
 		'ban',
@@ -30,6 +59,47 @@
 		'removerole',
 		'slowmode'
 	];
+
+	const initCommandItems: Item[] = initCommands.map((c) => ({ id: c, name: c }));
+
+	function isEmpty(value: unknown): boolean {
+		if (value == null) return true;
+		if (typeof value === 'string') return value.trim() === '';
+		if (Array.isArray(value)) return value.length === 0;
+		return false;
+	}
+
+	async function save() {
+		const payload = Object.entries(settings).reduce((acc, [key, value]) => {
+			if (!isEmpty(value)) {
+				// @ts-ignore --
+				acc[key] = value;
+			}
+			return acc;
+		}, {} as Partial<Settings>);
+
+		if (Object.keys(payload).length === 0) {
+			console.warn('No settings to save');
+			isDirty = false;
+			return;
+		}
+
+		try {
+			const response = await fetch(`http://localhost:3000/api/guilds/${data.guild.id}/settings`, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(payload)
+			});
+
+			if (!response.ok) {
+				console.error('Failed to save settings');
+				return;
+			}
+			isDirty = false;
+		} catch (err) {
+			console.error('Save error', err);
+		}
+	}
 </script>
 
 <svelte:head>
@@ -40,6 +110,7 @@
 	<meta property="og:type" content="website" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </svelte:head>
+
 {#await data.guilds}
 	<div class="navbar-skeleton"></div>
 	<div class="sidebar-skeleton"></div>
@@ -61,18 +132,25 @@
 	<ManagementNavbar guild={data.guild} user={data.user} {guilds} />
 	<Sidebar guildId={data.guild.id} />
 
-	<div class="settings">
-		<div class="welcome-settings">
-			<div class="title-container">
-				Greetings & Goodbye settings
-				<svg class="title-underline" viewBox="0 0 165 2" fill="none" preserveAspectRatio="none">
-					<path d="M0 1L165 1" stroke="#275EE7" stroke-width="2" />
-				</svg>
-			</div>
+	{#if isDirty}
+		<div class="save-bar">
+			<div class="save-bar-title">Save data</div>
+			<button class="save-btn" onclick={save}>save data</button>
+		</div>
+	{/if}
 
-			{#await data.channels}
-				<div>Loading channels...</div>
-			{:then channels}
+	{#await data.channels}
+		<div>Loading channels...</div>
+	{:then channels}
+		<div class="settings">
+			<div class="welcome-settings">
+				<div class="title-container">
+					Greetings & Goodbye settings
+					<svg class="title-underline" viewBox="0 0 165 2" fill="none" preserveAspectRatio="none">
+						<path d="M0 1L165 1" stroke="#275EE7" stroke-width="2" />
+					</svg>
+				</div>
+
 				<div class="tabs">
 					<Tab tabs={['Greetings', 'Goodbye']} {selectedTab} onTabSelect={handleTabSelect}>
 						{#if selectedTab === 'Greetings'}
@@ -82,60 +160,99 @@
 							<div class="containers">
 								<div class="setting-container dropdown-container">
 									CHANNEL
-									{#if channels}
-										<!-- TODO: fix typing -->
-										<Search
-											menuItems={channels
-												.filter((channel) => channel.type === 'GuildText')
-												.map((channel) => channel.name)}
-											icon="/icons/dropdowns/hashtag.svg"
-										/>
-									{/if}
+									<Search
+										menuItems={textChannelItems(channels)}
+										onChange={(value) => {
+											settings.welcomeChannel = Array.isArray(value) ? (value[0] ?? '') : value;
+											isDirty = true;
+										}}
+										icon="/icons/dropdowns/hashtag.svg"
+									/>
 								</div>
 								<div class="setting-container">
 									WELCOME TITLE
 									<img src="/icons/dropdowns/tag.svg" alt="h" class="icon" />
-
-									<input type="text" class="text-input" />
+									<input
+										type="text"
+										class="text-input"
+										value={settings.welcomeTitle}
+										oninput={(value) => {
+											settings.welcomeTitle = value.currentTarget.value;
+											isDirty = true;
+										}}
+									/>
 								</div>
 							</div>
 						{:else if selectedTab === 'Goodbye'}
-							<div>Goodbye settings</div>
+							<div class="containers">
+								<div class="setting-container dropdown-container">
+									CHANNEL
+									<Search
+										menuItems={textChannelItems(channels)}
+										onChange={(value) => {
+											settings.goodbyeChannel = Array.isArray(value) ? (value[0] ?? '') : value;
+											isDirty = true;
+										}}
+										icon="/icons/dropdowns/hashtag.svg"
+									/>
+								</div>
+								<div class="setting-container">
+									WELCOME TITLE
+									<img src="/icons/dropdowns/tag.svg" alt="h" class="icon" />
+									<input
+										type="text"
+										class="text-input"
+										value={settings.goodbyeTitle}
+										oninput={(value) => {
+											settings.goodbyeTitle = value.currentTarget.value;
+											isDirty = true;
+										}}
+									/>
+								</div>
+							</div>
 						{/if}
 					</Tab>
 				</div>
-			{/await}
-		</div>
-
-		<div class="permissions-settings">
-			<div class="title-container">
-				Permissions settings
-				<svg class="title-underline" viewBox="0 0 165 2" fill="none" preserveAspectRatio="none">
-					<path d="M0 1L165 1" stroke="#275EE7" stroke-width="2" />
-				</svg>
 			</div>
-			{#await data.channels}
-				<div>Loading channels...</div>
-			{:then channels}
+
+			<div class="permissions-settings">
+				<div class="title-container">
+					Permissions settings
+					<svg class="title-underline" viewBox="0 0 165 2" fill="none" preserveAspectRatio="none">
+						<path d="M0 1L165 1" stroke="#275EE7" stroke-width="2" />
+					</svg>
+				</div>
+
 				<div class="setting-container multi-input">
 					BLOCKED COMMANDS
-
-					<Search menuItems={initCommands} icon="/icons/dropdowns/deny.svg" multiSelect={true} />
-				</div>
-				<div class="setting-container multi-input">
-					BLOCKED CHANNELS
-
 					<Search
-						menuItems={channels
-							.filter((channel) => channel.type === 'GuildText')
-							.map((channel) => channel.name)}
+						menuItems={initCommandItems}
 						icon="/icons/dropdowns/deny.svg"
 						multiSelect={true}
+						onChange={(value) => {
+							settings.blockedCommands = Array.isArray(value) ? value : [value];
+							isDirty = true;
+						}}
 					/>
 				</div>
-			{/await}
+
+				<div class="setting-container multi-input">
+					BLOCKED CHANNELS
+					<Search
+						menuItems={textChannelItems(channels)}
+						icon="/icons/dropdowns/deny.svg"
+						multiSelect={true}
+						onChange={(value) => {
+							settings.blockedChannels = Array.isArray(value) ? value : [value];
+							isDirty = true;
+						}}
+					/>
+				</div>
+			</div>
 		</div>
-	</div>
+	{:catch error}
+		<div class="error-state">Error loading channels: {error.message}</div>
+	{/await}
 {:catch error}
 	<div class="error-state">Error loading guilds: {error.message}</div>
 {/await}
@@ -180,23 +297,19 @@
 		width: max-content;
 		z-index: 1;
 	}
-
 	.title-container {
 		display: inline-block;
 		position: relative;
 	}
-
 	.title-underline {
 		width: 100%;
 		height: 2px;
 		margin-top: 4px;
 		display: block;
 	}
-
 	.tabs {
 		margin-top: 35px;
 	}
-
 	.switch-container {
 		display: flex;
 		flex-direction: row;
@@ -211,11 +324,9 @@
 		line-height: normal;
 		margin-top: 30px;
 	}
-
 	.containers {
 		overflow: visible;
 	}
-
 	.setting-container {
 		position: relative;
 		gap: 15px;
@@ -240,7 +351,7 @@
 		line-height: normal;
 	}
 	.setting-container.multi-input {
-		height: 170px;
+		height: 100px;
 		justify-content: normal;
 		padding-top: 15px;
 	}
@@ -249,7 +360,6 @@
 		z-index: 10001;
 		overflow: visible;
 	}
-
 	.text-input {
 		all: unset;
 		text-align: left;
@@ -267,7 +377,40 @@
 		z-index: 0;
 	}
 
-	/* Skeleton loading styles */
+	/* Pasek zapisu */
+	.save-bar {
+		position: fixed;
+		top: 90px;
+		right: 24px;
+		display: flex;
+		gap: 12px;
+		align-items: center;
+		background: rgba(0, 0, 0, 0.6);
+		border: 1px solid #275ee7;
+		color: #fff;
+		padding: 10px 14px;
+		border-radius: 8px;
+		z-index: 10002;
+		backdrop-filter: blur(8px);
+	}
+	.save-bar-title {
+		font:
+			700 16px Poppins,
+			sans-serif;
+	}
+	.save-btn {
+		all: unset;
+		cursor: pointer;
+		background: #275ee7;
+		color: #fff;
+		padding: 6px 10px;
+		border-radius: 6px;
+		font:
+			700 14px Poppins,
+			sans-serif;
+	}
+
+	/* Skeletony */
 	.navbar-skeleton {
 		position: fixed;
 		caret-color: transparent;
@@ -319,7 +462,6 @@
 		margin-left: 400px;
 		margin-top: 100px;
 	}
-
 	.text-skeleton {
 		background: linear-gradient(
 			90deg,
