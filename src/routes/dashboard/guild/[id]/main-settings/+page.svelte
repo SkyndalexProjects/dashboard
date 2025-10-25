@@ -33,11 +33,13 @@
 
 	let settings: Settings = $state({ ...defaultSettings });
 
+    // TODO: make it better or smth
+
 	let isDirty = $state(false);
+	let isFadingOut = $state(false);
 
 	function textChannelItems(chs: Channel[]): Item[] {
 		const arr = (chs as Channel[] | undefined) ?? [];
-		console.log('arr', arr);
 		return arr
 			.filter((c: Channel) => c && c.type === 'GuildText')
 			.map((c: Channel) => ({ id: String(c.id), name: String(c.name) }));
@@ -80,7 +82,11 @@
 
 		if (Object.keys(payload).length === 0) {
 			console.warn('No settings to save');
-			isDirty = false;
+			isFadingOut = true;
+			setTimeout(() => {
+				isDirty = false;
+				isFadingOut = false;
+			}, 600);
 			return;
 		}
 
@@ -95,10 +101,23 @@
 				console.error('Failed to save settings');
 				return;
 			}
-			isDirty = false;
+			isFadingOut = true;
+			setTimeout(() => {
+				isDirty = false;
+				isFadingOut = false;
+			}, 600);
 		} catch (err) {
 			console.error('Save error', err);
 		}
+	}
+
+	function reset() {
+		settings = { ...defaultSettings };
+		isFadingOut = true;
+		setTimeout(() => {
+			isDirty = false;
+			isFadingOut = false;
+		}, 600);
 	}
 </script>
 
@@ -131,14 +150,6 @@
 {:then guilds}
 	<ManagementNavbar guild={data.guild} user={data.user} {guilds} />
 	<Sidebar guildId={data.guild.id} />
-
-	{#if isDirty}
-		<div class="save-bar">
-			<div class="save-bar-title">Save data</div>
-			<button class="save-btn" onclick={save}>save data</button>
-		</div>
-	{/if}
-
 	{#await data.channels}
 		<div>Loading channels...</div>
 	{:then channels}
@@ -235,7 +246,6 @@
 						}}
 					/>
 				</div>
-
 				<div class="setting-container multi-input">
 					BLOCKED CHANNELS
 					<Search
@@ -250,6 +260,15 @@
 				</div>
 			</div>
 		</div>
+		{#if isDirty}
+			<div class="save-bar" class:fading-out={isFadingOut}>
+				<div class="save-bar-title">Careful - you have unsaved changes!</div>
+				<div class="save-bar-buttons">
+					<button class="save-btn" onclick={save}>Save changes</button>
+					<button class="decline-btn" onclick={reset}> Reset </button>
+				</div>
+			</div>
+		{/if}
 	{:catch error}
 		<div class="error-state">Error loading channels: {error.message}</div>
 	{/await}
@@ -377,21 +396,29 @@
 		z-index: 0;
 	}
 
-	/* Pasek zapisu */
 	.save-bar {
 		position: fixed;
-		top: 90px;
-		right: 24px;
+		bottom: 24px;
+		left: 50%;
+		transform: translateX(-50%);
 		display: flex;
-		gap: 12px;
+		gap: 5px;
 		align-items: center;
-		background: rgba(0, 0, 0, 0.6);
-		border: 1px solid #275ee7;
+		justify-content: space-between;
+		background: rgba(0, 0, 0, 0.5);
+		border: 1px solid #223a8a;
 		color: #fff;
-		padding: 10px 14px;
-		border-radius: 8px;
+		width: 30%;
+		height: 60px;
+		border-radius: 15px;
 		z-index: 10002;
 		backdrop-filter: blur(8px);
+		padding: 0 20px;
+		animation: save-bar-appear 0.4s ease-out;
+	}
+	.save-bar-buttons {
+		display: flex;
+		gap: 15px;
 	}
 	.save-bar-title {
 		font:
@@ -403,13 +430,62 @@
 		cursor: pointer;
 		background: #275ee7;
 		color: #fff;
-		padding: 6px 10px;
+		padding: 10px 15px;
 		border-radius: 6px;
 		font:
 			700 14px Poppins,
 			sans-serif;
+		transition: all 0.3s ease;
 	}
 
+	.decline-btn {
+		all: unset;
+		cursor: pointer;
+		background: red;
+		color: #fff;
+		padding: 10px 15px;
+		border-radius: 6px;
+		font:
+			700 14px Poppins,
+			sans-serif;
+		border: transparent;
+		transition: all 0.3s ease;
+	}
+	.save-btn:hover {
+		background: #1c4ed8;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(39, 94, 231, 0.4);
+	}
+
+	.decline-btn:hover {
+		background: #dc2626;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+	}
+
+	.save-btn:active {
+		transform: translateY(0);
+	}
+
+	.decline-btn:active {
+		transform: translateY(0);
+	}
+	.save-bar.fading-out {
+		animation: save-bar-disappear 0.6s ease-in forwards;
+	}
+	@keyframes save-bar-disappear {
+		0% {
+			bottom: 24px;
+			opacity: 1;
+		}
+		40% {
+			opacity: 0.6;
+		}
+		100% {
+			bottom: -100px;
+			opacity: 0;
+		}
+	}
 	/* Skeletony */
 	.navbar-skeleton {
 		position: fixed;
