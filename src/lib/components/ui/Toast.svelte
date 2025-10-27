@@ -81,7 +81,7 @@
 			width: 100%;
 		}
 		to {
-			width: 0%;
+			width: 0;
 		}
 	}
 </style>

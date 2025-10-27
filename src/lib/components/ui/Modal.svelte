@@ -26,14 +26,15 @@
 <style>
 	dialog {
 		border-radius: 0.2em;
-		border: none;
+		border: 1px solid rgba(255, 255, 255, 0.05);
+		box-shadow: 0 0 20px #0000001a;
 		padding: 0;
-		background-color: rgb(14, 13, 13);
-		z-index: -1;
+		background-color: rgba(255, 255, 255, 0.01);
+		z-index: 10000;
 	}
 	dialog::backdrop {
-		backdrop-filter: blur(15px);
-		background-color: rgba(0, 0, 0, 0.4);
+		backdrop-filter: blur(35px);
+		background-color: rgba(0, 0, 0, 0.15);
 	}
 	dialog > div {
 		padding: 1em;

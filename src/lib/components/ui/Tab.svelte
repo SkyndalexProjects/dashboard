@@ -1,5 +1,5 @@
 <script lang="ts">
-	const { tabs = [], selectedTab = '', onTabSelect = (tab: string) => {}, children } = $props();
+	const { tabs = [], selectedTab = '', onTabSelect = () => {}, children } = $props();
 	let activeTab = $state(selectedTab || (tabs.length > 0 ? tabs[0] : ''));
 	function selectTab(tab: string) {
 		activeTab = tab;

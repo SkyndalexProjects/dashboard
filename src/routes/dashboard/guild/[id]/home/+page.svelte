@@ -8,11 +8,11 @@
 	import Tab from '$lib/components/ui/Tab.svelte';
 	import type { APIUser } from 'discord-api-types/v10';
 	const { data } = $props();
-	console.log('data.guild', data.guild);
-	function getAvatarUrl(user: APIUser) {
-		if (user && user.id && user.avatar) {
-			return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.webp?size=1024`;
-		}
+
+	function getAvatarUrl(user: APIUser | undefined): string {
+		return user?.id && user?.avatar
+			? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.webp?size=1024`
+			: 'https://cdn.discordapp.com/embed/avatars/0.png';
 	}
 
 	const revenueData = [
@@ -32,6 +32,7 @@
 		{ date: new Date('2023-06-01'), value: 20 },
 		{ date: new Date('2023-07-01'), value: 0 }
 	];
+
 	const logs = [
 		{
 			timestamp: '2024-06-01 12:00',
@@ -78,11 +79,11 @@
 	];
 	const recentChanges = [
 		{ date: '2024-06-01', change: 'New version update changelog', author: data.user },
-		{ date: '2024-06-02', change: 'Downtime warning!', author: data.user },
-		{ date: '2024-06-02', change: 'Downtime warning!', author: data.user },
-		{ date: '2024-06-02', change: 'Downtime warning!', author: data.user },
-		{ date: '2024-06-02', change: 'Downtime warning!', author: data.user },
-		{ date: '2024-06-02', change: 'Downtime warning!', author: data.user }
+		{ date: '2024-06-15', change: 'Security patch applied', author: data.user },
+		{ date: '2024-06-08', change: 'Feature rollback initiated', author: data.user },
+		{ date: '2024-06-22', change: 'Database maintenance scheduled', author: data.user },
+		{ date: '2024-06-11', change: 'New API endpoints released', author: data.user },
+		{ date: '2024-06-19', change: 'Performance optimization completed', author: data.user }
 	];
 	let selectedTab = $state('Dashboard');
 	function handleTabSelect(tab: string) {
@@ -104,6 +105,7 @@
 {:then guilds}
 	<ManagementNavbar guild={data.guild} user={data.user} {guilds} />
 	<Sidebar guildId={data.guild.id} />
+
 	<div class="app">
 		<div class="alerts">
 			<Alert type="info">
@@ -117,11 +119,10 @@
 	</div>
 
 	<div class="economy-charts">
-		Economy charts
-		<svg xmlns="http://www.w3.org/2000/svg" width="165" height="2" viewBox="0 0 165 2" fill="none">
-			<path d="M0 1L165 1" stroke="#275EE7" stroke-width="2" />
-		</svg>
-
+		<div class="section-title">
+			Economy charts
+			<div class="underline-vector"></div>
+		</div>
 		<div class="chart" data-slot="chart">
 			<svg
 				width="770"
@@ -317,12 +318,10 @@
 		</div>
 	</div>
 	<div class="recent-changes">
-		Recent changes
-		<svg xmlns="http://www.w3.org/2000/svg" width="165" height="2" viewBox="0 0 165 2" fill="none">
-			<path d="M0 1L165 1" stroke="#275EE7" stroke-width="2" />
-		</svg>
-
-		<!-- TODO: fix tabs design + add icons -->
+		<div class="section-title">
+			Recent changes
+			<div class="underline-vector"></div>
+		</div>
 
 		<div class="recent-changes-container">
 			<Tab tabs={['Dashboard', 'Bot']} {selectedTab} onTabSelect={handleTabSelect}>
@@ -333,7 +332,9 @@
 								<img class="change-avatar" src={getAvatarUrl(change.author)} alt="avatar" />
 								<div class="change-content">
 									<p class="change-header">{change.change}</p>
-									<p class="change-footer">{change.date}</p>
+									<p class="change-footer">
+										{change.date} · <span class="view-details-link">View details</span>
+									</p>
 								</div>
 							</div>
 						{/each}
@@ -348,10 +349,10 @@
 		</div>
 	</div>
 	<div class="dashboard-log">
-		Dashboard log
-		<svg xmlns="http://www.w3.org/2000/svg" width="165" height="2" viewBox="0 0 165 2" fill="none">
-			<path d="M0 1L165 1" stroke="#275EE7" stroke-width="2" />
-		</svg>
+		<div class="section-title">
+			Economy charts
+			<div class="underline-vector"></div>
+		</div>
 
 		<div class="dashboard-log-container">
 			<table class="dashboard-log-table">
@@ -391,6 +392,7 @@
 	/* TODO: refactor font settings to the one line  */
 
 	.app {
+		overflow-y: auto;
 		display: flex;
 		align-items: flex-start;
 		justify-content: center;
@@ -508,6 +510,10 @@
 		margin-right: 16px;
 		object-fit: cover;
 	}
+	.view-details-link {
+		color: #275ee7;
+		cursor: pointer;
+	}
 	.dashboard-log-container {
 		width: 658px;
 		overflow-x: hidden;
@@ -621,6 +627,7 @@
 		width: 809px;
 		height: 537px;
 		z-index: -1;
+		border: 1px solid rgba(255, 255, 255, 0.2);
 	}
 	.chart-divider {
 		position: absolute;
@@ -646,7 +653,7 @@
 			'liga' off,
 			'clig' off;
 		font:
-			400 18px Inter,
+			400 15px Inter,
 			sans-serif;
 		margin-top: 0;
 	}
@@ -656,7 +663,7 @@
 			'liga' off,
 			'clig' off;
 		font:
-			700 22px Poppins,
+			700 20px Poppins,
 			sans-serif;
 		margin-top: 0;
 	}
@@ -681,7 +688,7 @@
 		color: #3e6bff;
 		text-align: center;
 		font:
-			400 15px Poppins,
+			400 13px Poppins,
 			sans-serif;
 		font-feature-settings:
 			'liga' off,
@@ -697,5 +704,12 @@
 		justify-content: center;
 		width: 105px;
 		gap: 9px;
+	}
+	.underline-vector {
+		width: 100%;
+		height: 4px;
+		background-color: #275ee7;
+		flex-shrink: 0;
+		animation: slide 0.5s ease forwards;
 	}
 </style>

@@ -106,7 +106,6 @@
 			width="290"
 			height="2"
 			viewBox="0 0 290 2"
-			fill="none"
 			class="divider"
 		>
 			<path d="M0 1H290" stroke="white" stroke-opacity="0.31" />
@@ -196,16 +195,17 @@
 		align-items: center;
 		justify-content: flex-start;
 		width: 280px;
-		height: 53px;
+		height: 50px;
 		flex-shrink: 0;
 		border-radius: 0 20px 20px 0;
 		border-left: 5px solid #275ee7;
 		background: rgba(0, 0, 0, 0.35);
 		font:
-			700 20px / normal 'Be Vietnam Pro',
+			700 17px / normal 'Be Vietnam Pro',
 			sans-serif;
 		gap: 15px;
 		cursor: pointer;
+		margin-right: 30px;
 	}
 	.item-inactive {
 		display: flex;
@@ -213,17 +213,19 @@
 		align-items: center;
 		justify-content: flex-start;
 		width: 280px;
-		height: 53px;
+		height: 50px;
 		flex-shrink: 0;
 		border-radius: 0 20px 20px 0;
 		color: rgba(255, 255, 255, 0.56);
 		font:
-			700 20px / normal 'Be Vietnam Pro',
+			700 17px / normal 'Be Vietnam Pro',
 			sans-serif;
 		gap: 15px;
 		margin-right: 30px;
 	}
 	.icon {
+		width: 20px;
+		height: 20px;
 		display: inline-block;
 		flex-direction: row;
 		align-items: center;

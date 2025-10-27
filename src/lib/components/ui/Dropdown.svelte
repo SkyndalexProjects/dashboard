@@ -7,8 +7,8 @@
 	interface DropdownProps {
 		position?: 'left' | 'right' | 'center';
 		maxWidth?: string;
-		trigger?: () => Snippet | null;
-		items?: () => Snippet | null;
+		trigger?: Snippet;
+		items?: Snippet;
 	}
 
 	const { trigger, items }: DropdownProps = $props();
@@ -121,6 +121,7 @@
 		align-items: center;
 		justify-content: center;
 		padding: 8px;
+
 		border: 1px solid rgba(255, 255, 255, 0.2);
 		border-radius: 6px;
 		color: #ffffff;
@@ -140,10 +141,7 @@
 		align-items: flex-start;
 		justify-content: flex-start;
 		width: 100%;
-		z-index: 1000;
 		border-radius: 8px;
-		backdrop-filter: blur(12px);
-		-webkit-backdrop-filter: blur(12px);
 	}
 
 	.dropdown-item {
@@ -156,7 +154,6 @@
 		font-family: 'Be Vietnam Pro', sans-serif;
 		font-size: 14px;
 		font-weight: 500;
-		background: transparent;
 		border: none;
 		border-radius: 6px;
 		cursor: pointer;

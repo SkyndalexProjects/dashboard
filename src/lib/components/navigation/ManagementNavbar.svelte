@@ -20,10 +20,10 @@
 			: 'https://cdn.discordapp.com/embed/avatars/0.png';
 	}
 
-	function getAvatarUrl(user: APIUser): string | undefined {
+	function getAvatarUrl(user: APIUser): string {
 		return user?.id && user?.avatar
 			? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.webp?size=1024`
-			: undefined;
+			: 'https://cdn.discordapp.com/embed/avatars/0.png';
 	}
 
 	async function handleLogout() {
@@ -44,50 +44,27 @@
 
 		<div class="version">v0.0.1-experimental</div>
 
-		<button class="guild-selector" onclick={() => (showModal = true)}>
-			<img src={getGuildAvatarUrl(guild)} alt={guild?.name || 'Avatar'} class="guild-icon" />
-			{guild?.name}
-		</button>
-
-		<Modal bind:showModal>
-			{#snippet header()}
-				<div class="headers">
-					Logged in as <img
-						src={getAvatarUrl(user)}
-						alt={user?.username || 'Avatar'}
-						class="login-icon"
-					/> <span class="header-username"> {user?.username} </span>
-				</div>
-
-				<div class="header-alert">
-					<Alert type="info">Please choose a guild.</Alert>
-				</div>
+		<Dropdown>
+			{#snippet trigger()}
+				<button class="guild-selector">
+					<img src={getGuildAvatarUrl(guild)} alt={guild?.name || 'Avatar'} class="guild-icon" />
+					{guild?.name}
+				</button>
 			{/snippet}
 
-			{#snippet children()}
-				<ul>
-					{#if adminGuilds}
-						{#each adminGuilds as guild}
-							<button
-								tabindex="0"
-								class="guild-list-item"
-								onclick={() => {
-									window.location.href = `/dashboard/guild/${guild.id}/home`;
-									showModal = false;
-								}}
-							>
-								<img
-									src={getGuildAvatarUrl(guild)}
-									alt={guild.name || 'Guild Icon'}
-									class="guild-icon"
-								/>
-								{guild.name}
-							</button>
-						{/each}
-					{/if}
-				</ul>
+			{#snippet items()}
+				{#each adminGuilds as adminGuild}
+					<a href={`/manage/${adminGuild.id}`} class="guild-item">
+						<img
+							src={getGuildAvatarUrl(adminGuild)}
+							alt={adminGuild?.name || 'Avatar'}
+							class="guild-icon"
+						/>
+						<span>{adminGuild?.name}</span>
+					</a>
+				{/each}
 			{/snippet}
-		</Modal>
+		</Dropdown>
 	</div>
 	<div class="right-corner">
 		<Dropdown>
@@ -120,64 +97,8 @@
 		background: rgba(0, 0, 0, 0.2);
 		backdrop-filter: blur(8px);
 		-webkit-backdrop-filter: blur(8px);
-		z-index: 1000;
 		user-select: none;
-	}
-	.guild-list-item {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: flex-start;
-		gap: 15px;
-		width: 898px;
-		height: 90px;
-		padding: 0 20px;
-		color: #ffffff;
-		font-family: 'Be Vietnam Pro', sans-serif;
-		font-size: 18px;
-		font-style: normal;
-		font-weight: 500;
-		line-height: normal;
-		cursor: pointer;
-		border-radius: 10px;
-		transition:
-			background-color 0.3s ease,
-			transform 0.3s ease;
-	}
-	.guild-list-item:hover {
-		background-color: rgba(62, 107, 255, 0.15);
-		transform: scale(1.03);
-	}
-	.headers {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		color: rgba(255, 255, 255, 0.69);
-		text-align: center;
-		font-family: Poppins, sans-serif;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 500;
-		line-height: normal;
-		gap: 10px;
-	}
-	.header-alert {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		margin-top: 30px;
-		margin-bottom: 30px;
-	}
-	.header-username {
-		color: #fff;
-		text-align: center;
-		font-family: Poppins, sans-serif;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 500;
-		line-height: normal;
+		z-index: 1000;
 	}
 	.left-corner {
 		display: flex;
@@ -227,8 +148,8 @@
 	}
 	.guild-selector {
 		gap: 15px;
-		margin-left: 60px;
 		display: inline-flex;
+		margin-left: 50px;
 		flex-direction: row;
 		align-items: center;
 		justify-content: flex-start;
@@ -263,7 +184,7 @@
 		justify-content: center;
 		gap: 10px;
 		border-radius: 10px;
-		background-color: rgba(0, 0, 0, 0.26);
+		background: rgba(0, 0, 0, 0.3);
 		width: max-content;
 		height: 64px;
 		color: #667398;
@@ -299,7 +220,7 @@
 		padding: 10px;
 		color: #ffffff;
 		font-family: 'Be Vietnam Pro', sans-serif;
-		background-color: rgba(0, 0, 0, 0.5);
+		background-color: #131313;
 		font-size: 15px;
 		font-weight: 500;
 		text-align: left;
@@ -308,9 +229,34 @@
 		margin-top: 10px;
 		transition: background-color 0.2s ease;
 	}
-
+	.guild-item {
+		z-index: 100000;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 12px;
+		width: 100%;
+		max-width: 100%;
+		height: 50px;
+		margin-left: 50px;
+		color: #ffffff;
+		background-color: #131313;
+		border-radius: 5px;
+		border: 1px solid rgba(44, 44, 44, 0.2);
+		font-family: 'Be Vietnam Pro', sans-serif;
+		font-size: 15px;
+		font-weight: 500;
+		text-align: left;
+		cursor: pointer;
+		margin-top: 5px;
+		text-decoration: none;
+	}
 	.dropdown-item:hover {
-		background-color: rgba(95, 135, 234);
+		background-color: #5f87eaff;
+	}
+	.guild-item:hover {
+		background-color: #5f87eaff;
 	}
 
 	.dropdown-item.logout {
@@ -318,6 +264,6 @@
 	}
 
 	.dropdown-item.logout:hover {
-		background-color: rgba(255, 107, 107, 0.15);
+		background-color: rgb(27, 27, 27);
 	}
 </style>

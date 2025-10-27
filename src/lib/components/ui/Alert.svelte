@@ -8,7 +8,6 @@
 			width="30"
 			height="30"
 			viewBox="0 0 30 30"
-			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
 			class="alert-icon"
 		>
@@ -43,7 +42,7 @@
 					y2="26.2499"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#FFD782" />
+					<stop offset="0" stop-color="#FFD782" />
 					<stop offset="0.161" stop-color="#FED57C" />
 					<stop offset="0.372" stop-color="#FCCE6C" />
 					<stop offset="0.61" stop-color="#F9C351" />
@@ -58,7 +57,7 @@
 					y2="26.2499"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#FFD375" stop-opacity="0" />
+					<stop offset="0" stop-color="#FFD375" stop-opacity="0" />
 					<stop offset="0.382" stop-color="#FFD374" stop-opacity="0.01" />
 					<stop offset="0.52" stop-color="#FED171" stop-opacity="0.039" />
 					<stop offset="0.619" stop-color="#FCCE6B" stop-opacity="0.092" />
@@ -78,7 +77,7 @@
 					y2="13.9656"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#FFD375" stop-opacity="0" />
+					<stop offset="0" stop-color="#FFD375" stop-opacity="0" />
 					<stop offset="0.382" stop-color="#FFD374" stop-opacity="0.01" />
 					<stop offset="0.52" stop-color="#FED171" stop-opacity="0.039" />
 					<stop offset="0.619" stop-color="#FCCE6B" stop-opacity="0.092" />
@@ -98,7 +97,7 @@
 					y2="13.6974"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#FFD375" stop-opacity="0" />
+					<stop offset="0" stop-opacity="0" />
 					<stop offset="0.382" stop-color="#FFD374" stop-opacity="0.01" />
 					<stop offset="0.52" stop-color="#FED171" stop-opacity="0.039" />
 					<stop offset="0.619" stop-color="#FCCE6B" stop-opacity="0.092" />
@@ -118,7 +117,7 @@
 					y2="23.125"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#4A4A4A" />
+					<stop stop-color="#4A4A4A" offset="0" />
 					<stop offset="1" stop-color="#212121" />
 				</linearGradient>
 			</defs>
@@ -128,7 +127,6 @@
 			width="30"
 			height="30"
 			viewBox="0 0 30 30"
-			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
 			class="alert-icon"
 		>

@@ -33,7 +33,7 @@
 
 	let settings: Settings = $state({ ...defaultSettings });
 
-    // TODO: make it better or smth
+	// TODO: make it better or smth
 
 	let isDirty = $state(false);
 	let isFadingOut = $state(false);

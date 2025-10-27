@@ -5,6 +5,7 @@
 		id: string;
 		name: string;
 	}
+
 	let {
 		menuItems = [],
 		placeholder = '',
@@ -21,9 +22,9 @@
 		onChange?: (value: string | string[]) => void;
 	} = $props();
 
-	let filteredItems: string[] = $derived([]);
+	let filteredItems: Item[] = $derived([]);
 	let showDropdown = $state(false);
-	let selectedItems: string[] = $state([]);
+	let selectedItems: Item[] = $state([]);
 	let inputEl: HTMLInputElement | null = $state(null);
 
 	function handleInput() {
@@ -62,11 +63,6 @@
 			if (!node.contains(e.target as Node)) showDropdown = false;
 		};
 		document.addEventListener('pointerdown', onPointerDown, true);
-		return {
-			destroy() {
-				document.removeEventListener('pointerdown', onPointerDown, true);
-			}
-		};
 	}
 	function removeSelected(itemId: string) {
 		selectedItems = selectedItems.filter((i) => i.id !== itemId);
@@ -89,7 +85,13 @@
 			{#each selectedItems as item}
 				<span class="selected-item">
 					{item.name}
-					<button onclick={() => removeSelected(item)}>×</button>
+					<span
+						class="remove-btn"
+						role="button"
+						tabindex="0"
+						onclick={() => removeSelected(item.id)}
+						onkeydown={(e) => e.key === 'Enter' && removeSelected(item.id)}>×</span
+					>
 				</span>
 			{/each}
 
@@ -103,7 +105,6 @@
 				oninput={handleInput}
 				onfocus={handleFocus}
 				onblur={handleBlur}
-				onchange={onChange}
 			/>
 		</button>
 	{:else}
@@ -116,7 +117,6 @@
 			oninput={handleInput}
 			onfocus={handleFocus}
 			onblur={handleBlur}
-			onchange={onChange}
 		/>
 	{/if}
 
@@ -269,14 +269,6 @@
 		font-size: 13px;
 		display: flex;
 		align-items: center;
-	}
-	.selected-item button {
-		background: none;
-		border: none;
-		color: #fff;
-		margin-left: 5px;
-		cursor: pointer;
-		font-size: 15px;
 	}
 
 	.icon {
