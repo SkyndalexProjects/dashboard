@@ -324,7 +324,7 @@
 		</div>
 
 		<div class="recent-changes-container">
-			<Tab tabs={['Dashboard', 'Bot']} {selectedTab} onTabSelect={handleTabSelect}>
+            <Tab tabs={['Dashboard', 'Bot']} {selectedTab} onTabSelect={handleTabSelect} style="recent-tabs">
 				{#if selectedTab === 'Dashboard'}
 					<div class="dashboard">
 						{#each recentChanges as change}
@@ -389,7 +389,22 @@
 {/await}
 
 <style>
-	/* TODO: refactor font settings to the one line  */
+
+    :global(.tabs.recent-tabs) {
+        --tab-background: rgba(0,0,0,0.1);
+        --tab-color: rgba(255,255,255,0.7);
+        --tab-hover-color: #e6f0ff;
+        --tab-selected-color: #ffffff;
+        --tab-selected-background: rgba(0,0,0,0.3);
+        --tab-selected-weight: 700;
+        --tab-font-size: 20px;
+        --tabs-gap: 0.75rem;
+        --tabs-border-color: rgba(255,255,255,0.08);
+        --tab-selected-width: 180px;
+        --tab-selected-height: 60px;
+        --tab-width: 120px;
+        --tab-height: 60px;
+    }
 
 	.app {
 		overflow-y: auto;
