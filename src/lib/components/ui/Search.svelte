@@ -88,7 +88,7 @@
 		>
 			{#each selectedItems as item}
 				<span class="selected-item">
-					{item}
+					{item.name}
 					<button onclick={() => removeSelected(item)}>×</button>
 				</span>
 			{/each}
