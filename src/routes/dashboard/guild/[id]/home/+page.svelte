@@ -405,6 +405,10 @@
         --tab-width: 120px;
         --tab-height: 60px;
     }
+    :global(.alert) {
+        --alert-max-width: 680px;
+        --alert-width: 762px;
+    }
 
 	.app {
 		overflow-y: auto;

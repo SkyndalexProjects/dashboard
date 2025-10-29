@@ -1,8 +1,8 @@
 <script lang="ts">
-	const { children, type } = $props();
+	const { children, type, style = ""} = $props();
 </script>
 
-<div class="alert {type}">
+<div class="alert {type} {style}">
 	{#if type === 'warning'}
 		<svg
 			width="30"
@@ -162,16 +162,20 @@
 		border-radius: 5px;
 		border-left: 10px solid #f1ab15;
 		background: rgba(0, 0, 0, 0.3);
-		width: auto;
 		color: #fff;
 		gap: 15px;
-		text-align: center;
+		text-align: left;
+        text-wrap: wrap;
+        overflow-wrap: break-word;
 		font:
 			700 16px / normal '--font-vietnam',
 			sans-serif;
 		padding-right: 20px;
-	}
+        width: var(--alert-width);
+        max-width: var(--alert-max-width);
+    }
 	.alert-icon {
+        flex-shrink: 0;
 		padding-left: 12px;
 	}
 	.alert.warning {
