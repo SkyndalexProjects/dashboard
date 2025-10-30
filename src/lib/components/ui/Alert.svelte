@@ -1,5 +1,5 @@
 <script lang="ts">
-	const { children, type, style = ""} = $props();
+	const { children, type, style = '' } = $props();
 </script>
 
 <div class="alert {type} {style}">
@@ -165,17 +165,17 @@
 		color: #fff;
 		gap: 15px;
 		text-align: left;
-        text-wrap: wrap;
-        overflow-wrap: break-word;
+		text-wrap: wrap;
+		overflow-wrap: break-word;
 		font:
 			700 16px / normal '--font-vietnam',
 			sans-serif;
 		padding-right: 20px;
-        width: var(--alert-width);
-        max-width: var(--alert-max-width);
-    }
+		width: var(--alert-width);
+		max-width: var(--alert-max-width);
+	}
 	.alert-icon {
-        flex-shrink: 0;
+		flex-shrink: 0;
 		padding-left: 12px;
 	}
 	.alert.warning {

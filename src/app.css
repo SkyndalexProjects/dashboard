@@ -13,3 +13,10 @@ body {
 	margin: 0;
 	padding: 0;
 }
+.underline-vector {
+	width: 100%;
+	height: 4px;
+	background-color: #275ee7;
+	flex-shrink: 0;
+	animation: slide 0.5s ease forwards;
+}

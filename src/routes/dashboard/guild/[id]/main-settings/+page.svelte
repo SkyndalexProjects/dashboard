@@ -155,11 +155,9 @@
 	{:then channels}
 		<div class="settings">
 			<div class="welcome-settings">
-				<div class="title-container">
-					Greetings & Goodbye settings
-					<svg class="title-underline" viewBox="0 0 165 2" fill="none" preserveAspectRatio="none">
-						<path d="M0 1L165 1" stroke="#275EE7" stroke-width="2" />
-					</svg>
+				<div class="section-title">
+					Greetings & Goodbye Settings
+					<div class="underline-vector"></div>
 				</div>
 
 				<div class="tabs">
@@ -227,11 +225,9 @@
 			</div>
 
 			<div class="permissions-settings">
-				<div class="title-container">
-					Permissions settings
-					<svg class="title-underline" viewBox="0 0 165 2" fill="none" preserveAspectRatio="none">
-						<path d="M0 1L165 1" stroke="#275EE7" stroke-width="2" />
-					</svg>
+				<div class="section-title">
+					Permissions
+					<div class="underline-vector"></div>
 				</div>
 
 				<div class="setting-container multi-input">
@@ -277,6 +273,21 @@
 {/await}
 
 <style>
+	:global(.tabs) {
+		--tab-color: rgba(255, 255, 255, 0.7);
+		--tab-hover-color: #e6f0ff;
+		--tab-selected-color: #ffffff;
+		--tab-selected-weight: 700;
+		--tab-font-size: 20px;
+		--tabs-gap: 0.75rem;
+		--tabs-border-color: rgba(255, 255, 255, 0.19);
+		--tab-selected-width: 180px;
+		--tab-selected-height: 60px;
+		--tab-width: 120px;
+		--tab-height: 60px;
+		--tab-border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+	}
+
 	.settings {
 		display: flex;
 		flex-direction: row;
@@ -315,16 +326,6 @@
 		margin-top: 140px;
 		width: max-content;
 		z-index: 1;
-	}
-	.title-container {
-		display: inline-block;
-		position: relative;
-	}
-	.title-underline {
-		width: 100%;
-		height: 2px;
-		margin-top: 4px;
-		display: block;
 	}
 	.tabs {
 		margin-top: 35px;

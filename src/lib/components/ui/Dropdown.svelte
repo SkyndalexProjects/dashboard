@@ -2,8 +2,6 @@
 	import { slide } from 'svelte/transition';
 	import type { Snippet } from 'svelte';
 
-	//todo: fix typings for props
-
 	interface DropdownProps {
 		position?: 'left' | 'right' | 'center';
 		maxWidth?: string;
@@ -121,7 +119,6 @@
 		align-items: center;
 		justify-content: center;
 		padding: 8px;
-
 		border: 1px solid rgba(255, 255, 255, 0.2);
 		border-radius: 6px;
 		color: #ffffff;
@@ -136,20 +133,20 @@
 
 	.dropdown-menu {
 		position: absolute;
+		top: 100%;
+		left: 0;
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
-		justify-content: flex-start;
 		width: 100%;
-		border-radius: 8px;
-	}
-
-	.dropdown-item {
 		margin-top: 10px;
+		border-radius: 8px;
+		background: linear-gradient(180deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
+	}
+	.dropdown-item {
+		background-color: black;
+		transition: background-color 0.2s ease;
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
-		justify-content: flex-start;
 		color: #ffffff;
 		font-family: 'Be Vietnam Pro', sans-serif;
 		font-size: 14px;
@@ -157,9 +154,7 @@
 		border: none;
 		border-radius: 6px;
 		cursor: pointer;
-		transition: background-color 0.2s ease;
 	}
-
 	.dropdown-item:hover {
 		background-color: rgba(62, 107, 255, 0.15);
 	}

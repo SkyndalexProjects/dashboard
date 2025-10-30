@@ -2,18 +2,15 @@
 	import type { APIGuild, APIUser } from 'discord-api-types/v10';
 	import getI18nStore from '$lib/i18n';
 	const i18n = getI18nStore();
-	import Modal from '../ui/Modal.svelte';
-	import Alert from '$lib/components/ui/Alert.svelte';
 	import Dropdown from '$lib/components/ui/Dropdown.svelte';
 	import { authClient } from '$lib/auth-client';
-	let showModal = $state(false);
+	let showDropdown = $state(false);
 	const { user, guild, guilds } = $props();
 
 	const adminGuilds = (guilds as (APIGuild & { isBotAdded?: boolean })[]).filter(
 		(guild) => (Number(guild?.permissions) & 0x8) === 0x8 && guild.isBotAdded === true
 	);
 
-	console.log('adminGuilds:', adminGuilds);
 	function getGuildAvatarUrl(guild: APIGuild): string {
 		return guild?.id && guild?.icon
 			? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp?size=1024`
@@ -44,27 +41,35 @@
 
 		<div class="version">v0.0.1-experimental</div>
 
-		<Dropdown>
-			{#snippet trigger()}
-				<button class="guild-selector">
-					<img src={getGuildAvatarUrl(guild)} alt={guild?.name || 'Avatar'} class="guild-icon" />
-					{guild?.name}
-				</button>
-			{/snippet}
-
-			{#snippet items()}
-				{#each adminGuilds as adminGuild}
-					<a href={`/manage/${adminGuild.id}`} class="guild-item">
+		<div class="guild-dropdown">
+			<Dropdown>
+				{#snippet trigger()}
+					<button class="guild-selector">
+						<img src={getGuildAvatarUrl(guild)} alt={guild?.name || 'Avatar'} class="guild-icon" />
+						{guild?.name}
 						<img
-							src={getGuildAvatarUrl(adminGuild)}
-							alt={adminGuild?.name || 'Avatar'}
-							class="guild-icon"
+							src="/icons/indicator.svg"
+							alt="indicator"
+							class="indicator"
+							class:rotated={showDropdown}
 						/>
-						<span>{adminGuild?.name}</span>
-					</a>
-				{/each}
-			{/snippet}
-		</Dropdown>
+					</button>
+				{/snippet}
+
+				{#snippet items()}
+					{#each adminGuilds as adminGuild}
+						<a href={`/manage/${adminGuild.id}`} class="guild-item">
+							<img
+								src={getGuildAvatarUrl(adminGuild)}
+								alt={adminGuild?.name || 'Avatar'}
+								class="guild-icon"
+							/>
+							<span>{adminGuild?.name}</span>
+						</a>
+					{/each}
+				{/snippet}
+			</Dropdown>
+		</div>
 	</div>
 	<div class="right-corner">
 		<Dropdown>
@@ -72,6 +77,12 @@
 				<button class="dashboard-redirect">
 					<img src={getAvatarUrl(user)} alt={user?.username || 'Avatar'} class="login-icon" />
 					<span class="username">{user?.username}</span>
+					<img
+						src="/icons/indicator.svg"
+						alt="indicator"
+						class="indicator"
+						class:rotated={showDropdown}
+					/>
 				</button>
 			{/snippet}
 
@@ -148,7 +159,7 @@
 	}
 	.guild-selector {
 		gap: 15px;
-		display: inline-flex;
+		display: flex;
 		margin-left: 50px;
 		flex-direction: row;
 		align-items: center;
@@ -166,9 +177,10 @@
 		font-weight: 500;
 		line-height: normal;
 		cursor: pointer;
+		border-radius: 15px;
 	}
 	.guild-icon {
-		padding-left: 15px;
+		margin-left: 15px;
 		width: 32px;
 		height: 32px;
 		border-radius: 50%;
@@ -226,31 +238,40 @@
 		text-align: left;
 		cursor: pointer;
 		border-radius: 3px;
-		margin-top: 10px;
 		transition: background-color 0.2s ease;
 	}
+	.guild-dropdown :global(.dropdown-menu) {
+		left: 50px;
+		width: calc(100% - 50px);
+	}
 	.guild-item {
-		z-index: 100000;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
+		left: 0.5rem;
 		justify-content: flex-start;
-		gap: 12px;
-		width: 100%;
-		max-width: 100%;
-		height: 50px;
-		margin-left: 50px;
-		color: #ffffff;
-		background-color: #131313;
-		border-radius: 5px;
-		border: 1px solid rgba(44, 44, 44, 0.2);
-		font-family: 'Be Vietnam Pro', sans-serif;
-		font-size: 15px;
-		font-weight: 500;
+		gap: 15px;
+		background-color: #0f1117;
+		width: calc(100% + 100px);
+		height: 40px;
 		text-align: left;
+		color: #ffffff;
+		font-family: 'Poppins', sans-serif;
+		font-size: 15px;
+		font-weight: 700;
 		cursor: pointer;
-		margin-top: 5px;
 		text-decoration: none;
+		transition: background-color 0.2s ease;
+		text-wrap: nowrap;
+		padding: 10px;
+	}
+
+	.guild-item:first-of-type {
+		border-radius: 15px 15px 0 0;
+	}
+
+	.guild-item:last-of-type {
+		border-radius: 0 0 15px 15px;
 	}
 	.dropdown-item:hover {
 		background-color: #5f87eaff;
@@ -265,5 +286,13 @@
 
 	.dropdown-item.logout:hover {
 		background-color: rgb(27, 27, 27);
+	}
+	.indicator {
+		transition: transform 0.25s ease;
+		transform-origin: center;
+		display: inline-block;
+	}
+	.rotated {
+		transform: rotate(180deg);
 	}
 </style>

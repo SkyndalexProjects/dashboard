@@ -324,7 +324,12 @@
 		</div>
 
 		<div class="recent-changes-container">
-            <Tab tabs={['Dashboard', 'Bot']} {selectedTab} onTabSelect={handleTabSelect} style="recent-tabs">
+			<Tab
+				tabs={['Dashboard', 'Bot']}
+				{selectedTab}
+				onTabSelect={handleTabSelect}
+				style="recent-tabs"
+			>
 				{#if selectedTab === 'Dashboard'}
 					<div class="dashboard">
 						{#each recentChanges as change}
@@ -350,7 +355,7 @@
 	</div>
 	<div class="dashboard-log">
 		<div class="section-title">
-			Economy charts
+			Dashboard logs
 			<div class="underline-vector"></div>
 		</div>
 
@@ -389,26 +394,27 @@
 {/await}
 
 <style>
-
-    :global(.tabs.recent-tabs) {
-        --tab-background: rgba(0,0,0,0.1);
-        --tab-color: rgba(255,255,255,0.7);
-        --tab-hover-color: #e6f0ff;
-        --tab-selected-color: #ffffff;
-        --tab-selected-background: rgba(0,0,0,0.3);
-        --tab-selected-weight: 700;
-        --tab-font-size: 20px;
-        --tabs-gap: 0.75rem;
-        --tabs-border-color: rgba(255,255,255,0.08);
-        --tab-selected-width: 180px;
-        --tab-selected-height: 60px;
-        --tab-width: 120px;
-        --tab-height: 60px;
-    }
-    :global(.alert) {
-        --alert-max-width: 680px;
-        --alert-width: 762px;
-    }
+	:global(.tabs.recent-tabs) {
+		--tab-background: rgba(0, 0, 0, 0.1);
+		--tab-color: rgba(255, 255, 255, 0.7);
+		--tab-hover-color: #e6f0ff;
+		--tab-selected-color: #ffffff;
+		--tab-selected-background: rgba(0, 0, 0, 0.3);
+		--tab-selected-weight: 700;
+		--tab-font-size: 20px;
+		--tabs-gap: 0.75rem;
+		--tabs-border-color: rgba(255, 255, 255, 0.08);
+		--tab-selected-width: 180px;
+		--tab-selected-height: 60px;
+		--tab-selected-border-bottom: 3px solid #3e6bff;
+		--tab-width: 120px;
+		--tab-height: 60px;
+		--tab-border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+	}
+	:global(.alert) {
+		--alert-max-width: 680px;
+		--alert-width: 762px;
+	}
 
 	.app {
 		overflow-y: auto;
@@ -723,12 +729,5 @@
 		justify-content: center;
 		width: 105px;
 		gap: 9px;
-	}
-	.underline-vector {
-		width: 100%;
-		height: 4px;
-		background-color: #275ee7;
-		flex-shrink: 0;
-		animation: slide 0.5s ease forwards;
 	}
 </style>
