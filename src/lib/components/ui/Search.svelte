@@ -199,7 +199,6 @@
 		background: transparent;
 		height: auto;
 		padding: 0;
-		margin: 2px 0;
 		flex: 1;
 		min-width: 60px;
 		color: #ffffff;
@@ -214,10 +213,8 @@
 
 	.dropdown {
 		position: absolute;
-		top: 100%;
 		left: 0;
 		width: 100%;
-		background: linear-gradient(180deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
 		z-index: 10001;
 		border-radius: 10px;
 		max-height: 200px;
@@ -226,9 +223,10 @@
 		scrollbar-width: none;
 		padding: 0;
 		list-style: none;
-		margin-top: 10px;
-		backdrop-filter: blur(12px);
-		-webkit-backdrop-filter: blur(12px);
+		background-color: #0f1117;
+		border-left: 1px solid rgba(255, 255, 255, 0.2);
+		border-right: 1px solid rgba(255, 255, 255, 0.2);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 	}
 	.dropdown::-webkit-scrollbar {
 		display: none;
@@ -245,9 +243,7 @@
 		font-family: 'Poppins', sans-serif;
 		font-size: 14px;
 		font-weight: 700;
-		background-color: black;
 		transition: background-color 0.2s ease;
-		margin-bottom: 10px;
 		border-radius: 5px;
 		border: none;
 		width: 100%;
