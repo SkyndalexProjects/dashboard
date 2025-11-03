@@ -1,0 +1,36 @@
+{
+	"page": {
+		"home": {
+			"subtitle": "ekonomia, radio, customboty, ai",
+			"detailed-subtitle": "\t\t\t\tSkyndalex to wszechstronny bot na platformę Discord — pomaga utrzymać porządek na serwerze, angażuje społeczność\n i dodaje odrobinę zabawy",
+			"add-btn": "Dodaj bota",
+			"dashboard-btn": "Panel zarządzania",
+			"home": "Strona główna",
+			"policy": "Polityka prywatności",
+			"links": "Linki",
+			"project": "Projekt"
+		},
+      "alphaWarning": "Uwaga: Ten panel zarządzania jest aktualnie w bardzo wczesnej wersji alpha. Nie ma bardzo dużo funkcji, a te które są mogą działać źle bądź wcale (placeholdery) "
+	},
+	"system": {
+		"errors": {
+			"not_finished": "Strona nie jest jeszcze ukończona. Obserwuj prace na naszym serwerze wsparcia"
+		},
+		"navbar": {
+			"title": "Panel zarządzania"
+		},
+		"sidebar": {
+			"home": "Strona główna",
+			"insights": "Wgląd systemowy",
+			"main-settings": "Ustawienia główne",
+			"logs": "Logi",
+			"custombots": "Customboty",
+			"economy": "Ekonomia",
+			"radio": "Radio",
+			"ai": "AI",
+			"overview": "Przegląd",
+			"management": "Zarządzanie",
+			"fun": "Zabawa"
+		}
+	}
+}
