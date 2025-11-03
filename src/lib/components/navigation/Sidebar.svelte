@@ -100,7 +100,7 @@
 </script>
 
 <div class="sidebar">
-	{#each categories as category, idx}
+    {#each categories as category (category.name)}
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			width="290"
@@ -112,7 +112,7 @@
 		</svg>
 		<span class="category">{category.name.toUpperCase()}</span>
 
-		{#each category.items as item}
+        {#each category.items as item (item.path)}
 			<button class="item" onclick={() => handleItemClick(item)}>
 				<span class:item-active={isItemActive(item)} class:item-inactive={!isItemActive(item)}>
 					<img src={item.icon} class="icon" alt={item.text} />

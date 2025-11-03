@@ -32,14 +32,14 @@
 
 <nav>
 	<div class="left-corner">
-		<img
-			class="icon"
-			src={`https://cdn.discordapp.com/avatars/1059594156839809074/f2ed3c7590d834ed2d86912124c4ee1e.webp?size=1024`}
-			alt="Guild Icon"
-		/>
+        <img
+                class="icon"
+                src="https://cdn.discordapp.com/avatars/1059594156839809074/f2ed3c7590d834ed2d86912124c4ee1e.webp?size=1024"
+                alt="Guild Icon"
+        />
 		{$i18n.t('system.navbar.title')}
 
-		<div class="version">v0.0.1-experimental</div>
+		<div class="version">v0.0.0-alpha</div>
 
 		<div class="guild-dropdown">
 			<Dropdown>
@@ -57,8 +57,8 @@
 				{/snippet}
 
 				{#snippet items()}
-					{#each adminGuilds as adminGuild}
-						<a href={`/manage/${adminGuild.id}`} class="guild-item">
+                    {#each adminGuilds as adminGuild (adminGuild.id)}
+						<a href={`/dashboard/guild/${adminGuild.id}/home`} class="guild-item">
 							<img
 								src={getGuildAvatarUrl(adminGuild)}
 								alt={adminGuild?.name || 'Avatar'}
@@ -177,8 +177,13 @@
 		font-weight: 500;
 		line-height: normal;
 		cursor: pointer;
-		border-radius: 15px;
+        transition:
+                background-color 0.3s ease,
+                transform 0.3s ease;
 	}
+    .guild-selector:hover {
+        transform: scale(1.05);
+    }
 	.guild-icon {
 		margin-left: 15px;
 		width: 32px;

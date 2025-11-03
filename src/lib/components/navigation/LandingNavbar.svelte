@@ -2,13 +2,15 @@
 	import type { APIUser } from 'discord-api-types/v10';
 	import getI18nStore from '$lib/i18n';
 	import { authClient } from '$lib/auth-client';
+	import { PUBLIC_FRONTEND_URL } from '$env/static/public';
+	const origin = (PUBLIC_FRONTEND_URL || '').replace(/\/$/, '');
 
 	const i18n = getI18nStore();
 
-	function handleLogin(e?: MouseEvent) {
+	function handleLogin() {
 		authClient.signIn.social({
 			provider: 'discord',
-			callbackURL: 'http://localhost:5173/dashboard/guild'
+			callbackURL: `${origin}/dashboard/guild`
 		});
 	}
 

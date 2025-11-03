@@ -9,6 +9,7 @@
 	import type { APIUser } from 'discord-api-types/v10';
 	const { data } = $props();
 
+	console.log('Dashboard data:', data);
 	function getAvatarUrl(user: APIUser | undefined): string {
 		return user?.id && user?.avatar
 			? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.webp?size=1024`
@@ -77,14 +78,15 @@
 			author: data.user
 		}
 	];
-	const recentChanges = [
-		{ date: '2024-06-01', change: 'New version update changelog', author: data.user },
-		{ date: '2024-06-15', change: 'Security patch applied', author: data.user },
-		{ date: '2024-06-08', change: 'Feature rollback initiated', author: data.user },
-		{ date: '2024-06-22', change: 'Database maintenance scheduled', author: data.user },
-		{ date: '2024-06-11', change: 'New API endpoints released', author: data.user },
-		{ date: '2024-06-19', change: 'Performance optimization completed', author: data.user }
-	];
+	// const recentChanges = [
+	// 	{ date: '2024-06-01', change: 'New version update changelog', author: data.user },
+	// 	{ date: '2024-06-15', change: 'Security patch applied', author: data.user },
+	// 	{ date: '2024-06-08', change: 'Feature rollback initiated', author: data.user },
+	// 	{ date: '2024-06-22', change: 'Database maintenance scheduled', author: data.user },
+	// 	{ date: '2024-06-11', change: 'New API endpoints released', author: data.user },
+	// 	{ date: '2024-06-19', change: 'Performance optimization completed', author: data.user }
+	// ];
+	const recentChanges = [];
 	let selectedTab = $state('Dashboard');
 	function handleTabSelect(tab: string) {
 		selectedTab = tab;
@@ -332,23 +334,28 @@
 			>
 				{#if selectedTab === 'Dashboard'}
 					<div class="dashboard">
-						{#each recentChanges as change}
-							<div class="change-item">
-								<img class="change-avatar" src={getAvatarUrl(change.author)} alt="avatar" />
-								<div class="change-content">
-									<p class="change-header">{change.change}</p>
-									<p class="change-footer">
-										{change.date} · <span class="view-details-link">View details</span>
-									</p>
-								</div>
-							</div>
-						{/each}
+						{#if selectedTab === 'Dashboard'}
+							{#if recentChanges.length === 0}
+								<div class="no-changes">No recent changes</div>
+							{:else}
+								{#each recentChanges as change}
+									<div class="change-item">
+										<img class="change-avatar" src={getAvatarUrl(change.author)} alt="avatar" />
+										<div class="change-content">
+											<p class="change-header">{change.change}</p>
+											<p class="change-footer">
+												{change.date} · <span class="view-details-link">View details</span>
+											</p>
+										</div>
+									</div>
+								{/each}
+							{/if}
+						{:else if selectedTab === 'Bot'}
+							<div class="no-changes">No recent changes</div>
+						{/if}
 					</div>
 				{:else if selectedTab === 'Bot'}
-					<div class="bot">
-						<h2>Bot Content</h2>
-						<p>This is the content of the Bot tab.</p>
-					</div>
+					<div class="no-changes">No recent changes</div>
 				{/if}
 			</Tab>
 		</div>
@@ -410,6 +417,16 @@
 		--tab-width: 120px;
 		--tab-height: 60px;
 		--tab-border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+	}
+	.no-changes {
+		color: rgba(255, 255, 255, 0.5);
+		font-family: 'Be Vietnam Pro', sans-serif;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		padding: 20px;
+		height: 540px;
 	}
 	:global(.alert) {
 		--alert-max-width: 680px;

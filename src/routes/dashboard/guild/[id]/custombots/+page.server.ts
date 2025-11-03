@@ -1,18 +1,20 @@
-import { error } from '@sveltejs/kit';
+import type { APIGuild } from 'discord-api-types/v10';
+import { env } from '$env/dynamic/private';
 
 export async function load({ fetch }) {
 	try {
-		const res = await fetch(`http://localhost:3000/api/guilds`, {
-			credentials: 'include'
-		});
-		if (!res.ok) {
-			error(res.status, 'Error while fetching guilds');
-		}
+		const guilds: Promise<APIGuild[]> = fetch(`${env.BACKEND_URL}/api/guilds`).then((res) =>
+			res.json()
+		);
 
-		const guildsData = await res.json();
-		return { guilds: guildsData };
-	} catch (err) {
-		console.error('Error while downloading guilds data:', err);
-		return { data: null };
+		return {
+			guilds
+		};
+	} catch (error) {
+		console.error('Error fetching guilds:', error);
+
+		return {
+			guilds: []
+		};
 	}
 }

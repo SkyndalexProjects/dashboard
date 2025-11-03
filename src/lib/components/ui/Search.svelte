@@ -82,7 +82,7 @@
 			onfocusin={handleFocus}
 			onclick={() => inputEl && inputEl.focus()}
 		>
-			{#each selectedItems as item}
+            {#each filteredItems as item (item.id)}
 				<span class="selected-item">
 					{item.name}
 					<span
@@ -124,7 +124,7 @@
 
 	{#if showDropdown && filteredItems.length > 0}
 		<ul class="dropdown" transition:slide={{ duration: 200 }}>
-			{#each filteredItems as item}
+            {#each filteredItems as item (item.id)}
 				<button
 					type="button"
 					class="dropdown-item"

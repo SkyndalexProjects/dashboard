@@ -1,11 +1,20 @@
 import type { APIGuild } from 'discord-api-types/v10';
+import { env } from '$env/dynamic/private';
 
 export async function load({ fetch }) {
-	const guilds: Promise<APIGuild[]> = fetch('http://localhost:3000/api/guilds').then((res) =>
-		res.json()
-	);
+	try {
+		const guilds: Promise<APIGuild[]> = fetch(`${env.BACKEND_URL}/api/guilds`).then((res) =>
+			res.json()
+		);
 
-	return {
-		guilds
-	};
+		return {
+			guilds
+		};
+	} catch (error) {
+		console.error('Error fetching guilds:', error);
+
+		return {
+			guilds: []
+		};
+	}
 }

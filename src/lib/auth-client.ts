@@ -1,9 +1,13 @@
 import { createAuthClient } from 'better-auth/svelte';
+import { PUBLIC_BACKEND_URL } from '$env/static/public';
+
+const origin = (PUBLIC_BACKEND_URL || '').replace(/\/$/, '');
+
 export const authClient = createAuthClient({
-	baseURL: 'http://localhost:3000/api/auth',
-	trustedOrigins: ['http://localhost:3000'],
+	baseURL: `${origin}/api/auth`,
+	trustedOrigins: [origin],
 	cors: {
-		origin: ['http://localhost:3000'],
+		origin: [origin],
 		credentials: true
 	}
 });

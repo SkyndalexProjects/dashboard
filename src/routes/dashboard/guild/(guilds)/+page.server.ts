@@ -1,9 +1,10 @@
 import { error } from '@sveltejs/kit';
 import type { APIGuild } from 'discord-api-types/v10';
+import { env } from '$env/dynamic/private';
 
 export async function load({ fetch }): Promise<{ guilds: APIGuild[] }> {
 	try {
-		const res = await fetch(`http://localhost:3000/api/guilds`, {
+		const res = await fetch(`${env.BACKEND_URL}/api/guilds`, {
 			credentials: 'include'
 		});
 

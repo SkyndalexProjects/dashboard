@@ -4,6 +4,12 @@
 	import Tab from '$lib/components/ui/Tab.svelte';
 	import Switch from '$lib/components/ui/Switch.svelte';
 	import Search from '$lib/components/ui/Search.svelte';
+	import { onMount } from 'svelte';
+    import { PUBLIC_BACKEND_URL } from '$env/static/public';
+    import { error } from '@sveltejs/kit';
+
+    const origin = (PUBLIC_BACKEND_URL || '').replace(/\/$/, '');
+
 	const { data } = $props();
 	let selectedTab = $state('Greetings');
 
@@ -38,13 +44,20 @@
 	let isDirty = $state(false);
 	let isFadingOut = $state(false);
 
-	function textChannelItems(chs: Channel[]): Item[] {
-		const arr = (chs as Channel[] | undefined) ?? [];
+	function textChannelItems(chs: Channel[] | null | undefined): Item[] {
+		const arr = Array.isArray(chs) ? chs : [];
 		return arr
-			.filter((c: Channel) => c && c.type === 'GuildText')
-			.map((c: Channel) => ({ id: String(c.id), name: String(c.name) }));
+			.filter((c) => c && c.type === 'GuildText')
+			.map((c) => {
+				const name = String(c.name);
+				return { id: name, name };
+			});
 	}
-
+	function asChannelName(value: string, chs: Channel[] | null | undefined): string {
+		const arr = Array.isArray(chs) ? chs : [];
+		const found = arr.find((c) => String(c.id) === value || String(c.name) === value);
+		return found ? String(found.name) : value;
+	}
 	const initCommands = [
 		'ban',
 		'kick',
@@ -74,7 +87,7 @@
 	async function save() {
 		const payload = Object.entries(settings).reduce((acc, [key, value]) => {
 			if (!isEmpty(value)) {
-				// @ts-ignore --
+				// @ts-expect-error --
 				acc[key] = value;
 			}
 			return acc;
@@ -91,10 +104,11 @@
 		}
 
 		try {
-			const response = await fetch(`http://localhost:3000/api/guilds/${data.guild.id}/settings`, {
+			const response = await fetch(`${origin}/api/guilds/${data.guild.id}/settings`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(payload)
+				body: JSON.stringify(payload),
+				credentials: 'include'
 			});
 
 			if (!response.ok) {
@@ -110,6 +124,29 @@
 			console.error('Save error', err);
 		}
 	}
+
+	onMount(() => {
+		const controller = new AbortController();
+
+		(async () => {
+			try {
+				const response = await fetch(`${origin}/api/guilds/${data.guild.id}/settings`, {
+					method: 'GET',
+					headers: { 'Content-Type': 'application/json' },
+					signal: controller.signal,
+					credentials: 'include'
+				});
+
+				const loadedSettings = await response.json();
+				settings = { ...defaultSettings, ...loadedSettings };
+			}  catch (e: unknown | { message: string }) {
+                const message = (e instanceof Error) ? e.message : 'Unknown error';
+                throw error(500, message);
+            }
+		})();
+
+		return () => controller.abort();
+	});
 
 	function reset() {
 		settings = { ...defaultSettings };
@@ -175,6 +212,7 @@
 											settings.welcomeChannel = Array.isArray(value) ? (value[0] ?? '') : value;
 											isDirty = true;
 										}}
+										inputValue={asChannelName(settings.welcomeChannel, channels)}
 										icon="/icons/dropdowns/hashtag.svg"
 									/>
 								</div>
@@ -202,6 +240,7 @@
 											settings.goodbyeChannel = Array.isArray(value) ? (value[0] ?? '') : value;
 											isDirty = true;
 										}}
+										inputValue={asChannelName(settings.goodbyeChannel, channels)}
 										icon="/icons/dropdowns/hashtag.svg"
 									/>
 								</div>

@@ -9,7 +9,6 @@
 	console.log('guildId', guildId);
 	const { data } = $props();
 	import Alert from '$lib/components/ui/Alert.svelte';
-	const selectedGuild = data.guilds?.find((g: { id: string }) => g.id === guildId);
 </script>
 
 <svelte:head>
@@ -21,12 +20,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </svelte:head>
 
-<ManagementNavbar {selectedGuild} user={data.user} />
-<Sidebar guildId={selectedGuild.id} />
+{#await data.guilds}
+	<p>Test</p>
+{:then guilds}
+	<ManagementNavbar guild={data.guild} user={data.user} {guilds} />
+	<Sidebar guildId={data.guild.id} />
 
-<div class="alert">
-	<Alert type="warning">{$i18n.t('system.errors.not_finished')}</Alert>
-</div>
+
+    <div class="alert">
+        <Alert type="warning">{$i18n.t('system.errors.not_finished')}</Alert>
+    </div>
+{/await}
 
 <style>
 	.alert {

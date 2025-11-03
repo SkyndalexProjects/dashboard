@@ -46,7 +46,7 @@
 					Imagine images, talk to chatbots, use different models or spaces (when generating images)
 					created by other users through the Huggingface platform
 				</p>
-				<img class="feature-icon" src="/icons/sparkles.svg" alt="feature icon" />
+				<img class="feature-icon" src="/icons/sidebar/sparkles.svg" alt="feature icon" />
 			</div>
 			<div class="feature-box">
 				<p class="feature-title">Economy</p>
@@ -54,14 +54,14 @@
 					A simple economy, developed on the basis of UB, but with enhanced capabilities thanks to
 					the other modules available in the bot.
 				</p>
-				<img class="feature-icon" src="/icons/economy.svg" alt="feature icon" />
+				<img class="feature-icon" src="/icons/sidebar/economy.svg" alt="feature icon" />
 			</div>
 			<div class="feature-box">
 				<p class="feature-title">Radio</p>
 				<p class="feature-description">
 					Listen to radio on vc using the largest possible radio-browser base!
 				</p>
-				<img class="feature-icon" src="/icons/radio.svg" alt="feature icon" />
+				<img class="feature-icon" src="/icons/sidebar/radio.svg" alt="feature icon" />
 			</div>
 			<div class="feature-box">
 				<p class="feature-title">Custombots</p>
@@ -69,7 +69,7 @@
 					Extend the settings, have your own branding. This is what you are able to achieve with our
 					custombot system!
 				</p>
-				<img class="feature-icon" src="/icons/robot.svg" alt="feature icon" />
+				<img class="feature-icon" src="/icons/sidebar/custombot.svg" alt="feature icon" />
 			</div>
 		</div>
 	</section>
