@@ -17,6 +17,17 @@ export default defineConfig(({ mode }) => {
 					rewrite: (p) => p.replace(/^\/api/, '')
 				}
 			}
-		}
+		},
+        preview: {
+            port: 4173,
+            proxy: {
+                '/api': {
+                    target,
+                    changeOrigin: true,
+                    secure: true,
+                    rewrite: (p) => p.replace(/^\/api/, '')
+                }
+            }
+        }
 	};
 });
