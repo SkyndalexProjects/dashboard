@@ -7,25 +7,12 @@ export default defineConfig(({ mode }) => {
 
 	return {
 		plugins: [sveltekit()],
-		server: {
-			port: 5173,
-			proxy: {
-				'/api': {
-					target,
-					changeOrigin: true,
-					secure: true,
-					rewrite: (p) => p.replace(/^\/api/, '')
-				}
-			}
-		},
-        preview: {
-            port: 4173,
+        server: {
             proxy: {
                 '/api': {
-                    target,
+                    target: 'http://localhost:4173',
                     changeOrigin: true,
-                    secure: true,
-                    rewrite: (p) => p.replace(/^\/api/, '')
+                    secure: false
                 }
             }
         }
