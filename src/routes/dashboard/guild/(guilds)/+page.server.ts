@@ -4,7 +4,7 @@ import { env } from '$env/dynamic/private';
 
 export async function load({ fetch }): Promise<{ guilds: APIGuild[] }> {
 	try {
-		const res = await fetch(`${env.BACKEND_URL}/api/guilds`, {
+		const res = await fetch(`${env.BACKEND_URL}/guilds`, {
 			credentials: 'include'
 		});
 
