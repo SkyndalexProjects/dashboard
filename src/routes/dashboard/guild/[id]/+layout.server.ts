@@ -4,7 +4,7 @@ import { BACKEND_URL } from "$env/static/private";
 
 export async function load({ fetch, params }) {
     try {
-        const res = await fetch(`${BACKEND_URL}/api/guild`, {
+        const res = await fetch(`${BACKEND_URL}/guild`, {
             credentials: 'include',
             headers: {
                 guildId: params.id
