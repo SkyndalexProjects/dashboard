@@ -39,6 +39,7 @@
 	"dependencies": {
 		"@fontsource/be-vietnam-pro": "^5.2.6",
 		"@fontsource/poppins": "^5.2.6",
+		"@sveltejs/adapter-node": "^5.4.0",
 		"better-auth": "^1.3.26",
 		"d3-array": "^3.2.4",
 		"d3-scale": "^4.0.2",
