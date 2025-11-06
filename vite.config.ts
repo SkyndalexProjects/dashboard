@@ -2,25 +2,32 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig, loadEnv } from 'vite';
 
 export default defineConfig(({ mode }) => {
-	const env = loadEnv(mode, process.cwd(), '');
-	const target = env.BACKEND_URL;
-    const backendDev = env.BACKEND_URL || 'http://127.0.0.1:4173';
+    const env = loadEnv(mode, process.cwd(), '');
+    const target = env.BACKEND_URL;
 
-	return {
-		plugins: [sveltekit()],
+    return {
+        plugins: [sveltekit()],
         server: {
+            port: 5173,
             proxy: {
                 '/api': {
-                    target: 'http://localhost:4173',
+                    target,
                     changeOrigin: true,
-                    secure: false,
-                    configure: (proxy) => {
-                        proxy.on('proxyReq', (_proxyReq, req) => {
-                            req.headers.host = new URL(backendDev).host;
-                        });
-                    }
+                    secure: true,
+                    rewrite: (p) => p.replace(/^\/api/, '')
+                }
+            }
+        },
+        preview: {
+            port: 4173,
+            proxy: {
+                '/api': {
+                    target,
+                    changeOrigin: true,
+                    secure: true,
+                    rewrite: (p) => p.replace(/^\/api/, '')
                 }
             }
         }
-	};
+    };
 });
