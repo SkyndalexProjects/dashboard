@@ -6,7 +6,7 @@
     },
     {
       "source": "/api/:path*",
-      "destination": "https://api.skyndalex.com/:path*"
+      "destination": "https://api.skyndalex.com/api/:path*"
     }
   ]
 }
