@@ -9,6 +9,8 @@ export default defineConfig(({ mode }) => {
         plugins: [sveltekit()],
         server: {
             port: 5173,
+            watch: {usePolling: true,}, // Enable hot reload
+            host: '0.0.0.0',
             proxy: {
                 '/api': {
                     target,
