@@ -4,6 +4,7 @@ import { env } from '$env/dynamic/private';
 
 export async function load({ fetch }): Promise<{ guilds: APIGuild[] }> {
 	try {
+        console.log("Trying to fetch guilds from backend...");
 		const res = await fetch(`${env.BACKEND_URL}/api/guilds`, {
 			credentials: 'include'
 		});
@@ -13,6 +14,7 @@ export async function load({ fetch }): Promise<{ guilds: APIGuild[] }> {
 		}
 
 		const guildsData: APIGuild[] = await res.json();
+        console.log('Fetched guilds data:', guildsData);
 		return {
 			guilds: guildsData
 		};
