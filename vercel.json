@@ -3,6 +3,10 @@
     {
       "source": "/api/:path*",
       "destination": "https://api.skyndalex.com/api/:path*"
+    },
+    {
+      "source": "/auth/:path*",
+      "destination": "https://api.skyndalex.com/auth/:path*"
     }
   ]
 }
