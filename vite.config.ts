@@ -9,14 +9,18 @@ export default defineConfig(({ mode }) => {
         plugins: [sveltekit()],
         server: {
             port: 5173,
-            watch: {usePolling: true,}, // Enable hot reload
+            watch: {usePolling: true,},
             host: '0.0.0.0',
             proxy: {
                 '/api': {
                     target,
                     changeOrigin: true,
                     secure: true,
-                    rewrite: (p) => p.replace(/^\/api/, '')
+                },
+                '/auth': {
+                    target,
+                    changeOrigin: true,
+                    secure: true,
                 }
             }
         },
@@ -27,7 +31,11 @@ export default defineConfig(({ mode }) => {
                     target,
                     changeOrigin: true,
                     secure: true,
-                    rewrite: (p) => p.replace(/^\/api/, '')
+                },
+                '/auth': {
+                    target,
+                    changeOrigin: true,
+                    secure: true,
                 }
             }
         }

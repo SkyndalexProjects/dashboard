@@ -5,7 +5,7 @@ export const prerender = false;
 
 export async function load({ fetch }) {
     try {
-        const res = await fetch(`${BACKEND_URL}/user`, {
+        const res = await fetch(`${BACKEND_URL}/api/user`, {
             credentials: 'include'
         });
 
