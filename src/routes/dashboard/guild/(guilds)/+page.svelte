@@ -11,6 +11,7 @@
 	const withBotAdded = adminGuilds.filter((guild) => guild.isBotAdded);
 	const withoutBotAdded = adminGuilds.filter((guild) => !guild.isBotAdded);
 
+    console.log("dashboard data:", data);
 	function handleImageError(event: Event) {
 		(event.target as HTMLImageElement).src = '/default_guild_icon.png';
 	}
