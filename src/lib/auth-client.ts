@@ -14,6 +14,13 @@ export const authClient = createAuthClient({
         'https://skyndalex.com',
         'https://api.skyndalex.com'
     ],
+    advanced: {
+        useSecureCookies: true,
+        crossSubDomainCookies: {
+            enabled: true,
+            domain: process.env.OAUTH_DOMAIN as string,
+        },
+    },
     cors: {
         origin: [
             process.env.FRONTEND_URL as string,
