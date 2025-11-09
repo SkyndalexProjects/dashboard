@@ -2,14 +2,23 @@ import { error } from '@sveltejs/kit';
 import type { APIGuild } from 'discord-api-types/v10';
 import { BACKEND_URL } from "$env/static/private";
 
-export async function load({ fetch, params }) {
+export async function load({ fetch, params, cookies }) {
     try {
+        const sessionToken = cookies.get('__Secure-session_token');
+
+        if (!sessionToken) {
+            console.warn('No session token found');
+            return error(401, 'No session token found');
+        }
+
         const res = await fetch(`${BACKEND_URL}/api/guild`, {
             credentials: 'include',
             headers: {
-                guildId: params.id
+                'Cookie': `__Secure-session_token=${sessionToken}`,
+                'guildId': params.id
             }
         });
+
         if (!res.ok) {
             return error(res.status, 'Error while fetching guild');
         }
