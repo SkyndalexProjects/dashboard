@@ -1,13 +1,21 @@
-import { error } from '@sveltejs/kit';
 import type { APIUser } from 'discord-api-types/v10';
 import { BACKEND_URL } from "$env/static/private";
-import {authClient} from "$lib/auth-client";
 export const prerender = false;
 
-export async function load({ fetch }) {
+export async function load({ fetch, cookies }) {
     try {
+        const sessionToken = cookies.get('__Secure-session_token');
+
+        if (!sessionToken) {
+            console.warn('No session token found');
+            return { user: null };
+        }
+
         const res = await fetch(`${BACKEND_URL}/api/user`, {
-            credentials: 'include'
+            credentials: 'include',
+            headers: {
+                'Cookie': `__Secure-session_token=${sessionToken}`
+            }
         });
 
         if (!res.ok) {
