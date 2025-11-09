@@ -20,6 +20,9 @@ export const authClient = createAuthClient({
         ],
         credentials: true,
     },
+    fetchOptions: {
+        credentials: "include"
+    }
 });
 
 export const { signIn, signUp, useSession } = authClient;
