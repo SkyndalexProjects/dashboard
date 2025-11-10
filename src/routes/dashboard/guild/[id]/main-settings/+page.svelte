@@ -5,10 +5,10 @@
 	import Switch from '$lib/components/ui/Switch.svelte';
 	import Search from '$lib/components/ui/Search.svelte';
 	import { onMount } from 'svelte';
-    import { PUBLIC_BACKEND_URL } from '$env/static/public';
-    import { error } from '@sveltejs/kit';
+	import { PUBLIC_BACKEND_URL } from '$env/static/public';
+	import { error } from '@sveltejs/kit';
 
-    const origin = (PUBLIC_BACKEND_URL || '').replace(/\/$/, '');
+	const origin = (PUBLIC_BACKEND_URL || '').replace(/\/$/, '');
 
 	const { data } = $props();
 	let selectedTab = $state('Greetings');
@@ -139,10 +139,10 @@
 
 				const loadedSettings = await response.json();
 				settings = { ...defaultSettings, ...loadedSettings };
-			}  catch (e: unknown | { message: string }) {
-                const message = (e instanceof Error) ? e.message : 'Unknown error';
-                throw error(500, message);
-            }
+			} catch (e: unknown | { message: string }) {
+				const message = e instanceof Error ? e.message : 'Unknown error';
+				throw error(500, message);
+			}
 		})();
 
 		return () => controller.abort();

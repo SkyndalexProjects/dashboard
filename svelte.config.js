@@ -11,14 +11,14 @@ const config = {
 		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
 		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
 		adapter: adapter(),
-        csrf: {
-            trustedOrigins: [
-                process.env.FRONTEND_URL,
-                'https://beta.skyndalex.com',
-                'https://skyndalex.com',
-                'https://api.skyndalex.com'
-            ].filter(Boolean)
-        }
+		csrf: {
+			trustedOrigins: [
+				process.env.FRONTEND_URL,
+				'https://beta.skyndalex.com',
+				'https://skyndalex.com',
+				'https://api.skyndalex.com'
+			].filter(Boolean)
+		}
 	}
 };
 

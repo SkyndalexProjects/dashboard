@@ -10,7 +10,7 @@
 			"links": "Linki",
 			"project": "Projekt"
 		},
-      "alphaWarning": "Uwaga: Ten panel zarządzania jest aktualnie w bardzo wczesnej wersji alpha. Nie ma bardzo dużo funkcji, a te które są mogą działać źle bądź wcale (placeholdery) "
+		"alphaWarning": "Uwaga: Ten panel zarządzania jest aktualnie w bardzo wczesnej wersji alpha. Nie ma bardzo dużo funkcji, a te które są mogą działać źle bądź wcale (placeholdery) "
 	},
 	"system": {
 		"errors": {
