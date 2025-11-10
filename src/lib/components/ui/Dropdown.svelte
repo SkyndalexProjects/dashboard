@@ -90,10 +90,9 @@
 		{#if isDropdownOpen}
 			<div class="dropdown-menu" transition:slide={{ duration: 200 }}>
 				{#if items}
-                    <div
-                        class="dropdown-items-container">
-                        {@render items()}
-                    </div>
+					<div class="dropdown-items-container">
+						{@render items()}
+					</div>
 				{:else}
 					<button class="dropdown-item">Item 1</button>
 					<button class="dropdown-item">Item 2</button>
@@ -113,7 +112,7 @@
 	}
 	.dropdown-trigger {
 		cursor: pointer;
-        padding: 0;
+		padding: 0;
 	}
 
 	.default-trigger {
@@ -127,22 +126,22 @@
 		cursor: pointer;
 		transition: all 0.2s ease;
 	}
-    .dropdown-items-container {
-        width: max-content;
-        max-height: 300px;
-        overflow-y: auto;
-        scrollbar-width: none;
-        scrollbar-color: transparent transparent;
-        -ms-overflow-style: none;
-    }
+	.dropdown-items-container {
+		width: max-content;
+		max-height: 300px;
+		overflow-y: auto;
+		scrollbar-width: none;
+		scrollbar-color: transparent transparent;
+		-ms-overflow-style: none;
+	}
 	.default-trigger:hover {
 		background-color: rgba(255, 255, 255, 0.1);
 		border-color: rgba(255, 255, 255, 0.3);
 	}
 
 	.dropdown-menu {
-        width: max-content;
-        position: absolute;
+		width: max-content;
+		position: absolute;
 		top: 100%;
 		left: 0;
 		display: flex;

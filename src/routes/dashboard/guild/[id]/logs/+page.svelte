@@ -23,9 +23,9 @@
 	<ManagementNavbar guild={data.guild} user={data.user} {guilds} />
 	<Sidebar guildId={data.guild.id} />
 
-    <div class="alert">
-        <Alert type="warning">{$i18n.t('system.errors.not_finished')}</Alert>
-    </div>
+	<div class="alert">
+		<Alert type="warning">{$i18n.t('system.errors.not_finished')}</Alert>
+	</div>
 {/await}
 
 <style>
