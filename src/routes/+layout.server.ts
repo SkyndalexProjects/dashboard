@@ -1,8 +1,5 @@
 import type { APIUser } from 'discord-api-types/v10';
 import { BACKEND_URL } from '$env/static/private';
-import { injectSpeedInsights } from "@vercel/speed-insights";
-import { injectAnalytics } from "@vercel/analytics/sveltekit";
-
 export const prerender = false;
 
 export async function load({ fetch, cookies }) {
@@ -27,9 +24,6 @@ export async function load({ fetch, cookies }) {
 		}
 
 		const userData: APIUser = await res.json();
-        injectSpeedInsights()
-        injectAnalytics()
-
 		return { user: userData };
 	} catch (err) {
 		console.error('Error while downloading user data:', err);
