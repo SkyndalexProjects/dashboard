@@ -1,3 +1,8 @@
-// since there's no dynamic data here, we can prerender
-// it so that it gets served as a static asset in production
-export const prerender = true;
+import type { LayoutServerLoad } from './$types';
+
+export const prerender = false;
+
+export const load: LayoutServerLoad = async ({ parent }) => {
+    const data = await parent();
+    return data;
+};

@@ -168,7 +168,18 @@
 </svelte:head>
 
 {#await data.guilds}
-	<div class="navbar-skeleton"></div>
+	<div class="navbar-skeleton">
+		<div class="navbar-skeleton-left">
+			<div class="skeleton-icon"></div>
+			<div class="skeleton-title"></div>
+			<div class="skeleton-version"></div>
+			<div class="skeleton-guild-selector"></div>
+		</div>
+		<div class="navbar-skeleton-right">
+			<div class="skeleton-user"></div>
+		</div>
+	</div>
+
 	<div class="sidebar-skeleton"></div>
 	<div class="text-skeletons">
 		<div class="text-skeleton">
@@ -643,13 +654,5 @@
 		pointer-events: none;
 		padding-top: 34px;
 		padding-left: 10px;
-	}
-	@keyframes skeleton-loading {
-		0% {
-			background-position: -200% 0;
-		}
-		100% {
-			background-position: 200% 0;
-		}
 	}
 </style>

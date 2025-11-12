@@ -80,40 +80,46 @@
 		display: flex;
 		flex-direction: column;
 		caret-color: transparent;
+		position: relative;
+		overflow-y: auto;
+		overflow-x: auto;
+		scrollbar-width: none;
+		scrollbar-color: transparent transparent;
+		-ms-overflow-style: none;
 	}
+
 	.app::before {
-		position: absolute;
+		position: fixed;
 		content: '';
-		width: 100%;
-		height: 100%;
+		width: 100vw;
+		height: 100vh;
 		background: url('/background.svg') no-repeat bottom center;
 		background-size: cover;
-		z-index: 0;
+		z-index: -1;
+		left: 0;
+		bottom: 0;
 	}
+
 	.embed {
-		display: flex;
-		flex-direction: column;
-		min-height: 100vh;
-		margin-left: 200px;
-		width: 617px;
-		height: 235px;
+		display: none;
 		user-select: none;
 		pointer-events: none;
-		flex-shrink: 0;
 	}
 
 	.hero-section {
 		display: flex;
 		flex-direction: row;
-		flex-wrap: nowrap;
+		flex-wrap: wrap;
 		justify-content: center;
-		align-items: stretch;
+		align-items: center;
 		margin: 0 auto;
 		max-width: 100%;
 		width: 100%;
 		min-height: 100vh;
 		z-index: 1;
+		padding: 20px;
 	}
+
 	.features-section {
 		display: flex;
 		flex-direction: column;
@@ -124,125 +130,169 @@
 		width: 100%;
 		padding: 80px 20px;
 	}
+
 	.headers {
-		margin-left: 138px;
-		height: 100vh;
+		margin: 0;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: flex-start;
 		caret-color: transparent;
+		max-width: 100%;
 	}
+
 	.title {
 		color: #fff;
-		width: 264px;
 		font:
-			800 48px / normal 'Be vietnam pro',
+			800 clamp(32px, 5vw, 48px) / normal 'Be vietnam pro',
 			sans-serif;
 		caret-color: transparent;
 	}
+
 	.sub-title {
 		font:
-			800 36px / normal 'Be Vietnam Pro',
+			800 clamp(24px, 4vw, 36px) / normal 'Be Vietnam Pro',
 			sans-serif;
 		color: #fff;
-		margin-top: -50px;
+		margin-top: 10px;
 		caret-color: transparent;
 	}
+
 	.detailed-description {
-		margin-top: -10px;
+		margin-top: 10px;
 		color: #dadada;
-		width: 826px;
-		height: 78px;
+		max-width: 826px;
+		width: 100%;
 		text-wrap: wrap;
 		overflow-wrap: break-word;
 		font:
-			400 24px / normal 'Be Vietnam Pro',
+			400 clamp(16px, 2vw, 24px) / normal 'Be Vietnam Pro',
 			sans-serif;
 		caret-color: transparent;
 	}
+
 	.buttons {
 		display: flex;
 		flex-direction: row;
-		justify-content: center;
+		justify-content: flex-start;
 		align-items: flex-start;
-		gap: 40px;
+		gap: 20px;
+		margin-top: 20px;
 		caret-color: transparent;
+		flex-wrap: wrap;
 	}
-	.button-main {
-		background: rgba(62, 107, 255, 0.47);
-		border-radius: 18px;
-		border: none;
+
+	.button-main,
+	.button-secondary {
 		display: inline-flex;
 		padding: 12px 30px;
 		justify-content: center;
 		align-items: center;
-		color: #fff;
-		text-align: center;
+		border-radius: 18px;
 		font:
-			800 20px / normal 'Poppins',
+			800 clamp(16px, 2vw, 20px) / normal 'Poppins',
 			sans-serif;
 		caret-color: transparent;
 		transition: background 0.3s ease;
 		cursor: pointer;
 	}
+
+	.button-main {
+		background: rgba(62, 107, 255, 0.47);
+		border: none;
+		color: #fff;
+		text-align: center;
+	}
+
 	.button-main:hover {
 		background: rgba(62, 107, 255, 1);
 	}
+
 	.button-secondary {
-		display: inline-flex;
-		justify-content: center;
-		align-items: center;
-		padding: 12px 30px;
-		border-radius: 18px;
 		border: 3px solid #3e6bff;
 		background: rgba(0, 0, 0, 0.47);
 		color: #fff;
-		font:
-			800 20px / normal 'Poppins',
-			sans-serif;
-		caret-color: transparent;
-		transition: background 0.3s ease;
-		cursor: pointer;
 	}
+
 	.button-secondary:hover {
 		background: rgba(62, 107, 255, 1);
 	}
+
 	.features {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 140px;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 40px;
+		width: 100%;
 	}
+
 	.feature-box {
 		position: relative;
-		width: 605px;
-		max-width: 580px;
-		height: 322px;
+		width: 100%;
+		max-width: 605px;
+		min-height: 322px;
 		border-radius: 15px;
 		background: rgba(0, 0, 0, 0.2);
+		padding: 20px;
 	}
+
 	.feature-title {
 		color: #fff;
 		font:
-			800 32px / normal 'Poppins',
+			800 clamp(24px, 3vw, 32px) / normal 'Poppins',
 			sans-serif;
-		padding-left: 35px;
+		padding-left: 15px;
 	}
+
 	.feature-description {
-		padding: 20px 0 0 35px;
-		width: 451px;
-		height: 128px;
-		flex-shrink: 0;
+		padding: 20px 0 0 15px;
+		max-width: 451px;
+		width: 100%;
 		color: #fff;
 		font:
-			400 20px / normal 'Poppins',
+			400 clamp(16px, 2vw, 20px) / normal 'Poppins',
 			sans-serif;
 	}
+
 	.feature-icon {
 		position: absolute;
-		top: 40px;
-		right: 40px;
-		width: auto;
+		top: 20px;
+		right: 20px;
+		width: clamp(40px, 5vw, 60px);
 		height: auto;
+	}
+
+	@media (min-width: 1024px) {
+		.embed {
+			display: block;
+			margin-left: 100px;
+			width: 617px;
+			height: 235px;
+			flex-shrink: 0;
+		}
+
+		.headers {
+			margin-left: 80px;
+		}
+
+		.features {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 140px;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.hero-section {
+			flex-direction: column;
+			padding: 40px 20px;
+		}
+
+		.headers {
+			align-items: center;
+			text-align: center;
+		}
+
+		.buttons {
+			justify-content: center;
+		}
 	}
 </style>

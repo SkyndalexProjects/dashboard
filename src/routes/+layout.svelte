@@ -1,12 +1,12 @@
 <script lang="ts">
 	import '../app.css';
-    import { injectSpeedInsights } from "@vercel/speed-insights/sveltekit";
-    import { injectAnalytics } from "@vercel/analytics/sveltekit";
+	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+	import { injectAnalytics } from '@vercel/analytics/sveltekit';
 
 	const { children } = $props();
 
-    injectSpeedInsights();
-    injectAnalytics();
+	injectSpeedInsights();
+	injectAnalytics();
 </script>
 
 <div class="app">

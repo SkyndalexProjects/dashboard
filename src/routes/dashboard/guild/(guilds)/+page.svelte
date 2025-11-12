@@ -37,9 +37,9 @@
 <section class="guilds">
 	{#if data}
 		<div class="guilds-grid">
-            {#each [...withBotAdded, ...withoutBotAdded] as guild, index (guild?.id)}
+			{#each [...withBotAdded, ...withoutBotAdded] as guild, index (guild?.id)}
 				{@const { iconUrl, isCommunity } = renderGuild(guild)}
-                <div class="guild" style="--animation-order: {index};">
+				<div class="guild" style="--animation-order: {index};">
 					<img src={iconUrl} alt="<no icon>" onerror={handleImageError} class="guild-icon" />
 					<div class="guild-info-headers">
 						<span class="guild-name" data-fullname={guild.name}>{guild?.name}</span>
@@ -68,7 +68,37 @@
 								Community server
 							</div>
 						{:else}
-							<div class="guild-info-header">🔒 Private server</div>
+							<div class="guild-info-header">
+								<svg
+									width="13"
+									height="13"
+									viewBox="0 0 13 13"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										fill-rule="evenodd"
+										clip-rule="evenodd"
+										d="M4.49308 0.0328698C5.10246 -0.180709 5.85 0.716425 6.5 0.716425C7.15 0.716425 7.92193 -0.137993 8.50696 0.0328698C9.09188 0.203816 9.24625 1.43383 9.75 1.81825C10.2538 2.20268 11.3752 1.97214 11.749 2.50181C12.1224 3.03155 11.5621 4.0737 11.749 4.71435C11.9359 5.355 12.9998 5.82493 13 6.49973C13 7.17458 11.96 7.67862 11.7648 8.28513C11.5698 8.8917 12.1223 9.99419 11.7648 10.4982C11.4073 11.002 10.2701 10.7974 9.76641 11.1818C9.26266 11.5662 9.12421 12.7536 8.51484 12.9672C7.90552 13.1805 7.15786 12.2836 6.50791 12.2836C5.85796 12.2837 5.08596 13.138 4.50101 12.9672C3.91621 12.7961 3.7536 11.5663 3.25 11.1818C2.74625 10.7973 1.62476 11.0279 1.25101 10.4982C0.877297 9.96856 1.43789 8.92587 1.25101 8.28513C1.06388 7.64456 0 7.17452 0 6.49973C0.000144366 5.82487 1.04016 5.32086 1.23515 4.71435C1.4301 4.10777 0.877671 3.00585 1.23515 2.50181C1.59265 1.99777 2.73812 2.22831 3.25 1.81825C3.76185 1.4082 3.88377 0.246522 4.49308 0.0328698Z"
+										fill="white"
+									/>
+									<path
+										d="M8.5 6.25H4.64286C4.28782 6.25 4 6.51863 4 6.85V8.65C4 8.98137 4.28782 9.25 4.64286 9.25H8.5C8.85504 9.25 9.14286 8.98137 9.14286 8.65V6.85C9.14286 6.51863 8.85504 6.25 8.5 6.25Z"
+										stroke="black"
+										stroke-opacity="0.5"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+									<path
+										d="M8.28599 5.25002V4.40626C8.28599 3.61875 8.09552 3 6.57171 3C5.0479 3 4.85742 3.61875 4.85742 4.40626V5.25002"
+										stroke="black"
+										stroke-opacity="0.5"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+								</svg>
+								Private server
+							</div>
 						{/if}
 
 						<span class="guild-info-header">
@@ -85,7 +115,7 @@
 									d="M4.4697 0.0252844C5.0759 -0.139007 5.81955 0.551096 6.46617 0.551096C7.11278 0.551096 7.8807 -0.106148 8.46268 0.0252844C9.04455 0.156782 9.19812 1.10294 9.69925 1.39865C10.2004 1.69437 11.316 1.51703 11.6878 1.92447C12.0593 2.33196 11.5019 3.13361 11.6878 3.62643C11.8737 4.11923 12.9322 4.48072 12.9323 4.99979C12.9323 5.51891 11.8977 5.90663 11.7036 6.37318C11.5096 6.83977 12.0592 7.68784 11.7036 8.07556C11.3479 8.46309 10.2166 8.3057 9.71558 8.60136C9.21445 8.89708 9.07672 9.81048 8.47052 9.97477C7.86437 10.1389 7.1206 9.4489 6.47403 9.4489C5.82747 9.44904 5.05948 10.1061 4.47759 9.97477C3.89582 9.84314 3.73407 8.89715 3.23308 8.60136C2.73195 8.30564 1.61631 8.48301 1.2445 8.07556C0.87273 7.66812 1.4304 6.86605 1.2445 6.37318C1.05834 5.88043 0 5.51886 0 4.99979C0.000143614 4.48067 1.03475 4.09297 1.22872 3.62643C1.42265 3.15983 0.873102 2.31219 1.22872 1.92447C1.58436 1.53674 2.72386 1.71409 3.23308 1.39865C3.74227 1.08323 3.86356 0.189633 4.4697 0.0252844Z"
 									fill="white"
 								/>
-								<g clip-path="url(#clip0_1571_1248)">
+								<g clip-path="url(#clip0_1595_1344)">
 									<path
 										d="M6.43412 4.70486C6.83353 4.70486 7.15731 4.30584 7.15731 3.81361C7.15731 3.32139 6.83353 2.92236 6.43412 2.92236C6.03472 2.92236 5.71094 3.32139 5.71094 3.81361C5.71094 4.30584 6.03472 4.70486 6.43412 4.70486Z"
 										fill="black"
@@ -118,51 +148,52 @@
 									/>
 								</g>
 								<defs>
-									<clipPath id="clip0_1571_1248">
+									<clipPath id="clip0_1595_1344">
 										<rect width="4.86857" height="6" fill="white" transform="translate(4 2)" />
 									</clipPath>
 								</defs>
 							</svg>
+
 							{guild.approximate_member_count} members
 						</span>
 
-                        <a
-                                class="dashboard-link"
-                                href={guild.isBotAdded
-  ? `/dashboard/guild/${guild.id}/home`
-  : `https://discord.com/oauth2/authorize?client_id=1037067718769254453&permissions=8&integration_type=0&scope=bot+applications.commands&guild_id=${guild.id}`}
-                                target={guild.isBotAdded ? '_self' : '_blank'}
-                                rel={guild.isBotAdded ? '' : 'noopener noreferrer'}
-                        >
-                            <svg
-                                    width="12"
-                                    height="12"
-                                    viewBox="0 0 12 12"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <g clip-path="url(#clip0_1575_1503)">
-                                    <path
-                                            d="M5.28769 1.15165C6.02508 0.414261 7.02519 0 8.06805 0C10.2396 0 12 1.76041 12 3.93198C12 4.97481 11.5858 5.97492 10.8484 6.71231L9.31065 8.25L8.25 7.18934L9.78772 5.65165C10.2438 5.19557 10.5 4.57698 10.5 3.93198C10.5 2.58883 9.41115 1.5 8.06805 1.5C7.42302 1.5 6.80443 1.75622 6.34835 2.21231L4.81066 3.75L3.75 2.68934L5.28769 1.15165Z"
-                                            fill="#3E6BFF"
-                                    />
-                                    <path
-                                            d="M5.65165 9.78772L7.18934 8.25L8.25 9.31065L6.71231 10.8484C5.97492 11.5858 4.97481 12 3.93198 12C1.76041 12 0 10.2396 0 8.06805C0 7.0252 0.41426 6.02508 1.15165 5.28769L2.68934 3.75L3.75 4.81066L2.21231 6.34835C1.75622 6.80443 1.5 7.42302 1.5 8.06805C1.5 9.41115 2.58883 10.5 3.93198 10.5C4.57698 10.5 5.19557 10.2438 5.65165 9.78772Z"
-                                            fill="#3E6BFF"
-                                    />
-                                    <path
-                                            d="M4.27941 8.78038L8.77941 4.28039L7.71876 3.21973L3.21875 7.71973L4.27941 8.78038Z"
-                                            fill="#3E6BFF"
-                                    />
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_1575_1503">
-                                        <rect width="12" height="12" fill="white" />
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                            {guild.isBotAdded ? 'Get to the dashboard' : 'Invite bot'}
-                        </a>
+						<a
+							class="dashboard-link"
+							href={guild.isBotAdded
+								? `/dashboard/guild/${guild.id}/home`
+								: `https://discord.com/oauth2/authorize?client_id=1037067718769254453&permissions=8&integration_type=0&scope=bot+applications.commands&guild_id=${guild.id}`}
+							target={guild.isBotAdded ? '_self' : '_blank'}
+							rel={guild.isBotAdded ? '' : 'noopener noreferrer'}
+						>
+							<svg
+								width="12"
+								height="12"
+								viewBox="0 0 12 12"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<g clip-path="url(#clip0_1575_1503)">
+									<path
+										d="M5.28769 1.15165C6.02508 0.414261 7.02519 0 8.06805 0C10.2396 0 12 1.76041 12 3.93198C12 4.97481 11.5858 5.97492 10.8484 6.71231L9.31065 8.25L8.25 7.18934L9.78772 5.65165C10.2438 5.19557 10.5 4.57698 10.5 3.93198C10.5 2.58883 9.41115 1.5 8.06805 1.5C7.42302 1.5 6.80443 1.75622 6.34835 2.21231L4.81066 3.75L3.75 2.68934L5.28769 1.15165Z"
+										fill="#3E6BFF"
+									/>
+									<path
+										d="M5.65165 9.78772L7.18934 8.25L8.25 9.31065L6.71231 10.8484C5.97492 11.5858 4.97481 12 3.93198 12C1.76041 12 0 10.2396 0 8.06805C0 7.0252 0.41426 6.02508 1.15165 5.28769L2.68934 3.75L3.75 4.81066L2.21231 6.34835C1.75622 6.80443 1.5 7.42302 1.5 8.06805C1.5 9.41115 2.58883 10.5 3.93198 10.5C4.57698 10.5 5.19557 10.2438 5.65165 9.78772Z"
+										fill="#3E6BFF"
+									/>
+									<path
+										d="M4.27941 8.78038L8.77941 4.28039L7.71876 3.21973L3.21875 7.71973L4.27941 8.78038Z"
+										fill="#3E6BFF"
+									/>
+								</g>
+								<defs>
+									<clipPath id="clip0_1575_1503">
+										<rect width="12" height="12" fill="white" />
+									</clipPath>
+								</defs>
+							</svg>
+							{guild.isBotAdded ? 'Get to the dashboard' : 'Invite bot'}
+						</a>
 					</div>
 				</div>
 			{/each}
@@ -179,8 +210,7 @@
 		min-height: 100vh;
 		text-align: center;
 		width: 100%;
-		max-width: 1400px;
-		padding: 0;
+		padding: 20px;
 	}
 	.title {
 		color: #fff;
@@ -193,21 +223,31 @@
 		font-weight: 700;
 	}
 
-    .guild {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        width: 289px;
-        min-height: 127px;
-        margin-bottom: 50px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 15px;
-        background-color: rgba(0, 0, 0, 0.2);
-        animation: fadeInUp 0.4s ease-out forwards;
-        animation-delay: calc(var(--animation-order) * 0.05s);
-        opacity: 0;
-    }
+	.guild {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		width: 300px;
+		min-width: 0;
+		min-height: 127px;
+		margin-bottom: 50px;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 15px;
+		background-color: rgba(0, 0, 0, 0.2);
+		animation: fadeInUp 0.4s ease-out forwards;
+		animation-delay: calc(var(--animation-order) * 0.05s);
+		opacity: 0;
+	}
 
+	.guild-info-header svg,
+	.dashboard-link svg,
+	.guild-info-headers svg {
+		width: 12px;
+		height: auto;
+		flex: 0 0 13px;
+		display: block;
+		max-width: none;
+	}
 	@keyframes fadeInUp {
 		from {
 			opacity: 0;
@@ -218,7 +258,6 @@
 			transform: translateY(0);
 		}
 	}
-
 
 	.guild-name {
 		font-family: 'Be Vietnam Pro', sans-serif;
@@ -248,22 +287,24 @@
 		margin-left: 15px;
 		text-align: left;
 		flex: 1;
+		min-width: 0;
 	}
-    .dashboard-link {
-        font-size: 14px;
-        font-family: 'Be Vietnam Pro', sans-serif;
-        font-weight: 600;
-        color: #3e6bff;
-        white-space: nowrap;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        text-decoration: none;
-        cursor: pointer;
-    }
-    .dashboard-link:hover {
-        text-decoration: underline;
-    }
+
+	.dashboard-link {
+		font-size: 14px;
+		font-family: 'Be Vietnam Pro', sans-serif;
+		font-weight: 600;
+		color: #3e6bff;
+		white-space: nowrap;
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	.dashboard-link:hover {
+		text-decoration: underline;
+	}
 	.guild-info-header {
 		font-family: '--font-vietnam', sans-serif;
 		color: rgba(255, 255, 255, 0.5);
@@ -276,20 +317,23 @@
 	.guild-icon {
 		width: 71px;
 		height: 71px;
+		max-width: 100%;
 		object-fit: cover;
 		border-radius: 15px;
 		margin-left: 20px;
 		flex-shrink: 0;
+		display: block;
 	}
 
 	.guilds-grid {
-		margin-left: 100px;
-		margin-bottom: 700px;
 		display: grid;
-		flex-direction: row;
-		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-		padding: 0;
+		gap: 30px;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 		width: 100%;
+		box-sizing: border-box;
+		padding: 0 20px;
+		justify-items: stretch;
+		margin-bottom: 300px;
 	}
 
 	@media (max-width: 768px) {

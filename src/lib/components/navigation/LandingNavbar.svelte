@@ -43,7 +43,7 @@
 				{user?.username}
 			{:else}
 				<img src="/icons/login.svg" alt="login" class="login-icon" />
-				Login
+				Login with discord
 			{/if}
 		</button>
 	</div>
@@ -137,6 +137,7 @@
 		background-color: rgba(0, 0, 0, 0.26);
 		width: max-content;
 		height: 64px;
+		padding: 0 20px;
 		color: #667398;
 		font:
 			600 24px / normal 'Be Vietnam Pro',
