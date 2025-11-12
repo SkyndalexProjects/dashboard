@@ -103,6 +103,7 @@
 		align-items: center;
 		width: 100%;
 		height: 90px;
+		top: 0;
 		overflow: visible;
 		flex-wrap: wrap;
 		background: rgba(0, 0, 0, 0.2);
@@ -112,6 +113,7 @@
 		z-index: 1000;
 	}
 	.left-corner {
+		position: fixed;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -126,6 +128,8 @@
 		line-height: normal;
 	}
 	.right-corner {
+		right: 0;
+		position: fixed;
 		display: flex;
 		flex-direction: row;
 		align-items: flex-end;

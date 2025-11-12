@@ -127,7 +127,7 @@
 		transition: all 0.2s ease;
 	}
 	.dropdown-items-container {
-		width: max-content;
+		width: auto;
 		max-height: 300px;
 		overflow-y: auto;
 		scrollbar-width: none;
@@ -140,7 +140,6 @@
 	}
 
 	.dropdown-menu {
-		width: max-content;
 		position: absolute;
 		top: 100%;
 		left: 0;
@@ -149,6 +148,9 @@
 		margin-top: 10px;
 		border-radius: 8px;
 		background: linear-gradient(180deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
+		overflow: hidden;
+		min-width: 100%;
+		width: max-content;
 	}
 	.dropdown-item {
 		background-color: black;
@@ -162,6 +164,8 @@
 		border: none;
 		border-radius: 6px;
 		cursor: pointer;
+		white-space: nowrap;
+		padding: 8px 12px;
 	}
 	.dropdown-item:hover {
 		background-color: rgba(62, 107, 255, 0.15);
