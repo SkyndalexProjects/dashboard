@@ -105,7 +105,6 @@
 		height: 90px;
 		top: 0;
 		overflow: visible;
-		flex-wrap: wrap;
 		background: rgba(0, 0, 0, 0.2);
 		backdrop-filter: blur(8px);
 		-webkit-backdrop-filter: blur(8px);
@@ -118,7 +117,7 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
-		margin-left: 40px;
+		left: 40px;
 		gap: 10px;
 		color: #fff;
 		font-family: '--font-vietnam', sans-serif;
@@ -128,13 +127,12 @@
 		line-height: normal;
 	}
 	.right-corner {
-		right: 0;
 		position: fixed;
+		right: 40px;
 		display: flex;
 		flex-direction: row;
-		align-items: flex-end;
-		justify-content: flex-end;
-		margin-right: 30px;
+		align-items: center;
+		justify-content: center;
 	}
 	.icon {
 		width: 46px;
@@ -218,6 +216,7 @@
 		transition:
 			background-color 0.3s ease,
 			transform 0.3s ease;
+		padding: 0 20px;
 	}
 	.dashboard-redirect:hover {
 		background-color: rgba(0, 0, 0, 0.5);

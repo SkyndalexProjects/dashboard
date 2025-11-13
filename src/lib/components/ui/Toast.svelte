@@ -20,10 +20,10 @@
 {/if}
 
 {#if status === 'error'}
-    <div class="toast">
-        {@render children?.()}
-        <div class="toast-progress-error"></div>
-    </div>
+	<div class="toast">
+		{@render children?.()}
+		<div class="toast-progress-error"></div>
+	</div>
 {/if}
 
 <style>
@@ -74,16 +74,16 @@
 		border-radius: 0 0 0.5rem 0.5rem;
 		box-shadow: 0 0 8px 2px #fff3;
 	}
-    .toast-progress-error {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        height: 5px;
-        background: #f44336;
-        border-radius: 0 0 0.5rem 0.5rem;
-        animation: progress-success-reverse 2.5s linear forwards;
-    }
+	.toast-progress-error {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 5px;
+		background: #f44336;
+		border-radius: 0 0 0.5rem 0.5rem;
+		animation: progress-success-reverse 2.5s linear forwards;
+	}
 
 	@keyframes progress-chase {
 		0% {

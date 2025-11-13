@@ -210,6 +210,7 @@
 		min-height: 100vh;
 		text-align: center;
 		width: 100%;
+
 		padding: 20px;
 	}
 	.title {
@@ -247,16 +248,6 @@
 		flex: 0 0 13px;
 		display: block;
 		max-width: none;
-	}
-	@keyframes fadeInUp {
-		from {
-			opacity: 0;
-			transform: translateY(20px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
 	}
 
 	.guild-name {
@@ -333,6 +324,7 @@
 		box-sizing: border-box;
 		padding: 0 20px;
 		justify-items: stretch;
+		-ms-overflow-style: none;
 		margin-bottom: 300px;
 	}
 
