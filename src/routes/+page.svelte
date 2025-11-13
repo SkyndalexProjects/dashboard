@@ -132,7 +132,7 @@
 	}
 
 	.headers {
-		margin: 0;
+        margin: 0;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -150,16 +150,16 @@
 	}
 
 	.sub-title {
-		font:
+        margin-top: -50px;
+        font:
 			800 clamp(24px, 4vw, 36px) / normal 'Be Vietnam Pro',
 			sans-serif;
 		color: #fff;
-		margin-top: 10px;
 		caret-color: transparent;
 	}
 
 	.detailed-description {
-		margin-top: 10px;
+		margin-top: -10px;
 		color: #dadada;
 		max-width: 826px;
 		width: 100%;
@@ -290,6 +290,9 @@
 			align-items: center;
 			text-align: center;
 		}
+        .sub-title {
+            margin-top: -20px;
+        }
 
 		.buttons {
 			justify-content: center;
