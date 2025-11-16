@@ -2,7 +2,7 @@ import type { APIUser } from 'discord-api-types/v10';
 import { BACKEND_URL } from '$env/static/private';
 export const prerender = false;
 
-export async function load({ fetch, cookies }) {
+export async function load({ fetch, cookies, params }) {
 	try {
 		const sessionToken = cookies.get('__Secure-session_token');
 
@@ -24,7 +24,7 @@ export async function load({ fetch, cookies }) {
 		}
 
 		const userData: APIUser = await res.json();
-		return { user: userData };
+		return { user: userData, guildId: params.id };
 	} catch (err) {
 		console.error('Error while downloading user data:', err);
 		return { user: null };

@@ -13,6 +13,7 @@
 		(event.target as HTMLImageElement).src = '/default_guild_icon.png';
 	}
 
+	console.log('withBotAdded', withBotAdded);
 	function renderGuild(guild: APIGuild) {
 		return {
 			guild,
@@ -210,7 +211,6 @@
 		min-height: 100vh;
 		text-align: center;
 		width: 100%;
-
 		padding: 20px;
 	}
 	.title {
@@ -237,7 +237,6 @@
 		background-color: rgba(0, 0, 0, 0.2);
 		animation: fadeInUp 0.4s ease-out forwards;
 		animation-delay: calc(var(--animation-order) * 0.05s);
-		opacity: 0;
 	}
 
 	.guild-info-header svg,

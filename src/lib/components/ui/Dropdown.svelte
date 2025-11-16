@@ -7,9 +7,10 @@
 		maxWidth?: string;
 		trigger?: Snippet;
 		items?: Snippet;
+		isOpen?: boolean;
 	}
 
-	const { trigger, items }: DropdownProps = $props();
+	const { trigger, items, isOpen = $bindable(false) }: DropdownProps = $props();
 
 	let isDropdownOpen = $state(false);
 	let dropdownRef: HTMLDivElement;
