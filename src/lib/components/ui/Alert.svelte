@@ -127,7 +127,7 @@
 
 	@media (max-width: 480px) {
 		.alert-content {
-			font-size: 13px;
+			font-size: 10px;
 			gap: 8px;
 		}
 

@@ -162,33 +162,33 @@
 			</Dropdown>
 		</div>
 	{/await}
-	{#each categories as category (category.name)}
-		<svg
-			width="383"
-			height="1"
-			viewBox="0 0 383 1"
-			fill="none"
-			xmlns="http://www.w3.org/2000/svg"
-			class="divider"
-		>
-			<path d="M0 0.5H383" stroke="white" stroke-opacity="0.1" />
-		</svg>
+    {#each categories as category (category.name)}
+        <svg
+                width="100%"
+                height="1"
+                viewBox="0 0 383 1"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="divider"
+        >
+            <path d="M0 0.5H383" stroke="white" stroke-opacity="0.1" />
+        </svg>
 
-		<span class="category">{category.name.toUpperCase()}</span>
-		{#each category.items as item (item.path)}
-			<button class="item" onclick={() => handleItemClick(item)}>
+        <span class="category">{category.name.toUpperCase()}</span>
+        {#each category.items as item (item.path)}
+            <button class="item" onclick={() => handleItemClick(item)}>
 				<span class:item-active={isItemActive(item)} class:item-inactive={!isItemActive(item)}>
 					<img src={item.icon} class="icon" alt={item.text} />
-					{item.text}
-					{#if item.hasSwitch}
+					<span class="item-text">{item.text}</span>
+                    {#if item.hasSwitch}
 						<div class="switches">
 							<Switch active={isItemActive(item)} />
 						</div>
 					{/if}
 				</span>
-			</button>
-		{/each}
-	{/each}
+            </button>
+        {/each}
+    {/each}
 </div>
 <main class="content">
 	{@render children()}
@@ -214,14 +214,15 @@
 		overflow-y: auto;
 		overflow-x: auto;
 	}
+
 	.content {
 		margin-top: 100px;
 		padding-left: 50px;
 		margin-left: 420px;
 		padding-right: 50px;
 		box-sizing: border-box;
-		overflow-x: auto;
-		overflow-y: auto;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
 	}
 	.guild-selector {
 		all: unset;
@@ -452,4 +453,89 @@
 			background-position: -200% 0;
 		}
 	}
+    @media (max-width: 768px) {
+        .sidebar {
+            width: 80px;
+            max-width: 80px;
+            padding-top: 20px;
+            align-items: center;
+        }
+
+        .content {
+            margin-left: 80px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .guild-selector {
+            width: 60px;
+            height: 60px;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .guild-name,
+        .indicator,
+        .skeleton-text,
+        .skeleton-indicator {
+            display: none;
+        }
+
+        .guild-icon {
+            margin-left: 0;
+            width: 40px;
+            height: 40px;
+        }
+
+        .guild-selector-skeleton {
+            width: 60px;
+            height: 60px;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .skeleton-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .category {
+            display: none;
+        }
+
+        .divider {
+            width: 60px;
+            padding-top: 10px;
+        }
+
+        .item-active,
+        .item-inactive {
+            width: 60px;
+            height: 60px;
+            justify-content: center;
+            margin-right: 0;
+            border-radius: 15px;
+            gap: 0;
+        }
+
+        .item-active {
+            border-left: none;
+            border: 2px solid #275ee7;
+        }
+
+        .item-text,
+        .switches {
+            display: none;
+        }
+
+        .icon {
+            margin-left: 0;
+            width: 24px;
+            height: 24px;
+        }
+
+        .guild-item span {
+            display: none;
+        }
+    }
 </style>

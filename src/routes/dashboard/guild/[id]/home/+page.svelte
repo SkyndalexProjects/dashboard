@@ -219,7 +219,7 @@
 		<div class="charts-column">
 			<div class="section-title-container">
 				<div class="section-title">Economy charts</div>
-				<div class="underline-vector"></div>
+				<div class="underline-vector economy-charts"></div>
 			</div>
 
 			<div class="chart-container">
@@ -310,7 +310,7 @@
 				</LineChart>
 			</div>
 
-			<div class="chart-container">
+			<div class="chart-container second-container">
 				<svg
 					width="673"
 					height="1"
@@ -538,9 +538,9 @@
 		align-items: start;
 		width: 100%;
 		max-width: 100%;
-		overflow-x: hidden;
 		box-sizing: border-box;
 		gap: 2rem;
+
 	}
 
 	:global(.tabs.recent-tabs) {
@@ -562,6 +562,8 @@
 		--tab-height: 60px;
 		--tab-selected-padding-right: 20px;
 		--tab-padding-right: 20px;
+        --tab-border-radius: 0 15px 15px 0;
+        --tab-selected-border-radius: 15px 0px 0px 15px;
 	}
 	.charts-column {
 		display: flex;
@@ -575,13 +577,9 @@
 		max-width: 120px;
 	}
 
-	.section-title-container.info-title {
-		margin-left: 20px;
-		margin-top: 90px;
-	}
 	.section-title-container.info-title.recent-logs {
-		padding-top: -50px;
-		margin-top: -40px;
+		padding-top: 40px;
+		margin-top: 60px;
 	}
 	.info-column {
 		display: flex;
@@ -654,6 +652,7 @@
 		margin-left: 10px;
 		cursor: pointer;
 		transition: background-color 0.3s ease;
+        box-sizing: border-box;
 	}
 	.join-guild-button:hover {
 		background: rgba(62, 107, 255, 0.47);
@@ -670,7 +669,6 @@
 		text-wrap: nowrap;
 	}
 	.chart-container {
-		margin-top: 50px;
 		box-shadow: 0 2px 6px 0 rgba(13, 10, 44, 0.08);
 		background: rgba(0, 0, 0, 0.4);
 		border-radius: 20px;
@@ -680,6 +678,9 @@
 		border: 1px solid rgba(255, 255, 255, 0.2);
 		overflow: hidden;
 	}
+    .chart-container.second-container {
+        margin-top: 100px;
+    }
 	.loss,
 	.revenue {
 		display: inline-flex;
@@ -707,7 +708,6 @@
 		margin: 40px 30px 0 590px;
 	}
 	.headers {
-		position: absolute;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
@@ -770,6 +770,7 @@
 	}
 	.logsContainer {
 		color: #d1d5db;
+        margin-left: -20px;
 		padding: 1rem;
 		border-radius: 12px;
 		max-height: 400px;
@@ -810,13 +811,17 @@
 		background: rgba(0, 0, 0, 0.4);
 		margin-top: 3px;
 		border-radius: 10px;
-		width: 100%;
+		width: max-content;
 		min-width: 550px;
-		max-width: 100%; /* Changed from 650px */
 		height: 71px;
 		padding: 0 20px;
-		box-sizing: border-box; /* Added */
-	}
+		box-sizing: border-box;
+        transition: 0.3s;
+        -webkit-overflow-scrolling: touch;
+    }
+    .info-row:hover {
+        background: rgba(62, 107, 255, 0.21);
+    }
 	.user-avatar {
 		width: 20px;
 		height: 20px;
@@ -895,11 +900,11 @@
 		margin-bottom: 10px;
 		width: 100%;
 		min-width: 550px;
-		max-width: 100%; /* Changed from 650px */
+		max-width: 100%;
 		height: 46px;
 		padding: 0 20px;
 		border-radius: 10px;
-		box-sizing: border-box; /* Added */
+		box-sizing: border-box;
 	}
 
 	.header-title {
@@ -915,31 +920,50 @@
 		font-weight: 600;
 		line-height: normal;
 	}
-	@media (max-width: 1400px) {
-		.home-grid {
-			grid-template-columns: 1fr;
-		}
+    .underline-vector.economy-charts {
+        max-width: 170px;
+    }
+    @media (max-width: 1400px) {
+        .home-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
 
-		.info-column {
-			margin-top: 2rem;
-		}
+        .charts-column {
+            max-width: 100%;
+        }
 
-		.section-title-container.info-title {
-			margin-top: 40px;
-		}
-	}
+        .info-column {
+            margin-top: 0;
+        }
+
+        .section-title-container.info-title {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        .section-title-container.info-title.recent-logs {
+            padding-top: 20px;
+            margin-top: 40px;
+        }
+    }
 	@media (max-width: 768px) {
 		.logsContainer {
 			padding: 0.5rem;
-			max-width: 100%;
+			max-width: max-content;
+            box-sizing: border-box;
+
 		}
 
-		.info-row,
+        .information {
+            font-size: 10px;
+        }
+        .warning {
+            font-size: 10px;
+        }
 		.header-row {
-			grid-template-columns: 30px minmax(120px, 1fr) 60px minmax(150px, 1fr);
 			gap: 8px;
 			padding: 0 10px;
-			min-width: unset;
 			font-size: 11px;
 		}
 
@@ -952,5 +976,12 @@
 			width: 55px;
 			font-size: 9px;
 		}
+        .chart-divider {
+            width: 0;
+        }
+        .section-title-container.info-title.recent-logs {
+            padding-top: 40px;
+            margin-top: -10px;
+        }
 	}
 </style>
