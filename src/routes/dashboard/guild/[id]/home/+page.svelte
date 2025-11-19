@@ -704,7 +704,8 @@
 		align-items: center;
 		justify-content: flex-end;
 		gap: 12px;
-		margin: 40px 30px 0 590px;
+        margin-top: -70px;
+        margin-right: 50px;
 	}
 	.headers {
 		display: flex;
@@ -750,7 +751,7 @@
 	:global(.lc-tooltip-context) {
 		all: unset;
 		position: absolute;
-		margin-top: -100px;
+		margin-top: -90px;
 		margin-left: -10px;
 		width: 650px;
 	}
