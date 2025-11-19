@@ -381,7 +381,7 @@
 		width: 100%;
 		min-height: 100vh;
 		z-index: 1;
-		margin-top: -100px;
+		margin-top: -50px;
 	}
 
 	.features-section {
@@ -392,7 +392,7 @@
 		margin: 0 auto;
 		max-width: 1200px;
 		width: 100%;
-		padding: 80px 20px;
+		padding: 200px 20px;
 		position: relative;
 		z-index: 1;
 	}
@@ -442,27 +442,27 @@
 	.buttons {
 		display: flex;
 		flex-direction: row;
-		justify-content: flex-start;
-		align-items: flex-start;
 		gap: 20px;
-		margin-top: 20px;
 		caret-color: transparent;
 		flex-wrap: wrap;
+        padding: 20px 0;
+        height: 54px;
 	}
 
 	.button-main,
 	.button-secondary {
-		display: inline-flex;
-		padding: 12px 30px;
-		justify-content: center;
-		align-items: center;
+        padding: 0 20px;
+        align-items: center;
 		border-radius: 18px;
-		font:
-			800 clamp(16px, 2vw, 20px) / normal 'Poppins',
-			sans-serif;
 		caret-color: transparent;
 		transition: background 0.3s ease;
 		cursor: pointer;
+        color: #FFF;
+        font-family: Poppins, sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: normal;
 	}
 
 	.button-main {

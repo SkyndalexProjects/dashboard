@@ -704,8 +704,8 @@
 		align-items: center;
 		justify-content: flex-end;
 		gap: 12px;
-        margin-top: -70px;
-        margin-right: 50px;
+		margin-top: -70px;
+		margin-right: 50px;
 	}
 	.headers {
 		display: flex;
