@@ -1,6 +1,4 @@
 <script lang="ts">
-	import ManagementNavbar from '$lib/components/navigation/ManagementNavbar.svelte';
-	import Sidebar from '$lib/components/navigation/Sidebar.svelte';
 	import Tab from '$lib/components/ui/Tab.svelte';
 	import Switch from '$lib/components/ui/Switch.svelte';
 	import Search from '$lib/components/ui/Search.svelte';
@@ -196,8 +194,6 @@
 		<div class="setting-container-skeleton"></div>
 	</div>
 {:then guilds}
-	<ManagementNavbar guild={data.guild} user={data.user} {guilds} />
-	<Sidebar guildId={data.guild.id} />
 	{#await data.channels}
 		<div>Loading channels...</div>
 	{:then channels}
@@ -346,6 +342,8 @@
 		width: 100%;
 		min-height: 100vh;
 		z-index: 1;
+		margin-left: -350px;
+		margin-top: -100px;
 	}
 	.permissions-settings {
 		display: flex;

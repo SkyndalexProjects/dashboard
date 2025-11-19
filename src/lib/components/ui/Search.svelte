@@ -22,7 +22,7 @@
 		onChange?: (value: string | string[]) => void;
 	} = $props();
 
-	let filteredItems: Item[] = $derived([]);
+	let filteredItems: Item[] = $state([]);
 	let showDropdown = $state(false);
 	let selectedItems: Item[] = $state([]);
 	let inputEl: HTMLInputElement | null = $state(null);
@@ -82,7 +82,7 @@
 			onfocusin={handleFocus}
 			onclick={() => inputEl && inputEl.focus()}
 		>
-			{#each filteredItems as item (item.id)}
+			{#each selectedItems as item, index (`${item.id}-${index}`)}
 				<span class="selected-item">
 					{item.name}
 					<span
@@ -124,7 +124,7 @@
 
 	{#if showDropdown && filteredItems.length > 0}
 		<ul class="dropdown" transition:slide={{ duration: 200 }}>
-			{#each filteredItems as item (item.id)}
+			{#each filteredItems as item, index (`${item.id}-${index}`)}
 				<button
 					type="button"
 					class="dropdown-item"

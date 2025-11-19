@@ -1,7 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import ManagementNavbar from '$lib/components/navigation/ManagementNavbar.svelte';
-	import Sidebar from '$lib/components/navigation/Sidebar.svelte';
 	import geti18ncontext from '$lib/i18n';
 	const i18n = geti18ncontext();
 
@@ -23,9 +21,6 @@
 {#await data.guilds}
 	<p>Test</p>
 {:then guilds}
-	<ManagementNavbar guild={data.guild} user={data.user} {guilds} />
-	<Sidebar guildId={data.guild.id} />
-
 	<div class="alert">
 		<Alert type="warning">{$i18n.t('system.errors.not_finished')}</Alert>
 	</div>

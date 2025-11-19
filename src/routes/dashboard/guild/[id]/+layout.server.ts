@@ -11,7 +11,7 @@ export async function load({ fetch, params, cookies }) {
 			return error(401, 'No session token found');
 		}
 
-		const res = await fetch(`${BACKEND_URL}/api/guild`, {
+		const guildRes = await fetch(`${BACKEND_URL}/api/guild`, {
 			credentials: 'include',
 			headers: {
 				Cookie: `__Secure-session_token=${sessionToken}`,
@@ -19,12 +19,24 @@ export async function load({ fetch, params, cookies }) {
 			}
 		});
 
-		if (!res.ok) {
-			return error(res.status, 'Error while fetching guild');
+		if (!guildRes.ok) {
+			return error(guildRes.status, 'Error while fetching guild');
 		}
 
-		const guild: APIGuild = await res.json();
-		return { guild };
+		// const guildsRes = await fetch(`${BACKEND_URL}/api/guilds`, {
+		//     credentials: 'include',
+		//     headers: {
+		//         Cookie: `__Secure-session_token=${sessionToken}`
+		//     }
+		// });
+
+		const guildsPromise: Promise<APIGuild[]> = fetch(`${BACKEND_URL}/api/guilds`).then((res) =>
+			res.json()
+		);
+
+		const guild: APIGuild = await guildRes.json();
+
+		return { guild, guilds: guildsPromise };
 	} catch (e: unknown | { message: string }) {
 		const message = e instanceof Error ? e.message : 'Unknown error';
 		throw error(500, message);

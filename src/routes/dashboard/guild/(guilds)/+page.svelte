@@ -13,6 +13,7 @@
 		(event.target as HTMLImageElement).src = '/default_guild_icon.png';
 	}
 
+	console.log('withBotAdded', withBotAdded);
 	function renderGuild(guild: APIGuild) {
 		return {
 			guild,
@@ -236,7 +237,6 @@
 		background-color: rgba(0, 0, 0, 0.2);
 		animation: fadeInUp 0.4s ease-out forwards;
 		animation-delay: calc(var(--animation-order) * 0.05s);
-		opacity: 0;
 	}
 
 	.guild-info-header svg,
@@ -247,16 +247,6 @@
 		flex: 0 0 13px;
 		display: block;
 		max-width: none;
-	}
-	@keyframes fadeInUp {
-		from {
-			opacity: 0;
-			transform: translateY(20px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
 	}
 
 	.guild-name {
@@ -333,6 +323,7 @@
 		box-sizing: border-box;
 		padding: 0 20px;
 		justify-items: stretch;
+		-ms-overflow-style: none;
 		margin-bottom: 300px;
 	}
 

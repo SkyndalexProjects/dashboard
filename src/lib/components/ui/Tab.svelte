@@ -61,6 +61,7 @@
 		cursor: pointer;
 		font-size: var(--tab-font-size);
 		border-bottom: var(--tab-border-bottom);
+		font-family: var(--tab-font-family, inherit), sans-serif;
 		transition:
 			border-color 0.2s,
 			color 0.2s,
@@ -73,6 +74,8 @@
 		align-items: center;
 		gap: var(--tab-icon-gap, 8px);
 		padding-right: var(--tab-padding-right, 20px);
+		border-radius: var(--tab-border-radius, 0);
+		font-weight: var(--tab-font-weight, normal);
 	}
 	.tab-icon {
 		display: inline-flex;
@@ -85,9 +88,11 @@
 		font-weight: var(--tab-selected-weight, bold);
 		border-bottom: var(--tab-selected-border-bottom, 2px solid #ffffff);
 		background: var(--tab-selected-background, var(--tab-background, none));
+		font-family: var(--tab-selected-font-family, inherit), sans-serif;
 		height: var(--tab-selected-height, auto);
 		text-align: left;
 		padding-right: var(--tab-selected-padding-right, 0);
+		border-radius: var(--tab-selected-border-radius, 0);
 	}
 	.tab:hover:not(.selected) {
 		color: var(--tab-hover-color, #333);
