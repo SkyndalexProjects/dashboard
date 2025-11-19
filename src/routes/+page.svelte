@@ -5,12 +5,24 @@
 	import { PUBLIC_FRONTEND_URL } from '$env/static/public';
 	import Toast from '$lib/components/ui/Toast.svelte';
 	import type { APIUser } from 'discord-api-types/v10';
-
 	const i18n = geti18ncontext();
 	const { data } = $props();
 	const origin = (PUBLIC_FRONTEND_URL || '').replace(/\/$/, '');
 	let showErrorToast = $state(false);
 	let errorMessage = $state('');
+	let isScrolled = $state(false);
+
+	function handleScroll() {
+		isScrolled = window.scrollY > 50;
+	}
+
+	$effect(() => {
+		window.addEventListener('scroll', handleScroll);
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	});
+
 	async function handleLogin() {
 		try {
 			await authClient.signIn.social({
@@ -177,18 +189,52 @@
 </svelte:head>
 
 <div class="app">
-	<nav>
+	<svg
+		width="1955"
+		height="1040"
+		viewBox="0 0 1955 1040"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+		class="wave-vector"
+	>
+		<path
+			d="M1955 0V917.568C1955 917.568 1565.71 773.401 1362.28 963.065C1158.85 1152.73 791.161 917.568 545.535 995.895C299.908 1074.22 80.2027 904.143 -7 917.568V0H1955Z"
+			fill="url(#paint0_linear_1243_4170)"
+			stroke="white"
+			stroke-opacity="0.2"
+		/>
+		<defs>
+			<linearGradient
+				id="paint0_linear_1243_4170"
+				x1="974"
+				y1="0"
+				x2="974"
+				y2="1039"
+				gradientUnits="userSpaceOnUse"
+			>
+				<stop stop-color="#353945" />
+				<stop offset="1" stop-color="#1E2028" />
+			</linearGradient>
+		</defs>
+	</svg>
+
+	<nav class:scrolled={isScrolled}>
 		<div class="bot">
 			<img src="/bot-logo.png" alt="bot-logo" />
 			<p class="bot-name">Skyndalex</p>
-		</div>
-		<div class="links">
-			<a class="link-active"> {$i18n.t('page.home.home')} </a>
-			<a class="link" href="https://skyndalex.com">
-				{$i18n.t('page.home.policy')}
-			</a>
-			<a class="link"> {$i18n.t('page.home.links')}</a>
-			<a class="link"> {$i18n.t('page.home.project')}</a>
+			<div class="versions">
+				<div class="version">v0.0.0</div>
+				<svg
+					width="1"
+					height="29"
+					viewBox="0 0 1 29"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path d="M0.5 0V28.5" stroke="white" stroke-opacity="0.3" />
+				</svg>
+				<div class="version">v3.0.0</div>
+			</div>
 		</div>
 		<div class="right-corner">
 			<button class="dashboard-redirect" onclick={handleLogin}>
@@ -261,16 +307,39 @@
 </div>
 
 <style>
+	.versions {
+		display: flex;
+		flex-direction: row;
+		gap: 10px;
+		color: #fff;
+		font-family: 'Be Vietnam Pro', sans-serif;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 800;
+		margin-left: 10px;
+		line-height: normal;
+	}
+	.version {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 3px;
+		background: #3e6bff;
+		width: 72px;
+		height: 31px;
+	}
 	.app {
 		display: flex;
 		flex-direction: column;
 		caret-color: transparent;
 		position: relative;
 		overflow-y: auto;
-		overflow-x: auto;
+		overflow-x: hidden;
 		scrollbar-width: none;
 		scrollbar-color: transparent transparent;
 		-ms-overflow-style: none;
+		min-height: 100vh;
+		background: linear-gradient(180deg, #353945 0%, #1e2028 100%);
 	}
 
 	.app::before {
@@ -278,11 +347,22 @@
 		content: '';
 		width: 100vw;
 		height: 100vh;
-		background: url('/background.svg') no-repeat bottom center;
-		background-size: cover;
 		z-index: -1;
 		left: 0;
 		bottom: 0;
+	}
+
+	.wave-vector {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		min-width: 100vw;
+		height: auto;
+		min-height: 100vh;
+		z-index: 0;
+		pointer-events: none;
+		object-fit: cover;
 	}
 
 	.embed {
@@ -297,12 +377,11 @@
 		flex-wrap: wrap;
 		justify-content: center;
 		align-items: center;
-		margin: 0 auto;
 		max-width: 100%;
 		width: 100%;
 		min-height: 100vh;
 		z-index: 1;
-		padding: 20px;
+		margin-top: -100px;
 	}
 
 	.features-section {
@@ -314,6 +393,8 @@
 		max-width: 1200px;
 		width: 100%;
 		padding: 80px 20px;
+		position: relative;
+		z-index: 1;
 	}
 
 	.headers {
@@ -324,6 +405,8 @@
 		align-items: flex-start;
 		caret-color: transparent;
 		max-width: 100%;
+		position: relative;
+		z-index: 2;
 	}
 
 	.title {
@@ -445,17 +528,32 @@
 		width: clamp(40px, 5vw, 60px);
 		height: auto;
 	}
+
 	nav {
-		position: absolute;
+		position: fixed;
+		top: 20px;
+		left: 50%;
+		transform: translateX(-50%);
 		display: flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
 		justify-content: space-between;
 		align-items: center;
-		border-bottom: 2px solid #424242;
-		height: 121px;
-		width: 100%;
+		height: 117px;
+		border-radius: 20px;
+		max-width: 1886px;
+		width: calc(100% - 40px);
+		border: 1px solid transparent;
+		background: transparent;
 		caret-color: transparent;
+		z-index: 10;
+		transition: all 0.3s ease;
+	}
+
+	nav.scrolled {
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		background: rgba(0, 0, 0, 0.15);
+		backdrop-filter: blur(10px);
 	}
 
 	.toast-container {
@@ -467,18 +565,9 @@
 		all: unset;
 	}
 
-	a {
-		transition:
-			color 0.3s ease,
-			opacity 0.3s ease;
-	}
-	a:hover {
-		color: #fff;
-		opacity: 1;
-	}
-
 	.bot {
 		display: flex;
+		flex-direction: row;
 		align-items: center;
 		caret-color: transparent;
 	}
@@ -498,28 +587,6 @@
 		padding-left: 16px;
 	}
 
-	.links {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		gap: 50px;
-		z-index: 2;
-	}
-	.link {
-		color: rgba(255, 255, 255, 0.2);
-		font:
-			400 24px / normal 'Be vietnam pro',
-			sans-serif;
-		cursor: pointer;
-		text-align: center;
-		text-decoration: none;
-	}
-	.link-active {
-		color: #fff;
-		font:
-			700 24px / normal 'Be vietnam pro',
-			sans-serif;
-	}
 	.right-corner {
 		display: flex;
 		flex-direction: row;
@@ -536,12 +603,14 @@
 		border-radius: 10px;
 		background-color: rgba(0, 0, 0, 0.26);
 		width: max-content;
-		height: 64px;
+		height: 72px;
 		padding: 0 20px;
-		color: #667398;
-		font:
-			600 24px / normal 'Be Vietnam Pro',
-			sans-serif;
+		color: #fff;
+		font-family: 'Be Vietnam Pro', sans-serif;
+		font-size: 24px;
+		font-style: normal;
+		font-weight: 500;
+		line-height: normal;
 		cursor: pointer;
 		z-index: 2;
 		transition:
@@ -573,6 +642,8 @@
 			width: 617px;
 			height: 235px;
 			flex-shrink: 0;
+			position: relative;
+			z-index: 2;
 		}
 
 		.headers {
@@ -586,9 +657,16 @@
 	}
 
 	@media (max-width: 768px) {
+		nav {
+			width: calc(100% - 20px);
+			height: 80px;
+			top: 10px;
+		}
+
 		.hero-section {
 			flex-direction: column;
 			padding: 40px 20px;
+			margin-top: 0;
 		}
 
 		.headers {
