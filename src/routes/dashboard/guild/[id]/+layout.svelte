@@ -17,10 +17,6 @@
 		additionalPaths?: string[];
 	}
 
-	// const adminGuilds = (data.guilds as (APIGuild & { isBotAdded?: boolean })[]).filter(
-	//     (guild) => (Number(guild?.permissions) & 0x8) === 0x8 && guild.isBotAdded === true
-	// );
-
 	function getGuildAvatarUrl(guild: APIGuild): string {
 		return guild?.id && guild?.icon
 			? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp?size=1024`
@@ -120,81 +116,89 @@
 	});
 </script>
 
-<div class="sidebar">
-	{#await data.guilds}
-		<div class="guild-selector-skeleton">
-			<div class="skeleton-icon"></div>
-			<div class="skeleton-text"></div>
-			<div class="skeleton-indicator"></div>
-		</div>
-	{:then guilds}
-		<div class="guild-selector">
-			<Dropdown bind:isOpen={isDropdownOpen}>
-				{#snippet trigger()}
-					<button class="guild-selector">
-						<img
-							src={getGuildAvatarUrl(data.guild)}
-							alt={data.guild?.name || 'Avatar'}
-							class="guild-icon"
-						/>
-						{data.guild?.name}
-						<img
-							src="/icons/indicator.svg"
-							alt="indicator"
-							class="indicator"
-							class:rotated={isDropdownOpen}
-						/>
-					</button>
-				{/snippet}
-
-				{#snippet items()}
-					{#each adminGuilds as adminGuild (adminGuild.id)}
-						<a href={`/dashboard/guild/${adminGuild.id}/home`} class="guild-item">
+<div class="layout-wrapper">
+	<div class="sidebar">
+		{#await data.guilds}
+			<div class="guild-selector-skeleton">
+				<div class="skeleton-icon"></div>
+				<div class="skeleton-text"></div>
+				<div class="skeleton-indicator"></div>
+			</div>
+		{:then guilds}
+			<div class="guild-selector">
+				<Dropdown bind:isOpen={isDropdownOpen}>
+					{#snippet trigger()}
+						<button class="guild-selector">
 							<img
-								src={getGuildAvatarUrl(adminGuild)}
-								alt={adminGuild?.name || 'Avatar'}
+								src={getGuildAvatarUrl(data.guild)}
+								alt={data.guild?.name || 'Avatar'}
 								class="guild-icon"
 							/>
-							<span>{adminGuild?.name}</span>
-						</a>
-					{/each}
-				{/snippet}
-			</Dropdown>
-		</div>
-	{/await}
-    {#each categories as category (category.name)}
-        <svg
-                width="100%"
-                height="1"
-                viewBox="0 0 383 1"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                class="divider"
-        >
-            <path d="M0 0.5H383" stroke="white" stroke-opacity="0.1" />
-        </svg>
+							{data.guild?.name}
+							<img
+								src="/icons/indicator.svg"
+								alt="indicator"
+								class="indicator"
+								class:rotated={isDropdownOpen}
+							/>
+						</button>
+					{/snippet}
 
-        <span class="category">{category.name.toUpperCase()}</span>
-        {#each category.items as item (item.path)}
-            <button class="item" onclick={() => handleItemClick(item)}>
-				<span class:item-active={isItemActive(item)} class:item-inactive={!isItemActive(item)}>
-					<img src={item.icon} class="icon" alt={item.text} />
-					<span class="item-text">{item.text}</span>
-                    {#if item.hasSwitch}
-						<div class="switches">
-							<Switch active={isItemActive(item)} />
-						</div>
-					{/if}
-				</span>
-            </button>
-        {/each}
-    {/each}
+					{#snippet items()}
+						{#each adminGuilds as adminGuild (adminGuild.id)}
+							<a href={`/dashboard/guild/${adminGuild.id}/home`} class="guild-item">
+								<img
+									src={getGuildAvatarUrl(adminGuild)}
+									alt={adminGuild?.name || 'Avatar'}
+									class="guild-icon"
+								/>
+								<span>{adminGuild?.name}</span>
+							</a>
+						{/each}
+					{/snippet}
+				</Dropdown>
+			</div>
+		{/await}
+		{#each categories as category (category.name)}
+			<svg
+				width="100%"
+				height="1"
+				viewBox="0 0 383 1"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+				class="divider"
+			>
+				<path d="M0 0.5H383" stroke="white" stroke-opacity="0.1" />
+			</svg>
+
+			<span class="category">{category.name.toUpperCase()}</span>
+			{#each category.items as item (item.path)}
+				<button class="item" onclick={() => handleItemClick(item)}>
+					<span class:item-active={isItemActive(item)} class:item-inactive={!isItemActive(item)}>
+						<img src={item.icon} class="icon" alt={item.text} />
+						<span class="item-text">{item.text}</span>
+						{#if item.hasSwitch}
+							<div class="switches">
+								<Switch active={isItemActive(item)} />
+							</div>
+						{/if}
+					</span>
+				</button>
+			{/each}
+		{/each}
+	</div>
+	<main class="content">
+		{@render children()}
+	</main>
 </div>
-<main class="content">
-	{@render children()}
-</main>
 
 <style>
+	.layout-wrapper {
+		display: flex;
+		min-height: 100vh;
+		padding-top: 90px;
+	}
+
 	.sidebar {
 		position: fixed;
 		display: flex;
@@ -203,7 +207,7 @@
 		color: white;
 		width: 450px;
 		max-width: 450px;
-		height: 100vh;
+		height: calc(100vh - 90px);
 		top: 90px;
 		background: rgba(0, 0, 0, 0.4);
 		padding-top: 50px;
@@ -212,18 +216,21 @@
 		z-index: 100;
 		left: 0;
 		overflow-y: auto;
-		overflow-x: auto;
+		overflow-x: hidden;
+		will-change: auto;
 	}
 
 	.content {
-		margin-top: 100px;
-		padding-left: 50px;
-		margin-left: 420px;
-		padding-right: 50px;
+		flex: 1;
+		margin-left: 450px;
+		padding: 50px;
 		box-sizing: border-box;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+		min-width: 0;
+		width: calc(100% - 450px);
 	}
+
 	.guild-selector {
 		all: unset;
 		gap: 15px;
@@ -253,6 +260,7 @@
 		width: 32px;
 		height: 32px;
 		border-radius: 50%;
+		display: block;
 	}
 	.guild-item {
 		display: flex;
@@ -401,12 +409,14 @@
 		background: rgba(0, 0, 0, 0.3);
 		gap: 15px;
 		padding: 0 15px;
+		min-height: 48px;
 	}
 
 	.skeleton-icon {
 		width: 32px;
 		height: 32px;
 		border-radius: 50%;
+		flex-shrink: 0;
 		background: linear-gradient(
 			90deg,
 			rgba(255, 255, 255, 0.1) 25%,
@@ -434,6 +444,7 @@
 	.skeleton-indicator {
 		width: 12px;
 		height: 12px;
+		flex-shrink: 0;
 		border-radius: 2px;
 		background: linear-gradient(
 			90deg,
@@ -453,89 +464,88 @@
 			background-position: -200% 0;
 		}
 	}
-    @media (max-width: 768px) {
-        .sidebar {
-            width: 80px;
-            max-width: 80px;
-            padding-top: 20px;
-            align-items: center;
-        }
 
-        .content {
-            margin-left: 80px;
-            padding-left: 20px;
-            padding-right: 20px;
-        }
+	@media (max-width: 768px) {
+		.layout-wrapper {
+			padding-top: 90px;
+		}
 
-        .guild-selector {
-            width: 60px;
-            height: 60px;
-            justify-content: center;
-            padding: 0;
-        }
+		.sidebar {
+			width: 80px;
+			max-width: 80px;
+			padding-top: 20px;
+			align-items: center;
+		}
 
-        .guild-name,
-        .indicator,
-        .skeleton-text,
-        .skeleton-indicator {
-            display: none;
-        }
+		.content {
+			margin-left: 80px;
+			padding-left: 20px;
+			padding-right: 20px;
+			width: calc(100% - 80px);
+		}
 
-        .guild-icon {
-            margin-left: 0;
-            width: 40px;
-            height: 40px;
-        }
+		.guild-selector {
+			width: 60px;
+			height: 60px;
+			justify-content: center;
+			padding: 0;
+		}
+		.guild-icon {
+			margin-left: 0;
+			width: 40px;
+			height: 40px;
+		}
 
-        .guild-selector-skeleton {
-            width: 60px;
-            height: 60px;
-            justify-content: center;
-            padding: 0;
-        }
+		.guild-selector-skeleton {
+			width: 60px;
+			height: 60px;
+			justify-content: center;
+			padding: 0;
+			min-height: 60px;
+		}
 
-        .skeleton-icon {
-            width: 40px;
-            height: 40px;
-        }
+		.skeleton-icon {
+			width: 40px;
+			height: 40px;
+		}
 
-        .category {
-            display: none;
-        }
+		.category {
+			display: none;
+		}
 
-        .divider {
-            width: 60px;
-            padding-top: 10px;
-        }
+		.divider {
+			width: 60px;
+			padding-top: 10px;
+		}
 
-        .item-active,
-        .item-inactive {
-            width: 60px;
-            height: 60px;
-            justify-content: center;
-            margin-right: 0;
-            border-radius: 15px;
-            gap: 0;
-        }
+		.item-active,
+		.item-inactive {
+			width: 60px;
+			height: 60px;
+			justify-content: center;
+			margin-right: 0;
+			border-radius: 15px;
+			gap: 0;
+		}
 
-        .item-active {
-            border-left: none;
-            border: 2px solid #275ee7;
-        }
+		.item-active {
+			border-left: none;
+			border: 2px solid #275ee7;
+		}
 
-        .item-text,
-        .switches {
-            display: none;
-        }
+		.item-text,
+		.switches {
+			display: none;
+		}
 
-        .icon {
-            margin-left: 0;
-            width: 24px;
-            height: 24px;
-        }
+		.icon {
+			margin-left: 0;
+			width: 24px;
+			height: 24px;
+		}
 
-        .guild-item span {
-            display: none;
-        }
-    }
+		.guild-item span {
+			display: none;
+		}
+	}
 </style>

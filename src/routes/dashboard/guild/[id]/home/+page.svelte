@@ -540,7 +540,6 @@
 		max-width: 100%;
 		box-sizing: border-box;
 		gap: 2rem;
-
 	}
 
 	:global(.tabs.recent-tabs) {
@@ -562,8 +561,8 @@
 		--tab-height: 60px;
 		--tab-selected-padding-right: 20px;
 		--tab-padding-right: 20px;
-        --tab-border-radius: 0 15px 15px 0;
-        --tab-selected-border-radius: 15px 0px 0px 15px;
+		--tab-border-radius: 0 15px 15px 0;
+		--tab-selected-border-radius: 15px 0px 0px 15px;
 	}
 	.charts-column {
 		display: flex;
@@ -652,7 +651,7 @@
 		margin-left: 10px;
 		cursor: pointer;
 		transition: background-color 0.3s ease;
-        box-sizing: border-box;
+		box-sizing: border-box;
 	}
 	.join-guild-button:hover {
 		background: rgba(62, 107, 255, 0.47);
@@ -678,9 +677,9 @@
 		border: 1px solid rgba(255, 255, 255, 0.2);
 		overflow: hidden;
 	}
-    .chart-container.second-container {
-        margin-top: 100px;
-    }
+	.chart-container.second-container {
+		margin-top: 100px;
+	}
 	.loss,
 	.revenue {
 		display: inline-flex;
@@ -770,7 +769,7 @@
 	}
 	.logsContainer {
 		color: #d1d5db;
-        margin-left: -20px;
+		margin-left: -20px;
 		padding: 1rem;
 		border-radius: 12px;
 		max-height: 400px;
@@ -816,12 +815,12 @@
 		height: 71px;
 		padding: 0 20px;
 		box-sizing: border-box;
-        transition: 0.3s;
-        -webkit-overflow-scrolling: touch;
-    }
-    .info-row:hover {
-        background: rgba(62, 107, 255, 0.21);
-    }
+		transition: 0.3s;
+		-webkit-overflow-scrolling: touch;
+	}
+	.info-row:hover {
+		background: rgba(62, 107, 255, 0.21);
+	}
 	.user-avatar {
 		width: 20px;
 		height: 20px;
@@ -920,47 +919,46 @@
 		font-weight: 600;
 		line-height: normal;
 	}
-    .underline-vector.economy-charts {
-        max-width: 170px;
-    }
-    @media (max-width: 1400px) {
-        .home-grid {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
+	.underline-vector.economy-charts {
+		max-width: 170px;
+	}
+	@media (max-width: 1400px) {
+		.home-grid {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
 
-        .charts-column {
-            max-width: 100%;
-        }
+		.charts-column {
+			max-width: 100%;
+		}
 
-        .info-column {
-            margin-top: 0;
-        }
+		.info-column {
+			margin-top: 0;
+		}
 
-        .section-title-container.info-title {
-            margin-top: 0;
-            padding-top: 0;
-        }
+		.section-title-container.info-title {
+			margin-top: 0;
+			padding-top: 0;
+		}
 
-        .section-title-container.info-title.recent-logs {
-            padding-top: 20px;
-            margin-top: 40px;
-        }
-    }
+		.section-title-container.info-title.recent-logs {
+			padding-top: 20px;
+			margin-top: 40px;
+		}
+	}
 	@media (max-width: 768px) {
 		.logsContainer {
 			padding: 0.5rem;
 			max-width: max-content;
-            box-sizing: border-box;
-
+			box-sizing: border-box;
 		}
 
-        .information {
-            font-size: 10px;
-        }
-        .warning {
-            font-size: 10px;
-        }
+		.information {
+			font-size: 10px;
+		}
+		.warning {
+			font-size: 10px;
+		}
 		.header-row {
 			gap: 8px;
 			padding: 0 10px;
@@ -976,12 +974,12 @@
 			width: 55px;
 			font-size: 9px;
 		}
-        .chart-divider {
-            width: 0;
-        }
-        .section-title-container.info-title.recent-logs {
-            padding-top: 40px;
-            margin-top: -10px;
-        }
+		.chart-divider {
+			width: 0;
+		}
+		.section-title-container.info-title.recent-logs {
+			padding-top: 40px;
+			margin-top: -10px;
+		}
 	}
 </style>
