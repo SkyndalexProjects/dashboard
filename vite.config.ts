@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => {
 		plugins: [sveltekit()],
 		server: {
 			port: 5173,
+			strictPort: true,
 			watch: { usePolling: true },
 			host: '0.0.0.0',
 			proxy: {

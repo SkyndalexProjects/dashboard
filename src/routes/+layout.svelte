@@ -12,6 +12,7 @@
 
 	const route = $state(page.url.pathname);
 	let showDropdown = $state(false);
+	let showMobileMenu = $state(false);
 
 	function getAvatarUrl(user: APIUser): string {
 		return user?.id && user?.avatar
@@ -21,7 +22,6 @@
 
 	async function handleLogout() {
 		await authClient.signOut();
-
 		window.location.href = '/';
 	}
 
@@ -56,10 +56,17 @@
 					src="https://cdn.discordapp.com/avatars/1059594156839809074/f2ed3c7590d834ed2d86912124c4ee1e.webp?size=1024"
 					alt="Guild Icon"
 				/>
-				{$i18n.t('system.navbar.title')}
+				<span class="nav-title">{$i18n.t('system.navbar.title')}</span>
 
 				<div class="version">Alpha</div>
 			</div>
+
+			<button class="hamburger" onclick={() => (showMobileMenu = !showMobileMenu)}>
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+			</button>
+
 			<div class="right-corner">
 				<Dropdown>
 					{#snippet trigger()}
@@ -84,6 +91,20 @@
 					{/snippet}
 				</Dropdown>
 			</div>
+			<!-- Mobile menu -->
+			{#if showMobileMenu}
+				<div class="mobile-menu">
+					<button class="mobile-user-info">
+						<img
+							src={getAvatarUrl(data.user)}
+							alt={data.user?.username || 'Avatar'}
+							class="mobile-avatar"
+						/>
+						<span class="mobile-username">{data.user?.username}</span>
+					</button>
+					<button class="mobile-menu-item logout" onclick={handleLogout}> Logout </button>
+				</div>
+			{/if}
 		</nav>
 	{/if}
 
@@ -150,6 +171,11 @@
 		font-weight: 900;
 		line-height: normal;
 	}
+
+	.nav-title {
+		display: inline;
+	}
+
 	.right-corner {
 		position: fixed;
 		right: 40px;
@@ -158,6 +184,134 @@
 		align-items: center;
 		justify-content: center;
 	}
+
+	.hamburger {
+		display: none;
+		flex-direction: column;
+		justify-content: space-around;
+		width: 30px;
+		height: 25px;
+		background: transparent;
+		border: none;
+		cursor: pointer;
+		padding: 0;
+		z-index: 1001;
+		position: fixed;
+		right: 20px;
+	}
+
+	.hamburger-line {
+		width: 100%;
+		height: 3px;
+		background-color: #fff;
+		border-radius: 2px;
+		transition: all 0.3s ease;
+	}
+
+	/* Mobile menu */
+	.mobile-menu {
+		position: fixed;
+		top: 90px;
+		right: 0;
+		background: #353945;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		width: 100%;
+		max-width: 300px;
+		border-radius: 10px 0 0 10px;
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		z-index: 999;
+		animation: slideIn 0.3s ease;
+	}
+
+	@keyframes slideIn {
+		from {
+			transform: translateX(100%);
+			opacity: 0;
+		}
+		to {
+			transform: translateX(0);
+			opacity: 1;
+		}
+	}
+
+	.mobile-user-info {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 15px;
+		background: rgba(255, 255, 255, 0.05);
+		border-radius: 8px;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		cursor: default;
+	}
+
+	.mobile-avatar {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+	}
+
+	.mobile-username {
+		color: #fff;
+		font-family: 'Be Vietnam Pro', sans-serif;
+		font-size: 16px;
+		font-weight: 600;
+	}
+
+	.mobile-menu-item {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 15px;
+		color: #ffffff;
+		font-family: 'Be Vietnam Pro', sans-serif;
+		font-size: 16px;
+		font-weight: 500;
+		background-color: rgba(255, 255, 255, 0.05);
+		border-radius: 8px;
+		cursor: pointer;
+		transition: background-color 0.2s ease;
+	}
+
+	.mobile-menu-item.logout {
+		border: 1px solid rgb(255, 107, 107);
+		color: #ff6b6b;
+	}
+
+	.mobile-menu-item:hover {
+		background-color: rgba(255, 255, 255, 0.1);
+	}
+
+	@media (max-width: 768px) {
+		.left-corner {
+			left: 20px;
+			gap: 8px;
+		}
+
+		.nav-title {
+			display: none;
+		}
+
+		.version {
+			font-size: 12px;
+			padding: 2px 8px;
+			min-height: 22px;
+		}
+
+		.right-corner {
+			display: none;
+		}
+
+		.hamburger {
+			display: flex;
+		}
+	}
+
 	.version {
 		display: flex;
 		flex-direction: row;

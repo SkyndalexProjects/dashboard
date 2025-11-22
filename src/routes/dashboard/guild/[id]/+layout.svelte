@@ -135,12 +135,6 @@
 								class="guild-icon"
 							/>
 							{data.guild?.name}
-							<img
-								src="/icons/indicator.svg"
-								alt="indicator"
-								class="indicator"
-								class:rotated={isDropdownOpen}
-							/>
 						</button>
 					{/snippet}
 
@@ -489,9 +483,12 @@
 			height: 60px;
 			justify-content: center;
 			padding: 0;
+			font-size: 0;
 		}
 		.guild-icon {
-			margin-left: 0;
+			display: block;
+			margin: 0 auto;
+			object-fit: cover;
 			width: 40px;
 			height: 40px;
 		}
