@@ -8,6 +8,7 @@
 	const i18n = geti18ncontext();
 	const { data } = $props();
 	const origin = (PUBLIC_FRONTEND_URL || '').replace(/\/$/, '');
+
 	let showErrorToast = $state(false);
 	let errorMessage = $state('');
 	let isScrolled = $state(false);

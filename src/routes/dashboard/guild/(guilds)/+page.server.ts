@@ -4,7 +4,9 @@ import { env } from '$env/dynamic/private';
 
 export async function load({ fetch, cookies }): Promise<{ guilds: APIGuild[] }> {
 	try {
-		const sessionToken = cookies.get('__Secure-session_token');
+        const nodeEnv = process.env.NODE_ENV ?? 'development';
+        const cookieName = nodeEnv === 'production' ? '__Secure-session_token' : 'session_token';
+        const sessionToken = cookies.get(cookieName);
 
 		if (!sessionToken) {
 			console.warn('No session token found');
@@ -13,9 +15,9 @@ export async function load({ fetch, cookies }): Promise<{ guilds: APIGuild[] }> 
 
 		const res = await fetch(`${env.BACKEND_URL}/api/guilds`, {
 			credentials: 'include',
-			headers: {
-				Cookie: `__Secure-session_token=${sessionToken}`
-			}
+            headers: {
+                Cookie: `${cookieName}=${sessionToken}`
+            }
 		});
 
 		if (!res.ok) {
