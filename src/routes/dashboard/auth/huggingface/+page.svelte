@@ -1,5 +1,7 @@
 <script lang="ts">
     import {authClient} from "$lib/auth-client";
+    import {PUBLIC_FRONTEND_URL} from "$env/static/public";
+    const origin = (PUBLIC_FRONTEND_URL || '').replace(/\/$/, '');
 
     const { data } = $props();
 
