@@ -8,9 +8,11 @@
 	const i18n = geti18ncontext();
 	const { data } = $props();
 	const origin = (PUBLIC_FRONTEND_URL || '').replace(/\/$/, '');
+
 	let showErrorToast = $state(false);
 	let errorMessage = $state('');
 	let isScrolled = $state(false);
+	let showMobileMenu = $state(false);
 
 	function handleScroll() {
 		isScrolled = window.scrollY > 50;
@@ -236,7 +238,13 @@
 				<div class="version">v3.0.0</div>
 			</div>
 		</div>
+
 		<div class="right-corner">
+			<button class="hamburger" onclick={() => (showMobileMenu = !showMobileMenu)}>
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+			</button>
 			<button class="dashboard-redirect" onclick={handleLogin}>
 				{#if data.user?.username}
 					<img
@@ -253,21 +261,37 @@
 		</div>
 	</nav>
 
-	<section class="hero-section">
-		<div class="headers">
-			<p class="title">Skyndalex</p>
-			<p class="sub-title">{$i18n.t('page.home.subtitle')}</p>
-			<p class="detailed-description">
-				{$i18n.t('page.home.detailed-subtitle')}
-			</p>
-			<div class="buttons">
-				<button class="button-main"> {$i18n.t('page.home.add-btn')} </button>
-				<button class="button-secondary">{$i18n.t('page.home.dashboard-btn')} </button>
-			</div>
+	{#if showMobileMenu}
+		<div class="mobile-menu">
+			<button class="mobile-user-info">
+				<img
+					src={getAvatarUrl(data.user)}
+					alt={data.user?.username || 'Avatar'}
+					class="mobile-avatar"
+				/>
+				<span class="mobile-username">{data.user?.username}</span>
+			</button>
+			<button class="mobile-menu-item logout"> Logout </button>
 		</div>
+	{/if}
 
-		<img src="/icons/embed.svg" alt="embed" class="embed" />
-	</section>
+	<div class="hero-container">
+		<section class="hero-section">
+			<div class="headers">
+				<p class="title">Skyndalex</p>
+				<p class="sub-title">{$i18n.t('page.home.subtitle')}</p>
+				<p class="detailed-description">
+					{$i18n.t('page.home.detailed-subtitle')}
+				</p>
+				<div class="buttons">
+					<button class="button-main"> {$i18n.t('page.home.add-btn')} </button>
+					<button class="button-secondary">{$i18n.t('page.home.dashboard-btn')} </button>
+				</div>
+			</div>
+
+			<img src="/icons/embed.svg" alt="embed" class="embed" />
+		</section>
+	</div>
 
 	<section class="features-section">
 		<div class="features">
@@ -354,7 +378,7 @@
 
 	.wave-vector {
 		position: absolute;
-		top: 0;
+		top: -100px;
 		left: 0;
 		width: 100%;
 		min-width: 100vw;
@@ -363,6 +387,24 @@
 		z-index: 0;
 		pointer-events: none;
 		object-fit: cover;
+	}
+	.hero-container {
+		position: relative;
+		width: 100%;
+		min-height: 100vh;
+		overflow: hidden;
+	}
+
+	.hero-container::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(180deg, rgba(53, 57, 69, 0.8) 0%, rgba(30, 32, 40, 0.9) 100%);
+		z-index: 1;
+		pointer-events: none;
 	}
 
 	.embed {
@@ -380,8 +422,9 @@
 		max-width: 100%;
 		width: 100%;
 		min-height: 100vh;
-		z-index: 1;
-		margin-top: -50px;
+		z-index: 2;
+		position: relative;
+		padding-top: 117px;
 	}
 
 	.features-section {
@@ -392,9 +435,9 @@
 		margin: 0 auto;
 		max-width: 1200px;
 		width: 100%;
-		padding: 200px 20px;
+		padding: 100px 20px;
 		position: relative;
-		z-index: 1;
+		z-index: 2;
 	}
 
 	.headers {
@@ -445,24 +488,24 @@
 		gap: 20px;
 		caret-color: transparent;
 		flex-wrap: wrap;
-        padding: 20px 0;
-        height: 54px;
+		padding: 20px 0;
+		height: 54px;
 	}
 
 	.button-main,
 	.button-secondary {
-        padding: 0 20px;
-        align-items: center;
+		padding: 0 20px;
+		align-items: center;
 		border-radius: 18px;
 		caret-color: transparent;
 		transition: background 0.3s ease;
 		cursor: pointer;
-        color: #FFF;
-        font-family: Poppins, sans-serif;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 800;
-        line-height: normal;
+		color: #fff;
+		font-family: Poppins, sans-serif;
+		font-size: 20px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: normal;
 	}
 
 	.button-main {
@@ -546,7 +589,7 @@
 		border: 1px solid transparent;
 		background: transparent;
 		caret-color: transparent;
-		z-index: 10;
+		z-index: 1000;
 		transition: all 0.3s ease;
 	}
 
@@ -590,9 +633,98 @@
 	.right-corner {
 		display: flex;
 		flex-direction: row;
-		align-items: flex-end;
+		align-items: center;
 		justify-content: flex-end;
 		margin-right: 30px;
+		gap: 20px;
+	}
+	.hamburger {
+		display: none;
+		flex-direction: column;
+		justify-content: space-around;
+		width: 30px;
+		height: 25px;
+		background: transparent;
+		border: none;
+		cursor: pointer;
+		padding: 0;
+		z-index: 1002;
+	}
+
+	.hamburger-line {
+		width: 100%;
+		height: 3px;
+		background-color: #fff;
+		border-radius: 2px;
+		transition: all 0.3s ease;
+	}
+
+	/* Mobile menu */
+	.mobile-menu {
+		position: fixed;
+		top: 100px;
+		right: 20px;
+		background: rgba(53, 57, 69, 0.98);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		width: calc(100% - 40px);
+		max-width: 300px;
+		border-radius: 10px;
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		z-index: 1001;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+	}
+
+	.mobile-user-info {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 15px;
+		background: rgba(255, 255, 255, 0.05);
+		border-radius: 8px;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		cursor: default;
+	}
+
+	.mobile-avatar {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+	}
+
+	.mobile-username {
+		color: #fff;
+		font-family: 'Be Vietnam Pro', sans-serif;
+		font-size: 16px;
+		font-weight: 600;
+	}
+
+	.mobile-menu-item {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 15px;
+		color: #ffffff;
+		font-family: 'Be Vietnam Pro', sans-serif;
+		font-size: 16px;
+		font-weight: 500;
+		background-color: rgba(255, 255, 255, 0.05);
+		border-radius: 8px;
+		cursor: pointer;
+		transition: background-color 0.2s ease;
+	}
+
+	.mobile-menu-item.logout {
+		border: 1px solid rgb(255, 107, 107);
+		color: #ff6b6b;
+	}
+
+	.mobile-menu-item:hover {
+		background-color: rgba(255, 255, 255, 0.1);
 	}
 	.dashboard-redirect {
 		display: flex;
@@ -655,8 +787,36 @@
 			gap: 140px;
 		}
 	}
-
 	@media (max-width: 768px) {
+		.bot-name {
+			font-size: 12px;
+		}
+		.bot img {
+			width: 30px;
+			height: 30px;
+		}
+		.version {
+			font-size: 8px;
+			width: 50px;
+			height: 20px;
+		}
+		.versions {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.dashboard-redirect {
+			display: none;
+		}
+
+		.right-corner {
+			display: flex;
+		}
+
+		.hamburger {
+			display: flex;
+		}
 		nav {
 			width: calc(100% - 20px);
 			height: 80px;
@@ -665,8 +825,7 @@
 
 		.hero-section {
 			flex-direction: column;
-			padding: 40px 20px;
-			margin-top: 0;
+			padding: 120px 20px 40px;
 		}
 
 		.headers {

@@ -4,7 +4,9 @@ import { BACKEND_URL } from '$env/static/private';
 
 export async function load({ fetch, params, cookies }) {
 	try {
-		const sessionToken = cookies.get('__Secure-session_token');
+        const nodeEnv = process.env.NODE_ENV ?? 'development';
+        const cookieName = nodeEnv === 'production' ? '__Secure-session_token' : 'session_token';
+        const sessionToken = cookies.get(cookieName);
 
 		if (!sessionToken) {
 			console.warn('No session token found');
@@ -13,22 +15,15 @@ export async function load({ fetch, params, cookies }) {
 
 		const guildRes = await fetch(`${BACKEND_URL}/api/guild`, {
 			credentials: 'include',
-			headers: {
-				Cookie: `__Secure-session_token=${sessionToken}`,
-				guildId: params.id
-			}
+            headers: {
+                Cookie: `${cookieName}=${sessionToken}`,
+                guildId: params.id
+            }
 		});
 
 		if (!guildRes.ok) {
 			return error(guildRes.status, 'Error while fetching guild');
 		}
-
-		// const guildsRes = await fetch(`${BACKEND_URL}/api/guilds`, {
-		//     credentials: 'include',
-		//     headers: {
-		//         Cookie: `__Secure-session_token=${sessionToken}`
-		//     }
-		// });
 
 		const guildsPromise: Promise<APIGuild[]> = fetch(`${BACKEND_URL}/api/guilds`).then((res) =>
 			res.json()

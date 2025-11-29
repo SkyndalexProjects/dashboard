@@ -575,6 +575,10 @@
 		width: 120px;
 		max-width: 120px;
 	}
+	.container {
+		-webkit-overflow-scrolling: touch;
+		overflow-x: auto;
+	}
 
 	.section-title-container.info-title.recent-logs {
 		padding-top: 40px;
@@ -589,6 +593,7 @@
 		max-width: 100%;
 		overflow-x: hidden;
 		box-sizing: border-box;
+		-webkit-overflow-scrolling: touch;
 	}
 
 	.info-section {
@@ -775,9 +780,10 @@
 		border-radius: 12px;
 		max-height: 400px;
 		overflow-y: auto;
-		overflow-x: hidden;
+		overflow-x: auto;
 		width: 100%;
 		max-width: 650px;
+		-webkit-overflow-scrolling: touch;
 	}
 	.logsContainer::-webkit-scrollbar {
 		width: 0;
@@ -924,11 +930,24 @@
 		max-width: 170px;
 	}
 	@media (max-width: 1400px) {
+		.logsContainer {
+			padding: 0.5rem;
+			max-width: max-content;
+			box-sizing: border-box;
+		}
 		.home-grid {
 			grid-template-columns: 1fr;
 			gap: 2rem;
 		}
-
+		.header-row {
+			gap: 8px;
+			padding: 0 10px;
+			font-size: 11px;
+		}
+		.headers {
+			display: block;
+			box-sizing: border-box;
+		}
 		.charts-column {
 			max-width: 100%;
 		}
@@ -936,7 +955,15 @@
 		.info-column {
 			margin-top: 0;
 		}
-
+		.chart-divider {
+			width: 0;
+		}
+		.lines-info {
+			display: block;
+			box-sizing: border-box;
+			margin-top: 30px;
+			margin-left: 40px;
+		}
 		.section-title-container.info-title {
 			margin-top: 0;
 			padding-top: 0;
@@ -955,15 +982,25 @@
 		}
 
 		.information {
-			font-size: 10px;
+			font-size: 14px;
 		}
 		.warning {
-			font-size: 10px;
+			font-size: 14px;
 		}
 		.header-row {
 			gap: 8px;
 			padding: 0 10px;
 			font-size: 11px;
+		}
+		.headers {
+			display: block;
+			box-sizing: border-box;
+		}
+		.lines-info {
+			display: block;
+			box-sizing: border-box;
+			margin-top: 30px;
+			margin-left: 40px;
 		}
 
 		.user-avatar {
@@ -981,6 +1018,133 @@
 		.section-title-container.info-title.recent-logs {
 			padding-top: 40px;
 			margin-top: -10px;
+		}
+	}
+	@media (max-width: 1600px) and (min-width: 1367px) {
+		.home-grid {
+			gap: 1.5rem;
+		}
+
+		.charts-column {
+			max-width: 650px;
+		}
+
+		.chart-container {
+			height: 420px;
+		}
+
+		.chart-divider {
+			width: 0;
+		}
+
+		.lines-info {
+			margin-right: 30px;
+		}
+
+		.logsContainer {
+			max-width: 580px;
+		}
+
+		.info-row {
+			min-width: 500px;
+			grid-template-columns: 35px minmax(140px, 180px) 75px minmax(180px, 220px);
+		}
+
+		.header-row {
+			min-width: 500px;
+			grid-template-columns: 35px minmax(200px, 250px) minmax(160px, 200px);
+		}
+
+		.username {
+			font-size: 11px;
+		}
+
+		.action-info {
+			font-size: 12px;
+		}
+
+		.role {
+			margin-left: -60px;
+		}
+	}
+
+	@media (max-width: 1366px) and (min-width: 1200px) {
+		.home-grid {
+			gap: 1.25rem;
+		}
+
+		.charts-column {
+			max-width: 600px;
+		}
+
+		.chart-container {
+			height: 400px;
+		}
+
+		.chart-divider {
+			width: 0;
+		}
+
+		.chart-category-title {
+			font-size: 13px;
+		}
+
+		.chart-title {
+			font-size: 15px;
+		}
+
+		.lines-info {
+			margin-right: 25px;
+			margin-top: -60px;
+		}
+
+		.loss,
+		.revenue {
+			font-size: 12px;
+			padding: 6px 10px 10px 8px;
+		}
+
+		.logsContainer {
+			max-width: 550px;
+		}
+
+		.info-row {
+			min-width: 480px;
+			height: 65px;
+			grid-template-columns: 35px minmax(130px, 170px) 70px minmax(170px, 200px);
+			gap: 8px;
+		}
+
+		.header-row {
+			min-width: 480px;
+			height: 42px;
+			grid-template-columns: 35px minmax(190px, 240px) minmax(150px, 190px);
+		}
+
+		.username {
+			font-size: 11px;
+		}
+
+		.date {
+			font-size: 9px;
+		}
+
+		.action-info {
+			font-size: 11px;
+		}
+
+		.view-details {
+			font-size: 9px;
+		}
+
+		.role {
+			width: 60px;
+			font-size: 9px;
+			margin-left: -55px;
+		}
+
+		.role.changelog {
+			margin-left: 60px;
 		}
 	}
 </style>
