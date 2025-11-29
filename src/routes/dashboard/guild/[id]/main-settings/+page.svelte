@@ -9,7 +9,7 @@
 	const origin = (PUBLIC_BACKEND_URL || '').replace(/\/$/, '');
 
 	const { data } = $props();
-	let selectedTab = $state('Greetings');
+	let selectedTab = $state('Welcoming');
 
 	function handleTabSelect(tab: string) {
 		selectedTab = tab;
@@ -235,14 +235,6 @@
             </div>
         </div>
 	{:then channels}
-<!--		<div class="settings">-->
-<!--			<div class="welcome-settings">-->
-<!--				<div class="section-title">-->
-<!--					Greetings & Goodbye Settings-->
-<!--					<div class="underline-vector"></div>-->
-<!--				</div>-->
-
-<!--				<div class="tabs">-->
         <Tab
                 tabs={[
 							{
@@ -329,41 +321,6 @@
 							</div>
 						{/if}
 					</Tab>
-<!--				</div>-->
-<!--			</div>-->
-
-<!--			<div class="permissions-settings">-->
-<!--				<div class="section-title">-->
-<!--					Permissions-->
-<!--					<div class="underline-vector"></div>-->
-<!--				</div>-->
-
-<!--				<div class="setting-container multi-input">-->
-<!--					BLOCKED COMMANDS-->
-<!--					<Search-->
-<!--						menuItems={initCommandItems}-->
-<!--						icon="/icons/dropdowns/deny.svg"-->
-<!--						multiSelect={true}-->
-<!--						onChange={(value) => {-->
-<!--							settings.blockedCommands = Array.isArray(value) ? value : [value];-->
-<!--							isDirty = true;-->
-<!--						}}-->
-<!--					/>-->
-<!--				</div>-->
-<!--				<div class="setting-container multi-input">-->
-<!--					BLOCKED CHANNELS-->
-<!--					<Search-->
-<!--						menuItems={textChannelItems(channels)}-->
-<!--						icon="/icons/dropdowns/deny.svg"-->
-<!--						multiSelect={true}-->
-<!--						onChange={(value) => {-->
-<!--							settings.blockedChannels = Array.isArray(value) ? value : [value];-->
-<!--							isDirty = true;-->
-<!--						}}-->
-<!--					/>-->
-<!--				</div>-->
-<!--			</div>-->
-<!--		</div>-->
 		{#if isDirty}
 			<div class="save-bar" class:fading-out={isFadingOut}>
 				<div class="save-bar-title">Careful - you have unsaved changes!</div>
@@ -400,67 +357,9 @@
         --tab-height: 46px;
         --tab-selected-padding-right: 20px;
         --tab-padding-right: 20px;
-        --tab-border-radius: 0 15px 15px 0;
+        --tab-border-radius: 0px 15px 15px 0px;
         --tab-selected-border-radius: 15px 0px 0px 15px;
     }
-	.settings {
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-start;
-		align-items: flex-start;
-		width: 100%;
-		min-height: 100vh;
-		z-index: 1;
-		margin-left: -350px;
-		margin-top: -100px;
-	}
-	.permissions-settings {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		justify-content: center;
-		color: #fff;
-		text-align: center;
-		font:
-			700 20px Poppins,
-			sans-serif;
-		margin-left: 100px;
-		margin-top: 140px;
-		width: max-content;
-		z-index: 1;
-	}
-	.welcome-settings {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		justify-content: center;
-		color: #fff;
-		text-align: center;
-		font:
-			700 20px Poppins,
-			sans-serif;
-		margin-left: 400px;
-		margin-top: 140px;
-		width: max-content;
-		z-index: 1;
-	}
-	.tabs {
-		margin-top: 35px;
-	}
-	.switch-container {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: flex-start;
-		gap: 10px;
-		color: rgba(255, 255, 255, 0.3);
-		font-family: Poppins, sans-serif;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: normal;
-		margin-top: 30px;
-	}
 	.containers {
 		overflow: visible;
 	}
