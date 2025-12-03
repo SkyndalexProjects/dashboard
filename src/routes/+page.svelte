@@ -424,7 +424,6 @@
 		min-height: 100vh;
 		z-index: 2;
 		position: relative;
-		padding-top: 117px;
 	}
 
 	.features-section {
