@@ -168,7 +168,6 @@
 					</linearGradient>
 				</defs>
 			</svg>
-
 			Login failed. Please try again.
 		</div>
 		<div class="codeblock">
