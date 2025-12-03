@@ -4,9 +4,9 @@ import { BACKEND_URL } from '$env/static/private';
 
 export async function load({ fetch, params, cookies }) {
 	try {
-        const nodeEnv = process.env.NODE_ENV ?? 'development';
-        const cookieName = nodeEnv === 'production' ? '__Secure-session_token' : 'session_token';
-        const sessionToken = cookies.get(cookieName);
+		const nodeEnv = process.env.NODE_ENV ?? 'development';
+		const cookieName = nodeEnv === 'production' ? '__Secure-session_token' : 'session_token';
+		const sessionToken = cookies.get(cookieName);
 
 		if (!sessionToken) {
 			console.warn('No session token found');
@@ -15,10 +15,10 @@ export async function load({ fetch, params, cookies }) {
 
 		const guildRes = await fetch(`${BACKEND_URL}/api/guild`, {
 			credentials: 'include',
-            headers: {
-                Cookie: `${cookieName}=${sessionToken}`,
-                guildId: params.id
-            }
+			headers: {
+				Cookie: `${cookieName}=${sessionToken}`,
+				guildId: params.id
+			}
 		});
 
 		if (!guildRes.ok) {

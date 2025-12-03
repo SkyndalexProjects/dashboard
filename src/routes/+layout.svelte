@@ -48,7 +48,7 @@
 </script>
 
 <div class="app">
-    {#if !['/', '/dashboard/guild', '/dashboard/auth/huggingface'].includes(route)}
+	{#if !['/', '/dashboard/guild', '/dashboard/auth/huggingface'].includes(route)}
 		<nav>
 			<div class="left-corner">
 				<img

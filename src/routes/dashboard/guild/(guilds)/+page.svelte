@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { APIGuild as BaseAPIGuild, GuildFeature } from 'discord-api-types/v10';
-    import {authClient} from "$lib/auth-client";
-    import {onMount} from "svelte";
+	import { authClient } from '$lib/auth-client';
+	import { onMount } from 'svelte';
 	const { data } = $props();
 	interface APIGuild extends BaseAPIGuild {
 		isBotAdded: boolean;
