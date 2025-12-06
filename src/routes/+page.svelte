@@ -168,7 +168,6 @@
 					</linearGradient>
 				</defs>
 			</svg>
-
 			Login failed. Please try again.
 		</div>
 		<div class="codeblock">
@@ -765,7 +764,93 @@
 		width: 30px;
 		height: 30px;
 	}
+    @media (min-width: 1024px) and (max-width: 1366px) {
+        .embed {
+            display: block;
+            margin-left: 40px;
+            width: 450px;
+            height: auto;
+        }
 
+        .headers {
+            margin-left: 40px;
+        }
+
+        .hero-section {
+            padding: 140px 40px 60px;
+            gap: 20px;
+        }
+
+        .features {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+        }
+
+        .features-section {
+            padding: 60px 40px;
+        }
+
+        nav {
+            width: calc(100% - 60px);
+        }
+
+        .dashboard-redirect {
+            font-size: 18px;
+            height: 60px;
+            padding: 0 15px;
+        }
+
+        .bot-name {
+            font-size: 20px;
+        }
+
+        .version {
+            font-size: 14px;
+            width: 60px;
+            height: 26px;
+        }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .embed {
+            display: none;
+        }
+
+        .headers {
+            margin-left: 0;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-section {
+            justify-content: center;
+            padding: 140px 30px 60px;
+        }
+
+        .features {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .feature-box {
+            max-width: 100%;
+        }
+
+        .dashboard-redirect {
+            font-size: 16px;
+            height: 50px;
+            padding: 0 12px;
+        }
+
+        .bot-name {
+            font-size: 16px;
+        }
+
+        .version {
+            font-size: 12px;
+            width: 55px;
+            height: 24px;
+        }
+    }
 	@media (min-width: 1024px) {
 		.embed {
 			display: block;
