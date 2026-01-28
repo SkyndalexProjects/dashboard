@@ -61,7 +61,11 @@
 				<div class="version">Alpha</div>
 			</div>
 
-			<button class="hamburger" onclick={() => (showMobileMenu = !showMobileMenu)} aria-label="Toggle menu">
+			<button
+				class="hamburger"
+				onclick={() => (showMobileMenu = !showMobileMenu)}
+				aria-label="Toggle menu"
+			>
 				<span class="hamburger-line"></span>
 				<span class="hamburger-line"></span>
 				<span class="hamburger-line"></span>

@@ -607,7 +607,6 @@
 	.info-section:first-child {
 		margin-top: 0;
 	}
-
 	.section-title-container {
 		display: inline-block;
 		margin-bottom: 1.5rem;

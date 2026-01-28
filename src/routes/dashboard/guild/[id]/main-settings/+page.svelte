@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Tab from '$lib/components/ui/Tab.svelte';
-	import Switch from '$lib/components/ui/Switch.svelte';
 	import Search from '$lib/components/ui/Search.svelte';
 	import { onMount } from 'svelte';
 	import { PUBLIC_BACKEND_URL } from '$env/static/public';
@@ -28,7 +27,9 @@
 		welcomeChannel: '',
 		goodbyeChannel: '',
 		welcomeTitle: '',
+		welcomeDescription: '',
 		goodbyeTitle: '',
+		goodbyeDescription: '',
 		blockedCommands: [] as string[],
 		blockedChannels: [] as string[]
 	};
@@ -72,8 +73,6 @@
 		'removerole',
 		'slowmode'
 	];
-
-	const initCommandItems: Item[] = initCommands.map((c) => ({ id: c, name: c }));
 
 	function isEmpty(value: unknown): boolean {
 		if (value == null) return true;
@@ -273,14 +272,8 @@
 	{:then channels}
 		<Tab
 			tabs={[
-				{
-					label: 'Welcoming',
-					icon: WelcomeHandIcon
-				},
-				{
-					label: 'Goodbyes',
-					icon: FarewellHandIcon
-				}
+				{ label: 'Welcoming', icon: WelcomeHandIcon },
+				{ label: 'Goodbyes', icon: FarewellHandIcon }
 			]}
 			{selectedTab}
 			onTabSelect={handleTabSelect}
@@ -291,12 +284,12 @@
 					<div class="setting-container dropdown-container">
 						CHANNEL
 						<Search
-							menuItems={textChannelItems(channels)}
+							menuItems={textChannelItems(channels as Channel[])}
 							onChange={(value) => {
 								settings.welcomeChannel = Array.isArray(value) ? (value[0] ?? '') : value;
 								isDirty = true;
 							}}
-							inputValue={asChannelName(settings.welcomeChannel, channels)}
+							inputValue={asChannelName(settings.welcomeChannel, channels as Channel[])}
 							icon="/icons/dropdowns/hashtag.svg"
 						/>
 					</div>
@@ -307,8 +300,8 @@
 							type="text"
 							class="text-input"
 							value={settings.welcomeTitle}
-							oninput={(value) => {
-								settings.welcomeTitle = value.currentTarget.value;
+							oninput={(e) => {
+								settings.welcomeTitle = e.currentTarget.value;
 								isDirty = true;
 							}}
 						/>
@@ -319,9 +312,9 @@
 						<input
 							type="text"
 							class="text-input"
-							value={settings.welcomeTitle}
-							oninput={(value) => {
-								settings.welcomeTitle = value.currentTarget.value;
+							value={settings.welcomeDescription}
+							oninput={(e) => {
+								settings.welcomeDescription = e.currentTarget.value;
 								isDirty = true;
 							}}
 						/>
@@ -329,40 +322,17 @@
 				</div>
 			{:else if selectedTab === 'Goodbyes'}
 				<div class="containers">
-					<div class="setting-container dropdown-container">
-						CHANNEL
-						<Search
-							menuItems={textChannelItems(channels)}
-							onChange={(value) => {
-								settings.goodbyeChannel = Array.isArray(value) ? (value[0] ?? '') : value;
-								isDirty = true;
-							}}
-							inputValue={asChannelName(settings.goodbyeChannel, channels)}
-							icon="/icons/dropdowns/hashtag.svg"
-						/>
-					</div>
-					<div class="setting-container">
-						WELCOME TITLE
-						<img src="/icons/dropdowns/tag.svg" alt="h" class="icon" />
-						<input
-							type="text"
-							class="text-input"
-							value={settings.goodbyeTitle}
-							oninput={(value) => {
-								settings.goodbyeTitle = value.currentTarget.value;
-								isDirty = true;
-							}}
-						/>
-					</div>
+					<!-- Goodbye content here -->
 				</div>
 			{/if}
 		</Tab>
+
 		{#if isDirty}
 			<div class="save-bar" class:fading-out={isFadingOut}>
 				<div class="save-bar-title">Careful - you have unsaved changes!</div>
 				<div class="save-bar-buttons">
 					<button class="save-btn" onclick={save}>Save changes</button>
-					<button class="decline-btn" onclick={reset}> Reset </button>
+					<button class="decline-btn" onclick={reset}>Reset</button>
 				</div>
 			</div>
 		{/if}
@@ -393,8 +363,9 @@
 		--tab-height: 46px;
 		--tab-selected-padding-right: 20px;
 		--tab-padding-right: 20px;
-		--tab-border-radius: 0px 15px 15px 0px;
-		--tab-selected-border-radius: 15px 0px 0px 15px;
+		--tab-border-radius: 10px;
+		--tab-selected-border-radius: 10px;
+		gap: 5px;
 	}
 	.containers {
 		overflow: visible;

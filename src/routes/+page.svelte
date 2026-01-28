@@ -201,6 +201,7 @@
 		<path
 			d="M1955 0V917.568C1955 917.568 1565.71 773.401 1362.28 963.065C1158.85 1152.73 791.161 917.568 545.535 995.895C299.908 1074.22 80.2027 904.143 -7 917.568V0H1955Z"
 			fill="url(#paint0_linear_1243_4170)"
+			fill-opacity="0.8"
 			stroke="white"
 			stroke-opacity="0.2"
 		/>
@@ -213,8 +214,8 @@
 				y2="1039"
 				gradientUnits="userSpaceOnUse"
 			>
-				<stop stop-color="#353945" />
-				<stop offset="1" stop-color="#1E2028" />
+				<stop stop-color="#1E2230" />
+				<stop offset="1" stop-color="#0F1117" />
 			</linearGradient>
 		</defs>
 	</svg>
@@ -362,7 +363,7 @@
 		scrollbar-color: transparent transparent;
 		-ms-overflow-style: none;
 		min-height: 100vh;
-		background: linear-gradient(180deg, #353945 0%, #1e2028 100%);
+		background: linear-gradient(180deg, #1e2230 0%, #0f1117 100%);
 	}
 
 	.app::before {
@@ -401,7 +402,6 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background: linear-gradient(180deg, rgba(53, 57, 69, 0.8) 0%, rgba(30, 32, 40, 0.9) 100%);
 		z-index: 1;
 		pointer-events: none;
 	}
@@ -764,93 +764,93 @@
 		width: 30px;
 		height: 30px;
 	}
-    @media (min-width: 1024px) and (max-width: 1366px) {
-        .embed {
-            display: block;
-            margin-left: 40px;
-            width: 450px;
-            height: auto;
-        }
+	@media (min-width: 1024px) and (max-width: 1366px) {
+		.embed {
+			display: block;
+			margin-left: 40px;
+			width: 450px;
+			height: auto;
+		}
 
-        .headers {
-            margin-left: 40px;
-        }
+		.headers {
+			margin-left: 40px;
+		}
 
-        .hero-section {
-            padding: 140px 40px 60px;
-            gap: 20px;
-        }
+		.hero-section {
+			padding: 140px 40px 60px;
+			gap: 20px;
+		}
 
-        .features {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 60px;
-        }
+		.features {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 60px;
+		}
 
-        .features-section {
-            padding: 60px 40px;
-        }
+		.features-section {
+			padding: 60px 40px;
+		}
 
-        nav {
-            width: calc(100% - 60px);
-        }
+		nav {
+			width: calc(100% - 60px);
+		}
 
-        .dashboard-redirect {
-            font-size: 18px;
-            height: 60px;
-            padding: 0 15px;
-        }
+		.dashboard-redirect {
+			font-size: 18px;
+			height: 60px;
+			padding: 0 15px;
+		}
 
-        .bot-name {
-            font-size: 20px;
-        }
+		.bot-name {
+			font-size: 20px;
+		}
 
-        .version {
-            font-size: 14px;
-            width: 60px;
-            height: 26px;
-        }
-    }
-    @media (min-width: 768px) and (max-width: 1023px) {
-        .embed {
-            display: none;
-        }
+		.version {
+			font-size: 14px;
+			width: 60px;
+			height: 26px;
+		}
+	}
+	@media (min-width: 768px) and (max-width: 1023px) {
+		.embed {
+			display: none;
+		}
 
-        .headers {
-            margin-left: 0;
-            align-items: center;
-            text-align: center;
-        }
+		.headers {
+			margin-left: 0;
+			align-items: center;
+			text-align: center;
+		}
 
-        .hero-section {
-            justify-content: center;
-            padding: 140px 30px 60px;
-        }
+		.hero-section {
+			justify-content: center;
+			padding: 140px 30px 60px;
+		}
 
-        .features {
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
+		.features {
+			grid-template-columns: 1fr;
+			gap: 30px;
+		}
 
-        .feature-box {
-            max-width: 100%;
-        }
+		.feature-box {
+			max-width: 100%;
+		}
 
-        .dashboard-redirect {
-            font-size: 16px;
-            height: 50px;
-            padding: 0 12px;
-        }
+		.dashboard-redirect {
+			font-size: 16px;
+			height: 50px;
+			padding: 0 12px;
+		}
 
-        .bot-name {
-            font-size: 16px;
-        }
+		.bot-name {
+			font-size: 16px;
+		}
 
-        .version {
-            font-size: 12px;
-            width: 55px;
-            height: 24px;
-        }
-    }
+		.version {
+			font-size: 12px;
+			width: 55px;
+			height: 24px;
+		}
+	}
 	@media (min-width: 1024px) {
 		.embed {
 			display: block;
