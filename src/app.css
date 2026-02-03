@@ -3,13 +3,8 @@
 :root {
 	--font-vietnam: 'Be Vietnam Pro', sans-serif;
 	--font-poppins: 'Poppins', sans-serif;
+	background: linear-gradient(180deg, #1e2230 0%, #0f1117 100%) no-repeat fixed;
 	min-height: 100vh;
-	background: linear-gradient(
-			180deg,
-			var(--color-bg-start, #1e2230) 0%,
-			var(--color-bg-end, #0f1117) 100%
-		)
-		no-repeat fixed;
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
 }

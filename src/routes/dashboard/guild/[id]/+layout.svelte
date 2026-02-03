@@ -39,13 +39,6 @@
 			text: $i18n.t('system.sidebar.home'),
 			hasSwitch: false,
 			switchActive: false
-		},
-		{
-			path: `/dashboard/guild/${data.guildId}/insights`,
-			icon: '/icons/sidebar/insights.svg',
-			text: $i18n.t('system.sidebar.insights'),
-			hasSwitch: false,
-			switchActive: false
 		}
 	];
 
@@ -63,18 +56,18 @@
 			text: $i18n.t('system.sidebar.logs'),
 			hasSwitch: true,
 			switchActive: false
-		},
-		{
-			path: `/dashboard/guild/${data.guildId}/custombots`,
-			icon: '/icons/sidebar/custombot.svg',
-			text: $i18n.t('system.sidebar.custombots'),
-			hasSwitch: true,
-			switchActive: false,
-			additionalPaths: [
-				`/dashboard/guild/${data.guildId}/custombots/list`,
-				`/dashboard/guild/${data.guildId}/custombots/manage/0`
-			]
 		}
+		// {
+		// 	path: `/dashboard/guild/${data.guildId}/custombots`,
+		// 	icon: '/icons/sidebar/custombot.svg',
+		// 	text: $i18n.t('system.sidebar.custombots'),
+		// 	hasSwitch: true,
+		// 	switchActive: false,
+		// 	additionalPaths: [
+		// 		`/dashboard/guild/${data.guildId}/custombots/list`,
+		// 		`/dashboard/guild/${data.guildId}/custombots/manage/0`
+		// 	]
+		// }
 	];
 
 	const funItems: SidebarItemProps[] = [

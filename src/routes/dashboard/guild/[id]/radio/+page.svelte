@@ -2,6 +2,11 @@
 	import geti18ncontext from '$lib/i18n';
 	import { asName } from '$lib/utils';
 	import { PUBLIC_BACKEND_URL } from '$env/static/public';
+	import Search from '$lib/components/ui/Search.svelte';
+	import Switch from '$lib/components/ui/Switch.svelte';
+	import { curveCatmullRom } from 'd3-shape';
+	import { linear } from 'svelte/easing';
+	import { Axis, Layer, LineChart, Spline } from 'layerchart';
 
 	const i18n = geti18ncontext();
 
@@ -62,13 +67,6 @@
 		const minutes = String(date.getMinutes()).padStart(2, '0');
 		return `${day}.${month}.${year} ${hour}:${minutes}`;
 	}
-
-	import Search from '$lib/components/ui/Search.svelte';
-	import Switch from '$lib/components/ui/Switch.svelte';
-	import { curveCatmullRom } from 'd3-shape';
-	import { linear } from 'svelte/easing';
-	import { Axis, Layer, LineChart, Spline } from 'layerchart';
-
 	const defaultRadioSettings: Settings = {
 		radioChannel: '',
 		radioStation: '',
@@ -196,6 +194,7 @@
 			const response = await fetch(`${origin}/api/guilds/${data.guild.id}/radio_player`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
+				credentials: 'include',
 				body: JSON.stringify({
 					presetId: equalizerPresets[newIndex].id,
 					guildId: data.guildId

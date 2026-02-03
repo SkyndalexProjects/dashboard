@@ -6,7 +6,6 @@
 	const guildId = page.params.id;
 	console.log('guildId', guildId);
 	const { data } = $props();
-	import Alert from '$lib/components/ui/Alert.svelte';
 </script>
 
 <svelte:head>
@@ -20,22 +19,7 @@
 
 {#await data.guilds}
 	<p>Test</p>
-{:then guilds}
-	<div class="alert">
-		<Alert type="warning">{$i18n.t('system.errors.not_finished')}</Alert>
-	</div>
 {/await}
 
 <style>
-	.alert {
-		position: fixed;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		justify-content: center;
-		width: 100%;
-		top: 100px;
-		z-index: 100;
-		left: 400px;
-	}
 </style>

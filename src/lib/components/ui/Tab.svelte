@@ -69,13 +69,15 @@
 		color: var(--tab-color, #858585);
 		width: var(--tab-width, auto);
 		height: var(--tab-height, auto);
-		text-align: left;
+		text-align: center;
 		display: flex;
 		align-items: center;
 		gap: var(--tab-icon-gap, 8px);
 		padding-right: var(--tab-padding-right, 20px);
 		border-radius: var(--tab-border-radius, 0);
 		font-weight: var(--tab-font-weight, normal);
+		min-width: 71px;
+		text-wrap: nowrap;
 	}
 	.tab-icon {
 		display: inline-flex;
