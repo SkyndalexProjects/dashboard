@@ -22,6 +22,12 @@ export default defineConfig(({ mode }) => {
 					target,
 					changeOrigin: true,
 					secure: true
+				},
+				'/radio-garden-api': {
+					target: 'https://radio.garden',
+					changeOrigin: true,
+					secure: true,
+					rewrite: (path) => path.replace(/^\/radio-garden-api/, '/api')
 				}
 			}
 		},
@@ -37,6 +43,12 @@ export default defineConfig(({ mode }) => {
 					target,
 					changeOrigin: true,
 					secure: true
+				},
+				'/radio-garden-api': {
+					target: 'https://radio.garden',
+					changeOrigin: true,
+					secure: true,
+					rewrite: (path) => path.replace(/^\/radio-garden-api/, '/api')
 				}
 			}
 		}

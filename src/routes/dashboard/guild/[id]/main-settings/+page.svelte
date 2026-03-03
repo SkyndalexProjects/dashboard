@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Tab from '$lib/components/ui/Tab.svelte';
-	import Switch from '$lib/components/ui/Switch.svelte';
 	import Search from '$lib/components/ui/Search.svelte';
 	import { onMount } from 'svelte';
 	import { PUBLIC_BACKEND_URL } from '$env/static/public';
@@ -28,7 +27,9 @@
 		welcomeChannel: '',
 		goodbyeChannel: '',
 		welcomeTitle: '',
+		welcomeDescription: '',
 		goodbyeTitle: '',
+		goodbyeDescription: '',
 		blockedCommands: [] as string[],
 		blockedChannels: [] as string[]
 	};
@@ -72,8 +73,6 @@
 		'removerole',
 		'slowmode'
 	];
-
-	const initCommandItems: Item[] = initCommands.map((c) => ({ id: c, name: c }));
 
 	function isEmpty(value: unknown): boolean {
 		if (value == null) return true;
@@ -273,30 +272,24 @@
 	{:then channels}
 		<Tab
 			tabs={[
-				{
-					label: 'Welcoming',
-					icon: WelcomeHandIcon
-				},
-				{
-					label: 'Goodbyes',
-					icon: FarewellHandIcon
-				}
+				{ label: 'Welcoming', icon: WelcomeHandIcon },
+				{ label: 'Goodbyes', icon: FarewellHandIcon }
 			]}
 			{selectedTab}
 			onTabSelect={handleTabSelect}
-			style="recent-tabs"
+			style={'recent-tabs'}
 		>
 			{#if selectedTab === 'Welcoming'}
 				<div class="containers">
 					<div class="setting-container dropdown-container">
 						CHANNEL
 						<Search
-							menuItems={textChannelItems(channels)}
+							menuItems={textChannelItems(channels as Channel[])}
 							onChange={(value) => {
 								settings.welcomeChannel = Array.isArray(value) ? (value[0] ?? '') : value;
 								isDirty = true;
 							}}
-							inputValue={asChannelName(settings.welcomeChannel, channels)}
+							inputValue={asChannelName(settings.welcomeChannel, channels as Channel[])}
 							icon="/icons/dropdowns/hashtag.svg"
 						/>
 					</div>
@@ -307,8 +300,8 @@
 							type="text"
 							class="text-input"
 							value={settings.welcomeTitle}
-							oninput={(value) => {
-								settings.welcomeTitle = value.currentTarget.value;
+							oninput={(e) => {
+								settings.welcomeTitle = e.currentTarget.value;
 								isDirty = true;
 							}}
 						/>
@@ -319,9 +312,9 @@
 						<input
 							type="text"
 							class="text-input"
-							value={settings.welcomeTitle}
-							oninput={(value) => {
-								settings.welcomeTitle = value.currentTarget.value;
+							value={settings.welcomeDescription}
+							oninput={(e) => {
+								settings.welcomeDescription = e.currentTarget.value;
 								isDirty = true;
 							}}
 						/>
@@ -329,40 +322,90 @@
 				</div>
 			{:else if selectedTab === 'Goodbyes'}
 				<div class="containers">
-					<div class="setting-container dropdown-container">
-						CHANNEL
-						<Search
-							menuItems={textChannelItems(channels)}
-							onChange={(value) => {
-								settings.goodbyeChannel = Array.isArray(value) ? (value[0] ?? '') : value;
-								isDirty = true;
-							}}
-							inputValue={asChannelName(settings.goodbyeChannel, channels)}
-							icon="/icons/dropdowns/hashtag.svg"
-						/>
-					</div>
-					<div class="setting-container">
-						WELCOME TITLE
-						<img src="/icons/dropdowns/tag.svg" alt="h" class="icon" />
-						<input
-							type="text"
-							class="text-input"
-							value={settings.goodbyeTitle}
-							oninput={(value) => {
-								settings.goodbyeTitle = value.currentTarget.value;
-								isDirty = true;
-							}}
-						/>
-					</div>
+					<!-- Goodbye content here -->
 				</div>
 			{/if}
 		</Tab>
+
 		{#if isDirty}
 			<div class="save-bar" class:fading-out={isFadingOut}>
-				<div class="save-bar-title">Careful - you have unsaved changes!</div>
+				<div class="save-bar-title">
+					<span class="save-warning">
+						<svg
+							width="26"
+							height="26"
+							viewBox="0 0 26 26"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<g clip-path="url(#clip0_3095_1524)">
+								<path
+									d="M26.0003 13.009C25.9953 20.1883 20.1705 26.005 12.9913 26C5.81202 25.995 -0.00469953 20.1702 0.000273076 12.991C0.00524568 5.81175 5.83003 -0.00496721 13.0093 5.39649e-06C20.1885 0.004978 26.0052 5.82976 26.0003 13.009Z"
+									fill="#F1AB15"
+								/>
+								<path
+									d="M12.2995 12.0528H14.6995V19.0002H12.2995V12.0528ZM14.9995 8.57914C14.9995 9.45009 14.3269 10.1581 13.4995 10.1581C12.6721 10.1581 11.9995 9.45009 11.9995 8.57914C11.9995 7.70819 12.6721 7.00019 13.4995 7.00019C14.3269 7.00019 14.9995 7.70819 14.9995 8.57914Z"
+									fill="white"
+								/>
+							</g>
+							<defs>
+								<clipPath id="clip0_3095_1524">
+									<rect width="26" height="26" fill="white" />
+								</clipPath>
+							</defs>
+						</svg>
+						Warning
+					</span>
+					Be careful - you have unsaved changes!
+				</div>
 				<div class="save-bar-buttons">
-					<button class="save-btn" onclick={save}>Save changes</button>
-					<button class="decline-btn" onclick={reset}> Reset </button>
+					<button class="decline-btn" onclick={reset}>
+						<svg
+							width="12"
+							height="12"
+							viewBox="0 0 12 12"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<g clip-path="url(#clip0_3095_1538)">
+								<path
+									d="M6.75 10.5C7.64002 10.5 8.51004 10.2361 9.25007 9.74161C9.99009 9.24714 10.5669 8.54434 10.9075 7.72207C11.2481 6.89981 11.3372 5.99501 11.1635 5.12209C10.9899 4.24918 10.5613 3.44735 9.93198 2.81802C9.30264 2.18868 8.50082 1.7601 7.62791 1.58646C6.75499 1.41283 5.85019 1.50195 5.02792 1.84254C4.20566 2.18313 3.50285 2.75991 3.00839 3.49993C2.51392 4.23995 2.25 5.10998 2.25 6V8.325L0.9 6.975L0.375 7.5L2.625 9.75L4.875 7.5L4.35 6.975L3 8.325V6C3 5.25832 3.21993 4.53329 3.63199 3.91661C4.04404 3.29993 4.62971 2.81928 5.31494 2.53545C6.00016 2.25162 6.75416 2.17736 7.48159 2.32205C8.20902 2.46675 8.8772 2.8239 9.40165 3.34835C9.9261 3.87279 10.2832 4.54098 10.4279 5.26841C10.5726 5.99584 10.4984 6.74984 10.2145 7.43506C9.93072 8.12028 9.45007 8.70595 8.83339 9.11801C8.2167 9.53006 7.49168 9.75 6.75 9.75V10.5Z"
+									fill="white"
+								/>
+							</g>
+							<defs>
+								<clipPath id="clip0_3095_1538">
+									<rect width="12" height="12" fill="white" />
+								</clipPath>
+							</defs>
+						</svg>
+						Reset</button
+					>
+					<button class="save-btn" onclick={save}>
+						<svg
+							width="12"
+							height="12"
+							viewBox="0 0 12 12"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<g clip-path="url(#clip0_3095_1546)">
+								<path
+									d="M11.9008 2.21789L9.78215 0.099269C9.71843 0.0357103 9.63215 0 9.54215 0H0.339269C0.151779 0 0 0.151779 0 0.339269V11.6607C0 11.8482 0.151779 12 0.339269 12H11.6607C11.8482 12 12 11.8482 12 11.6607V2.45781C12 2.36777 11.9642 2.28157 11.9008 2.21789ZM1.59128 1.43495C1.59128 1.29997 1.70098 1.19015 1.83612 1.19015H8.49716C8.63247 1.19015 8.74204 1.29997 8.74204 1.43495V4.6759C8.74204 4.81117 8.63251 4.92066 8.49716 4.92066H1.83612C1.70098 4.92066 1.59128 4.81117 1.59128 4.6759V1.43495ZM10.4087 10.2419C10.4087 10.4087 10.2734 10.5439 10.1068 10.5439H1.89319C1.72659 10.5439 1.59128 10.4087 1.59128 10.2419V6.24579C1.59128 6.07912 1.72659 5.94393 1.89319 5.94393H10.1068C10.2734 5.94393 10.4087 6.07912 10.4087 6.24579V10.2419Z"
+									fill="white"
+								/>
+								<path d="M8.19956 1.61541H7.18213V4.49557H8.19956V1.61541Z" fill="white" />
+								<path d="M9.53816 7.22661H2.46143V7.56571H9.53816V7.22661Z" fill="white" />
+								<path d="M9.53816 8.92221H2.46143V9.26131H9.53816V8.92221Z" fill="white" />
+							</g>
+							<defs>
+								<clipPath id="clip0_3095_1546">
+									<rect width="12" height="12" fill="white" />
+								</clipPath>
+							</defs>
+						</svg>
+						Save changes</button
+					>
 				</div>
 			</div>
 		{/if}
@@ -393,8 +436,9 @@
 		--tab-height: 46px;
 		--tab-selected-padding-right: 20px;
 		--tab-padding-right: 20px;
-		--tab-border-radius: 0px 15px 15px 0px;
-		--tab-selected-border-radius: 15px 0px 0px 15px;
+		--tab-border-radius: 10px;
+		--tab-selected-border-radius: 10px;
+		gap: 5px;
 	}
 	.containers {
 		overflow: visible;
@@ -417,6 +461,17 @@
 		border: 2px solid #474747;
 		background: rgba(0, 0, 0, 0.2);
 		font-family: 'Be Vietnam', sans-serif;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: normal;
+	}
+	.save-warning {
+		display: inline-flex;
+		gap: 10px;
+		color: #f1ab15;
+		text-align: center;
+		font-family: Poppins, sans-serif;
 		font-size: 16px;
 		font-style: normal;
 		font-weight: 700;
@@ -458,33 +513,41 @@
 		gap: 5px;
 		align-items: center;
 		justify-content: space-between;
-		background: rgba(0, 0, 0, 0.5);
-		border: 1px solid #223a8a;
+		background: #0f1117;
+		box-shadow: 0 0 20px 7px rgba(0, 0, 0, 0.25);
 		color: #fff;
-		width: 30%;
-		height: 60px;
-		border-radius: 15px;
+		width: 1359px;
+		height: 77px;
+		border-radius: 17px;
 		z-index: 10002;
 		backdrop-filter: blur(8px);
 		padding: 0 20px;
 		animation: save-bar-appear 0.4s ease-out;
+		margin-left: 220px;
 	}
 	.save-bar-buttons {
 		display: flex;
 		gap: 15px;
 	}
 	.save-bar-title {
-		font:
-			700 16px Poppins,
-			sans-serif;
+		display: inline-flex;
+		gap: 10px;
+		color: #fff;
+		text-align: center;
+		font-family: Poppins, sans-serif;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
 	}
 	.save-btn {
 		all: unset;
 		cursor: pointer;
-		background: #275ee7;
+		background: rgba(0, 0, 0, 0.2);
 		color: #fff;
-		padding: 10px 15px;
-		border-radius: 6px;
+		padding: 13px 15px 13px 14px;
+		box-shadow: 0 4px 16.9px 3px rgba(0, 0, 0, 0.25);
+		border-radius: 10px;
 		font:
 			700 14px Poppins,
 			sans-serif;
@@ -494,15 +557,14 @@
 	.decline-btn {
 		all: unset;
 		cursor: pointer;
-		background: red;
 		color: #fff;
-		padding: 10px 15px;
+		padding: 12px 16px 12px 11px;
 		border-radius: 6px;
 		font:
 			700 14px Poppins,
 			sans-serif;
-		border: transparent;
 		transition: all 0.3s ease;
+		gap: 10px;
 	}
 	.save-btn:hover {
 		background: #1c4ed8;
@@ -511,9 +573,8 @@
 	}
 
 	.decline-btn:hover {
-		background: #dc2626;
+		border-radius: 5px;
 		transform: translateY(-2px);
-		box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
 	}
 
 	.save-btn:active {

@@ -39,13 +39,6 @@
 			text: $i18n.t('system.sidebar.home'),
 			hasSwitch: false,
 			switchActive: false
-		},
-		{
-			path: `/dashboard/guild/${data.guildId}/insights`,
-			icon: '/icons/sidebar/insights.svg',
-			text: $i18n.t('system.sidebar.insights'),
-			hasSwitch: false,
-			switchActive: false
 		}
 	];
 
@@ -63,18 +56,18 @@
 			text: $i18n.t('system.sidebar.logs'),
 			hasSwitch: true,
 			switchActive: false
-		},
-		{
-			path: `/dashboard/guild/${data.guildId}/custombots`,
-			icon: '/icons/sidebar/custombot.svg',
-			text: $i18n.t('system.sidebar.custombots'),
-			hasSwitch: true,
-			switchActive: false,
-			additionalPaths: [
-				`/dashboard/guild/${data.guildId}/custombots/list`,
-				`/dashboard/guild/${data.guildId}/custombots/manage/0`
-			]
 		}
+		// {
+		// 	path: `/dashboard/guild/${data.guildId}/custombots`,
+		// 	icon: '/icons/sidebar/custombot.svg',
+		// 	text: $i18n.t('system.sidebar.custombots'),
+		// 	hasSwitch: true,
+		// 	switchActive: false,
+		// 	additionalPaths: [
+		// 		`/dashboard/guild/${data.guildId}/custombots/list`,
+		// 		`/dashboard/guild/${data.guildId}/custombots/manage/0`
+		// 	]
+		// }
 	];
 
 	const funItems: SidebarItemProps[] = [
@@ -288,16 +281,6 @@
 	.guild-item:last-of-type {
 		border-radius: 0 0 15px 15px;
 	}
-	.indicator {
-		transition: transform 0.25s ease;
-		transform-origin: center;
-		display: inline-block;
-		right: 20px;
-		position: absolute;
-	}
-	.rotated {
-		transform: rotate(180deg);
-	}
 	.switches {
 		position: absolute;
 		display: flex;
@@ -347,7 +330,7 @@
 		height: 50px;
 		flex-shrink: 0;
 		border-left: 10px solid #275ee7;
-		background: linear-gradient(90deg, rgba(0, 0, 0, 0.38) 0%, rgba(24, 28, 38, 0.5) 100%);
+		background: linear-gradient(90deg, rgba(0, 0, 0, 0.38) 0%, rgba(24, 28, 38, 0.15) 116.26%);
 		gap: 15px;
 		color: #fff;
 		font-family: Poppins, sans-serif;

@@ -88,7 +88,7 @@
 		display: flex;
 		align-items: center;
 		width: 100%;
-		background: linear-gradient(90deg, #181c26 0%, rgba(24, 28, 38, 0.5) 100%);
+		background: rgba(0, 0, 0, 0.3);
 		gap: 15px;
 		text-align: left;
 		color: rgba(255, 255, 255, 0.5);

@@ -9,10 +9,11 @@
 	let {
 		menuItems = [],
 		placeholder = '',
-		inputValue = '',
+		inputValue = $bindable(''),
 		icon = '',
 		multiSelect = false,
-		onChange
+		onChange,
+		onInput
 	}: {
 		menuItems?: Item[];
 		placeholder?: string;
@@ -20,6 +21,7 @@
 		icon?: string;
 		multiSelect?: boolean;
 		onChange?: (value: string | string[]) => void;
+		onInput?: (value: string) => void;
 	} = $props();
 
 	let filteredItems: Item[] = $state([]);
@@ -29,10 +31,18 @@
 
 	function handleInput() {
 		const q = inputValue.toLowerCase();
-		filteredItems = menuItems.filter((item) => item?.name?.toLowerCase().includes(q));
+		if (onInput) {
+			onInput(inputValue);
+		} else {
+			filteredItems = menuItems.filter((item) => item?.name?.toLowerCase().includes(q));
+		}
 		showDropdown = true;
 	}
-
+	$effect(() => {
+		if (onInput) {
+			filteredItems = menuItems;
+		}
+	});
 	function handleFocus() {
 		filteredItems = menuItems;
 		showDropdown = true;
